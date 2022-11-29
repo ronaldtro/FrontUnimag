@@ -1,0 +1,105 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Convocatorias <small class="btn-block text-muted">El listado cuenta con {{listaConvocatorias.length}} convocatorias</small></h2>
+  <hr>
+  <div class="row">
+      <div class="col-12 text-center">
+          <button [routerLink]="['crear']" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear convocatoria">
+          <span class="fas fa-plus"></span> Agregar convocatoria</button>
+          <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las convocatorias registradas en el sistema. Usted puede editar, activar o desactivar las convocatorias.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+      </div>
+      <div class="col-12">
+          <div class="table-responsive">
+              <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                    <tr>
+                      <th style="width: 150px;">Fecha de expedición</th>
+                      <th>Nombre</th>
+                      <th>Etapa</th>
+                      <th>Estado</th>
+                      <th style="width: 120px;">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                      <tr *ngFor="let convocatoria of listaConvocatorias; let i=index">
+                          <td attr.data-order="{{convocatoria.fecha_expedicion}}">{{convocatoria.fecha_expedicion | date: 'dd/MM/yyyy' }}</td>
+                          <td>{{convocatoria.titulo}}</td>
+                          <td>{{convocatoria.estadoActual}}</td>
+                          <td>
+                            {{convocatoria.estado ? 'Activo':'Inactivo'}}
+                          </td>
+                          <td>
+                              <div class="btn-group" role="group" aria-label="Acciones">
+                                  <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" [routerLink]="[ '/convocatorias-artistas-deportistas/detalle', convocatoria.id ]" title="Ver detalles completos">
+                                      <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                      <span class="sr-only">Ver detalles completos</span>
+                                  </button>
+                                  <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-editar" [routerLink]="[ '/convocatorias-artistas-deportistas/editar', convocatoria.id ]" title="Editar registro">
+                                      <span class="fas fa-pen" aria-hidden="true"></span>
+                                      <span class="sr-only">Editar registro</span>
+                                  </button>
+                                  <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-activar" *ngIf="!convocatoria.estado" (click)="cambiarEstado(convocatoria) " title="Cambiar estado">
+                                      <span class="far fa-eye" aria-hidden="true"></span>    
+                                      <span class="sr-only">Cambiar estado</span>        
+                                  </button>
+                                  <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-desactivar" *ngIf="convocatoria.estado" (click)="cambiarEstado(convocatoria)" title="Cambiar estado">
+                                      <span class="far fa-eye-slash" aria-hidden="true"></span>
+                                      <span class="sr-only">Cambiar estado</span>         
+                                  </button>
+                                  
+                                  <div class="dropdown d-inline-block">
+                                      <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{convocatoria.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                          <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                      </button>
+                                      <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{convocatoria.id}}">
+                                          <button (click)="viewDoc(convocatoria)" class="dropdown-item" type="button" title="Ver soporte">
+                                              Ver soporte
+                                          </button>
+
+                                          <button class="dropdown-item" type="button" title="Asociar disciplinas" [routerLink]="[ 'asignar-disciplinas', convocatoria.id ]">
+                                            Asociar disciplinas a convocatoria
+                                          </button>
+                                          
+                                          <button class="dropdown-item" type="button" title="Ver estudiantes postulados" [routerLink]="[ '/evaluacion-estudiantes-deportistas/listar-estudiantes', convocatoria.id ]">
+                                            Ver estudiantes postulados
+                                          </button>
+
+                                          <!-- <button class="dropdown-item" type="button">
+                                            Exportar estudiantes postulados
+                                          </button> -->
+                                         
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <p id="historialConvocatoriasDeportistas" class="text-center"><a routerLink='historial'>Ver el historial completo de convocatorias</a></p>
+      </div>
+  </div>
+
+</div>
+<!-- Modal para mostrar documento de soporte -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="convocatoria">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="convocatoria.soporte  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

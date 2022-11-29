@@ -1,0 +1,51 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="mt-3 text-center animated fadeIn">
+
+    <h2 class="text-uppercase text-center animated fadeIn">Cuantificación de las plazas<small class="d-block text-muted">El listado cuenta con {{plazas.length}} registro(s)</small></h2>
+    <button class="btn btn-light animated fadeIn" (click)="backClicked()" type="button">Ir atrás</button>
+    <hr>
+</div>
+
+<div class="row mb-3">
+
+    <div class="col-md-12">
+        <div class="table-responsive animated fadeIn">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Plaza</th>
+                        <th class="text-center" scope="col">Tipo de ayudantía</th>
+                        <th class="text-center" scope="col">Dependencia solicitante</th>
+                        <th class="text-center" scope="col">Total inscritos</th>
+                        <th class="text-center" scope="col">Inscritos plaza</th>
+                        <th class="text-center" scope="col">Cancelados inscripción</th>
+                        <th class="text-center" scope="col">Evaluados</th>
+                        <th class="text-center" scope="col">Aprobados</th>
+                        <th class="text-center" scope="col">Desistidos de asignación</th>
+                        <th class="text-center" scope="col">Retirados</th>
+                        <th class="text-center" scope="col">Abandonaron el proceso</th>
+                        <th class="text-center" scope="col">Renunciados</th>
+                        <th class="text-center" scope="col">Ratificados</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr class="text-center" *ngFor="let plaza of plazas">
+                        <td><a [routerLink]="['/plazas',plaza.plaza_id,'estudiantes']">{{plaza.plaza}}</a></td>
+                        <td>{{plaza.tipoAyudantia}}</td>
+                        <td>{{plaza.nombreSolicitante}}</td>
+                        <td>{{plaza.totalEstudiantes}}</td>
+                        <td>{{plaza.estudiantesInscritos}}</td>
+                        <td>{{plaza.estudiantesCanceladosInscripcion}}</td>
+                        <td>{{plaza.estudiantesEvaluados}}</td>
+                        <td>{{plaza.estudiantesAprobados}}</td>
+                        <td>{{plaza.estudiantesDesistidosAsignacion}}</td>
+                        <td>{{plaza.estudiantesRetirados}}</td>
+                        <td>{{plaza.estudiantesAbandonadosProcesos}}</td>
+                        <td>{{plaza.estudiantesRenunciados}}</td>
+                        <td>{{plaza.estudiantesRaficados}}</td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>

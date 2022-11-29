@@ -1,0 +1,166 @@
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Supervisor Ayudantia
+        <small class="btn-block text-muted"></small>
+    </h2>
+    <hr>
+    <div class="table-responsive mt-3">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Estudiante</th>
+                    <th>Tipo plaza</th>
+                    <th>Plaza</th>
+                    <th>Programa</th>
+                    <th>Actividades registradas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estu of estudiantes; let i=index">
+                    <td attr.data-order="estu.codigo">
+                        {{estu.codigo}}
+                    </td>
+                    <td>{{estu.nombre}}</td>
+                    <td>{{estu.tipoAyudantia}}</td>
+                    <td>{{estu.ayudantia}}</td>
+                    <td>{{estu.programa}}</td>
+                    <td>{{estu.actividades}}</td>
+                    <td class="text-center">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                            <button type="button" class="btn bg-light btn-outline-secondary btn-sm" (click)="loadEstu(estu)" title="Ver detalles">
+                            <span class="fas fa-eye" aria-hidden="true"></span>
+                        </button>
+                            <div class="dropdown d-inline-block">
+                                <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{estu.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                    <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{estu.id}}">
+
+                                    <button class="dropdown-item" type="button" title="Nueva observación" (click)="openModalObservacion(estu)">
+                                        <span class="fas fa-folder-plus"></span> Nueva observación
+                                    </button>
+                                    <a class="dropdown-item" role="button" title="Libreta de observaciones" [routerLink]="['/plazas', estu.id, 'observaciones' ]">
+                                        <span class="fas fa-address-book"></span> Libreta de observaciones
+                                    </a>
+                                    <a class="dropdown-item" role="button" title="Ver listado de actvidades" [routerLink]="[ '/supervisor/estudiante', estu.id, 'actividades' ]">
+                                        <span class="fas fa-list-ol"></span> Ver listado de actvidades
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="detalleEstudiante" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle estudiante</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Código </label>
+                                <input type="text" class="form-control" value="{{estudiante.codigo}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-8">
+                            <div class="form-group">
+                                <label>Estudiante </label>
+                                <input type="text" class="form-control" value="{{estudiante.nombre}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Tipo plaza </label>
+                                <input type="text" class="form-control" value="{{estudiante.tipoAyudantia}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Plaza </label>
+                                <input type="text" class="form-control" value="{{estudiante.ayudantia}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Facultad </label>
+                                <input type="text" class="form-control" value="{{estudiante.facultad}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Programa </label>
+                                <input type="text" class="form-control" value="{{estudiante.programa}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Solicitante </label>
+                                <input type="text" class="form-control" value="{{estudiante.solicitante}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Supervisor </label>
+                                <input type="text" class="form-control" value="{{estudiante.supervisor}}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="form-group">
+                                <label>Actividades registradas </label>
+                                <input type="text" class="form-control" value="{{estudiante.actividades}}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="observacionM" tabindex="-1" role="dialog" aria-labelledby="observacionTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="observacionTitle">Agregar Observación </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="closeFormObserbacion(observacionForm)">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <form (ngSubmit)="enviarObservacion(observacionForm)" #observacionForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <label for="observacion">Observación</label>
+                        <textarea class="form-control" id="observacion" placeholder="Escriba aquí su observación. Máx. 1000 caracteres" name="observacion" maxlength="1000" rows="4" [(ngModel)]="observacion" #observacionTxt="ngModel" required [ngClass]="{'is-invalid': observacionTxt.errors?.required  && (observacionTxt.touched || observacionForm.submitted)}"></textarea>
+                        <div class="invalid-feedback">
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="closeFormObserbacion(observacionForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

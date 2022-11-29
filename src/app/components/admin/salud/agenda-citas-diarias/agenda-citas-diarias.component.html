@@ -1,0 +1,90 @@
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">agenda de atención del {{fecha.fecha_dia | date:'longDate'}}
+        <small class="d-block text-muted">El listado cuenta con {{citas.length}} registro(s).</small>
+    </h2>
+    <hr>
+    <div class="col-12" *ngIf="!citas.length">
+        <div class="alert alert-info mb-3" role="alert">
+            <p class="text-center"> Este día no tiene citas agendadas</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver al horario</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="table-responsive">
+            <table id="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripper">
+                <thead>
+                    <tr>
+                  
+                        <th scope="col" class="text-center">Paciente</th>
+                        <th scope="col" class="text-center">Servicio</th>
+                        <!-- <th scope="col" class="text-center">Fecha</th> -->
+                        <th scope="col" class="text-center">Hora de atención</th>
+                        <th scope="col" class="text-center">Duración</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center" style="width: 100px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of citas ; let i = index; ">
+
+
+                        <td class="text-center">{{item.paciente}}</td>
+                        <td class="text-center">{{item.especialidad}}</td>
+                        <!-- <td class="text-center">{{item.fecha}}</td> -->
+                        <td class="text-center">{{item.hora_atencion }}</td>
+                        <td class="text-center">{{item.duracion}}</td>
+                        <td class="text-center">{{item.estado }}</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Acciones">
+
+                                <!-- <button type="button" class="btn btn-light mr-1" >Ir a la agenda del día</button> -->
+
+                                <button id="medicinaGeneral" *ngIf="item.estado_id == 1 && item.tipoEspecialidad == 4"  class="btn btn-sm btn-outline-dark border-secondary " [routerLink]="[ '/atenciones/medicinageneral',0,item.id ]" type="button" title="Atender Paciente general">
+                                  <span class="fas fa-file-medical" aria-hidden="true"></span>
+                                  <span class="sr-only">Atender Paciente</span>
+                                </button>
+
+                                <button id="enfermeria" *ngIf="item.estado_id == 1 && item.tipoEspecialidad == 6"  class="btn btn-sm btn-outline-dark border-secondary " [routerLink]="[ '/atenciones/enfermeria',0,item.id ]" type="button" title="Atender paciente enfermaría">
+                                    <span class="fas fa-file-medical" aria-hidden="true"></span>
+                                    <span class="sr-only">Atender Paciente</span>
+                                  </button>
+
+                                <button id="psicologia" *ngIf="item.estado_id == 1 && item.tipoEspecialidad == 2"  class="btn btn-sm btn-outline-dark border-secondary " [routerLink]="[ '/atenciones/psicologia',0, item.id ]" type="button" title="Atender Paciente de psicologia">
+                                    <span class="fas fa-file-medical" aria-hidden="true"></span>
+                                    <span class="sr-only">Atender Paciente</span>
+                                </button>
+                                  
+                                <button id="deportes" *ngIf="item.estado_id == 1 && item.tipoEspecialidad == 3"  class="btn btn-sm btn-outline-dark border-secondary " [routerLink]="[ '/atenciones/deportologia',0,item.id ]" type="button" title="Atender medicina del deporte">
+                                    <span class="fas fa-user-md" aria-hidden="true"></span>
+                                    <span class="sr-only">Atender Paciente</span>
+                                </button>
+
+                                  <!-- <button id="enfermeria" *ngIf="item.estado_id == 1 && item.tipoEspecialidad == 2"  class="btn btn-sm btn-outline-dark border-secondary " [routerLink]="[ '/atenciones/psicologia']" type="button" title="Atender paciente enfermaría">
+                                    <span class="fas fa-file-medical" aria-hidden="true"></span>
+                                    <span class="sr-only">Atender Paciente</span>
+                                  </button> -->
+
+                                    <!-- <button *ngIf="item.estado_id == 2"  class="btn btn-sm btn-outline-dark border-secondary " [routerLink]="[ '/atenciones/detalle-cita', item.id ]" type="button" title="Ver detalle de la atención realizada">
+                                        <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                        <span class="sr-only">Ver detalle de la atención realizada</span>
+                                    </button> -->
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+
+    </div>
+    <div class="row" *ngIf="citas.length"> 
+            <div class="col-lg-12 text-center">
+                    <button  type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver</button>
+            </div>           
+            </div>
+</div>

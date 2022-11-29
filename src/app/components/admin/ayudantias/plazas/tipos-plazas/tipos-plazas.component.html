@@ -1,0 +1,223 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+    <h2 class="text-uppercase text-center">Plazas <small class="btn-block text-muted">Listado de nombres de plaza. El
+            listado cuenta
+            con {{tiposPlazas.length}} registro(s)</small></h2>
+    <hr>
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button (click)="crear()" class="btn btn-success text-uppercase mb-3 mr-1" type="button" title="Agregar tipo">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                Agregar nombre
+            </button>
+
+            <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+            </button>
+
+            <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los tipos de plazas que se pueden solicitar. Se puede editar y habilitar o deshabilitar su uso.">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Información de ayuda</span>
+            </a>
+
+        </div>
+        <div class="collapse col-lg-12" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-nombre" class="form-group">
+                            <label>Filtrar por nombre</label>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-tipoAyudantia" class="form-group">
+                            <label>Filtrar por tipo de ayudantia</label>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-estado" class="form-group">
+                            <label>Filtrar por estado</label>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre de plaza</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Tipo de ayudantía</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col" class="text-center" style="width: 90px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tipo of tiposPlazas">
+                            <td>{{ tipo.nombre }} </td>
+                            <td>{{ tipo.codigo }} </td>
+                            <td>{{ tipo.nombreTipoAyudantia }}</td>
+                            <td>{{ tipo.estado? 'Activo' : 'Inactivo' }} </td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                    <button (click)="editar(tipo)" class="btn btn-sm btn-outline-dark border-secondary" type="button" title="Editar">
+                                        <span class="fa fa-pen" aria-hidden="true"></span>
+                                        <span class="sr-only">Editar registro</span>
+                                    </button>
+
+                                    <button (click)="estadoDato(tipo)" class="btn btn-sm btn-outline-dark border-secondary" type="button" [title]="tipo.estado? 'Desactivar' : 'Activar'">
+
+                                        <span [ngClass]="{'fa-eye-slash': tipo.estado, ' fa-eye':!tipo.estado}" class="far"
+                                            aria-hidden="true"></span>
+                                        <span class="sr-only" *ngIf="!tipo.estado">Activar registro</span>
+                                        <span class="sr-only" *ngIf="tipo.estado">Desactivar registro</span>
+                                    </button>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="crearTipoPlaza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear tipo de plaza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="forma.resetForm();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          
+            <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                        <div class="alert alert-danger alert" *ngIf="error.length > 0">
+                                <label><b>Corrige los errores:</b></label>
+                                <ul>
+                                    <div *ngFor="let error of error">
+                                        <li *ngIf="error.errores.length>0">
+                                            <p>{{error.errores[0].ErrorMessage}}</p>
+                                        </li>
+                                    </div>
+                                </ul>
+                            </div>
+                    <div class="form-group">
+                        <label for="tipoAyudantia"> <span style="color:red;">*</span>Tipo ayudantía</label>
+                        <select [(ngModel)]="plazaTipo.tipoAyudantia" class="form-control" [ngClass]="{'is-invalid ': tipoAyudantia.errors?.required  && (tipoAyudantia.touched || forma.submitted)}" name="tipoAyudantia" id="tipoAyudantia" #tipoAyudantia="ngModel" required>
+                            <option value="null" disabled>Seleccione un tipo de ayudantia</option>
+                            <option *ngFor="let item of tipoAyudantias" [value]="item?.id">{{item?.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group" *ngIf="plazaTipo.tipoAyudantia != 1 && (plazaTipo.tipoAyudantia != null)">
+                        <label for="nombre"><span style="color:red;">*</span>Nombre</label>
+                        <input class="form-control" [ngClass]="{'is-invalid ': nombre.errors?.required && (nombre.touched || forma.submitted) }" type="text" placeholder="Ingrese el nombre de la plaza. Máx. 255 caracteres." name="nombre" id="nombre" [(ngModel)]="plazaTipo.nombre"
+                            maxlength="255" required="plazaTipo.tipoAyudantia != 1" #nombre="ngModel">
+                    </div>
+
+                    <div *ngIf="plazaTipo.tipoAyudantia == 1" class="form-group">
+                        <label for="asignatura_plaza"><span style="color:red;">*</span>Asignatura</label>
+
+                        <ng-select [items]="asignaturas" id="asignatura_plaza" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || asignatura_plaza.touched) && asignatura_plaza.errors?.required) }" bindValue="codigo" placeholder="Seleccione asignatura" name="asignatura_plaza"
+                            #asignatura_plaza="ngModel" [(ngModel)]="plazaTipo.codigo" required="plazaTipo.tipoAyudantia == 1">
+                            <!-- <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                            <div><span>Nombre: </span><span [ngOptionHighlight]="search"> {{item.nombre}}</span></div> 
+                            <small><b>Id:</b> {{item.identificacion}} | <b>Email:</b> {{item.email}}</small>
+                        </ng-template> -->
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+
+                        <!-- <select [(ngModel)]="plazaTipo.programa" class="form-control" [ngClass]="{'is-invalid ': programa_plaza.errors?.required  && (programa_plaza.touched || forma.submitted)}"
+                                name="programa_plaza" id="programa_plaza" #programa_plaza="ngModel" required>
+                                <option value="null" disabled>Seleccione el programa</option>
+                                <option *ngFor="let item of programas" [value]="item?.nombre">{{item?.nombre}}</option>
+                         </select> -->
+
+
+                        <!-- <input class="form-control" [ngClass]="{'is-invalid ': programa_plaza.errors?.required && (programa_plaza.touched || forma.submitted) }"
+                            type="text" placeholder="Ingrese el programa de la plaza. Máx. 255 caracteres." name="programa_plaza"
+                            id="programa_plaza" [(ngModel)]="plazaTipo.programa" maxlength="255" [required]="plazaTipo.tipoAyudantia == 1"
+                            #programa_plaza="ngModel"> -->
+                    </div>
+                    <div class="form-group" *ngIf="plazaTipo.tipoAyudantia != null && plazaTipo.tipoAyudantia != 1">
+                        <label for="codigo">Código <small class="text-muted">(Opcional)</small></label>
+                        <input class="form-control " type="text" placeholder="Ingrese un código (opcional)" name="codigo" id="codigo" [(ngModel)]="plazaTipo.codigo" #codigo="ngModel" maxlength="255">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarTipo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar tipo de plaza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="forma2.resetForm();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="editarGuardar(forma2)" #forma2="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nombre2"><span style="color:red;">*</span>Nombre</label>
+                        <input class="form-control " [ngClass]="{'is-invalid ': nombre2.errors?.required && (nombre2.touched || forma2.submitted)}" type="text" placeholder="Ingrese el nombre de la plaza" name="nombre2" id="nombre2" [(ngModel)]="plazaTipo.nombre" maxlength="255"
+                            required #nombre2="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoAyudantia2"> <span style="color:red;">*</span> Tipo ayudantía</label>
+                        <select [(ngModel)]="plazaTipo.tipoAyudantia" class="form-control" [ngClass]="{'is-invalid ': tipoAyudantia2.errors?.required  && tipoAyudantia2.touched }" name="tipoAyudantia2" id="tipoAyudantia2" #tipoAyudantia2="ngModel" required>
+                            <option value="null" disabled>Seleccione un tipo de ayudantia</option>
+                            <option *ngFor="let item of tipoAyudantias" [value]="item?.id">{{item?.nombre}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="plazaTipo.tipoAyudantia == 1" class="form-group">
+                        <label for="programa_plaza"><span style="color:red;">*</span>Programa</label>
+                        <input class="form-control" [ngClass]="{'is-invalid ': programa_plaza.errors?.required && (programa_plaza.touched || forma2.submitted) }" type="text" placeholder="Ingrese el programa de la plaza. Máx. 255 caracteres." name="programa_plaza" id="programa_plaza"
+                            [(ngModel)]="plazaTipo.programa" maxlength="255" [required]="plazaTipo.tipoAyudantia == 1" #programa_plaza="ngModel">
+                    </div>
+                    <div class="form-group">
+                        <label for="codigo2">Código <small class="text-muted">(Opcional)</small></label>
+                        <input class="form-control " type="text" placeholder="Ingrese un código (opcional)" name="codigo2" id="codigo2" [(ngModel)]="plazaTipo.codigo" maxlength="255" #codigo2="ngModel">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma2.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

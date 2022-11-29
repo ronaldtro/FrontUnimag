@@ -1,0 +1,27 @@
+<div>
+    <h2 class="text-center text-uppercase mb-3">Registro de solicitudes de ayudas</h2>
+
+    <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <!-- <a class="nav-link active" id="pendientes-tab" data-toggle="tab" href="#pendientes" role="tab" aria-controls="pendientes" aria-selected="true">Solicitudes realizadas</a>
+   -->
+            <a class="nav-link active" id="pendientes-tab" data-toggle="tab" [routerLink]="['listado-pendientes']" role="tab" aria-controls="pendientes" aria-selected="true">Solicitudes realizadas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="aprobadas-tab" data-toggle="tab" [routerLink]="['listado-aprobadas']" role="tab" aria-controls="aprobadas" aria-selected="false">Solicitudes aprobadas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="rechazadas-tab" data-toggle="tab" [routerLink]="['listado-rechazadas']" role="tab" aria-controls="rechazadas" aria-selected="false">Solicitudes rechazadas</a>
+        </li>
+    </ul>
+    <div class="tab-content py-3" id="myTabContent">
+        <router-outlet></router-outlet>
+    </div>
+
+
+
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

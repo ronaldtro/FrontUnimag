@@ -1,0 +1,97 @@
+<h2 class="text-uppercase text-center animated fadeIn">Convocatorias <small class="btn-block text-muted">Detalles de la convocatoria</small></h2>
+<hr class="animated fadeIn">
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<fieldset *ngIf="convocatoria" class="animated fadeIn">
+    <legend>Información general</legend>
+    <div class="row ">
+        <div class="col-12  col-md-6">
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" class="form-control" placeholder="Título de la convocatoría" [(ngModel)]="convocatoria.titulo" readonly disabled>
+
+            </div>
+        </div>
+       
+        <div class="col-12 col-md-6">
+            <div class="form-group">
+                <label>Fecha de expedición</label>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-12 p-0">
+                        <p-calendar inputStyleClass="form-control" [(ngModel)]="convocatoria.fecha_expedicion" dateFormat="dd/mm/yy" disabled [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="form-group">
+                <label>Soporte <button type="button" class="btn btn-link btn-sm" (click)="viewDoc(0)">Ver documento cargado</button></label>
+            </div>
+        </div>
+        <div *ngIf="convocatoria.resolucion" class="col-12 col-md-4">
+            <div class="form-group">
+                <label>Resolución <button type="button" class="btn btn-link btn-sm" (click)="viewDoc(1)">Ver documento cargado</button></label>
+            </div>
+        </div>
+        <div *ngIf="convocatoria.listaSeleccionados" class="col-12 col-md-5">
+            <div class="form-group">
+                <label>Estudiantes seleccionados <button type="button" class="btn btn-link btn-sm" (click)="viewDoc(2)">Ver documento cargado</button></label>
+            </div>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12" *ngIf="convocatoria.descripcion">
+            <hr>
+            <div class="form-group">
+                <label >Descripción</label>
+                <div [innerHTML]="convocatoria.descripcion">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+
+<hr>
+<fieldset *ngIf="convocatoria" class="animated fadeIn">
+    <legend>Etapas de la convocatoria </legend>
+    <div class="table-responsive mt-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let etapa of convocatoria.etapas ; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{etapa.estado_id | iDToName:estados}}</td>
+                    <td>{{etapa.fecha_inicio | date : 'medium'}} - {{etapa.fecha_fin | date : 'medium'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver al listado</button>
+    </div>
+</fieldset>
+
+
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="documentoConvocatoria  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>

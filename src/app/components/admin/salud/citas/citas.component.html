@@ -1,0 +1,188 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="mt-3 pb-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Agenda de citas<small class="d-block text-muted">horarios de atención</small>
+    </h2>
+    <hr>
+    <!-- {{busqueda|json}} -->
+    <legend>Búsqueda de citas</legend>
+    <hr>
+    <form #citasForm="ngForm" (ngSubmit)="crearBusqueda(citasForm)" novalidate>
+        <fieldset>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="fecha"><span class="asterisk">*</span>Fecha de atención</label>
+                        <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="busqueda.fecha" #fecha="ngModel" [readonlyInput]="false" showButtonBar="true" required name="hora" [minDate]="dateNow" [maxDate]="dateFinish" styleClass="d-block" inputId="fecha" [disabledDays]="[0]" inputStyleClass="form-control"
+                            [locale]="es">
+                            <ng-template pTemplate="date" let-date>
+                                <span [ngStyle]="{backgroundColor: (date.day < dateNow ) ? ' #007ad9' : 'inherit'}" style="height: 22px; width: 22px; border-radius:50% ; color: white; display:block;">{{date.day}}</span>
+                            </ng-template>
+                        </p-calendar>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+
+                        <label for="fechaFinalEdicion"><span class="asterisk">*</span>Servicio</label>
+                        <select [ngClass]="{'is-invalid': Especialidad.errors?.required && (Especialidad.touched || citasForm.submitted)}" id="Especialidad" class="form-control" name="Especialidad" [(ngModel)]="busqueda.especialidad_id" (change)="onSelect($event.target.value)"
+                            #Especialidad="ngModel" required>
+              <option [value]="null" disabled selected>Elegir un servicio</option>
+              <option *ngFor="let especialidades of especialidades" [value]="especialidades.id">
+                {{especialidades.nombre}}</option>
+            </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" *ngIf="busqueda.especialidad_id != null">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="fechaFinalEdicion">Profesionales disponibles</label>
+                        <select id="profesional" class="form-control" name="profesional" [(ngModel)]="busqueda.profesional_id" #profesional="ngModel">
+              <option [value]="null" disabled selected>Seleccione profesional</option>
+              <option *ngFor="let profesionales of profEscogidos" [value]="profesionales.id">{{profesionales.nombre}}
+              </option>
+            </select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="text-center">
+            <!-- <a id="volver" role="button" class="btn btn-light  mr-md-1 mb-3">Volver al listado</a> -->
+            <button type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver</button>
+            <button id="guardar" type="submit" class="btn btn-success mb-3">Buscar</button>
+        </div>
+    </form>
+    <hr>
+
+    <legend *ngIf="agenda.length > 0">Profesionales disponibles</legend>
+    <div class="row mb-5" *ngIf="agenda != null">
+        <div class="col-12 col-md-6 mb-1" *ngFor="let item of agenda ; let i = index; ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row ml-3">
+                        <div class="col-12 text-center col-md-9">
+                            <span class="fas fa-user-md display-3" style="color: #0183EF" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-12 col-md-9 ml-3 mt-3">
+                            <h5 class="card-title" style="padding-bottom:0;">{{item.nombre_profesional}}</h5>
+                            <p class="card-text" style="padding-bottom:0;"> <b>Especialidad:</b> {{item.especialidad}}</p>
+                            <p class="card-text" style="padding-bottom:0;"> <b>Horario:</b> {{item.hora_inicio | obtenerHora}} - {{item.hora_fin | obtenerHora }}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="background-color: white!important; border-top: 0!important; ">
+                        <div class="text-right">
+
+                            <a class="btn btn-primary d-block d-md-inline-block text-center" data-toggle="collapse" href="#horario_{{i}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Ver horarios <span class="sr-only">del profesional {{item.nombre_profesional}}</span>
+                    </a>
+                        </div>
+                        <div class="collapse mt-3" id="horario_{{i}}">
+
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <b>{{item.fecha | date:'fullDate'}}</b>
+                                </div>
+                                <div class="card-body">
+                                    <button type="button" *ngFor="let horario of item.horarios" class="btn ml-2 mb-2" [title]="horario.estado? 'Reservar cita' : 'No disponible'" [ngClass]="{'btn-primary': horario.estado, 'btn-secondary':!horario.estado}" (click)="reservarCita(item,horario)"
+                                        [disabled]="!horario.estado">{{horario.hora | obtenerHora}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<!-- modal de rewserva de la cita -->
+<div class="modal fade" id="ReservarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reservar cita</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)=" error2=null; error=[];" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <!-- {{reserva | json}} -->
+            <div class="modal-body">
+
+                    <div class="alert alert-danger alert" *ngIf="error.length > 0 || error2 != null">
+                            <label><b>Corrige los errores:</b></label>
+                            <ul>
+                                <div *ngFor="let error of error">
+                                    <li *ngIf="error.errores.length>0">
+                                        <p>{{error.errores[0].ErrorMessage}}</p>
+                                    </li>
+                                </div>
+                                <div >
+                                    <li *ngIf="error2 != null">
+                                        <p>{{error2}}</p>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+
+
+                <div class="col-sm-12 col-lg-12 p-3 bg-info text-white mb-1">
+                    <h3 class="h4">
+                        <!-- <small class="d-block text-white">Estudiante</small> -->
+                        <b>{{reserva.nombre_profesional}}</b>
+                        <small class="d-block text-white"> Especialidad : {{reserva.especialidad}}</small>
+                    </h3>
+                </div>
+                <div class="card border-light">
+                    <div class="card-header text-center">
+                        <b>Datos generales de la cita</b>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                Fecha : {{reserva.fecha | date:'fullDate'}}
+                                <br> Hora : {{reserva.fecha | date:'shortTime'}}
+                                <br> Consultorio : {{reserva.consultorio}}
+                                <br> Lugar : {{reserva.lugar}}
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Recomendaciones</strong>
+                    <small>
+                      <ul>
+                        <li>
+                            Asistir con su documento de identidad y/o carné.
+                            Preséntese con 15 minutos de anticipación.
+                        </li>
+                        <li>
+                            En caso que no pueda asistir a la cita, por favor cancelarla en nuestros canales virtuales de bienestar universitario, como respuesta a la notificación que llegará a su correo.
+                        </li>
+                        <li>
+                           A la cita debe asistir el paciente. No puede presentarse una persona distinta a la que reservó la cita.
+                        </li>
+                        <li>
+                           
+                            Si su cita requiere algún examen, presentarla al momento del anuncio de su cita.
+                        </li>
+                      </ul>
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)=" error2=null; error=[];">Cancelar</button>
+                <button type="button" (click)="guardarReserva()" class="btn btn-success">Confirmar cita</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="agenda.length == 0 && sw">
+    <div class="alert alert-info" role="alert">
+        <p>En el momento no hay citas disponibles para fecha escogida por favor intente otra fecha y especialidad.</p>
+    </div>
+</div>

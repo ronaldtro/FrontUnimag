@@ -1,0 +1,177 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Estudiantes postulados <small class="btn-block text-muted">El listado cuenta con {{listaEstudiantePostulados.length}} estudiantes</small></h2>
+  <hr>
+  <div class="row">
+
+    <div class="col-12 text-center">
+        <button [routerLink]="['/evaluacion-estudiantes-deportistas/seleccionados', idConvocatoria]"  type="button" class="btn btn-info mb-3 mr-1 text-uppercase" title="Ver estudiantes seleccionados">
+            <span class="far fa-check-circle"></span> Ver estudiantes seleccionados </button>
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+        <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los estudiantes postulados en la convocatoria. Usted puede evaluar y ver los datos de los estudiantes.">
+            <span class="fa fa-question-circle" aria-hidden="true"></span>
+            <span class="sr-only">Información de ayuda</span>
+        </a>
+    </div>
+
+      <div class="collapse col-lg-12" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-disciplina" class="form-group">
+                            <label>Filtrar por disciplina</label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+          <div class="table-responsive">
+              <table class="table " datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                    <tr>
+                      <th scope="col">Identificación</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Correo</th>
+                      <th scope="col">Disciplina</th>
+                      <th scope="col">Nota</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let estudiantePostulado of listaEstudiantePostulados; let i=index">
+                          <td>{{estudiantePostulado.identificacion}}</td>
+                          <td>{{estudiantePostulado.nombreEstudiante}}</td>
+                          <td>{{estudiantePostulado.email}}</td>
+                          <td>{{estudiantePostulado.nombreDisciplina}}</td>
+                          <td>{{estudiantePostulado.puntajePorcentual | number : '1.2-2'}}</td>
+                          <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                            <button type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Ver datos del estudiante" (click)="abrirModalVerEstudiante(estudiantePostulado)">
+                                <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                <span class="sr-only">Ver datos del estudiante</span>
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-outline-dark border-secondary" [routerLink]="['/evaluacion-estudiantes-deportistas/evaluar-estudiante', estudiantePostulado.id, estudiantePostulado.idInscripcion]" title="Evaluar estudiante">
+                                <span [ngStyle]="{'color': estudiantePostulado.fueEvaluado ? 'green' : '#343a40'}" class="fas fa-user-check" aria-hidden="true"></span>
+                                <span class="sr-only">Evaluar estudiante</span>
+                            </button>
+
+                            <button [disabled]="!estudiantePostulado.fueEvaluado" (click)="seleccionarEstudiante(estudiantePostulado.idInscripcion, estudiantePostulado.fueSeleccionado)" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Seleccionar estudiante para beca">
+                                <span [ngStyle]="{'color': estudiantePostulado.fueSeleccionado ? 'green' : '#343a40'}" class="fas fa-check" aria-hidden="true"></span>
+                                <span class="sr-only">Seleccionar estudiante para beca</span>
+                            </button>
+
+                            <div class="dropdown d-inline-block">
+                                <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{estudiantePostulado.idEstudiante}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                    <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{estudiantePostulado.idEstudiante}}">
+                                    <button (click)="viewDoc(estudiantePostulado.certificado)" class="dropdown-item" type="button" title="Ver certificado">
+                                      Ver certificado
+                                    </button>
+
+                                    <button (click)="viewDoc(estudiantePostulado.carta)" class="dropdown-item" type="button" title="Ver carta">
+                                      Ver carta
+                                    </button>
+                                    
+                                    <button (click)="viewDoc(estudiantePostulado.hojaDeVida)" class="dropdown-item" type="button" title="Ver hoja de vida">
+                                      Ver hoja de vida
+                                    </button>
+                                   
+                                </div>
+                            </div>
+                           
+                        </div>
+                          </td>
+                          
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal para mostrar documentos de soporte -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="rutaSoporte  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver datos de estudiante postulado-->
+<div class="modal fade" id="verEstudiantePostuladoModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+      
+                    <h5 class="modal-title" id="modelTitleId">Estudiante postulado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><b>Identificación</b></label>
+                            <p>{{datosEstudiantePostulado.identificacion}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><b>Sexo</b></label>
+                            <p>{{datosEstudiantePostulado.sexo ? "Masculino" : "Femenino"}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><b>Nombre</b></label>
+                            <p>{{datosEstudiantePostulado.nombreEstudiante}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><b>Correo electrónico</b></label>
+                            <p>{{datosEstudiantePostulado.email}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label><b>Dirección</b></label>
+                            <p>{{datosEstudiantePostulado.direccion}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label><b>Disciplina</b></label>
+                            <p>{{datosEstudiantePostulado.nombreDisciplina}}</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    
+            </div>
+        </div>
+      </div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

@@ -1,0 +1,137 @@
+<!-- <div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Asistencia de estudiantes <small class="btn-block text-muted">El listado cuenta con {{listaEstudiantesClase.length}} estudiantes</small></h2>
+  <hr>
+ 
+  <div class="row d-flex justify-content-center ">
+
+    <button (click)="incrementarCantidadEstudiantes()" class="btn btn-info mb-3 text-uppercase"> <span class="fas fa-plus"></span> Agregar estudiante </button>
+
+  </div>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-12 col-md-6">
+        <div class="table-responsive">
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th style="width: 50px ">Identificación</th>
+                        <th style="width: 50px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudianteClase of listaEstudiantesClase; let i = index;">
+                        
+                        <td>
+                            <input type="number" class="form-control" style="width:80%;" placeholder="Identificacion" name="identificacion{{i}}" [(ngModel)]="estudianteClase.numeroIdentificacion">
+                        </td>
+                        
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="quitarEstudianteClase(estudianteClase, i)" title="Quitar estudiante"><span class="fas fa-trash"></span><span class="sr-only">Quitar estudiante</span></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-center">
+                <button *ngIf="listaEstudiantesClase.length > 0" type="button" class="btn btn-light mr-md-1" (click)="goBack()">Volver</button>
+                <button *ngIf="listaEstudiantesClase.length > 0" type="submit" (click)="asignarEstudiantesAClase()" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner> -->
+
+
+<div class="mt-3 animated fadeIn">
+    <h2 class="text-uppercase text-center"> Asistencia de estudiantes <small class="btn-block text-muted">El listado cuenta con {{listaEstudiantesClase.length}} estudiantes</small></h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button (click)="abrirModalInsertarEstudiante()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Insertar estudiante">
+            <span class="fas fa-plus"></span> Insertar estudiante</button>
+            <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los estudiantes que asistieron a la clase.">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Información de ayuda</span>
+            </a>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>Identificación</th>
+                            <th>Nombre</th>
+                            <th style="width: 100px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let est of listaEstudiantesClase; let i = index">
+                            <td>{{est.numeroIdentificacion}}</td>
+                            <td>{{est.nombre}}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                    <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="abrirModalEditarEstudiante(est)" title="Editar estudiante"><span class="fas fa-pen"></span><span class="sr-only">Editar estudiante</span></a>
+                                    <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="quitarEstudianteClase(est,i)" title="Eliminar estudiante de asistencia"><span class="fas fa-trash-alt"></span><span class="sr-only">Eliminar estudiante de asistencia</span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="insertarEstudianteModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+  
+                <h5 *ngIf="estudiante.id == null" class="modal-title" id="modelTitleId">Insertar estudiante</h5>
+                <h5 *ngIf="estudiante.id != null" class="modal-title" id="modelTitleId">Editar estudiante</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="estudianteForm.resetForm();" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form (ngSubmit)="asignarEstudianteAClase(estudianteForm)" #estudianteForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+  
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="numeroIdentificacion">Identificación</label>
+                                <input type="number" name="numeroIdentificacion" id="numeroIdentificacion" class="form-control" [ngClass]="{'is-invalid': ((estudianteForm.submitted || estudianteCampo.touched) && (estudianteCampo.errors?.required) )}" [(ngModel)]="estudiante.numeroIdentificacion" required #estudianteCampo="ngModel" placeholder="Identificación del estudiante"
+                                   />
+                            </div> 
+                        </div>
+                    </fieldset>
+  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estudianteForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

@@ -1,0 +1,7 @@
+span.ui-calendar div.ui-datepicker{
+    top: 35px !important;
+}
+
+.ck-editor__editable_inline {
+    min-height: 200px;
+}

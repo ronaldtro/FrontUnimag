@@ -1,0 +1,1611 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>PlazasInformacionComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-plazas-informacion</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./plazas-informacion.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./plazas-informacion.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#beneficio">beneficio</a>
+                            </li>
+                            <li>
+                                <a href="#codigo">codigo</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#etapaActual">etapaActual</a>
+                            </li>
+                            <li>
+                                <a href="#etapas">etapas</a>
+                            </li>
+                            <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#plaza">plaza</a>
+                            </li>
+                            <li>
+                                <a href="#respuestaAceptar">respuestaAceptar</a>
+                            </li>
+                            <li>
+                                <a href="#tipo_beneficio_id">tipo_beneficio_id</a>
+                            </li>
+                            <li>
+                                <a href="#tiposAyudantias">tiposAyudantias</a>
+                            </li>
+                            <li>
+                                <a href="#tiposBeneficiosSelect">tiposBeneficiosSelect</a>
+                            </li>
+                            <li>
+                                <a href="#tiposPlazas">tiposPlazas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelar">cancelar</a>
+                            </li>
+                            <li>
+                                <a href="#goBack">goBack</a>
+                            </li>
+                            <li>
+                                <a href="#goLogin">goLogin</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#postularse">postularse</a>
+                            </li>
+                            <li>
+                                <a href="#postularseModal">postularseModal</a>
+                            </li>
+                            <li>
+                                <a href="#sentenceCase">sentenceCase</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_convocatoriaPService: <a href="../injectables/ConvocatoriaPService.html">ConvocatoriaPService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, messageService: MessageService, spinner: NgxSpinnerService, _userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, _location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_convocatoriaPService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConvocatoriaPService.html" target="_self" >ConvocatoriaPService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelar"></a>
+                    <span class="name">
+                        <b>
+                            cancelar
+                        </b>
+                        <a href="#cancelar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelar(form: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:186</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <b>
+                            goBack
+                        </b>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:122</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goLogin"></a>
+                    <span class="name">
+                        <b>
+                            goLogin
+                        </b>
+                        <a href="#goLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goLogin()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postularse"></a>
+                    <span class="name">
+                        <b>
+                            postularse
+                        </b>
+                        <a href="#postularse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postularse(formulario: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:125</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>formulario</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postularseModal"></a>
+                    <span class="name">
+                        <b>
+                            postularseModal
+                        </b>
+                        <a href="#postularseModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postularseModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sentenceCase"></a>
+                    <span class="name">
+                        <b>
+                            sentenceCase
+                        </b>
+                        <a href="#sentenceCase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sentenceCase(input)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>input</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="beneficio"></a>
+                        <span class="name">
+                            <b>
+                            beneficio</b>
+                            <a href="#beneficio"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="codigo"></a>
+                        <span class="name">
+                            <b>
+                            codigo</b>
+                            <a href="#codigo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="etapaActual"></a>
+                        <span class="name">
+                            <b>
+                            etapaActual</b>
+                            <a href="#etapaActual"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Objeto.html" target="_self" >Objeto</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="etapas"></a>
+                        <span class="name">
+                            <b>
+                            etapas</b>
+                            <a href="#etapas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name">
+                            <b>
+                            id</b>
+                            <a href="#id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="plaza"></a>
+                        <span class="name">
+                            <b>
+                            plaza</b>
+                            <a href="#plaza"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Plazas.html" target="_self" >Plazas</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="respuestaAceptar"></a>
+                        <span class="name">
+                            <b>
+                            respuestaAceptar</b>
+                            <a href="#respuestaAceptar"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tipo_beneficio_id"></a>
+                        <span class="name">
+                            <b>
+                            tipo_beneficio_id</b>
+                            <a href="#tipo_beneficio_id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposAyudantias"></a>
+                        <span class="name">
+                            <b>
+                            tiposAyudantias</b>
+                            <a href="#tiposAyudantias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Objeto.html" target="_self" >Objeto[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposBeneficiosSelect"></a>
+                        <span class="name">
+                            <b>
+                            tiposBeneficiosSelect</b>
+                            <a href="#tiposBeneficiosSelect"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Objeto.html" target="_self" >Objeto[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposPlazas"></a>
+                        <span class="name">
+                            <b>
+                            tiposPlazas</b>
+                            <a href="#tiposPlazas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Objeto.html" target="_self" >Objeto[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">app/components/public/plazas/plazas-informacion/plazas-informacion.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import {Location} from &#x27;@angular/common&#x27;;
+import { ConvocatoriaPService } from &#x27;src/app/services/convocatoria-p.service&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { Plazas } from &#x27;src/app/interfaces/Plazas.interface&#x27;;
+import { Objeto } from &#x27;src/app/interfaces/objeto.interfaces&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import { UserService } from &#x27;src/app/services/user.service&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+declare var $:any;
+
+
+@Component({
+  selector: &#x27;app-plazas-informacion&#x27;,
+  templateUrl: &#x27;./plazas-informacion.component.html&#x27;,
+  styleUrls: [&#x27;./plazas-informacion.component.css&#x27;],
+  providers: [MessageService]
+
+})
+export class PlazasInformacionComponent implements OnInit {
+  id:number;
+  respuestaAceptar:boolean; 
+  plaza:Plazas &#x3D; null;
+  beneficio:string &#x3D; &quot;&quot;;
+  tipo_beneficio_id:number;
+  errores:object[]&#x3D;[];
+  tiposAyudantias:Objeto[]&#x3D;[];
+  tiposPlazas:Objeto[]&#x3D;[];
+  tiposBeneficiosSelect:Objeto[]&#x3D;[];
+  etapaActual:Objeto &#x3D; null;
+  etapas:any &#x3D; [];
+  codigo:number&#x3D;null;
+  constructor(private _convocatoriaPService:ConvocatoriaPService, 
+              private route:ActivatedRoute, 
+              private messageService: MessageService,
+              private spinner: NgxSpinnerService, 
+              private _userService: UserService,
+              private router: Router,
+              private _location: Location
+              ) { }
+
+  ngOnInit() {
+    this.spinner.show();
+    this.route.params.subscribe(params&#x3D;&gt;{
+      this.id&#x3D;params.id
+      this._convocatoriaPService.getPlaza(this.id).subscribe(data&#x3D;&gt;{
+        this.plaza&#x3D;data[&#x27;plazaSolicitada&#x27;];
+        this.tiposAyudantias&#x3D;data[&#x27;tiposAyudantias&#x27;];
+        this.tiposPlazas&#x3D;data[&#x27;tiposPlazas&#x27;];
+        this.tiposBeneficiosSelect &#x3D; data[&#x27;tipos_beneficios&#x27;];
+        this.etapaActual &#x3D; data[&#x27;etapaActual&#x27;];
+        this.etapas &#x3D; data[&#x27;etapas&#x27;];
+
+        let today &#x3D; Date.now();
+
+        if(this.etapaActual &#x3D;&#x3D; null){
+
+          this.etapas &#x3D; this.etapas.filter(function(a) {
+            return a.id &gt; 3;
+          });
+            
+          // let testDates &#x3D; [{fechaFin:&quot;2019-02-07&quot;}, {fechaFin:&quot;2019-02-13&quot;}, {fechaFin:&quot;2019-02-14&quot;},{fechaFin:&quot;2019-02-18&quot;},{fechaFin:&quot;2019-02-19&quot;}, {fechaFin:&quot;2019-06-07&quot;}, {fechaFin:&quot;2019-06-10&quot;}, {fechaFin:&quot;2019-06-17&quot;}]
+
+          this.etapas.sort(function(a, b) {
+            return new Date(b.fechaFin + &quot;T00:00:00Z&quot;).getTime() - new Date(a.fechaFin + &quot;T00:00:00Z&quot;).getTime();
+          });
+          
+          this.etapaActual &#x3D; this.etapas.filter(function(a) {
+            return (today - new Date(a.fechaFin + &quot;T00:00:00Z&quot;).getTime()) &gt; 0;
+          })[0];
+          if(this.etapaActual &#x3D;&#x3D; undefined){
+            this.etapaActual &#x3D; this.etapas.filter(function(a) {
+              return a.id &#x3D;&#x3D; 4;
+            })[0];
+          }
+        }
+
+        this.plaza.perfil &#x3D; this.sentenceCase(this.plaza.perfil.toLowerCase());
+        this.plaza.competenciasRequeridas &#x3D; this.sentenceCase(this.plaza.competenciasRequeridas.toLowerCase());
+        this.plaza.convocatoriaNombre &#x3D; this.sentenceCase(this.plaza.convocatoriaNombre.toLowerCase());
+        for(let i &#x3D; 0; i &lt; this.plaza.asignaturasAprobadas.length; i++){
+          this.plaza.asignaturasAprobadas[i].nombre &#x3D; this.sentenceCase(this.plaza.asignaturasAprobadas[i].nombre.toLowerCase());
+        }
+        for(let i &#x3D; 0; i &lt; this.plaza.actividades.length; i++){
+          this.plaza.actividades[i] &#x3D; this.sentenceCase(this.plaza.actividades[i].toLowerCase());
+        }
+        this.spinner.hide();
+      }, err&#x3D;&gt; {
+        let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+        this.messageService.add({severity:&#x27;error&#x27;, summary: &#x27;Error&#x27;, detail: respuesta.msg });
+        this.spinner.hide();  
+      });
+    });
+  }
+
+  sentenceCase(input) {
+    input &#x3D; ( input &#x3D;&#x3D;&#x3D; undefined || input &#x3D;&#x3D;&#x3D; null ) ? &#x27;&#x27; : input;
+    //if (lowercaseBefore) { input &#x3D; input.toLowerCase(); }
+    return input.toString().replace( /(^|\. * |\- *)([a-z])/g, function(match, separator, char) {
+        // return separator + char.toUpperCase();
+    return match.toUpperCase();
+    });
+   }
+
+  postularseModal(){
+    if(this._userService.isLogin()){
+      this.errores &#x3D; [];
+      this.respuestaAceptar &#x3D; null;
+      this.beneficio &#x3D; null;
+      this.tipo_beneficio_id &#x3D; null;
+      //this.beneficio &#x3D; {};
+      $(&#x27;#exampleModal&#x27;).modal(&#x27;show&#x27;);
+    }else{
+      let url&#x3D;this.router.url;
+      this.router.navigate([&#x27;/estudiantes/login&#x27;], {queryParams: {redirect:url}});
+    }
+    
+  } 
+  goBack() {
+    this._location.back();
+  }
+  postularse(formulario:NgForm){
+    if(!this._userService.isLogin()){
+      let url&#x3D;this.router.url;
+      $(&#x27;#exampleModal&#x27;).modal(&#x27;hide&#x27;);
+      this.router.navigate([&#x27;/estudiantes/login&#x27;], {queryParams: {redirect:url}});
+      return;
+    }
+    if(!formulario.valid){
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: &#x27;Debe seleccionar una opción de respuesta&#x27;,
+      });
+      return;
+    }
+   
+    let data:any &#x3D;{&#x27;plaza_id&#x27;:this.id,&#x27;respuesta&#x27;:this.respuestaAceptar,&#x27;tipo_beneficio_id&#x27;:this.tipo_beneficio_id,&#x27;beneficio&#x27;:this.beneficio}
+    //this.beneficio.plaza_id &#x3D; this.id;
+    this.spinner.show();
+    this._convocatoriaPService.postular(data).subscribe(data&#x3D;&gt;{
+      if(data[&#x27;success&#x27;]){
+        $(&#x27;#exampleModal&#x27;).modal(&#x27;hide&#x27;);
+        this.spinner.hide();
+        swal({
+          type: &#x27;success&#x27;,
+          title: &#x27;Realizado&#x27;,
+          text: &#x27;Se ha registrado satisfactoriamente la solicitud.&#x27;,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }else{
+        this.spinner.hide();
+        if(data[&#x27;error&#x27;]){
+          swal({
+            type: &#x27;warning&#x27;,
+            title: &#x27;Alerta&#x27;,
+            text: data[&#x27;error&#x27;]
+          })
+        }
+        if(data[&#x27;errores&#x27;]){
+          for(let i&#x3D;0;i&lt;data[&#x27;errores&#x27;].length;i++){
+            if(data[&#x27;errores&#x27;][i][&#x27;errores&#x27;].length&gt;0){
+              for(let j&#x3D;0; j&lt;data[&#x27;errores&#x27;][i][&#x27;errores&#x27;].length; j++){
+                this.messageService.add({severity:&#x27;warn&#x27;, summary: &#x27;Ok&#x27;, detail:data[&#x27;errores&#x27;][i][&#x27;errores&#x27;][j][&#x27;ErrorMessage&#x27;]});
+                swal({
+                  type: &#x27;error&#x27;,
+                  title: &#x27;Error&#x27;,
+                  text: data[&#x27;errores&#x27;][i][&#x27;errores&#x27;][j][&#x27;ErrorMessage&#x27;]
+                });
+              }
+            }
+          }
+        }
+      }
+    }, err&#x3D;&gt; {
+      let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      this.messageService.add({severity:&#x27;error&#x27;, summary: &#x27;Error&#x27;, detail: respuesta.msg });
+      this.spinner.hide();  
+    })
+}
+
+  cancelar(form:NgForm){
+    form.resetForm();
+  }
+
+  goLogin(){
+    let url&#x3D;this.router.url;
+    this.router.navigate([&#x27;/estudiantes/login&#x27;], {queryParams: {redirect:url}})
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;p-toast [style]&#x3D;&quot;{marginTop: &#x27;80px&#x27;}&quot; [baseZIndex]&#x3D;&quot;5000&quot;&gt;&lt;/p-toast&gt;
+&lt;ngx-spinner bdColor&#x3D;&quot;rgba(0, 0, 0, 0.65)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;div class&#x3D;&quot;animated fadeIn mt-3&quot; *ngIf&#x3D;&quot;plaza !&#x3D; null&quot;&gt;
+    &lt;h2 class&#x3D;&quot;text-center&quot;&gt;&lt;small class&#x3D;&quot;text-muted d-block font-weight-normal&quot;&gt;Información de la plaza&lt;/small&gt; &lt;span class&#x3D;&quot;text-uppercase&quot;&gt;{{plaza.tipo_plaza_id | iDToName:tiposPlazas}}&lt;/span&gt;&lt;/h2&gt;
+    &lt;hr&gt;
+    &lt;div class&#x3D;&quot;alert alert-info text-center mb-3&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;etapaActual !&#x3D; null&quot;&gt;
+        &lt;p class&#x3D;&quot;m-0&quot;&gt;La convocatoria de esta plaza se encuentra en etapa de &lt;strong&gt;{{etapaActual.nombre}}&lt;/strong&gt; del {{etapaActual.fechaInicio | date : &#x27;dd/MM/yyyy&#x27;}} al {{etapaActual.fechaFin | date : &#x27;dd/MM/yyyy&#x27;}}.&lt;/p&gt;
+
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;alert alert-secondary&quot; role&#x3D;&quot;alert&quot;&gt;
+        &lt;p class&#x3D;&quot;text-center text-muted font-weight-bold font-italic mb-0&quot;&gt;
+            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la &lt;a href&#x3D;&quot;https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf&quot;
+                target&#x3D;&quot;_blank&quot; download&#x3D;&quot;resolución 056 del 31 de enero del 2019.pdf&quot;&gt;resolución 056 del 31 de enero del 2019&lt;/a&gt;.
+        &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;row labels-sm&quot;&gt;
+        &lt;div class&#x3D;&quot;col-lg-3&quot;&gt;
+            &lt;ul class&#x3D;&quot;list-group list-group-flush text-center text-lg-left&quot; *ngIf&#x3D;&quot;plaza !&#x3D; null&quot;&gt;
+                &lt;li class&#x3D;&quot;list-group-item pt-0 pl-0 pr-0&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group m-0&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0&quot;&gt;Convocatoria&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{plaza.convocatoriaNombre}}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class&#x3D;&quot;list-group-item pl-0 pr-0&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group m-0&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0&quot;&gt;Tipo de ayudantía&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;Ayudantía {{plaza.tipo_ayudantia | iDToName:tiposAyudantias}}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class&#x3D;&quot;list-group-item pl-0 pr-0&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group m-0&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0&quot;&gt;Promedio ponderado&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{plaza.promedio}}
+                            &lt;!-- &lt;strong&gt;{{plaza.cupos_solicitados}}&lt;/strong&gt; --&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class&#x3D;&quot;list-group-item pl-0 pr-0&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group m-0&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0&quot;&gt;Porcentaje de creditos aprobados&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{plaza.porcentaja_creditos_requeridos}} %&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;li class&#x3D;&quot;list-group-item pl-0 pr-0 border-bottom-0&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group m-0&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0&quot;&gt;Cupos disponibles&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{plaza.cupos_aprobados}}
+                            &lt;!-- &lt;strong&gt;{{plaza.cupos_solicitados}}&lt;/strong&gt; --&gt;&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;div class&#x3D;&quot;text-center&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-block mb-2 shadow text-uppercase font-weight-bold&quot; (click)&#x3D;&quot;postularseModal()&quot; *ngIf&#x3D;&quot;etapaActual?.id &#x3D;&#x3D; 3&quot;&gt;Postularme&lt;/button&gt;
+                &lt;!-- &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success btn-block mb-3 shadow&quot;  (click)&#x3D;&quot;goLogin()&quot; *ngIf&#x3D;&quot;etapaActual.id &#x3D;&#x3D; 3&quot;&gt;Postularme&lt;/button&gt; --&gt;
+                &lt;a class&#x3D;&quot;btn btn-primary btn-block mb-2 shadow text-uppercase font-weight-bold&quot; [routerLink]&#x3D;&quot;[&#x27;/plaza/aprobados/&#x27;,plaza.id]&quot; role&#x3D;&quot;button&quot; *ngIf&#x3D;&quot;etapaActual?.id &gt;&#x3D; 5&quot;&gt;Ver resultados &lt;span class&#x3D;&quot;sr-only&quot;&gt;de la plaza {{plaza.tipo_plaza_id | iDToName:tiposPlazas}}&lt;/span&gt;&lt;/a&gt;
+                &lt;!-- &lt;a role&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-link btn-block mb-3&quot; [routerLink]&#x3D;&quot;[&#x27;/plazasConvocatorias/&#x27;,plaza.convocatoria_id]&quot;&gt;Volver al listado&lt;/a&gt; --&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;goBack()&quot; class&#x3D;&quot;btn btn-light btn-block mb-3&quot;&gt;Volver al listado&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-lg-9&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                &lt;label class&#x3D;&quot;m-0&quot;&gt;Perfil&lt;/label&gt;
+                &lt;p class&#x3D;&quot;form-control-plaintext&quot;&gt;{{plaza.perfil}}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;form-group&quot; *ngIf&#x3D;&quot;plaza.competenciasRequeridas&quot;&gt;
+                &lt;label class&#x3D;&quot;m-0&quot;&gt;Competencias requeridas&lt;/label&gt;
+                &lt;p class&#x3D;&quot;form-control-plaintext&quot;&gt;{{plaza.competenciasRequeridas}}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-sm-12 col-md-6 text-center text-md-left&quot; *ngIf&#x3D;&quot;plaza.programas &amp;&amp; plaza.programas.length&gt;0&quot; [ngClass]&#x3D;&quot;{&#x27;col-lg-4&#x27;: plaza.facultades.length, &#x27;col-lg-6&#x27;: !plaza.facultades.length}&quot;&gt;
+                    &lt;label&gt;Programas a los que debe pertenecer el estudiante&lt;/label&gt;
+                    &lt;ul class&#x3D;&quot;list-group list-group-flush mb-3&quot;&gt;
+                        &lt;li class&#x3D;&quot;list-group-item pt-2 pb-2&quot; *ngFor&#x3D;&quot;let programa of plaza.programas; let i&#x3D;index; let first &#x3D; first;&quot; [ngClass]&#x3D;&quot;{&#x27;border-top-0&#x27;: first}&quot;&gt;{{programa.nombre}}&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-sm-12 col-md-6 text-center text-md-left&quot; *ngIf&#x3D;&quot;plaza.facultades &amp;&amp; plaza.facultades.length&gt;0&quot; [ngClass]&#x3D;&quot;{&#x27;col-lg-4&#x27;: plaza.programas.length, &#x27;col-lg-6&#x27;: !plaza.programas.length}&quot;&gt;
+                    &lt;label&gt;Facultades a las que debe pertenecer el estudiante&lt;/label&gt;
+                    &lt;ul class&#x3D;&quot;list-group list-group-flush mb-3&quot;&gt;
+                        &lt;li class&#x3D;&quot;list-group-item pt-2 pb-2&quot; *ngFor&#x3D;&quot;let facultad of plaza.facultades; let i&#x3D;index; let first &#x3D; first;&quot; [ngClass]&#x3D;&quot;{&#x27;border-top-0&#x27;: first}&quot;&gt;{{facultad.nombre}}&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-sm-12 text-center text-md-left&quot; *ngIf&#x3D;&quot;plaza.asignaturasAprobadas &amp;&amp; plaza.asignaturasAprobadas.length&gt;0&quot; [ngClass]&#x3D;&quot;{&#x27;col-md-4&#x27;: plaza.programas.length || plaza.facultades.length, &#x27;col-md-6&#x27;: !plaza.programas.length || !plaza.facultades.length}&quot;&gt;
+                    &lt;label&gt;Asignaturas aprobadas por el estudiante previamente&lt;/label&gt;
+                    &lt;ul class&#x3D;&quot;list-group list-group-flush mb-3&quot;&gt;
+                        &lt;li class&#x3D;&quot;list-group-item pt-2 pb-2&quot; *ngFor&#x3D;&quot;let asignatura of plaza.asignaturasAprobadas; let i&#x3D;index; let first &#x3D; first;&quot; [ngClass]&#x3D;&quot;{&#x27;border-top-0&#x27;: first}&quot;&gt;
+                            {{asignatura.nombre}}.
+                            &lt;small class&#x3D;&quot;ml-2 d-block d-lg-inline-block text-muted&quot;&gt;Nota mín: {{asignatura.puntaje}}&lt;/small&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-sm-12 text-center text-md-left&quot; *ngIf&#x3D;&quot;plaza.actividades &amp;&amp; plaza.actividades.length&gt;0&quot;&gt;
+                    &lt;label&gt;Actividades a realizar&lt;/label&gt;
+                    &lt;ul class&#x3D;&quot;list-group list-group-flush mb-3&quot;&gt;
+                        &lt;li class&#x3D;&quot;list-group-item pt-2 pb-2&quot; *ngFor&#x3D;&quot;let actividad of plaza.actividades; let i&#x3D;index; let first &#x3D; first;&quot; [ngClass]&#x3D;&quot;{&#x27;border-top-0&#x27;: first}&quot;&gt;
+                            {{actividad}}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot; *ngIf&#x3D;&quot;plaza.requisitosEvaluacion &amp;&amp; plaza.requisitosEvaluacion.length &gt; 0&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                    &lt;label&gt;Requisitos de evaluación&lt;/label&gt;
+                    &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+                        &lt;table class&#x3D;&quot;table table-sm&quot;&gt;
+                            &lt;thead&gt;
+                                &lt;tr&gt;
+                                    &lt;th class&#x3D;&quot;border-top-0&quot;&gt;Descripción&lt;/th&gt;
+                                    &lt;th class&#x3D;&quot;border-top-0&quot; style&#x3D;&quot;width: 90px;&quot;&gt;Porcentaje&lt;/th&gt;
+                                    &lt;th class&#x3D;&quot;border-top-0&quot; style&#x3D;&quot;width: 128px;&quot;&gt;Puntaje máximo&lt;/th&gt;
+                                &lt;/tr&gt;
+                            &lt;/thead&gt;
+                            &lt;tbody&gt;
+                                &lt;tr *ngFor&#x3D;&quot;let requisito of plaza.requisitosEvaluacion; let i&#x3D;index;&quot;&gt;
+                                    &lt;td&gt;{{requisito.descripcion}}&lt;/td&gt;
+                                    &lt;td class&#x3D;&quot;text-center&quot;&gt;{{requisito.porcentaje}} %&lt;/td&gt;
+                                    &lt;td class&#x3D;&quot;text-center&quot;&gt;{{requisito.valor_maximo}}&lt;/td&gt;
+                                &lt;/tr&gt;
+
+                            &lt;/tbody&gt;
+                        &lt;/table&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- Modal --&gt;
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;exampleModal&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;exampleModalLabel&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog modal-lg&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;exampleModalLabel&quot;&gt;Disposiciones generales para postulación a plazas&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;postularForm.resetForm();&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Cerrar&quot;&gt;
+            &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+          &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;postularse(postularForm)&quot; #postularForm&#x3D;&quot;ngForm&quot; novalidate&gt;
+                &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                    &lt;p&gt;
+                        De conformidad con lo previsto en el &lt;b&gt;Articulo 8, Capítulo II (Título I - Disposiciones Generales) de la Resolución Rectoral N° 869 de 2018&lt;/b&gt; &lt;i&gt;Por medio de la cual se establece el Reglamento General del Programa de Becas de la Universidad del Magdalena&quot;&lt;/i&gt;,
+                        todo aspirante que tenga la intención de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas, deberán cumplir con la siguiente responsabilidad:
+                    &lt;/p&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;i&gt;
+                Verificar e informar a la Dirección de Bienestar Universitario antes de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas;
+                sí se encuentra como beneficiario de alguna de estas u otros beneficios ofrecidos por parte de la Universidad, como también, sí es beneficiario de estímulos o cualquier apoyo económico otorgado por instituciones o entidades del orden nacional,
+                toda vez que, al inscribirse siendo beneficiario según lo enunciado, quedará excluido del proceso.
+              &lt;/i&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;p&gt;
+                        En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el aspirante deberá diligenciar en el presente formulario de inscripción lo siguiente:
+                    &lt;/p&gt;
+                    &lt;ul style&#x3D;&quot;list-style: none;&quot;&gt;
+                        &lt;li&gt;
+                            &lt;p&gt;¿Es usted beneficiario de algún tipo de beca y otro beneficio ofrecido por parte de la Universidad mediante el Programa de Becas, o es beneficiario de estímulos y/o apoyos económicos otorgados por instituciones o entidades
+                                del orden nacional?&lt;/p&gt;
+                            &lt;div class&#x3D;&quot;form-group text-center&quot;&gt;
+                                &lt;label for&#x3D;&quot;respuesta_si&quot; class&#x3D;&quot;sr-only&quot;&gt;Respuesta&lt;/label&gt;
+                                &lt;div class&#x3D;&quot;form-check form-check-inline&quot;&gt;
+                                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;radio&quot; name&#x3D;&quot;respuesta&quot; id&#x3D;&quot;respuesta_si&quot; [(ngModel)]&#x3D;&quot;respuestaAceptar&quot; #respuestaBool&#x3D;&quot;ngModel&quot; value&#x3D;&quot;true&quot; required&gt;
+                                    &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;respuesta_si&quot;&gt;Sí&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;form-check form-check-inline&quot;&gt;
+                                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;radio&quot; name&#x3D;&quot;respuesta&quot; id&#x3D;&quot;respuesta_no&quot; [(ngModel)]&#x3D;&quot;respuestaAceptar&quot; #respuestaBool&#x3D;&quot;ngModel&quot; value&#x3D;&quot;false&quot; required&gt;
+                                    &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;respuesta_no&quot;&gt;No&lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;row&quot;&gt;
+                                &lt;div class&#x3D;&quot;col-sm-12 col-lg-4&quot; *ngIf&#x3D;&quot;respuestaAceptar&quot;&gt;
+                                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                        &lt;label for&#x3D;&quot;tiposBeneficios&quot;&gt;Tipos de beneficios&lt;/label&gt;
+                                        &lt;select class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((postularForm.submitted || tiposBeneficios?.touched) &amp;&amp; tiposBeneficios.errors?.required) }&quot; [(ngModel)]&#x3D;&quot;tipo_beneficio_id&quot; id&#x3D;&quot;tiposBeneficios&quot; name&#x3D;&quot;tiposBeneficios&quot; [required]&#x3D;&quot;respuestaAceptar&quot;
+                                            #tiposBeneficios&#x3D;&quot;ngModel&quot;&gt;
+                      &lt;option value&#x3D;&quot;null&quot; selected disabled&gt;Seleccione el tipo de beneficio&lt;/option&gt;
+                      &lt;option *ngFor&#x3D;&quot;let tipoBeneficio of tiposBeneficiosSelect&quot; value&#x3D;&quot;{{tipoBeneficio.id}}&quot;&gt;{{tipoBeneficio.nombre}}&lt;/option&gt;
+                    &lt;/select&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-sm-12 col-lg-8&quot; *ngIf&#x3D;&quot;respuestaAceptar&quot;&gt;
+                                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                        &lt;label for&#x3D;&quot;benefic&quot;&gt;Nombre de beneficio&lt;/label&gt;
+                                        &lt;input class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: benefic.errors?.required &amp;&amp; (benefic?.touched || postularForm.submitted) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el nombre del beneficio. Máx. 255 caracteres.&quot; name&#x3D;&quot;benefic&quot; id&#x3D;&quot;benefic&quot; [(ngModel)]&#x3D;&quot;beneficio&quot;
+                                            maxlength&#x3D;&quot;255&quot; [required]&#x3D;&quot;respuestaAceptar&quot; #benefic&#x3D;&quot;ngModel&quot;&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+
+                            &lt;p&gt;
+                                &lt;strong&gt;Nota: &lt;/strong&gt;Para respaldo de lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Dirección de Bienestar Universitario el &lt;strong&gt;Formato de Declaración Juramentada&lt;/strong&gt;                                formulado para el Programa de Becas.
+                            &lt;/p&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;div class&#x3D;&quot;alert alert-secondary&quot; role&#x3D;&quot;alert&quot;&gt;
+                        &lt;p class&#x3D;&quot;text-center text-muted font-weight-bold font-italic mb-0&quot;&gt;
+                            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la &lt;a href&#x3D;&quot;https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf&quot;
+                                target&#x3D;&quot;_blank&quot; download&#x3D;&quot;resolución 056 del 31 de enero del 2019.pdf&quot;&gt;resolución 056 del 31 de enero del 2019&lt;/a&gt;.
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot; (click)&#x3D;&quot;postularForm.resetForm();&quot;&gt;Cancelar&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success&quot;&gt;Aceptar&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./plazas-informacion.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.labels-sm label{
+    font-size: 0.875rem;
+    color: #003A6B;
+    font-weight: bold;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-toast [style]="{marginTop: \'80px\'}" [baseZIndex]="5000"></p-toast><ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner><div class="animated fadeIn mt-3" *ngIf="plaza != null">    <h2 class="text-center"><small class="text-muted d-block font-weight-normal">Información de la plaza</small> <span class="text-uppercase">{{plaza.tipo_plaza_id | iDToName:tiposPlazas}}</span></h2>    <hr>    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual != null">        <p class="m-0">La convocatoria de esta plaza se encuentra en etapa de <strong>{{etapaActual.nombre}}</strong> del {{etapaActual.fechaInicio | date : \'dd/MM/yyyy\'}} al {{etapaActual.fechaFin | date : \'dd/MM/yyyy\'}}.</p>    </div>    <div class="alert alert-secondary" role="alert">        <p class="text-center text-muted font-weight-bold font-italic mb-0">            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la <a href="https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf"                target="_blank" download="resolución 056 del 31 de enero del 2019.pdf">resolución 056 del 31 de enero del 2019</a>.        </p>    </div>    <div class="row labels-sm">        <div class="col-lg-3">            <ul class="list-group list-group-flush text-center text-lg-left" *ngIf="plaza != null">                <li class="list-group-item pt-0 pl-0 pr-0">                    <div class="form-group m-0">                        <label class="m-0">Convocatoria</label>                        <p class="form-control-plaintext p-0">{{plaza.convocatoriaNombre}}</p>                    </div>                </li>                <li class="list-group-item pl-0 pr-0">                    <div class="form-group m-0">                        <label class="m-0">Tipo de ayudantía</label>                        <p class="form-control-plaintext p-0">Ayudantía {{plaza.tipo_ayudantia | iDToName:tiposAyudantias}}</p>                    </div>                </li>                <li class="list-group-item pl-0 pr-0">                    <div class="form-group m-0">                        <label class="m-0">Promedio ponderado</label>                        <p class="form-control-plaintext p-0">{{plaza.promedio}}                            <!-- <strong>{{plaza.cupos_solicitados}}</strong> --></p>                    </div>                </li>                <li class="list-group-item pl-0 pr-0">                    <div class="form-group m-0">                        <label class="m-0">Porcentaje de creditos aprobados</label>                        <p class="form-control-plaintext p-0">{{plaza.porcentaja_creditos_requeridos}} %</p>                    </div>                </li>                <li class="list-group-item pl-0 pr-0 border-bottom-0">                    <div class="form-group m-0">                        <label class="m-0">Cupos disponibles</label>                        <p class="form-control-plaintext p-0">{{plaza.cupos_aprobados}}                            <!-- <strong>{{plaza.cupos_solicitados}}</strong> --></p>                    </div>                </li>            </ul>            <div class="text-center">                <button type="button" class="btn btn-success btn-block mb-2 shadow text-uppercase font-weight-bold" (click)="postularseModal()" *ngIf="etapaActual?.id == 3">Postularme</button>                <!-- <button type="button" class="btn btn-success btn-block mb-3 shadow"  (click)="goLogin()" *ngIf="etapaActual.id == 3">Postularme</button> -->                <a class="btn btn-primary btn-block mb-2 shadow text-uppercase font-weight-bold" [routerLink]="[\'/plaza/aprobados/\',plaza.id]" role="button" *ngIf="etapaActual?.id >= 5">Ver resultados <span class="sr-only">de la plaza {{plaza.tipo_plaza_id | iDToName:tiposPlazas}}</span></a>                <!-- <a role="button" class="btn btn-link btn-block mb-3" [routerLink]="[\'/plazasConvocatorias/\',plaza.convocatoria_id]">Volver al listado</a> -->                <button type="button" (click)="goBack()" class="btn btn-light btn-block mb-3">Volver al listado</button>            </div>        </div>        <div class="col-lg-9">            <div class="form-group">                <label class="m-0">Perfil</label>                <p class="form-control-plaintext">{{plaza.perfil}}</p>            </div>            <div class="form-group" *ngIf="plaza.competenciasRequeridas">                <label class="m-0">Competencias requeridas</label>                <p class="form-control-plaintext">{{plaza.competenciasRequeridas}}</p>            </div>            <div class="row">                <div class="col-sm-12 col-md-6 text-center text-md-left" *ngIf="plaza.programas && plaza.programas.length>0" [ngClass]="{\'col-lg-4\': plaza.facultades.length, \'col-lg-6\': !plaza.facultades.length}">                    <label>Programas a los que debe pertenecer el estudiante</label>                    <ul class="list-group list-group-flush mb-3">                        <li class="list-group-item pt-2 pb-2" *ngFor="let programa of plaza.programas; let i=index; let first = first;" [ngClass]="{\'border-top-0\': first}">{{programa.nombre}}</li>                    </ul>                </div>                <div class="col-sm-12 col-md-6 text-center text-md-left" *ngIf="plaza.facultades && plaza.facultades.length>0" [ngClass]="{\'col-lg-4\': plaza.programas.length, \'col-lg-6\': !plaza.programas.length}">                    <label>Facultades a las que debe pertenecer el estudiante</label>                    <ul class="list-group list-group-flush mb-3">                        <li class="list-group-item pt-2 pb-2" *ngFor="let facultad of plaza.facultades; let i=index; let first = first;" [ngClass]="{\'border-top-0\': first}">{{facultad.nombre}}</li>                    </ul>                </div>                <div class="col-sm-12 text-center text-md-left" *ngIf="plaza.asignaturasAprobadas && plaza.asignaturasAprobadas.length>0" [ngClass]="{\'col-md-4\': plaza.programas.length || plaza.facultades.length, \'col-md-6\': !plaza.programas.length || !plaza.facultades.length}">                    <label>Asignaturas aprobadas por el estudiante previamente</label>                    <ul class="list-group list-group-flush mb-3">                        <li class="list-group-item pt-2 pb-2" *ngFor="let asignatura of plaza.asignaturasAprobadas; let i=index; let first = first;" [ngClass]="{\'border-top-0\': first}">                            {{asignatura.nombre}}.                            <small class="ml-2 d-block d-lg-inline-block text-muted">Nota mín: {{asignatura.puntaje}}</small>                        </li>                    </ul>                </div>                <div class="col-sm-12 text-center text-md-left" *ngIf="plaza.actividades && plaza.actividades.length>0">                    <label>Actividades a realizar</label>                    <ul class="list-group list-group-flush mb-3">                        <li class="list-group-item pt-2 pb-2" *ngFor="let actividad of plaza.actividades; let i=index; let first = first;" [ngClass]="{\'border-top-0\': first}">                            {{actividad}}                        </li>                    </ul>                </div>            </div>            <div class="row" *ngIf="plaza.requisitosEvaluacion && plaza.requisitosEvaluacion.length > 0">                <div class="col-12">                    <label>Requisitos de evaluación</label>                    <div class="table-responsive">                        <table class="table table-sm">                            <thead>                                <tr>                                    <th class="border-top-0">Descripción</th>                                    <th class="border-top-0" style="width: 90px;">Porcentaje</th>                                    <th class="border-top-0" style="width: 128px;">Puntaje máximo</th>                                </tr>                            </thead>                            <tbody>                                <tr *ngFor="let requisito of plaza.requisitosEvaluacion; let i=index;">                                    <td>{{requisito.descripcion}}</td>                                    <td class="text-center">{{requisito.porcentaje}} %</td>                                    <td class="text-center">{{requisito.valor_maximo}}</td>                                </tr>                            </tbody>                        </table>                    </div>                </div>            </div>        </div>    </div></div><!-- Modal --><div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    <div class="modal-dialog modal-lg" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="exampleModalLabel">Disposiciones generales para postulación a plazas</h5>                <button type="button" (click)="postularForm.resetForm();" class="close" data-dismiss="modal" aria-label="Cerrar">            <span aria-hidden="true">&times;</span>          </button>            </div>            <form (ngSubmit)="postularse(postularForm)" #postularForm="ngForm" novalidate>                <div class="modal-body">                    <p>                        De conformidad con lo previsto en el <b>Articulo 8, Capítulo II (Título I - Disposiciones Generales) de la Resolución Rectoral N° 869 de 2018</b> <i>Por medio de la cual se establece el Reglamento General del Programa de Becas de la Universidad del Magdalena"</i>,                        todo aspirante que tenga la intención de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas, deberán cumplir con la siguiente responsabilidad:                    </p>                    <ul>                        <li>                            <i>                Verificar e informar a la Dirección de Bienestar Universitario antes de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas;                sí se encuentra como beneficiario de alguna de estas u otros beneficios ofrecidos por parte de la Universidad, como también, sí es beneficiario de estímulos o cualquier apoyo económico otorgado por instituciones o entidades del orden nacional,                toda vez que, al inscribirse siendo beneficiario según lo enunciado, quedará excluido del proceso.              </i>                        </li>                    </ul>                    <p>                        En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el aspirante deberá diligenciar en el presente formulario de inscripción lo siguiente:                    </p>                    <ul style="list-style: none;">                        <li>                            <p>¿Es usted beneficiario de algún tipo de beca y otro beneficio ofrecido por parte de la Universidad mediante el Programa de Becas, o es beneficiario de estímulos y/o apoyos económicos otorgados por instituciones o entidades                                del orden nacional?</p>                            <div class="form-group text-center">                                <label for="respuesta_si" class="sr-only">Respuesta</label>                                <div class="form-check form-check-inline">                                    <input class="form-check-input" type="radio" name="respuesta" id="respuesta_si" [(ngModel)]="respuestaAceptar" #respuestaBool="ngModel" value="true" required>                                    <label class="form-check-label" for="respuesta_si">Sí</label>                                </div>                                <div class="form-check form-check-inline">                                    <input class="form-check-input" type="radio" name="respuesta" id="respuesta_no" [(ngModel)]="respuestaAceptar" #respuestaBool="ngModel" value="false" required>                                    <label class="form-check-label" for="respuesta_no">No</label>                                </div>                            </div>                            <div class="row">                                <div class="col-sm-12 col-lg-4" *ngIf="respuestaAceptar">                                    <div class="form-group">                                        <label for="tiposBeneficios">Tipos de beneficios</label>                                        <select class="form-control" [ngClass]="{\'is-invalid\': ((postularForm.submitted || tiposBeneficios?.touched) && tiposBeneficios.errors?.required) }" [(ngModel)]="tipo_beneficio_id" id="tiposBeneficios" name="tiposBeneficios" [required]="respuestaAceptar"                                            #tiposBeneficios="ngModel">                      <option value="null" selected disabled>Seleccione el tipo de beneficio</option>                      <option *ngFor="let tipoBeneficio of tiposBeneficiosSelect" value="{{tipoBeneficio.id}}">{{tipoBeneficio.nombre}}</option>                    </select>                                    </div>                                </div>                                <div class="col-sm-12 col-lg-8" *ngIf="respuestaAceptar">                                    <div class="form-group">                                        <label for="benefic">Nombre de beneficio</label>                                        <input class="form-control" [ngClass]="{\'is-invalid \': benefic.errors?.required && (benefic?.touched || postularForm.submitted) }" type="text" placeholder="Ingrese el nombre del beneficio. Máx. 255 caracteres." name="benefic" id="benefic" [(ngModel)]="beneficio"                                            maxlength="255" [required]="respuestaAceptar" #benefic="ngModel">                                    </div>                                </div>                            </div>                            <p>                                <strong>Nota: </strong>Para respaldo de lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Dirección de Bienestar Universitario el <strong>Formato de Declaración Juramentada</strong>                                formulado para el Programa de Becas.                            </p>                        </li>                    </ul>                    <div class="alert alert-secondary" role="alert">                        <p class="text-center text-muted font-weight-bold font-italic mb-0">                            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la <a href="https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf"                                target="_blank" download="resolución 056 del 31 de enero del 2019.pdf">resolución 056 del 31 de enero del 2019</a>.                        </p>                    </div>                </div>                <div class="modal-footer">                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="postularForm.resetForm();">Cancelar</button>                    <button type="submit" class="btn btn-success">Aceptar</button>                </div>            </form>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PlazasInformacionComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PlazasInformacionComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

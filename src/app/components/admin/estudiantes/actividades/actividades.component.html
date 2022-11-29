@@ -1,0 +1,519 @@
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Actividades del estudiante
+        <small class="btn-block text-muted">{{convocatoria}} - {{nombre}}</small>
+    </h2>
+    <hr>
+    <div id="supervisor" class="row summary mb-3">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white text-center text-lg-left">
+            <h3 class="h4">
+                <small class="d-block text-white">Supervisor asignado</small>
+                <b class="d-block">{{supervisor}}</b>
+                <a href="mailto:{{emailSupervisor}}" target="_blank" class="d-inline-block w-100 text-white" *ngIf="emailSupervisor != null"><small class="d-inline-block w-100 text-truncate">{{emailSupervisor}}</small></a>
+            </h3>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row p-1 pt-sm-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Plaza</label>
+                                <p class="form-control-plaintext p-0">{{nombre}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de ayudantía</label>
+                                <p class="form-control-plaintext p-0">{{tipo.nombre}}</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row h-100">
+                        <div class="col-6 p-3">
+                            <label class="d-block">Total de horas registradas</label>
+                            <strong class="h2">{{getInteger(totalHoras)}}h <span *ngIf="getInteger(getDecimals(totalHoras) * 60) > 0">{{getDecimals(totalHoras) * 60 | number : '1.0-0'}}m</span></strong>
+                        </div>
+                        <div class="col-6 p-3">
+                            <label class="d-block">Total de horas revisadas</label>
+                            <strong class="h2">{{getInteger(totalHorasRevisadas)}}h <span *ngIf="getInteger(getDecimals(totalHoras) * 60) > 0">{{getDecimals(totalHorasRevisadas) * 60 | number : '1.0-0'}}m</span></strong>
+                        </div>
+                        <div class="col-6 p-3" *ngIf="horas_eliminadas > 0.0">
+                            <label class="d-block">Total de horas canceladas por comité</label>
+                            <strong class="h1">{{getInteger(horas_eliminadas)}}h <span *ngIf="getInteger(getDecimals(horas_eliminadas) * 60) > 0">{{getDecimals(horas_eliminadas) * 60 | number : '1.0-0'}}m </span></strong>
+                        </div>
+                        <div class="col-6 p-3">
+                            <label class="d-block">Total de horas rechazadas</label>
+                            <strong class="h2">{{getInteger(horas_rechazadas)}}h <span *ngIf="getInteger(getDecimals(horas_rechazadas) * 60) > 0">{{getDecimals(horas_rechazadas) * 60 | number : '1.0-0'}}m</span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="text-center" *ngIf="(estado == 4 || estado == 6) && convocatoria_estado_control_id != 3">
+        <button id="addActividad" type="button" class="btn btn-success text-uppercase font-weight-bold" data-toggle="modal" data-target="#exampleModal" (click)="openNuevaActividad(actividadForm)" [disabled]="totalHorasRevisadas >= horasMaximasConvocatorias">
+            <span class="fas fa-plus" aria-hidden="true"></span> Añadir actividad
+        </button>
+        <small class="d-block text-secondary" *ngIf="totalHorasRevisadas >= horasMaximasConvocatorias">Se han aprobado el número máximo de horas definidas para en esta convocatoria ({{horasMaximasConvocatorias}} horas)</small>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_actividadesEst">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">Fecha</th>
+                    <th>Hora</th>
+                    <th style="width: 70px;">Duración</th>
+                    <!-- <th>Fecha de inicio</th>
+              <th>Fecha de Fin</th> -->
+                    <th>Actividad</th>
+                    <th>Descripción</th>
+                    <th style="width: 120px;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let activ of actividades; let i=index" [ngClass]="{'table-success': activ.estado_actividad_id == 3, 'table-danger': activ.estado_actividad_id == 4}">
+                    <td attr.data-order="{{activ.fecha_inicio | date:'MM/dd/yyyy a hh:mm'}}">
+                        <span *ngIf="esFechaIgual(activ.fecha_inicio, activ.fecha_fin)">
+                            {{activ.fecha_inicio | date: 'dd/MM/yyyy'}}
+                        </span>
+                        <span *ngIf="!esFechaIgual(activ.fecha_inicio, activ.fecha_fin)">
+                            {{activ.fecha_inicio | date: 'dd/MM/yyyy'}} - {{activ.fecha_fin | date: 'dd/MM/yyyy'}}
+                        </span>
+                    </td>
+                    <td>{{activ.fecha_inicio | date: 'hh:mm a'}} - {{activ.fecha_fin | date: 'hh:mm a'}}</td>
+                    <td class="text-center">
+                        <abbr title="{{activ.fecha_inicio | date: 'hh:mm a'}} - {{activ.fecha_fin | date: 'hh:mm a'}}">
+                            <span *ngIf="diferenciaHoras(activ.fecha_inicio, activ.fecha_fin) % 1 > 0.0">
+                                {{getInteger(diferenciaHoras(activ.fecha_inicio, activ.fecha_fin))}}h {{getDecimals(diferenciaHoras(activ.fecha_inicio, activ.fecha_fin)) * 60 | number : '1.0-0'}}m
+                            </span>
+                            <span *ngIf="diferenciaHoras(activ.fecha_inicio, activ.fecha_fin) % 1 == 0.0">
+                                {{diferenciaHoras(activ.fecha_inicio, activ.fecha_fin)}}h
+                            </span>
+                        </abbr>
+                    </td>
+                    <!-- <td>{{activ.fecha_inicio | date: 'dd/MM/yyyy, HH:mm'}}</td>
+              <td>{{activ.fecha_fin | date: 'dd/MM/yyyy, HH:mm'}}</td> -->
+                    <td>{{activ.actividad }}</td>
+                    <td>{{activ.descripcion}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Acciones">
+                            <div *ngIf="activ.estado_actividad_id == 1 && (estado == 4 || estado == 6)">
+                                <button type="button" class="btn bg-light btn-outline-secondary btn-sm btn-editar" (click)="loadEdit(activ, i)" title="Editar registro">
+                                    <span class="fas fa-pencil-alt" aria-hidden="true"></span>
+                                    <span class="sr-only">Editar registro</span>
+                                  </button>
+                                <button type="button" class="btn bg-light btn-outline-secondary btn-sm btn-eliminar" (click)="deleteActividad(activ.id, i); editActividadForm.resetForm()" title="Eliminar registro">
+                                      <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                                      <span class="sr-only">Eliminar registro</span>
+                                  </button>
+                                <button type="button" class="btn bg-light btn-outline-secondary btn-sm btn-agregarEst" (click)="loadEstudiantes(activ)" title="Agregar estudiante">
+                                    <span class="fas fa-user-plus" aria-hidden="true"></span>
+                                    <span class="sr-only">Agregar estudiante</span>
+                                  </button>
+                            </div>
+                            <button type="button" class="btn bg-light btn-outline-secondary btn-sm btn-historialCambios" (click)="loadHistory(activ, i)" title="Historial de cambios">
+                                <span class="fas fa-history" aria-hidden="true"></span>   
+                                <span class="sr-only">Historial de cambios</span>             
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="text-center mb-3 pb-3">
+        <strong>Tiempo registrado en actividades: {{getInteger(totalHoras)}}h <span *ngIf="getInteger(getDecimals(totalHoras) * 60) > 0">{{getDecimals(totalHoras) * 60 | number : '1.0-0'}}m</span></strong>
+    </div> -->
+    <div class="accordion" id="accordionExample">
+        <h3 class="mt-3 font-weight-normal">Preguntas frecuentes</h3>
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                ¿Comó puedo añadir una actividad?
+            </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    En esta página podrá agregar las actividades que realice en el proceso de su ayudantía. Para registrar una actividad siga los siguientes pasos:
+                    <ol>
+                        <li>Presione el botón "<span class="fas fa-plus" aria-hidden="true"></span> Añadir actividad". Se mostrará el formulario para registrar una nueva actividad.</li>
+                        <li>Complete los datos solicitados en el formulario. Una vez complete correctamente los campos presione el botón "Guardar".</li>
+                        <li>Si se almacenó exitosamente la actividad registrada se mostrará en el listado.</li>
+                    </ol>
+                    En el listado podrá editar o eliminar la actividad. Si es una ayudantía académica podrá registrar los estudiantes que atendió.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              ¿Comó puedo registrar estudiantes en una ayudantía académica?
+            </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    Para registrar estudiantes debe realizar los siguientes pasos:
+                    <ol>
+                        <li>Presione el botón Agregar estudiante que contiene el icono <span class="fas fa-user-plus"></span> ubicado en la columna "Acciones" de la actividad a la cual desea registrar el estudiante. Se mostrará una ventana de Estudiantes
+                            atendidos.
+                        </li>
+                        <li>Ingrese el código del estudiante en el campo de texto indicado y presione el botón "Añadir". El sistema validará el código y si esta correcto lo agregará en una tabla ubicada debajo del formulario.</li>
+                        <li>En la tabla de estudiantes atendidos se visualizaran los estudiantes que se van añadiendo. Usted puede eliminar los estudiantes ingresados.</li>
+                        <li>Al terminar de ingresar los estudiantes atendidos presione el botón "Guardar".</li>
+                    </ol>
+                    <strong>Tenga en cuenta que para que tengan efectos los cambios realizados en la ventana de Estudiantes atendidos debe presionar el botón "Guardar"</strong>, de lo contrario los cambios no se almacenaran en el sistema.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="headingThree">
+                ¿Cuántas actividades puedo registrar?
+              </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    El sistema no tiene un limite para el registro de actividades por plaza, pero debe tener en cuenta que solo se aprobaran el número de horas definidas por la convocatoria vigente. Para la convocatoria '{{convocatoria}}' las horas máximas a cumplir por
+                    el estudiantes son {{horasMaximasConvocatorias}}. Las actividades pueden ser revisadas en el proceso de Inicio de actividades de la convocatoria para su validación. Las actividades que hayan sido revisadas se resaltan con un color
+                    verde en la tabla de actividades, y las que no hayan podido ser validadas correctamente se resaltaran en color rojo.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center mb-3" *ngIf="tipo_convocatoria">
+    <button id="volver" type="button" class="btn btn-light mr-1" [routerLink]="[ '/estudiantes/perfil', tipo_convocatoria.id]">Volver</button>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm(actividadForm)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form class="needs-validation" novalidate #actividadForm="ngForm" (ngSubmit)="nuevaActividad(actividadForm)">
+                <div class="modal-body">
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 col-xl-5">
+                                <div class="form-group">
+                                    <label for="FechaInicialCreacion">Fecha inicial <span class="fa fa-question-circle" aria-hidden="true" title="Fecha y hora de inicio de actividad. No puede mayor a la fecha y hora de finalización de la actividad"></span></label>
+                                    <p-calendar inputId="FechaInicialCreacion" showTime="true" hourFormat="12" styleClass="d-block w-100" inputStyleClass="form-control {{isFechaValid(actividad.fecha_inicio, fecha_inicio.touched, actividadForm)}}" showButtonBar="true" dateFormat="dd/mm/yy"
+                                        [stepMinute]="10" [(ngModel)]="actividad.fecha_inicio" (ngModelChange)="asignarFecha(actividad.fecha_inicio, actividad.fecha_fin)" #fecha_inicio="ngModel" [readonlyInput]="true" [locale]="es" required name="fecha_inicio"
+                                        [maxDate]="actividad.fecha_fin" hideOnDateTimeSelect="true">
+                                    </p-calendar>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': fecha_inicio.errors?.required && (fecha_inicio.touched || actividadForm.submitted)}">
+                                        Debe elegir una fecha
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xl-5">
+                                <div class="form-group">
+                                    <label for="FechaFinalCreacion">Fecha final <span class="fa fa-question-circle" aria-hidden="true" title="Fecha y hora de finalización de actividad. No puede menor a la fecha y hora de inicio de la actividad ni mayor a la fecha y hora actual"></span></label>
+                                    <p-calendar inputId="FechaFinalCreacion" showTime="true" hourFormat="12" styleClass="d-block w-100" inputStyleClass="form-control {{isFechaValid(actividad.fecha_fin, fecha_fin.touched, actividadForm)}}" showButtonBar="true" dateFormat="dd/mm/yy" [(ngModel)]="actividad.fecha_fin"
+                                        [readonlyInput]="true" [stepMinute]="10" [locale]="es" required #fecha_fin="ngModel" name="fecha_fin" [maxDate]="dateNow" hideOnDateTimeSelect="true">
+                                    </p-calendar>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': fecha_fin.errors?.required && (fecha_fin.touched || actividadForm.submitted)}">
+                                        Debe elegir una fecha
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <div class="form-group">
+                                    <label>Duración <span class="fa fa-question-circle" aria-hidden="true" title="La duración se calcula con base en las fechas seleccionadas"></span></label>
+                                    <p class="form-control-plaintext">
+                                        <span *ngIf="diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin) % 1 > 0.0">
+                          {{getInteger(diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin))}}h {{getDecimals(diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)) * 60 | number : '1.0-0'}}m
+                        </span>
+                                        <span *ngIf="diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin) % 1 == 0.0">
+                          {{diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)}}h
+                        </span>
+                                        <!-- {{diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)}} hora(s) -->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="actividadR">Actividad realizada <span class="fa fa-question-circle" aria-hidden="true" title="Las actividades en el listado han sido ingredas previamente por la unidad encargada de la plaza"></span></label>
+                                    <select [ngClass]="{'is-invalid': actividadR.errors?.required && (actividadR.touched || actividadForm.submitted)}" id="actividadR" class="form-control" name="actividadR" [(ngModel)]="actividad.actividad_realizar_id" #actividadR="ngModel" required>
+                        <option [value]="null" disabled selected>Elegir una actividad</option>
+                        <option *ngFor="let plazaActividad of plazaActividades" [value]="plazaActividad.id">{{plazaActividad.descripcion}}</option>
+                        
+                      </select>
+                                    <div class="invalid-feedback">Seleccione una de las opciones</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="descripcion">Descripción de la actividad</label>
+                                    <textarea [ngClass]="{'is-invalid': descripcionT.errors?.required && (descripcionT.touched || actividadForm.submitted)}" class="form-control" id="descripcion" rows="5" placeholder="Ingrese una descripción de la actividad que realizó. Máx 1.000 caracteres"
+                                        name="descripcion" [(ngModel)]="actividad.descripcion" #descripcionT="ngModel" maxlength="1000" [minlength]="0" required></textarea>
+                                    <div class="invalid-feedback">Describa las tareas realizadas en esta actividad</div>
+
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="soporte">Soporte <small class="text-muted">(Solo formato PDF)</small></label>
+                                    <p-fileUpload id="soporte_actividad" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="5000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                        invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                    </p-fileUpload>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': !actividad.soporte && actividadForm.submitted }">Debe cargar un archivo de soporte</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="resetForm(actividadForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="resetForm(editActividadForm)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form class="needs-validation" novalidate #editActividadForm="ngForm" (ngSubmit)="editActividad(editActividadForm, idx)">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4 col-xl-5">
+                                <div class="form-group">
+
+                                    <label for="fechaInicialEdicion">Fecha inicial <span class="fa fa-question-circle" aria-hidden="true" title="Fecha y hora de inicio de actividad. No puede mayor a la fecha y hora de finalización de la actividad"></span></label>
+                                    <p-calendar inputId="fechaInicialEdicion" showTime="true" hourFormat="12" styleClass="w-100 d-block" inputStyleClass="form-control {{isFechaValid(actividad.fecha_inicio, fecha_inicio_ed.touched, editActividadForm)}}" showButtonBar="true" dateFormat="dd/mm/yy"
+                                        [(ngModel)]="actividad.fecha_inicio" (ngModelChange)="asignarFecha(actividad.fecha_inicio, actividad.fecha_fin)" #fecha_inicio_ed="ngModel" [readonlyInput]="true" [stepMinute]="10" [locale]="es" required name="fecha_inicio"
+                                        [maxDate]="actividad.fecha_fin" hideOnDateTimeSelect="true">
+                                    </p-calendar>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': fecha_inicio_ed.errors?.required && (fecha_inicio_ed.touched || editActividadForm.submitted)}">
+                                        Debe elegir una fecha
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xl-5">
+                                <div class="form-group">
+                                    <label for="fechaFinalEdicion">Fecha final <span class="fa fa-question-circle" aria-hidden="true" title="Fecha y hora de finalización de actividad. No puede menor a la fecha y hora de inicio de la actividad ni mayor a la fecha y hora actual"></span></label>
+                                    <p-calendar inputId="fechaFinalEdicion" showTime="true" hourFormat="12" styleClass="w-100 d-block" inputStyleClass="form-control {{isFechaValid(actividad.fecha_fin, fecha_fin_ed.touched, editActividadForm)}}" showButtonBar="true" dateFormat="dd/mm/yy"
+                                        [(ngModel)]="actividad.fecha_fin" [readonlyInput]="true" [stepMinute]="10" [locale]="es" required #fecha_fin_ed="ngModel" name="fecha_fin" [maxDate]="dateNow" hideOnDateTimeSelect="true">
+                                    </p-calendar>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': fecha_fin_ed.errors?.required && (fecha_fin_ed.touched || editActividadForm.submitted)}">
+                                        Debe elegir una fecha
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xl-2">
+                                <div class="form-group">
+                                    <label>Duración <span class="fa fa-question-circle" aria-hidden="true" title="La duración se calcula con base en las fechas seleccionadas"></span></label>
+                                    <p class="form-control-plaintext">
+                                        <span *ngIf="diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin) % 1 > 0.0">
+                                {{getInteger(diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin))}}h {{getDecimals(diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)) * 60 | number : '1.0-0'}}m
+                              </span>
+                                        <span *ngIf="diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin) % 1 == 0.0">
+                                {{diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)}}h
+                              </span>
+                                        <!-- {{diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)}} hora(s) -->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="actividadR">Actividad realizada <span class="fa fa-question-circle" aria-hidden="true" title="Las actividades en el listado han sido ingredas previamente por la unidad encargada de la plaza"></span></label>
+                                    <select [ngClass]="{'is-invalid': actividadR.errors?.required && (actividadR.touched || editActividadForm.submitted)}" id="actividadR" class="form-control" name="actividadR" [(ngModel)]="actividad.actividad_realizar_id" #actividadR="ngModel" required>
+                          <option [value]="null" disabled selected>Elegir una actividad</option>
+                          <option *ngFor="let plazaActividad of plazaActividades" [value]="plazaActividad.id">{{plazaActividad.descripcion}}</option>
+                          
+                        </select>
+                                    <div class="invalid-feedback">Seleccione una de las opciones</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="descripcion">Descripción de la actividad</label>
+                                    <textarea [ngClass]="{'is-invalid': descripcionT.errors?.required && (descripcionT.touched || editActividadForm.submitted)}" class="form-control" id="descripcion_editar" rows="5" placeholder="Ingrese una descripción de la actividad que realizó. Máx 1.000 caracteres"
+                                        name="descripcion" [(ngModel)]="actividad.descripcion" #descripcionT="ngModel" [maxlength]="1000" [minlength]="0" required></textarea>
+                                    <div class="invalid-feedback">Describa las tareas realizadas en esta actividad</div>
+
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="soporte">Soporte <small class="text-muted">(Solo formato PDF)</small></label>
+                                    <p-fileUpload id="soporte_actividad_editar" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="5000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                        invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                    </p-fileUpload>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': !actividad.soporte && editActividadForm.submitted }">Debe cargar un archivo de soporte</div>
+                                    <a class="mt-2" *ngIf="actividad.soporte_url" [href]="api + '/'+ actividad.soporte_url" target="_blank">Descargar soporte de actividad</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="resetForm(editActividadForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="estudiantesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Estudiantes atendidos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm(estudianteForm);">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-group row animated fadeIn needs-validation" novalidate #estudianteForm="ngForm" (ngSubmit)="addEstudiante(estudianteForm)">
+                    <hr>
+                    <label for="codigo" class="col-sm-3 col-form-label col-form-label-sm">Código estudiantil</label>
+                    <div class="col-sm-7">
+                        <input type="number" name="codigo" id="codigo" class="form-control form-control-sm whit-icon" placeholder="Código estudiantil" [(ngModel)]="estudiante.codigo" required #codigo="ngModel" [min]="1" [ngClass]="
+              {'is-invalid': (codigo.errors?.required || codigo.errors?.min) && (codigo.touched || estudianteForm.submitted) || isValidate == 'notValid', 
+              'is-valid': isValidate == 'isValid', 
+              'is-loading':isValidate == 'isLoading'}" maxlength="12">
+                        <div class="invalid-feedback" *ngIf="codigo.errors?.required  && (codigo.touched || estudianteForm.submitted)">
+                            Ingrese el código del estudiante
+                        </div>
+                        <div class="invalid-feedback" *ngIf="codigo.errors?.min  && (codigo.touched || estudianteForm.submitted)">
+                            El código no puede ser negativo
+                        </div>
+                        <div class="valid-feedback">
+                            El código fue validado
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-sm btn-block">Añadir</button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="alert alert-info" role="alert" *ngIf="estudiantes_atendidos.length == 0">
+                    Ingrese el código del estudiante que desea registrar. Luego presione el botón "Añadir". El sistema validará el código y lo agregará en la actividad. <strong>Debe presionar el botón "Guardar" para efectuar los cambios realizados</strong>.
+                </div>
+                <div class="table-responsive mt-1" *ngIf="estudiantes_atendidos.length > 0">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <!-- <th>#</th> -->
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Programa</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of estudiantes_atendidos; let i=index">
+                                <!-- <td>{{i+1}}</td> -->
+                                <td>{{item.codigo}}</td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.programa}}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Acciones">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="deleteEstudiante(item)" title="Eliminar registro">
+                        <span class="fas fa-times"></span>
+                    </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)="resetForm(estudianteForm);">Cerrar</button>
+                <button type="button" class="btn btn-success" (click)="saveEstudiantes()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="historialModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Histórico de actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="resetForm(estudianteForm);">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="alert alert-info" role="alert" *ngIf="historial.length == 0">
+                    En este espacio se muestran los cambios de estado de la actividad.
+                </div>
+
+                <div class="table-responsive mt-1" *ngIf="historial.length > 0">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Acción</th>
+                                <th>Fecha</th>
+                                <th>Observación</th>
+                                <th>Soporte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of historial; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.fecha}}</td>
+                                <td *ngIf="item.observacion != null">{{item.observacion}}</td>
+                                <td *ngIf="item.soporte != null"><a [href]="api + item.soporte" target="_blank">Ver detalle</a></td>
+                                <td *ngIf="item.observacion == null">No aplica</td>
+                                <td *ngIf="item.soporte == null">No aplica</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light m-1 mt-3" data-dismiss="modal" (click)="resetForm(estudianteForm);">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

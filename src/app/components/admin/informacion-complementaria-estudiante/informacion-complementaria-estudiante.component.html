@@ -1,0 +1,60 @@
+<form #form="ngForm" novalidate class="animated fadeIn">
+  <fieldset>
+      <legend class="text-center">Información complementaria estudiante</legend>
+      <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+                <label for="sisben">Sisben</label>
+                <input class="form-control " [ngClass]="{'is-invalid ': sisben.errors?.required && (form.submitted || sisben.touched) }" type="text" placeholder="Ingrese su puntaje de sisben" name="sisben" id="sisben" [(ngModel)]="datosComplementarios.sisben" required #sisben="ngModel">
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="incapacidadTotal"><input [ngClass]="{'is-invalid ': incapacidadTotal.errors?.required && (form.submitted || incapacidadTotal.touched) }" type="checkbox" name="incapacidadTotal" id="incapacidadTotal" [(ngModel)]="datosComplementarios.incapacidadTotal" value="true" required #incapacidadTotal="ngModel"> Incapacidad total o permanente de la persona de quien depende económicamente el estudiante.</label>
+              
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+            <label for="fallecimientoDepende"><input [ngClass]="{'is-invalid ': fallecimientoDepende.errors?.required && (form.submitted || fallecimientoDepende.touched) }" type="checkbox" name="fallecimientoDepende" id="fallecimientoDepende" [(ngModel)]="datosComplementarios.fallecimientoDepende" value="true" required #fallecimientoDepende="ngModel"> Fallecimiento de la persona de quien depende económicamente el estudiante.</label>
+            
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+          <label for="enfermedadGrave"><input [ngClass]="{'is-invalid ': enfermedadGrave.errors?.required && (form.submitted || enfermedadGrave.touched) }" type="checkbox" name="enfermedadGrave" id="enfermedadGrave" [(ngModel)]="datosComplementarios.enfermedadGrave" value="true" required #enfermedadGrave="ngModel"> Enfermedad grave del estudiante o de quien depende económicamente el estudiante.</label>
+          
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+          <label for="madreGestante"><input [ngClass]="{'is-invalid ': madreGestante.errors?.required && (form.submitted || madreGestante.touched) }" type="checkbox" name="madreGestante" id="madreGestante" [(ngModel)]="datosComplementarios.madreGestante" value="true" required #madreGestante="ngModel"> Madre gestante.</label>
+          
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-12 col-sm-12 col-md-9 col-xl-8">
+        <div id="eps" class="form-group">
+                <label for="epsSelect"><span style="color:red;">*</span>EPS</label>
+                <ng-select [items]="eps" inputStyleClass="form-control" required id="epsSelect" bindLabel="nombre" bindValue="id" placeholder="Seleccione EPS." name="epsSelect" #epsSelect="ngModel" [(ngModel)]="datosComplementarios.eps">
+                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                        <div class="ng-option disabled">
+                            No hay resultados
+                        </div>
+                    </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">Seleccione una de las opciones</div>
+            </div>
+        </div>
+  </div>
+  </fieldset>
+</form>

@@ -1,0 +1,1649 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>InscripcionAdministrativaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-inscripcion-administrativa</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./inscripcion-administrativa.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./inscripcion-administrativa.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#array">array</a>
+                            </li>
+                            <li>
+                                <a href="#arrayCodigos">arrayCodigos</a>
+                            </li>
+                            <li>
+                                <a href="#beneficio">beneficio</a>
+                            </li>
+                            <li>
+                                <a href="#codigos">codigos</a>
+                            </li>
+                            <li>
+                                <a href="#codigosInvalidos">codigosInvalidos</a>
+                            </li>
+                            <li>
+                                <a href="#convocatoria">convocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#convocatorias">convocatorias</a>
+                            </li>
+                            <li>
+                                <a href="#dias">dias</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#file_soporte">file_soporte</a>
+                            </li>
+                            <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#idx">idx</a>
+                            </li>
+                            <li>
+                                <a href="#isValid">isValid</a>
+                            </li>
+                            <li>
+                                <a href="#observacion">observacion</a>
+                            </li>
+                            <li>
+                                <a href="#validacion">validacion</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#goBack">goBack</a>
+                            </li>
+                            <li>
+                                <a href="#modalCodigosErrores">modalCodigosErrores</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClearFile">onClearFile</a>
+                            </li>
+                            <li>
+                                <a href="#onUploadFile">onUploadFile</a>
+                            </li>
+                            <li>
+                                <a href="#save">save</a>
+                            </li>
+                            <li>
+                                <a href="#selectBene">selectBene</a>
+                            </li>
+                            <li>
+                                <a href="#selectConvo">selectConvo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_inscripcionService: <a href="../injectables/InscripcionRService.html">InscripcionRService</a>, _convocatoriaService: <a href="../injectables/ConvocatoriaRefrigerioService.html">ConvocatoriaRefrigerioService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, messageService: MessageService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, spinner: NgxSpinnerService, _location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_inscripcionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InscripcionRService.html" target="_self" >InscripcionRService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_convocatoriaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConvocatoriaRefrigerioService.html" target="_self" >ConvocatoriaRefrigerioService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <b>
+                            goBack
+                        </b>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:188</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalCodigosErrores"></a>
+                    <span class="name">
+                        <b>
+                            modalCodigosErrores
+                        </b>
+                        <a href="#modalCodigosErrores"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>modalCodigosErrores()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:202</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClearFile"></a>
+                    <span class="name">
+                        <b>
+                            onClearFile
+                        </b>
+                        <a href="#onClearFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClearFile()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onUploadFile"></a>
+                    <span class="name">
+                        <b>
+                            onUploadFile
+                        </b>
+                        <a href="#onUploadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onUploadFile(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="save"></a>
+                    <span class="name">
+                        <b>
+                            save
+                        </b>
+                        <a href="#save"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>save(formulario: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>formulario</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectBene"></a>
+                    <span class="name">
+                        <b>
+                            selectBene
+                        </b>
+                        <a href="#selectBene"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectBene()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:178</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectConvo"></a>
+                    <span class="name">
+                        <b>
+                            selectConvo
+                        </b>
+                        <a href="#selectConvo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectConvo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:183</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="array"></a>
+                        <span class="name">
+                            <b>
+                            array</b>
+                            <a href="#array"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="arrayCodigos"></a>
+                        <span class="name">
+                            <b>
+                            arrayCodigos</b>
+                            <a href="#arrayCodigos"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="beneficio"></a>
+                        <span class="name">
+                            <b>
+                            beneficio</b>
+                            <a href="#beneficio"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/InscripcionBeneficio.html" target="_self" >InscripcionBeneficio</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="codigos"></a>
+                        <span class="name">
+                            <b>
+                            codigos</b>
+                            <a href="#codigos"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="codigosInvalidos"></a>
+                        <span class="name">
+                            <b>
+                            codigosInvalidos</b>
+                            <a href="#codigosInvalidos"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatoria"></a>
+                        <span class="name">
+                            <b>
+                            convocatoria</b>
+                            <a href="#convocatoria"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/ConvocatoriaInscripcionBeneficio.html" target="_self" >ConvocatoriaInscripcionBeneficio</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatorias"></a>
+                        <span class="name">
+                            <b>
+                            convocatorias</b>
+                            <a href="#convocatorias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>ConvocatoriaInscripcionBeneficio[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dias"></a>
+                        <span class="name">
+                            <b>
+                            dias</b>
+                            <a href="#dias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>number[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Message[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="file_soporte"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Optional</span>
+                            file_soporte</b>
+                            <a href="#file_soporte"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>File</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name">
+                            <b>
+                            id</b>
+                            <a href="#id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="idx"></a>
+                        <span class="name">
+                            <b>
+                            idx</b>
+                            <a href="#idx"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isValid"></a>
+                        <span class="name">
+                            <b>
+                            isValid</b>
+                            <a href="#isValid"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="observacion"></a>
+                        <span class="name">
+                            <b>
+                            observacion</b>
+                            <a href="#observacion"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="validacion"></a>
+                        <span class="name">
+                            <b>
+                            validacion</b>
+                            <a href="#validacion"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">app/components/admin/refrigerios/inscripcion-administrativa/inscripcion-administrativa.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { InscripcionRService } from &#x27;src/app/services/inscripcion-refrigerio.service&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import {MessageService} from &#x27;primeng/components/common/messageservice&#x27;;
+import { Message } from &#x27;primeng/components/common/api&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import {Location} from &#x27;@angular/common&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import { ConvocatoriaInscripcionBeneficio, InscripcionBeneficio } from &#x27;src/app/interfaces/inscripcion-beneficio.interface&#x27;;
+import { ConvocatoriaRefrigerioService } from &#x27;src/app/services/convocatoria-refrigerio.service&#x27;;
+
+declare var $:any;
+
+@Component({
+  selector: &#x27;app-inscripcion-administrativa&#x27;,
+  templateUrl: &#x27;./inscripcion-administrativa.component.html&#x27;,
+  styleUrls: [&#x27;./inscripcion-administrativa.component.css&#x27;],
+  providers: [MessageService]
+})
+export class InscripcionAdministrativaComponent implements OnInit {
+  id:number;
+  isValid:string&#x3D;&quot;&quot;;
+  idx:number;
+  errores:Message[]&#x3D;[];
+  dias:number[]&#x3D;[];
+  codigos:string&#x3D;null;
+  arrayCodigos:any[]&#x3D;[];
+  array:string[]&#x3D;[];
+  validacion:boolean &#x3D; false;
+  file_soporte?:File;
+  observacion:string&#x3D; null;
+  codigosInvalidos:any[]&#x3D;[];
+
+  convocatorias:ConvocatoriaInscripcionBeneficio[]&#x3D;[];
+
+  convocatoria:ConvocatoriaInscripcionBeneficio&#x3D;null;
+
+  beneficio : InscripcionBeneficio &#x3D; null;
+
+  constructor(private _inscripcionService:InscripcionRService,
+    private _convocatoriaService:ConvocatoriaRefrigerioService,
+    private route:ActivatedRoute , 
+    private messageService: MessageService,
+    private router:Router,
+    private spinner: NgxSpinnerService,
+    private _location: Location) { }
+
+    ngOnInit() {
+      this.spinner.show();
+      this._convocatoriaService.getInscripcionAdministrativo().subscribe(data&#x3D;&gt;{
+        if(data[&#x27;success&#x27;]&#x3D;&#x3D;true){
+          this.convocatorias &#x3D; data[&#x27;convocatorias&#x27;];
+          this.spinner.hide();
+        }   
+      }, err&#x3D;&gt; {
+        let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+        swal({
+          type: &#x27;error&#x27;,
+          title: &#x27;Oops...&#x27;,
+          text: respuesta.msg,
+        });
+      })
+    }
+  
+    save(formulario:NgForm){
+      if(!formulario.valid){
+        swal(
+          &quot;Error&quot;,
+          &quot;Complete todos los campos del formulario&quot;,
+          &quot;error&quot;,
+        );
+        this.errores &#x3D; [];
+        return
+      }
+
+      this.array &#x3D; this.codigos.split(&quot;,&quot;);
+
+      for (let i &#x3D; 0; i &lt; this.array.length; i++) {
+        this.arrayCodigos.push(this.array[i].trim())   
+      }
+
+      for (let i &#x3D; 0; i &lt; this.arrayCodigos.length; i++) {
+        if (this.arrayCodigos[i].length &#x3D;&#x3D; 0) {
+          this.arrayCodigos.splice(i,1);
+        }
+      }
+  
+      this.beneficio.diaSelect &#x3D; Object.assign([], this.dias);
+
+      if(this.beneficio.diaSelect.length&#x3D;&#x3D;0){
+        swal(
+          &quot;Error&quot;,
+          &quot;Debe seleccionar al menos un día&quot;,
+          &quot;error&quot;,
+        );
+        this.errores &#x3D; [];
+        return
+      }
+
+      let formData &#x3D; new FormData();
+
+      for (let index &#x3D; 0; index &lt; this.arrayCodigos.length; index++) {
+        formData.append(&#x27;codigos[]&#x27;, &quot;&quot;+this.arrayCodigos[index]);   
+      }
+      
+      if (this.validacion &#x3D;&#x3D; true) {
+        formData.append(&quot;file_soporte&quot;, this.file_soporte);
+        formData.append(&quot;observacion&quot;, &quot;&quot;+this.observacion);
+      }
+
+      for (let index &#x3D; 0; index &lt; this.beneficio.diaSelect.length; index++) {
+        formData.append(&#x27;diaSelect[]&#x27;, &quot;&quot;+this.beneficio.diaSelect[index]);   
+      }
+
+      formData.append(&quot;validacion&quot;, &quot;&quot;+this.validacion);
+      formData.append(&quot;idConvocatoria&quot;, &quot;&quot;+this.convocatoria.id);
+      formData.append(&#x27;idBeneficio&#x27;, &quot;&quot;+this.beneficio.id);
+  
+      this.spinner.show();
+  
+      this._convocatoriaService.guardarInscripcion(formData).subscribe(data&#x3D;&gt;{
+        if(data[&#x27;success&#x27;]&#x3D;&#x3D;true){
+          formulario.resetForm();
+          this.arrayCodigos&#x3D;[];
+          this.array&#x3D;[];
+          this.validacion &#x3D; false;
+          this.dias&#x3D;[];
+          this.codigos&#x3D;null;
+          this.file_soporte&#x3D;null;
+          this.observacion&#x3D;null;
+          this.convocatoria&#x3D;null;
+          this.beneficio&#x3D;null;
+          this.spinner.hide();
+          swal({
+            title: &quot;Realizado&quot;,
+            text: &quot;Acción realizada satisfactoriamente.&quot;,
+            type: &quot;success&quot;,
+            timer: 1500,
+            showConfirmButton: false
+          });
+          
+          if (data[&#x27;codigosInvalidos&#x27;]) {
+            this.codigosInvalidos &#x3D; data[&#x27;codigosInvalidos&#x27;];           
+          }
+          
+          this.errores &#x3D; [];
+        }else{
+          this.spinner.hide();
+          this.arrayCodigos&#x3D;[];
+          this.array&#x3D;[];
+          for(let i&#x3D;0; i&lt;data[&#x27;errores&#x27;].length; i++){
+            if(data[&#x27;errores&#x27;][i].errores.length&gt;0){
+              swal({
+                type: &#x27;error&#x27;,
+                title: &#x27;Error&#x27;,
+                text: data[&#x27;errores&#x27;][i].errores[0][&#x27;ErrorMessage&#x27;],
+              });
+            }
+          }
+        }
+        
+      }, err&#x3D;&gt; {
+        let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+        this.arrayCodigos&#x3D;[];
+        this.array&#x3D;[];
+        this.spinner.hide();
+        swal({
+          type: &#x27;error&#x27;,
+          title: &#x27;Oops...&#x27;,
+          text: respuesta.msg,
+        });
+          
+      })
+    }
+  
+    selectBene(){
+      this.dias &#x3D; [];
+      this.validacion &#x3D; false;
+    }
+
+    selectConvo(){
+      this.beneficio &#x3D; null;
+      this.validacion &#x3D; false;
+    }
+  
+    goBack():void{
+      this._location.back();
+    }
+
+    onUploadFile(event){
+      for(let file of event.files) {
+        this.file_soporte&#x3D;file;
+      }
+    }
+  
+    onClearFile(){
+      this.file_soporte&#x3D;null;
+    }
+
+    modalCodigosErrores() {
+      $(&#x27;#modalErrores&#x27;).modal(&#x27;show&#x27;);
+    }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;animated fadeIn&quot;&gt;
+    &lt;h2 class&#x3D;&quot;text-uppercase text-center&quot;&gt;Inscripción a beneficio&lt;small class&#x3D;&quot;btn-block&quot;&gt;&lt;/small&gt;&lt;/h2&gt;
+    &lt;hr&gt;
+    &lt;p-toast [style]&#x3D;&quot;{marginTop: &#x27;80px&#x27;}&quot; [baseZIndex]&#x3D;&quot;5000&quot;&gt;&lt;/p-toast&gt;
+    &lt;p-messages [(value)]&#x3D;&quot;errores&quot;&gt;&lt;/p-messages&gt;
+
+
+    &lt;legend class&#x3D;&quot;text-center&quot;&gt;Información general&lt;/legend&gt;
+    &lt;p class&#x3D;&quot;text-center&quot;&gt;Seleccione el beneficio al que desea realizar las inscripciones&lt;/p&gt;
+
+    &lt;div class&#x3D;&quot;&quot; *ngIf&#x3D;&quot;codigosInvalidos.length &gt; 0&quot;&gt;
+        &lt;div class&#x3D;&quot;alert alert-danger mb-3&quot; role&#x3D;&quot;alert&quot;&gt;
+            &lt;p class&#x3D;&quot;m-0&quot;&gt;{{codigosInvalidos.length}} códigos con errores&lt;button class&#x3D;&quot;btn btn-sm btn-link&quot; (click)&#x3D;&quot;modalCodigosErrores()&quot;&gt;ver&lt;/button&gt; &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;form #inscripcionForm&#x3D;&quot;ngForm&quot; novalidate (ngSubmit)&#x3D;&quot;save(inscripcionForm)&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+
+                &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;codigo&quot;&gt;Códigos estudiantiles&lt;/label&gt;
+                        &lt;textarea class&#x3D;&quot;form-control&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese los códigos de los estudiantes separados por coma ( , )&quot; name&#x3D;&quot;codigo&quot; id&#x3D;&quot;codigo&quot; [(ngModel)]&#x3D;&quot;codigos&quot; #codigo&#x3D;&quot;ngModel&quot; rows&#x3D;4 required [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: codigo.errors?.required &amp;&amp; (codigo.touched || inscripcionForm.submitted)}&quot;&gt;&lt;/textarea&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Digite los códigos de los estudiantes&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-md-6 col-xl-6&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;convoca&quot;&gt;Convocatoria&lt;/label&gt;
+                        &lt;select [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: convoca.errors?.required &amp;&amp; (convoca.touched || inscripcionForm.submitted)}&quot; id&#x3D;&quot;convoca&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;convoca&quot; [(ngModel)]&#x3D;&quot;convocatoria&quot; #convoca&#x3D;&quot;ngModel&quot; required (change)&#x3D;&quot;selectConvo()&quot;&gt;
+                            &lt;option [value]&#x3D;&quot;null&quot; disabled selected&gt;Elegir convocatoria&lt;/option&gt;
+                            &lt;option *ngFor&#x3D;&quot;let convo of convocatorias&quot; [ngValue]&#x3D;&quot;convo&quot;&gt;{{convo.nombre}} &lt;/option&gt;
+                        &lt;/select&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Seleccione una de las opciones&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-md-6 col-xl-6&quot; *ngIf&#x3D;&quot;convocatoria&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;benefi&quot;&gt;Beneficio&lt;/label&gt;
+                        &lt;select [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: benefi.errors?.required &amp;&amp; (benefi.touched || inscripcionForm.submitted)}&quot; id&#x3D;&quot;benefi&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;benefi&quot; [(ngModel)]&#x3D;&quot;beneficio&quot; #benefi&#x3D;&quot;ngModel&quot; (change)&#x3D;&quot;selectBene()&quot; required&gt;
+                            &lt;option [value]&#x3D;&quot;null&quot; disabled selected&gt;Elegir beneficio&lt;/option&gt;
+                            &lt;option *ngFor&#x3D;&quot;let bene of convocatoria.beneficios&quot; [ngValue]&#x3D;&quot;bene&quot;&gt;{{bene.nombre}} &lt;/option&gt;                    
+                        &lt;/select&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Seleccione una de las opciones&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-12 text-center&quot; *ngIf&#x3D;&quot;beneficio&quot;&gt;
+                    &lt;p class&#x3D;&quot;text-center&quot;&gt;Seleccione los días de la inscripción&lt;/p&gt;
+                    &lt;div class&#x3D;&quot;form-check form-check-inline&quot; *ngFor&#x3D;&quot;let dia of beneficio.dias; let i&#x3D;index&quot;&gt;
+                        &lt;input type&#x3D;&quot;checkbox&quot; class&#x3D;&quot;form-check-input&quot; name&#x3D;&quot;evaluado.id&quot; id&#x3D;&quot;radio-{{dia.id}}&quot; [(checklist)]&#x3D;&quot;dias&quot; [checklistValue]&#x3D;&quot;dia.id&quot; [disabled]&#x3D;&quot;dia.estado &#x3D;&#x3D; false&quot; /&gt;
+                        &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;radio-{{dia.id}}&quot;&gt;{{dia.dia}}&lt;/label&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-12&quot; *ngIf&#x3D;&quot;beneficio&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-check form-check-inline&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-check-label p-1&quot; for&#x3D;&quot;validacion&quot;&gt;Desactivar validaciones&lt;/label&gt;
+                        &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;validacion&quot; value&#x3D;&quot;&quot; id&#x3D;&quot;validacion&quot; [(ngModel)]&#x3D;&quot;validacion&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;br&gt;
+            &lt;div *ngIf&#x3D;&quot;validacion &#x3D;&#x3D; true&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-md-6 col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                            &lt;label for&#x3D;&quot;observa&quot;&gt;Observación&lt;/label&gt;
+                            &lt;textarea class&#x3D;&quot;form-control&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el motivo del cambio de estado. Máx 455 caracteres&quot; name&#x3D;&quot;observa&quot; id&#x3D;&quot;observa&quot; [(ngModel)]&#x3D;&quot;observacion&quot; #observa&#x3D;&quot;ngModel&quot; rows&#x3D;4 required&#x3D;&quot;validacion &#x3D;&#x3D; true&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: observa.errors?.required &amp;&amp; (observa.touched || inscripcionForm.submitted)}&quot;&gt;&lt;/textarea&gt;
+                            &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Ingrese una observación&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;col-md-6 col-xl-6&quot;&gt;
+                        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                            &lt;label for&#x3D;&quot;soporte&quot;&gt;Soporte&lt;/label&gt;
+                            &lt;p-fileUpload id&#x3D;&quot;soporte&quot; name&#x3D;&quot;soporte&quot; (onSelect)&#x3D;&quot;onUploadFile($event)&quot; maxFileSize&#x3D;&quot;2000000&quot; [showUploadButton]&#x3D;&quot;false&quot; [showCancelButton]&#x3D;&quot;false&quot; accept&#x3D;&quot;application/pdf&quot; invalidFileSizeMessageDetail&#x3D;&quot;El tamaño máximo del archivo es: {0}&quot; invalidFileSizeMessageSummary&#x3D;&quot;{0}: Tamaño del archivo excedido,&quot;
+                                invalidFileTypeMessageSummary&#x3D;&quot;{0}: Tipo de archivo inválido,&quot; invalidFileTypeMessageDetail&#x3D;&quot;Solo puedes cargar archivos de tipo {0}&quot; chooseLabel&#x3D;&quot;Cargar documento&quot; (onRemove)&#x3D;&quot;onClearFile()&quot; styleClass&#x3D;&quot;is-invalid&quot; #soporte&gt;
+                            &lt;/p-fileUpload&gt;
+                            &lt;small class&#x3D;&quot;form-text text-muted&quot;&gt;En formato PDF con un peso menor o igual a 2MB&lt;/small&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/fieldset&gt;
+        &lt;div class&#x3D;&quot;text-center&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light mr-md-1 mb-3&quot; (click)&#x3D;&quot;goBack()&quot;&gt;Volver&lt;/button&gt;
+            &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success mb-3&quot;&gt;Guardar&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal Errores--&gt;
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;modalErrores&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;modelTitleId&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog modal-lg modal-dialog-centered&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content &quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+
+                &lt;h4 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;modelTitleId&quot;&gt;Códigos con errores&lt;/h4&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+
+                &lt;ul *ngFor&#x3D;&quot;let item of codigosInvalidos&quot;&gt;
+                    &lt;li&gt;Código: {{item.codigo}}&lt;/li&gt;
+                    &lt;li&gt;Observaciones:
+                        &lt;p *ngFor&#x3D;&quot;let item2 of item.observaciones&quot;&gt;{{item2.observacion}}&lt;/p&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot;&gt;Cerrar&lt;/button&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;ngx-spinner bdColor&#x3D;&quot;rgba(51, 51, 51, 0.8)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./inscripcion-administrativa.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="animated fadeIn">    <h2 class="text-uppercase text-center">Inscripción a beneficio<small class="btn-block"></small></h2>    <hr>    <p-toast [style]="{marginTop: \'80px\'}" [baseZIndex]="5000"></p-toast>    <p-messages [(value)]="errores"></p-messages>    <legend class="text-center">Información general</legend>    <p class="text-center">Seleccione el beneficio al que desea realizar las inscripciones</p>    <div class="" *ngIf="codigosInvalidos.length > 0">        <div class="alert alert-danger mb-3" role="alert">            <p class="m-0">{{codigosInvalidos.length}} códigos con errores<button class="btn btn-sm btn-link" (click)="modalCodigosErrores()">ver</button> </p>        </div>    </div>    <form #inscripcionForm="ngForm" novalidate (ngSubmit)="save(inscripcionForm)">        <fieldset>            <div class="row justify-content-center">                <div class="col-md-12">                    <div class="form-group">                        <label for="codigo">Códigos estudiantiles</label>                        <textarea class="form-control" type="text" placeholder="Ingrese los códigos de los estudiantes separados por coma ( , )" name="codigo" id="codigo" [(ngModel)]="codigos" #codigo="ngModel" rows=4 required [ngClass]="{\'is-invalid\': codigo.errors?.required && (codigo.touched || inscripcionForm.submitted)}"></textarea>                        <div class="invalid-feedback">Digite los códigos de los estudiantes</div>                    </div>                </div>                <div class="col-md-6 col-xl-6">                    <div class="form-group">                        <label for="convoca">Convocatoria</label>                        <select [ngClass]="{\'is-invalid\': convoca.errors?.required && (convoca.touched || inscripcionForm.submitted)}" id="convoca" class="form-control" name="convoca" [(ngModel)]="convocatoria" #convoca="ngModel" required (change)="selectConvo()">                            <option [value]="null" disabled selected>Elegir convocatoria</option>                            <option *ngFor="let convo of convocatorias" [ngValue]="convo">{{convo.nombre}} </option>                        </select>                        <div class="invalid-feedback">Seleccione una de las opciones</div>                    </div>                </div>                <div class="col-md-6 col-xl-6" *ngIf="convocatoria">                    <div class="form-group">                        <label for="benefi">Beneficio</label>                        <select [ngClass]="{\'is-invalid\': benefi.errors?.required && (benefi.touched || inscripcionForm.submitted)}" id="benefi" class="form-control" name="benefi" [(ngModel)]="beneficio" #benefi="ngModel" (change)="selectBene()" required>                            <option [value]="null" disabled selected>Elegir beneficio</option>                            <option *ngFor="let bene of convocatoria.beneficios" [ngValue]="bene">{{bene.nombre}} </option>                                            </select>                        <div class="invalid-feedback">Seleccione una de las opciones</div>                    </div>                </div>                <div class="col-12 text-center" *ngIf="beneficio">                    <p class="text-center">Seleccione los días de la inscripción</p>                    <div class="form-check form-check-inline" *ngFor="let dia of beneficio.dias; let i=index">                        <input type="checkbox" class="form-check-input" name="evaluado.id" id="radio-{{dia.id}}" [(checklist)]="dias" [checklistValue]="dia.id" [disabled]="dia.estado == false" />                        <label class="form-check-label" for="radio-{{dia.id}}">{{dia.dia}}</label>                    </div>                </div>                <div class="col-12" *ngIf="beneficio">                    <div class="form-check form-check-inline">                        <label class="form-check-label p-1" for="validacion">Desactivar validaciones</label>                        <input class="form-check-input" type="checkbox" name="validacion" value="" id="validacion" [(ngModel)]="validacion">                    </div>                </div>            </div>            <br>            <div *ngIf="validacion == true">                <div class="row">                    <div class="col-md-6 col-xl-6">                        <div class="form-group">                            <label for="observa">Observación</label>                            <textarea class="form-control" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observa" id="observa" [(ngModel)]="observacion" #observa="ngModel" rows=4 required="validacion == true" [ngClass]="{\'is-invalid\': observa.errors?.required && (observa.touched || inscripcionForm.submitted)}"></textarea>                            <div class="invalid-feedback">Ingrese una observación</div>                        </div>                    </div>                    <div class="col-md-6 col-xl-6">                        <div class="form-group">                            <label for="soporte">Soporte</label>                            <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"                                invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>                            </p-fileUpload>                            <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>                        </div>                    </div>                </div>            </div>        </fieldset>        <div class="text-center">            <button type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver</button>            <button type="submit" class="btn btn-success mb-3">Guardar</button>        </div>    </form></div><!-- Modal Errores--><div class="modal fade" id="modalErrores" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">        <div class="modal-content ">            <div class="modal-header">                <h4 class="modal-title" id="modelTitleId">Códigos con errores</h4>                <button type="button" class="close" data-dismiss="modal" aria-label="Close">        <span aria-hidden="true">&times;</span>      </button>            </div>            <div class="modal-body">                <ul *ngFor="let item of codigosInvalidos">                    <li>Código: {{item.codigo}}</li>                    <li>Observaciones:                        <p *ngFor="let item2 of item.observaciones">{{item2.observacion}}</p>                    </li>                </ul>            </div>            <div class="modal-footer">                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>            </div>        </div>    </div></div><ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'InscripcionAdministrativaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InscripcionAdministrativaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

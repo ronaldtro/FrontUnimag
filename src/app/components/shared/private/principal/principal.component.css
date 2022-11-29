@@ -1,0 +1,43 @@
+.icon-lg{
+    font-size: 2.5rem;
+}
+.btn{
+    white-space: normal;
+    margin: 0 .5rem;
+}
+
+.border-refrigerios{
+    border-left: .25rem solid orange;
+}
+
+.border-ayudantias{
+    border-left: .25rem solid #28a745;
+}
+
+.border-monitorias{
+    border-left: .25rem solid #004a87;
+}
+
+#access-buttons .card{
+    margin-bottom: 1rem;
+    
+}
+
+@media only screen and (min-width: 576px) {
+    #access-buttons .card{
+        margin-left: .5rem;
+        margin-right: .5rem;
+        width: calc(50% - 1rem);
+    }
+}
+@media only screen and (min-width: 992px) {
+    #access-buttons .card{
+        width: calc(33.3% - 1rem);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #access-buttons .card{
+        width: calc(25% - 1rem);
+    }
+}

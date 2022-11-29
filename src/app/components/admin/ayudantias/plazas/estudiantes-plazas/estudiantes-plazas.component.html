@@ -1,0 +1,720 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<h2 class="text-uppercase">{{plazaEstudiantes.convocatoria}}<small class="btn-block text-muted">{{plazaEstudiantes.plaza}}. El listado cuenta con {{plazaEstudiantes.postulados.length}} registro(s)</small></h2>
+<hr>
+<!-- {{estudianteEntrevista | json}} -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-info alert-dismissible fade show" role="alert" *ngIf="plazaEstudiantes.estadoActualId == 4  ">
+            <strong>Aviso importante :</strong> Tenga en cuenta que para evaluar, el estudiante debe tener una entrevista asignada.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="row animated fadeIn">
+            <div class="alert alert-info mb-3" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                <ul>
+                    <li>
+                        A continuación, se muestran los estudiantes que están inscritos a la plaza. Desde la columna de acciones, puede acceder al detalle de la evaluación del estudiante (Si está en estado "EVALUADO").
+                    </li>
+                    <li *ngIf="plazaEstudiantes.estadoActualId == 4  ">
+                        En la primera columna, puede seleccionar los estudiantes a citar a una entrevista.
+                    </li>
+                    <li *ngIf="plazaEstudiantes.estadoActualId == 4  ">
+                        Puede acceder a la aprobacióon de los estudiantes, a través del botón "Ver resultados".
+                    </li>
+                    <li>
+                        Si el estudiante tiene el estado "Aprobado", puede añadir un supervisor, agregar una observación, ver el listado de observaciones y actividades correspondientes a la plaza.
+                    </li>
+                    <li>
+                        En el menú con el ícono <span class="fas fa-ellipsis-v"></span> puede ver la información de la entrevista (si posee), <span *ngIf="userService.roleMatch(['Admin'])">cambiar el estado del estudiante,</span> y ver el historial de
+                        estados.
+                    </li>
+                    <li>
+                        Los datos de esta tabla, pueden ser exportados en un archivo o imprimirlos.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-muted" *ngIf="plazaEstudiantes.estadoActualId == 4 || plazaEstudiantes.estadoActualId == 21 || plazaEstudiantes.estadoActualId == 22">Seleccione los estudiantes a los que desea asignar la información de la entrevista.</p>
+        <div class="text-center mb-3 animated fadeIn">
+            <button id="btn-filtros" class="btn btn-outline-dark mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+            </button>
+            <button *ngIf="estudianteEntrevista.length > 0" (click)="openModalEntrevista(estudianteEntrevista)" class="btn btn-success font-weight-bold text-uppercase" type="button">Asignar entrevista</button>
+        </div>
+        <div class="collapse mb-3" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-programa" class="form-group">
+                            <label>Filtrar por programa</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-estado" class="form-group">
+                            <label>Filtrar por estado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+        <div class="table-responsive animated fadeIn">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_estudiantes">
+                <thead>
+
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Programa</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Fecha y hora de la entrevista</th>
+                        <th scope="col">Lugar de la entrevista</th>
+                        <th scope="col">Observación de la entrevista</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let postulado of plazaEstudiantes.postulados; let i=index;">
+                        <td>
+                            <input type="checkbox" name="evaluado.id" [id]="postulado.id" [(checklist)]="estudianteEntrevista" [checklistValue]="postulado.id" *ngIf="postulado.estadoId != 2 && (plazaEstudiantes.estadoActualId == 4 || plazaEstudiantes.estadoActualId == 21 || plazaEstudiantes.estadoActualId == 22)" /> </td>
+                        <td>
+                            {{postulado.codigo}} 
+                        <!-- <td>{{postulado.identificacion}}</td> -->
+                        <td>{{postulado.nombre}}</td>
+                        <td>{{postulado.correo}}</td>
+                        <td>{{postulado.programa}}</td>
+                        <td>
+                            <span *ngIf="postulado.sexo">M</span>
+                            <span *ngIf="!postulado.sexo">F</span>
+                        </td>
+                        <td>{{postulado.estado}}</td>
+                        <td>{{postulado.entrevista?.hora}}</td>
+                        <td>{{postulado.entrevista?.lugar}}</td>
+                        <td>{{postulado.entrevista?.observacion}}</td>
+                        <td class="text-center" attr.data-order="postulado.entrevista">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <!-- <a [routerLink]="[ '/plazas','evaluarEstudiante',postulado.id]">name</a> -->
+                                <!-- <a  [routerLink]="[ '/plazas','evaluarEstudiante',postulado.id]"
+                                    class="btn btn-light btn-sm" role="button" title="Evaluar"><i class="fas fa-clipboard-list"></i>*
+                                </a> -->
+                                <button *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  postulado.estadoId == 2)" class="btn btn-light btn-sm btn-cancelo" type="button" title="El estudiante canceló su postulación" disabled>
+                                    <span class="fas fa-info-circle"></span>
+                                </button>
+                                <a *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  (postulado.estadoId == 3 || postulado.estadoId == 4 || postulado.estadoId == 6))" [routerLink]="[ '/plazas','estudianteEvaluado',postulado.id]" class="btn btn-light btn-sm btn-verEvaluacion" role="button" title="Ver evaluación">
+                                    <span class="fas fa-eye"></span>
+                                    <span class="sr-only">Ver evaluación</span>
+                                </a>
+                                <a *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias']) &&  postulado.estadoId == 1 && plazaEstudiantes.convocatoria_estado_control_id != 3)" [routerLink]="[ '/plazas','evaluarEstudiante', postulado.id]" class="btn btn-light btn-sm btn-evaluar" role="button" title="Evaluar">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <span class="sr-only">Evaluar</span>
+                                </a>
+                                <a *ngIf="(userService.roleMatch(['AdminMonitorias', 'ComiteMonitorias']) &&  (postulado.estadoId == 4 || postulado.estadoId == 6))" [routerLink]="[ '/comitesMonitorias/estudiantesAtendidos', postulado.id]" class="btn btn-light btn-sm btn-verListadoAtendidos" role="button" title="Ver listado de estudiantes atendidos">
+                                    <i class="fas fa-address-book"></i>
+                                    <span class="sr-only">Ver lista de estudiantes atendidos</span>
+                                </a>
+                                <div *ngIf="postulado.estadoId != 2" class="dropdown d-inline-block">
+                                    <button class="btn btn-light btn-sm dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{postulado.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{postulado.id}}">
+                                        <button *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && (postulado.estadoId == 4 || postulado.estado_plaza == 6) && plazaEstudiantes.convocatoria_estado_control_id != 3)" (click)="supervisorModal(postulado)" class="dropdown-item" type="button" title="Agregar / editar {{ tipoConvocatoria == 1 ? 'supervisor' : 'docente tutor'}}">Agregar / editar {{ tipoConvocatoria == 1 ? 'supervisor' : 'tutor'}}</button>
+                                        <button *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante','Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && (postulado.estado_plaza == 4 || postulado.estado_plaza == 6) && plazaEstudiantes.convocatoria_estado_control_id != 3)" class="dropdown-item" type="button" title="Nueva observación" (click)="openModalObservacion(i)">Nueva observación</button>
+                                        <a *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante','Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  postulado.estado_plaza == 4 || postulado.estado_plaza == 6)" class="dropdown-item" role="button" title="Libreta de observaciones" [routerLink]="['/plazas', postulado.id, 'observaciones' ]">
+                                            Libreta de observaciones
+                                        </a>
+                                        <a *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante','Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && postulado.estado_plaza == 4 || postulado.estado_plaza == 6)" class="dropdown-item" role="button" title="Ver listado de actvidades" [routerLink]="[ '/supervisor/estudiante', postulado.id, 'actividades' ]">
+                                            Ver listado de actividades
+                                        </a>
+                                        <button *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  postulado.entrevista != null)" class="dropdown-item" type="button" title="Ver información de entrevista" (click)="openEntrevistaInformacion(postulado.entrevista)">
+                                            Ver información de entrevista
+                                        </button>
+                                        <button *ngIf="(userService.roleMatch(['Admin', 'AdminMonitorias'])) && plazaEstudiantes.convocatoria_estado_control_id != 3" (click)="cambiarEstadoModal(postulado)" class="dropdown-item" type="button" title="Cambiar estado">
+                                            Cambiar estado
+                                        </button>
+                                        <button *ngIf="(userService.roleMatch(['Admin', 'AdminMonitorias']))" (click)="verHistorialEstado(postulado)" class="dropdown-item" type="button" title="Historial estado">
+                                            Historial estados
+                                        </button>
+                                        <button *ngIf="(userService.roleMatch(['AdminMonitorias','UnidadMonitorias', 'ComiteMonitorias'])) && postulado.propuesta_metodologica != null" (click)="verPropuesta(postulado.propuesta_metodologica)" class="dropdown-item" type="button" title="Historial estado">
+                                            Ver propuesta metodológica
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- <button *ngIf="(userService.roleMatch(['Unidad', 'Admin']) &&  (postulado.estadoId == 3 || postulado.estadoId == 4))"
+                                    [routerLink]="[ '/plazas','estudianteEvaluado',postulado.id]" class="btn btn-light btn-sm" type="button"
+                                    title="Ver evaluación"><i class="fas fa-eye"></i>
+                                </button>
+                                <button *ngIf="(userService.roleMatch(['Unidad', 'Admin']) &&  postulado.estadoId == 4)" (click)="supervisorModal(postulado)"
+                                    class="btn btn-light btn-sm" type="button" title="Agregar / editar supervisor"><i class="fas fa-users-cog"></i>
+                                </button>
+                                <button *ngIf="(userService.roleMatch(['Unidad', 'Admin']) &&  postulado.estadoId == 2)" class="btn btn-light btn-sm"
+                                    type="button" title="El estudiante canceló su postulación" disabled><i class="fas fa-info-circle"></i>
+                                </button>
+                                <button *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante']) &&  postulado.estado_plaza == 4)" 
+                                    class="btn btn-light btn-sm" type="button" title="Nueva observación" (click)="openModalObservacion(i)">
+                                        <i class="fas fa-folder-plus"></i>
+                                </button>
+                                <a *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante']) &&  postulado.estado_plaza == 4)" 
+                                    class="btn btn-light btn-sm" role="button" title="Libreta de observaciones" [routerLink]= "['/plazas', postulado.id, 'observaciones' ]">
+                                        <i class="fas fa-address-book"></i>                
+                                </a>
+                                <button *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante']) &&  postulado.estado_plaza == 4)" 
+                                    class="btn btn-light btn-sm" type="button" title="Ver listado de actvidades"  [routerLink]="[ '/supervisor/estudiante', postulado.id, 'actividades' ]">
+                                        i class="fas fa-list-ol"></i>                
+                                </button>
+                                <button *ngIf="(userService.roleMatch(['Unidad', 'Admin']) &&  postulado.entrevista != null)" 
+                                    class="btn btn-light btn-sm" type="button" title="Ver información de entrevista" (click)="openEntrevistaInformacion(postulado.entrevista)">
+                                        <i class="far fa-calendar-check"></i>
+                                </button> -->
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-12 text-center">
+        <button *ngIf="id_convocatoria != undefined" id="volver" type="button" class="btn btn-light mb-3 mr-1" [routerLink]="[ '/plazas/plazasRespondidas', id_convocatoria, tipoConvocatoria ]">Volver</button>
+        <button *ngIf="id_convocatoria == undefined" id="volver" type="button" class="btn btn-light mb-3 mr-1" [routerLink]="[ '/plazas/plazasRespondidas', tipoConvocatoria ]">Volver</button>
+        <!-- <button *ngIf="((plazaEstudiantes.postulados | search:'estado_plaza': 3 ).length > 0) || ((plazaEstudiantes.postulados | search:'estado_plaza': 4 ).length > 0)" type="button" class="btn btn-primary" [routerLink]="[ '/plazas/estudiantesEvaluados',id ]">Ver resultados</button> -->
+        <button id="verResultados" type="button" class="btn btn-primary mb-3" [routerLink]="[ '/plazas/estudiantesEvaluados', id ]">Ver resultados</button>
+    </div>
+</div>
+
+<div class="modal fade" id="supervisorM" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="supervisorTitle">Agregar / editar {{ tipoConvocatoria == 1 ? 'supervisor' : 'docente tutor'}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="forma.resetForm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <ng-select [items]="supervisores" id="supervisor" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || form_supervisor.touched) && form_supervisor.errors?.required) }" bindValue="id" placeholder="Seleccione {{ tipoConvocatoria == 1 ? 'supervisor' : 'docente tutor'}}" name="supervisor" #form_supervisor="ngModel"
+                            [(ngModel)]="estudiante.supervisor" required>
+                            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                                <div><span>Nombre: </span><span [ngOptionHighlight]="search"> {{item.nombre}}</span></div>
+                                <small><b>Id:</b> {{item.identificacion}} | <b>Email:</b> {{item.email}}</small>
+                            </ng-template>
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                        <button (click)="nuevoSupervisorModal(usuarioForm)" class="btn btn-sm btn-link" type="button" title="Agregar nuevo {{ tipoConvocatoria == 1 ? 'supervisor' : 'docente tutor'}}">
+                            Agregar nuevo {{ tipoConvocatoria == 1 ? 'supervisor' : 'docente tutor'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="estadoForm.resetForm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="cambiarEstado(estadoForm,soporte)" #estadoForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((estadoForm.submitted || estado.touched) && estado.errors?.required) }" [(ngModel)]="registroCambioEstado.estado_id" id="estado" name="estado" required #estado="ngModel">
+                    <option value="null" selected disabled>Seleccione un estado</option>
+                    <option *ngFor="let estadoSelect of estadosEstudiante" value="{{estadoSelect.id}}">{{estadoSelect.nombre}}</option>
+                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="solicitanteCambioEstado">Solicitante</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': solicitanteCambioEstado.errors?.required && (estadoForm.submitted || solicitanteCambioEstado.touched) }" type="text" placeholder="Ingrese el solicitante. Máx 255 caracteres" name="solicitanteCambioEstado"
+                                    id="solicitanteCambioEstado" [(ngModel)]="registroCambioEstado.solicitante" required #solicitanteCambioEstado="ngModel" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="observacionCambioEstado">Observacion</label>
+                                <textarea class="form-control " [ngClass]="{'is-invalid ': observacionCambioEstado.errors?.required && (estadoForm.submitted || observacionCambioEstado.touched) }" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacionCambioEstado"
+                                    id="observacionCambioEstado" [(ngModel)]="registroCambioEstado.observacion" required #observacionCambioEstado="ngModel" rows=4> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="soporte">Soporte</label>
+                                <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>
+                                </p-fileUpload>
+                                <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': !file_soporte  && estadoForm.submitted}">Debe cargar un archivo de soporte</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estadoForm.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="historialEstadosModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="historialEstadoTitle">Historial de estados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive animated fadeIn">
+                            <table class="table" id="tableHistorialEstado">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let estado of historialEstados; let i=index;">
+                                        <td>{{estado.nombre}}</td>
+                                        <td>{{estado.fecha}}</td>
+                                        <td>
+                                            <button *ngIf="estado.soporte != null" (click)="verSoporteEstado(estado)" type="button" title="Ver soporte">
+                                                <span class="fas fa-eye"></span>
+                                            </button>
+
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pdfSoporte" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeSoporte()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="rutaPdf  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pdfPropuesta" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+    
+                    <h4 class="modal-title" id="modelTitleId">Documento de propuesta metodológica</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <iframe [src]="rutaPdf  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="nuevoSupervisorM" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="supervisorTitle">Agregar/editar supervisor</h5>
+                <button type="button" class="close" aria-label="Cerrar" (click)="cancelarGuardarSupervisor()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="guardarSupervisor(usuarioForm)" #usuarioForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="identificacion">Identificación</label>
+                                    <input type="number" name="identificacion" id="identificacion_supervisor" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || identificacion.touched) && (identificacion.errors?.required) )}" [(ngModel)]="usuario.identificacion" required #identificacion="ngModel"
+                                        placeholder="No. de identificación" maxlength="50" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombres">Nombres</label>
+                                    <input type="text" name="nombres" id="nombres_supervisor" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || nombres.touched) && (nombres.errors?.required) )}" [(ngModel)]="usuario.nombres" required #nombres="ngModel" placeholder="Nombres completos"
+                                        maxlength="255" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="sexo">Sexo</label>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="supervisor_sexo_m" value="true" checked [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexo">M</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="supervisor_sexo_f" value="false" [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexo2">F</label>
+                                    </div>
+                                    <small *ngIf="((usuarioForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="text" name="email" id="email_supervisor" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || email.touched) && (email.errors?.required) )}" [(ngModel)]="usuario.email" required #email="ngModel" placeholder="Ej: usuario@unimagdalena.edu.co"
+                                        maxlength="255" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p class="text-primary"><strong>Las credenciales para el inicio de sesión son las mismas con la que accede al directorio activo</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="cancelarGuardarSupervisor()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="nuevoEvaluadorM" tabindex="-1" role="dialog" aria-labelledby="evaluadorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="evaluadorTitle">Crear nuevo evaluador</h5>
+                <button type="button" class="close" aria-label="Cerrar" (click)="cancelarGuardarEvaluador()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="guardarEvaluador(usuarioForm)" #usuarioForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="identificacion">Identificación</label>
+                                    <input type="number" name="identificacion" id="identificacion_evaluador" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || identificacion.touched) && (identificacion.errors?.required) )}" [(ngModel)]="usuario.identificacion" required #identificacion="ngModel"
+                                        placeholder="No. de identificación" maxlength="50" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombres">Nombre completo</label>
+                                    <input type="text" name="nombres" id="nombres_evaluador" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || nombres.touched) && (nombres.errors?.required) )}" [(ngModel)]="usuario.nombres" required #nombres="ngModel" placeholder="Nombre completo"
+                                        maxlength="255" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="sexo">Sexo</label>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexo_evaluador_m" value="true" checked [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexo">M</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexo_evaluador_f" value="false" [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexo2">F</label>
+                                    </div>
+                                    <small *ngIf="((usuarioForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="text" name="email" id="email_evaluador" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || email.touched) && (email.errors?.required) )}" [(ngModel)]="usuario.email" required #email="ngModel" placeholder="Ej: usuario@unimagdalena.edu.co"
+                                        maxlength="255" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p class="text-primary"><strong>Las credenciales para el inicio de sesión son las mismas con la que accede al directorio activo</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="cancelarGuardarEvaluador()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="observacionM" tabindex="-1" role="dialog" aria-labelledby="observacionTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="observacionTitle">Agregar Observación </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="closeFormObserbacion(observacionForm)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <form (ngSubmit)="enviarObservacion(observacionForm)" #observacionForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="observacion">Observación</label>
+                        <textarea class="form-control" id="observacion" rows="5" maxlength="1000" placeholder="Escriba aquí su observación. Máx. 1.000 caracteres." name="observacion" [(ngModel)]="observacion" #observacionTxt="ngModel" required [ngClass]="{'is-invalid': observacionTxt.errors?.required  && (observacionTxt.touched || observacionForm.submitted)}"></textarea>
+                        <div class="invalid-feedback">
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="closeFormObserbacion(observacionForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="asignarEntrevista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Asignar horario de entrevistas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="entrevistaForm.resetForm(); errores=[]; estudianteEntrevista=[];">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="enviarEntrevista(entrevistaForm)" #entrevistaForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert-dismissible fade show" *ngIf="errores.length > 0" role="alert">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                            <li *ngIf="error.errores.length>0">
+                                <p>{{error.errores[0].ErrorMessage}}</p>
+                            </li>
+                            </div>
+                        </ul>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="fechaInicialEntrevista">Fecha de entrevista</label>
+                        <p-calendar showTime="true" hourFormat="12" showButtonBar="true" hideOnDateTimeSelect="true" dateFormat="dd/mm/yy" [(ngModel)]="entrevista.hora" #fecha_inicio="ngModel" [readonlyInput]="true" required name="hora" [minDate]="dateNow" styleClass="d-block"
+                            inputId="fechaInicialEntrevista" inputStyleClass="form-control" hideOnDateTimeSelect="true" [locale]="es">
+                        </p-calendar>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Lugar</label>
+                        <input class="form-control" [ngClass]="{'is-invalid ': nombre.errors?.required && (nombre.touched || entrevistaForm.submitted) }" type="text" placeholder="Ingrese el nombre del lugar. Máx. 255 caracteres." name="nombre" id="nombre" [(ngModel)]="entrevista.lugar"
+                            maxlength="255" required #nombre="ngModel">
+                    </div>
+                    <div *ngIf="plazaEstudiantes.tipo_convocatoria_id == 1" class="form-group">
+                        <label for="responsable">Responsable</label>
+                        <input class="form-control" [ngClass]="{'is-invalid ': responsable.errors?.required && (responsable.touched || entrevistaForm.submitted) }" type="text" placeholder="Ingrese el responsable de realizar la entrevista. Máx. 255 caracteres." name="responsable"
+                            id="responsable" [(ngModel)]="entrevista.responsable" maxlength="255" required #responsable="ngModel">
+                    </div>
+                    <div *ngIf="plazaEstudiantes.tipo_convocatoria_id == 3" class="form-group">
+                        <label for="evaluador">Evaluador</label>
+                        <ng-select [items]="evaluadores" id="evaluador" bindLabel="nombre" [ngClass]="{'is-invalid': ((entrevistaForm.submitted || entrevistaForm.touched) && entrevistaForm.errors?.required) }" bindValue="id" placeholder="Seleccione al evaluador" name="evaluador" #evaluador="ngModel"
+                            [(ngModel)]="entrevista.evaluador_id" required>
+                            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                                <div><span>Nombre: </span><span [ngOptionHighlight]="search"> {{item.nombre}}</span></div>
+                                <small><b>Id:</b> {{item.identificacion}} | <b>Email:</b> {{item.email}}</small>
+                            </ng-template>
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                        <button (click)="nuevoEvaluadorModal(usuarioForm)" class="btn btn-sm btn-link" type="button" title="Agregar nuevo evaluador">
+                            Agregar nuevo evaluador
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="observacion">Observación <small class="text-muted">(Opcional)</small></label>
+                        <textarea class="form-control" id="observacion_entrevista" placeholder="Escriba aquí su observación. Máx. 500 caracteres." maxlength="500" rows="4" name="observacion" [(ngModel)]="entrevista.observacion" #observacionTxt="ngModel" [ngClass]="{'is-invalid': observacionTxt.errors?.required  && (observacionTxt.touched || entrevistaForm.submitted)}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="entrevistaForm.resetForm(); errores=[]; estudianteEntrevista=[];">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="verDetalleEntrevista" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Detalles de la entrevista</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Fecha y hora</label>
+                    <p class="form-control-plaintext">{{detalle.hora | date: 'dd/MM/yyyy hh:mm a'}}</p>
+                </div>
+                <div class="form-group">
+                    <label>Lugar</label>
+                    <p class="form-control-plaintext">{{detalle.lugar}}</p>
+                </div>
+                <div class="form-group" *ngIf="detalle.observacion">
+                    <label>Observación</label>
+                    <p class="form-control-plaintext">{{detalle.observacion}}</p>
+                </div>
+                <div class="form-group" *ngIf="detalle.responsable">
+                    <label>Responsable</label>
+                    <p class="form-control-plaintext">{{detalle.responsable}}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

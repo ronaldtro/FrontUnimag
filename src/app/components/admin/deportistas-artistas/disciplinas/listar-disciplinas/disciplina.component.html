@@ -1,0 +1,216 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Disciplinas <small class="btn-block text-muted">El listado cuenta con {{disciplinas.length}} disciplinas</small></h2>
+  <hr>
+  <div class="row">
+      <div class="col-12 text-center">
+          <button routerLink="/crear-disciplina" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear disciplina">
+          <span class="fas fa-plus"></span> Crear disciplina</button>
+          <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+          </button>
+          <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las disciplinas registradas en el sistema. Usted puede editar, activar o desactivar las disciplinas.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+      </div>
+
+      <div class="collapse col-lg-12" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-modalidad" class="form-group">
+                            <label>Filtrar por modalidad</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+          <div class="table-responsive">
+              <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                      <tr>
+                          <th>Nombre</th>
+                          <th>Modalidad</th>
+                          <th style="width: 90px;">Estado</th>
+                          <th style="width: 100px;">Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let disciplina of disciplinas; let i = index">
+                          <td>{{ disciplina.nombre }}</td>
+                          <td>{{ disciplina.nombreModalidad }}</td>
+                          <td>{{ disciplina.estado == true ? 'Activo' : 'Inactivo'}}</td>
+                          <td>
+                              <div class="btn-group" role="group" aria-label="Acciones">
+                                  <button class="btn btn-sm btn-outline-dark border-secondary" [routerLink]="['/editar-disciplina', disciplina.id]" title="Editar disciplina"><span class="fas fa-pen"></span><span class="sr-only">Editar disciplina</span></button>
+                                  <button (click)="cambiarEstado(disciplina)" *ngIf="!disciplina.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Activar disciplina"><span class="far fa-eye"></span><span class="sr-only">Activar disciplina</span></button>
+                                  <button (click)="cambiarEstado(disciplina)" *ngIf="disciplina.estado"  type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Desactivar disciplina"><span class="far fa-eye-slash"></span><span class="sr-only">Desactivar disciplina</span></button>
+                                  <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" [routerLink]="['/detalles-disciplina', disciplina.id]" title="Ver detalles completos">
+                                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                    <span class="sr-only">Ver detalles completos</span>
+                                  </button>
+                              </div>  
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+<!-- Modal para crear o editar disciplina-->
+<div class="modal fade" id="crearDisciplinaModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content ">
+          <div class="modal-header">
+
+              <h5 *ngIf="disciplina.id == null" class="modal-title" id="modelTitleId">Crear disciplina</h5>
+              <h5 *ngIf="disciplina.id != null" class="modal-title" id="modelTitleId">Editar disciplina</h5>
+              <button type="button" class="close" data-dismiss="modal" (click)="disciplinaForm.resetForm();" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form (ngSubmit)="guardarDisciplina(disciplinaForm)" #disciplinaForm="ngForm" novalidate>
+              <div class="modal-body">
+                 
+                  <fieldset>
+                      <div class="alert alert-info">
+                          Todos los campos son obligatorios
+                      </div>
+                      <div class="col-xs-12">
+                          <div class="form-group">
+                              <label for="nombre">Nombre</label>
+                              <input type="text" name="nombre" id="nombre" class="form-control" [ngClass]="{'is-invalid': ((disciplinaForm.submitted || nombre.touched) && (nombre.errors?.required) )}" [(ngModel)]="disciplina.nombre"  #nombre="ngModel" placeholder="Nombre de la disciplina"
+                                  maxlength="455" required/>
+                          </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label for="modalidad">Modalidad</label>
+                          <select id="modalidad" class="form-control" name="modalidad" [ngClass]="{'is-invalid': ((disciplinaForm.submitted || modalidad.touched) && (modalidad.errors?.required))}" [(ngModel)]="disciplina.modalidad_id" #modalidad="ngModel" required>
+                              <option value="null" disabled selected>Seleccione la modalidad</option> 
+                              <option *ngFor="let modalidad of modalidades" [ngValue]="modalidad.id">{{modalidad.nombre}}</option>
+                          </select>
+                        </div>
+                      </div>
+
+                  </fieldset>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="disciplinaForm.resetForm();">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Guardar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+ <!-- Modal para agregar encargado -->
+  <div class="modal fade" id="agregarEncargadoModal" tabindex="-1" role="dialog" aria-labelledby="agregarEncargadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarEncargadoModalLabel">Agregar encargado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mostrar=false; clearModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    
+                <form (ngSubmit)="agregarEncargado(agregarEncargadoForm)" #agregarEncargadoForm="ngForm" novalidate>
+                    <div class="modal-body">
+                        <div class="mt-2 row">
+                            <div class="col-sm-12 col-md-12 col-lg-5">
+                                <div class="form-group">
+                                    <label for="tipoIdentificacion">Tipo de identificación</label>
+                                    <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion" [ngClass]="{'is-invalid': ((agregarEncargadoForm.submitted || tipoIdentificacion.touched) && (tipoIdentificacion.errors?.required))}" [(ngModel)]="encargado.tipoIdentificacion" #tipoIdentificacion="ngModel" required>
+                                        <option value="null" disabled selected>Seleccione el tipo de identificación</option> 
+                                        <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">{{tipo.nombre}}</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-10 col-md-10 col-lg-5">
+                                <div id="identificacion" class="form-group">
+                                    <label for="identificacion">Identificación</label>
+                                    <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de identificación" name="identificacion" maxlength="255" [(ngModel)]="encargado.identificacion" #identificacion="ngModel" required [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || agregarEncargadoForm.submitted)}">
+                                </div>
+                            </div>
+    
+                            <div style="display: flex; align-items: center;" class="col-sm-2 col-md-2 col-lg-2">
+                                <button (click)="buscarEncargado($event)" class="btn btn-success mt-3"><i class="fas fa-search"></i></button>
+                            </div>
+    
+                            <div class="col-sm-12">
+                                <div id="nombreEncargado" class="form-group">
+                                    <label for="nombreEncargado">Nombre</label>
+                                    <input [disabled]="camposPersonaDeshabilitados" type="text" class="form-control" id="nombreEncargado" placeholder="Ingrese su nombre completo" name="nombreEncargado" maxlength="255" [(ngModel)]="encargado.nombre" #nombreEncargado="ngModel" required [ngClass]="{'is-invalid': nombreEncargado.errors?.required && (nombreEncargado.touched || agregarEncargadoForm.submitted)}">
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-12">
+                                <div id="direccion" class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <input [disabled]="camposPersonaDeshabilitados" type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" name="direccion" maxlength="255" [(ngModel)]="encargado.direccion" #direccion="ngModel" required [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || agregarEncargadoForm.submitted)}">
+                                </div>
+                            </div>
+    
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="sexo">Sexo</label>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" [value]="true" [(ngModel)]="encargado.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexoMasculino">Masculino</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input [disabled]="camposPersonaDeshabilitados" class="form-check-input" type="radio" name="sexo" id="sexoFemenino" [value]="false" [(ngModel)]="encargado.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexoFemenino">Femenino</label>
+                                    </div>
+                                    <small *ngIf="((agregarEncargadoForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                                </div>
+                            </div>
+    
+                            <div class="col-12 col-sm-12 col-md-6">
+                                <div id="fecha_nacimiento" class="form-group">
+                                    <label>Fecha de nacimiento</label>
+                                    <div class="ui-g ui-fluid">
+                                        <div class="ui-g-12 ui-md-12 p-0">
+                                            <p-calendar [disabled]="camposPersonaDeshabilitados" inputStyleClass="form-control" name="fecha_nacimiento" [(ngModel)]="encargado.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required 
+                                            [locale]="es" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2019" #fecha_nacimiento="ngModel" [ngClass]="{'is-invalid': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || agregarEncargadoForm.submitted)}"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || agregarEncargadoForm.submitted)}">Seleccione una fecha</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-12">
+                                <div id="correo" class="form-group">
+                                    <label for="correo">Correo electrónico</label>
+                                    <input [disabled]="camposEncargadoDeshabilitados" type="email" class="form-control" id="correo" placeholder="Ingrese el correo electrónico" name="correo" maxlength="255" [(ngModel)]="encargado.email" #correo="ngModel" required [ngClass]="{'is-invalid': correo.errors?.required && (correo.touched || agregarEncargadoForm.submitted)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="celular">Celular</label>
+                                    <input [disabled]="camposEncargadoDeshabilitados" type="number" class="form-control" id="celular" placeholder="Ingrese el número de celular" name="celular" maxlength="12" [(ngModel)]="encargado.celular" #celular="ngModel" required [ngClass]="{'is-invalid': celular.errors?.required && (celular.touched || agregarEncargadoForm.submitted)}">
+                                </div>
+                            </div>     
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="agregarEncargadoForm.resetForm();">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+     </div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

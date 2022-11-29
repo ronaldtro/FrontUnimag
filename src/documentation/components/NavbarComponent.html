@@ -1,0 +1,752 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>NavbarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/shared/public/navbar/navbar.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-public-navbar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./navbar.component.css,<br>../../../../../assets/css/public.min.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./navbar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#userService">userService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loadScript">loadScript</a>
+                            </li>
+                            <li>
+                                <a href="#Logout">Logout</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, _userService: <a href="../injectables/UserService.html">UserService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">app/components/shared/public/navbar/navbar.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadScript"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            loadScript
+                        </b>
+                        <a href="#loadScript"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadScript(url)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">app/components/shared/public/navbar/navbar.component.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>url</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Logout"></a>
+                    <span class="name">
+                        <b>
+                            Logout
+                        </b>
+                        <a href="#Logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Logout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">app/components/shared/public/navbar/navbar.component.ts:26</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">app/components/shared/public/navbar/navbar.component.ts:14</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userService"></a>
+                        <span class="name">
+                            <b>
+                            userService</b>
+                            <a href="#userService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">app/components/shared/public/navbar/navbar.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { UserService } from &#x27;src/app/services/user.service&#x27;;
+
+@Component({
+  selector: &#x27;app-public-navbar&#x27;,
+  templateUrl: &#x27;./navbar.component.html&#x27;,
+  styleUrls: [&#x27;./navbar.component.css&#x27;, &#x27;../../../../../assets/css/public.min.css&#x27;]
+})
+export class NavbarComponent implements OnInit {
+  userService: UserService;
+  constructor(private router:Router, private _userService:UserService) { this.userService &#x3D; _userService }
+
+  ngOnInit() {
+    this.loadScript(&#x27;https://cdn.unimagdalena.edu.co/code/js/main.min.js&#x27;);  
+  }
+
+  public loadScript(url) {
+    let node &#x3D; document.createElement(&#x27;script&#x27;);
+    node.src &#x3D; url;
+    node.type &#x3D; &#x27;text/javascript&#x27;;
+    node.async &#x3D; true,
+    document.getElementsByTagName(&#x27;head&#x27;)[0].appendChild(node);
+ }
+
+ Logout() {
+  localStorage.removeItem(&#x27;userRoles&#x27;);
+  localStorage.removeItem(&#x27;expires_in&#x27;);
+  localStorage.removeItem(&#x27;userToken&#x27;);
+  localStorage.clear();
+  window.location.href &#x3D; &quot;/&quot;;
+  //this.router.navigate([&#x27;/&#x27;]);
+}
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Versión 1.6 28/08/2018 Editado por: Jorge Luis Pineda Montagut / CIDS --&gt;
+&lt;header role&#x3D;&quot;banner&quot;&gt;
+    &lt;div class&#x3D;&quot;toolbar&quot;&gt;
+        &lt;a id&#x3D;&quot;goto-content&quot; href&#x3D;&quot;#content-main&quot; class&#x3D;&quot;sr-only&quot;&gt;Ir al contenido&lt;/a&gt;
+        &lt;a href&#x3D;&quot;https://www.facebook.com/UniversidadDelMagdalena/&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; title&#x3D;&quot;Facebook&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ion-social-facebook&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Facebook&lt;/span&gt;&lt;/a&gt;
+        &lt;a href&#x3D;&quot;https://twitter.com/unimagdalena&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; title&#x3D;&quot;Twitter&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ion-social-twitter&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Twitter&lt;/span&gt;&lt;/a&gt;
+        &lt;a href&#x3D;&quot;https://www.instagram.com/unimagdalena/&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; title&#x3D;&quot;Instagram&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ion-social-instagram-outline&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Instagram&lt;/span&gt;&lt;/a&gt;
+        &lt;a href&#x3D;&quot;https://www.youtube.com/user/unimagdalenatv&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; title&#x3D;&quot;Youtube&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ion-social-youtube&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Youtube&lt;/span&gt;&lt;/a&gt;
+        &lt;a href&#x3D;&quot;https://www.unimagdalena.edu.co&quot; class&#x3D;&quot;btn btn-xs btn-link&quot;&gt;Ir a Unimagdalena&lt;/a&gt;
+        &lt;a href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/Ciudadano&quot; class&#x3D;&quot;btn btn-xs btn-link&quot;&gt;Ciudadano&lt;/a&gt;
+        &lt;a [routerLink]&#x3D;&quot;[ &#x27;/estudiantes/login&#x27;]&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; *ngIf&#x3D;&quot;!userService.isLogin()&quot;&gt;Iniciar sesión&lt;/a&gt;
+        &lt;a [routerLink]&#x3D;&quot;[ &#x27;/estudiantes/dashboard&#x27;]&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; *ngIf&#x3D;&quot;userService.isLogin() &amp;&amp; userService.roleMatch([&#x27;Estudiante&#x27;])&quot;&gt;Ir al perfil&lt;/a&gt;
+        &lt;a [routerLink]&#x3D;&quot;[ &#x27;/principal&#x27;]&quot; class&#x3D;&quot;btn btn-xs btn-link&quot; *ngIf&#x3D;&quot;userService.isLogin() &amp;&amp; !userService.roleMatch([&#x27;Estudiante&#x27;])&quot;&gt;Ir al perfil&lt;/a&gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-link text-white&quot; style&#x3D;&quot;font-size: .875rem;&quot; (click)&#x3D;&quot;Logout()&quot; *ngIf&#x3D;&quot;userService.isLogin()&quot;&gt;Cerrar sesión&lt;/button&gt;
+        &lt;!-- Solo habilitar si el sistema es multi idioma. Reemplazar el action del formulario --&gt;
+        &lt;!-- &lt;form action&#x3D;&quot;/Home/ChangeIdioma&quot; method&#x3D;&quot;get&quot; title&#x3D;&quot;Selección de idioma&quot;&gt;
+
+            &lt;label class&#x3D;&quot;sr-only&quot; for&#x3D;&quot;langPortal&quot;&gt;Seleccionar idioma&lt;/label&gt;
+			&lt;select id&#x3D;&quot;langPortal&quot; name&#x3D;&quot;idioma&quot; onchange&#x3D;&quot;this.form.submit();&quot;&gt;
+				&lt;option selected&#x3D;&quot;selected&quot; value&#x3D;&quot;es&quot;&gt;Español&lt;/option&gt;
+				&lt;option value&#x3D;&quot;en&quot;&gt;Inglés&lt;/option&gt;
+			&lt;/select&gt;
+
+        &lt;/form&gt; --&gt;
+    	&lt;!-- Solo habilitar si el sistema posee un login o acceso a módulos administrables --&gt;
+        
+        &lt;!-- &lt;a href&#x3D;&quot;/Home/DashBoard&quot; class&#x3D;&quot;btn btn-xs btn-link hidden-xs&quot; title&#x3D;&quot;Ir a mi perfil&quot;&gt;&lt;span class&#x3D;&quot;glyphicon glyphicon-cog&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Ir al perfil&lt;/span&gt;&lt;/a&gt; --&gt;
+    	
+    	&lt;!-- Solo habilitar si el sistema posee acceso a módulos administrables (una vez logueado). Solo mostrar cuando el usuario este logueado. Usar condición de lenguaje servidor --&gt;
+        &lt;!-- &lt;a href&#x3D;&quot;/Account/Login&quot; class&#x3D;&quot;btn btn-xs btn-link hidden-xs&quot; title&#x3D;&quot;Iniciar sesión&quot;&gt;&lt;span class&#x3D;&quot;glyphicon glyphicon-user&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Iniciar sesión&lt;/span&gt;&lt;/a&gt; --&gt;
+        
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;nav-bar&quot;&gt;
+        &lt;div class&#x3D;&quot;brand&quot;&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;/&#x27;]&quot;&gt;
+                &lt;img src&#x3D;&quot;https://cdn.unimagdalena.edu.co/images/escudo/bg_dark/default.png&quot; alt&#x3D;&quot;Escudo de la Universidad del Magdalena&quot; /&gt;
+                &lt;h1&gt;&lt;span&gt;Bienestar&lt;/span&gt; Unimagdalena&lt;/h1&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id&#x3D;&quot;navbar-mobile&quot; class&#x3D;&quot;text-center&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-block btn-primary&quot; title&#x3D;&quot;Menu de navegación&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fas fa-bars&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Menú de navegación&lt;/span&gt;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;nav role&#x3D;&quot;navigation&quot; id&#x3D;&quot;nav-main&quot;&gt;
+            &lt;ul role&#x3D;&quot;menubar&quot;&gt;
+                &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; [routerLink]&#x3D;&quot;[&#x27;/&#x27;]&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Inicio&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;#miUniversidad&quot; aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot;&gt;Mi Universidad&lt;/a&gt;
+                    &lt;ul role&#x3D;&quot;menu&quot; id&#x3D;&quot;miUniversidad&quot; aria-label&#x3D;&quot;Mi Universidad&quot;&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/Historia&quot;&gt;Historia&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/MisionVision&quot;&gt;Misión y visión&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/SimbolosInstitucionales&quot;&gt;Símbolos institucionales&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/PEI&quot;&gt;Proyecto Educativo Institucional&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/EstructuraOrganizacional&quot;&gt;Estructura organizacional&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/UnidadesAdministrativas&quot;&gt;Unidades administrativas&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Facultades&quot;&gt;Facultades&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/DirectorioTelefonico&quot;&gt;Directorio telefónico&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/PlanesGobierno&quot;&gt;Planes de gobierno&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/PlanesDesarrollo&quot;&gt;Planes de desarrollo&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/RendicionCuentas&quot;&gt;Rendición de cuentas&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Publico/InformesGestion&quot;&gt;Informes de gestión&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li role&#x3D;&quot;none&quot;&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/UnidadesOrganizativas/Direccion/8&quot;&gt;Secretaría general&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;#ofertaAcademica&quot; aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot;&gt;Oferta académica&lt;/a&gt;
+                    &lt;ul role&#x3D;&quot;menu&quot; id&#x3D;&quot;ofertaAcademica&quot; aria-label&#x3D;&quot;Oferta académica&quot;&gt;
+                        &lt;li&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;#ofertaPregrado&quot; class&#x3D;&quot;menu&quot;&gt;Pregrado&lt;/a&gt;
+                            &lt;ul role&#x3D;&quot;menu&quot; id&#x3D;&quot;ofertaPregrado&quot; aria-label&#x3D;&quot;Pregrado&quot;&gt;
+                                
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Pregrado?nivel&#x3D;1&quot;&gt;Profesional&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Pregrado?nivel&#x3D;3&quot;&gt;Tecnológico&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Pregrado?nivel&#x3D;6&quot;&gt;Técnico profesional&lt;/a&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot; href&#x3D;&quot;#ofertaPostgrado&quot; class&#x3D;&quot;menu&quot;&gt;Postgrado&lt;/a&gt;
+                            &lt;ul role&#x3D;&quot;menu&quot; id&#x3D;&quot;ofertaPostgrado&quot; aria-label&#x3D;&quot;Postgrado&quot;&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Postgrado?nivel&#x3D;2&quot;&gt;Especializaciones&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Postgrado?nivel&#x3D;4&quot;&gt;Maestrías&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/Postgrado?nivel&#x3D;5&quot;&gt;Doctorados&lt;/a&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot; href&#x3D;&quot;#ofertaFormacionParaElTrabajo&quot; class&#x3D;&quot;menu&quot;&gt;Formación para el trabajo y desarrollo humano&lt;/a&gt;
+                            &lt;ul role&#x3D;&quot;menu&quot; id&#x3D;&quot;ofertaFormacionParaElTrabajo&quot; aria-label&#x3D;&quot;Formación para el trabajo y desarrollo humano&quot;&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/FormacionParaElTrabajo?nivel&#x3D;1004&quot;&gt;Técnico laboral&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/OfertaAcademica/FormacionParaElTrabajo?nivel&#x3D;1005&quot;&gt;Técnico laboral por competencias&lt;/a&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a role&#x3D;&quot;menuitem&quot; aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot; href&#x3D;&quot;#formacionContinua&quot; class&#x3D;&quot;menu&quot;&gt;Formación continua&lt;/a&gt;
+                            &lt;ul role&#x3D;&quot;menu&quot; id&#x3D;&quot;formacionContinua&quot; aria-label&#x3D;&quot;Formación continua&quot;&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;http://estudiosgenerales.unimagdalena.edu.co/home/informacion&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;Idiomas&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Diplomados/Listado&quot;&gt;Diplomados&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li role&#x3D;&quot;none&quot;&gt;
+                                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;http://estudiosgenerales.unimagdalena.edu.co/home/programanivelatorio&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;Nivelatorio&lt;/a&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; [routerLink]&#x3D;&quot;[ &#x27;/convocatoria&#x27;]&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Convocatorias&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;!-- &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;http://vicextension.unimagdalena.edu.co/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;Extensión&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; href&#x3D;&quot;https://www.unimagdalena.edu.co/Internacionalizacion&quot;&gt;Internacionalización&lt;/a&gt;
+                    
+                &lt;/li&gt; --&gt;
+                &lt;li&gt;
+                    &lt;a role&#x3D;&quot;menuitem&quot; id&#x3D;&quot;searchFormLink&quot; href&#x3D;&quot;#buscadorGeneral&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fas fa-search&quot; title&#x3D;&quot;Buscador general&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Buscador general&lt;/span&gt;&lt;/a&gt;
+                    &lt;ul id&#x3D;&quot;buscadorGeneral&quot; class&#x3D;&quot;right&quot;&gt;
+                        &lt;li&gt;
+                            &lt;form class&#x3D;&quot;form-inline&quot; name&#x3D;&quot;globalSearchForm&quot; onsubmit&#x3D;&quot;return searchForm(event)&quot;&gt;
+                                &lt;label class&#x3D;&quot;sr-only&quot; for&#x3D;&quot;searchMain&quot;&gt;Buscador general&lt;/label&gt;
+                                &lt;input class&#x3D;&quot;form-control&quot; name&#x3D;&quot;search&quot; id&#x3D;&quot;searchMain&quot; placeholder&#x3D;&quot;Buscar...&quot; maxlength&#x3D;&quot;255&quot; required /&gt;
+                                &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary&quot; title&#x3D;&quot;Buscar&quot;&gt;&lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fas fa-search&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+                            &lt;/form&gt;
+
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./navbar.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.nav-bar nav&gt;ul li a.active {
+    text-decoration: none;
+    background-color: #415B91!important;
+}</code></pre>
+                <p class="comment">
+                    <code>../../../../../assets/css/public.min.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.text-overflow,a{overflow:hidden;text-overflow:ellipsis}body,html{font-size:16px;font-family:Roboto,sans-serif;background-color:#fff}main h1,main h1 a,main h2,main h2 a,main h3,main h3 a,main h4,main h4 a,main h5,main h5 a,main h6,main h6 a{color:#003A6B;font-family:Open sans,sans-serif;font-weight:700}main h1.bold,main h1.bold a,main h2.bold,main h2.bold a,main h3.bold,main h3.bold a,main h4.bold,main h4.bold a,main h5.bold,main h5.bold a,main h6.bold,main h6.bold a{font-family:Open sans,sans-serif;font-weight:700}#bottom-link,#goto-content{opacity:0;position:absolute;z-index:-1;left:0}.btn{font-size:1rem;font-weight:700}.btn:not(.btn-link){box-shadow:0 1px 3px 0 rgba(0,0,0,.4)}.blue,.btn.btn-primary{background-color:#004A87;color:#fff}.btn.btn-success{background-color:#00A50B;color:#fff}.lightgreen{background-color:#A5CA00;color:#fff}.btn.btn-warning{background-color:#D17900;color:#fff}.yellow{background-color:#D1AE00;color:#fff}.btn.btn-danger,.red{background-color:#FF0700;color:#fff}.panel-heading{padding:0;color:#333}.panel-heading h4 a{padding:1rem 2%;font-weight:700;flex-wrap:nowrap;width:100%;justify-content:space-between}.panel-heading h4 .glyphicon{color:#d3d3d3}.panel-heading:hover .glyphicon.tab-close,.panel-heading:hover .glyphicon.tab-open{color:#696969}.panel-heading a[aria-expanded&#x3D;true] .tab-open,.panel-heading a[aria-expanded&#x3D;false] .tab-close{display:none}.panel-group .panel{border-radius:0}.panel-body ul li:not(:last-child){border-bottom:1px solid #eee}.panel-body ul{list-style:none;padding:0}.panel-body ul li{padding:.5rem 2%}.panel-group .panel+.panel{margin-top:.5rem}.panel{box-shadow:none}.panel-default&gt;.panel-heading .panel-title&gt;a{background-color:#fff;text-decoration:none;border-left:2px solid #c08e2d;font-size:1rem;position:relative;padding-right:2.5rem}.panel-default&gt;.panel-heading .panel-title&gt;a:before{content:&quot;+&quot;;position:absolute;right:0;top:0;height:100%;font-size:2rem;align-items:center;padding:0 1rem;font-family:Open sans,sans-serif;font-weight:700;color:#d3d3d3}.panel-default&gt;.panel-heading .panel-title&gt;a[aria-expanded&#x3D;true]:before{content:&quot;-&quot;}.panel-default&gt;.panel-heading .panel-title&gt;a[aria-expanded&#x3D;true]{background-color:#004A87;color:#fff}.panel-default&gt;.panel-heading .panel-title&gt;a:not([aria-expanded&#x3D;true]):hover{background-color:#eee}.green{background-color:#00A50B;color:#fff}.text-green{color:#00A50B}.text-blue{color:#004A87}.text-red{color:#FF0700}.tile .tile-img img{position:absolute;left:50%;top:50%;-webkit-transform:translateY(-50%) translateX(-50%);transform:translateY(-50%) translateX(-50%)}#links-navigation,#links-navigation li,.nav-bar,.nav-bar li a,.nav-bar ul,.nav-bar&gt;.brand a img,.tile,.toolbar{transition:all .16s ease-in-out;-webkit-transition:all .16s ease-in-out;-moz-transition:all .16s ease-in-out}#links-navigation,.tile,.toolbar{box-shadow:0 1px 3px 0 rgba(0,0,0,.4);-webkit-box-shadow:0 1px 3px 0 rgba(0,0,0,.4);-moz-box-shadow:0 1px 3px 0 rgba(0,0,0,.4)}#processing,.errores .alert.alert-danger{box-shadow:0 8px 15px rgba(0,0,0,.3);-webkit-box-shadow:0 8px 15px rgba(0,0,0,.3);-moz-box-shadow:0 8px 15px rgba(0,0,0,.3)}#indicadores .container,.nav-bar,.nav-bar&gt;.brand a,.panel-default&gt;.panel-heading .panel-title&gt;a:before,.panel-heading h4 a,.tile.inline-tile,.toolbar{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-moz-flex;display:-webkit-flex;display:flex;-webkit-flex-flow:wrap;flex-flow:wrap}.nav-bar&gt;.brand a h1,.toolbar form{display:inline-block}.loadingContent{position:fixed;height:100%;width:100%;padding-top:22%;background-color:#fff;text-align:center;z-index:100000}.toolbar,.toolbar select{background-color:#003A6B}.loadingContent .loader{position:relative;left:0;width:100%;height:150px;text-align:center;clear:both;overflow:hidden}.loadingContent .loader:before{content:&quot;&quot;;position:absolute;left:50%;margin:0 auto 0 -72px;border:16px solid #f3f3f3;border-radius:50%;border-top:16px solid #3498db;width:150px;height:150px;-webkit-animation:spin 1s linear infinite;animation:spin 1s linear infinite}.loadingContent .loader:after{content:&quot;&quot;;position:absolute;top:25px;left:0;width:100%;height:100px;margin:0 auto;background-image:url(https://cdn.unimagdalena.edu.co/images/escudo/default.png);background-size:contain;background-repeat:no-repeat;background-position:center center}.loadingContent span{position:relative;left:0;width:100%;text-align:center;font-size:1.5em;font-family:Open-sans,sans-serif;color:#696969}.nav-bar,.nav-bar&gt;.brand a h1,.nav-bar&gt;.brand a h1 span{font-family:leelawadee,sans-serif}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0)}100%{-webkit-transform:rotate(360deg)}}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.nav-bar&gt;nav{width:100%}.nav-bar&gt;.brand a{align-items:center;text-align:center;justify-content:center}.toolbar{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;justify-content:flex-end;text-align:right;position:relative;align-items:center;padding:2px 0}.toolbar select{border:0}.toolbar a,.toolbar select{font-size:.875rem;color:#fff}.toolbar a{padding:0 .5rem}.toolbar a:hover{color:#f5f5f5}.nav-bar,.nav-bar a{color:#fff}.toolbar&gt;:not(:last-child){border-right:1px solid #004A87}.nav-bar{background-color:#004A87;border-bottom:2px solid #c08e2d;align-items:center;padding:6px 2%}.nav-bar&gt;.brand{width:80%}#navbar-mobile{width:20%}#navbar-mobile button{font-size:2rem}.nav-bar&gt;.brand a img{height:70px;padding:0 6px}.nav-bar&gt;.brand a h1{text-transform:uppercase;margin:0;font-size:1.125rem;text-align:left;font-weight:400}.nav-bar&gt;.brand a h1 span{display:block;font-weight:700;font-size:1.375rem}.nav-bar&gt;.brand a h1 small{color:#fff;display:block;margin:5px 0;border-top:1px dotted rgba(255,255,255,.35);padding-top:5px;font-size:1rem;text-transform:capitalize}#indicadores #indicador-listado,.nav-bar nav ul{list-style:none;margin:0;padding:0;text-align:center}.nav-bar nav&gt;ul ul{background-color:#fff;z-index:30}.nav-bar nav&gt;ul&gt;li ul,.nav-bar nav&gt;ul&gt;li.in&gt;ul&gt;li&gt;ul{display:none}.nav-bar nav&gt;ul&gt;li.in ul,.nav-bar nav&gt;ul&gt;li.in&gt;ul&gt;li.second-in&gt;ul{display:block}.nav-bar nav&gt;ul&gt;li:not(:last-child){border-bottom:1px solid #415B91}.nav-bar nav&gt;ul&gt;li.in&gt;ul&gt;li.second-in&gt;ul{border-bottom:1px solid #d3d3d3;border-top:1px solid #d3d3d3}.nav-bar nav&gt;ul li ul a,.nav-bar nav&gt;ul li&gt;a{display:block;width:100%;text-align:center;padding:.5rem 1rem}.nav-bar nav&gt;ul li&gt;a{background-color:#004A87}.nav-bar nav&gt;ul li ul a{background-color:#fff;color:#333}.nav-bar nav&gt;ul li a:hover{text-decoration:none;background-color:#415B91}.nav-bar nav&gt;ul li ul li a:hover{color:#fff;background-color:#c08e2d}.nav-bar nav&gt;ul li.second-in&gt;a{background-color:#d3d3d3}.nav-bar nav&gt;ul&gt;li ul li:not(:last-child){border-bottom:1px solid #eee}.nav-bar.menu-unidad li a{background-color:#fff;color:#003a6b;padding:.875rem 1rem}.nav-bar.menu-unidad nav&gt;ul&gt;li.current{border-bottom:2px solid #004A87;position:relative}.nav-bar.menu-unidad nav&gt;ul&gt;li.current:before{content:&quot;&quot;;position:absolute;top:100%;left:calc(50% - 10px);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #004A87}.nav-bar.menu-unidad&gt;nav&gt;ul::after,.nav-bar.menu-unidad&gt;nav&gt;ul::before{display:table;content:&quot; &quot;}.nav-bar.menu-unidad nav&gt;ul&gt;li.current:hover:before{border-top-color:#c08e2d}.nav-bar.menu-unidad nav&gt;ul&gt;li&gt;a:hover{color:#fff;background-color:#004A87}.nav-bar.menu-unidad nav&gt;ul&gt;li{border-bottom:2px solid transparent;width:100%;float:left;margin:0 1px}.nav-bar.menu-unidad nav&gt;ul&gt;li:hover{background-color:#fff;border-bottom-color:#c08e2d}.nav-bar.menu-unidad{background-color:#fff;padding:0;border-bottom:2px solid #eee;border-top:2px solid #eee}.nav-bar.menu-unidad nav&gt;ul&gt;li:not(:last-child){border-right:1px solid #eee}.nav-bar.menu-unidad&gt;nav&gt;ul::after{clear:both}#nav-main{display:none}#nav-main.show{display:block}.btn,.form-control{border-radius:0}#footer-bottom ul,.btn{border:0}.btn-primary{background-color:#004A87}.btn-success{background-color:#a6ce39}#links-navigation{position:fixed;left:0;bottom:0;list-style:none;display:flex;width:100%;background-color:#fff;margin:0;padding:0;border-top:1px solid #eee;z-index:100}#links-navigation li{width:100%}#links-navigation li a{display:block;padding:4% 1%;width:100%;flex-grow:1;text-align:center;color:#004A87}#links-navigation li a:hover{background-color:#d3d3d3}#links-navigation li span:first-child{font-size:1.5rem}#links-navigation li span:last-child{display:none}footer a,footer a:hover,footer a:visited{color:inherit}footer{background:#004a87;border-top:2px solid #c08e2d;margin-top:2%;color:#fff;padding:1rem 0 0}footer ul{padding-left:1rem;list-style:none;border-left:1px solid #c08e2d}footer .container{padding:.5rem 1rem}#footer-bottom{background:#003a6b;position:relative}footer h3{font-size:1.125rem;font-family:Open sans,sans-serif;font-weight:700;margin:.5rem 0}footer .logosGeneral{text-align:center}footer .logosGeneral img{height:85px;display:inline-block;margin:0 2px .25rem}#enlacesInteres{position:relative;z-index:2}#sellosCalidad{width:100%;height:auto;margin:.5rem 0}.tile{position:relative;border-radius:2px;overflow:hidden;margin-bottom:.5rem}.tile .tile-img,.tile.inline-tile .tile-img{height:280px;width:100%;overflow:hidden;position:relative}.tile .tile-body{padding:1rem 4% 2rem;width:100%}.tile .tile-caption h3{font-size:1.125rem;color:#00294B;margin:.5rem 0;line-height:1.375rem}.tile .date,.tile .tile-caption .date,.tile h3 small{font-size:.875rem}.tile .tile-caption+.buttons,.tile .tile-caption+a,.tile .tile-caption+p+a{display:inline-block;float:right}.title.inline-tile{padding-left:1rem}.tile.inline-tile .tile-img img{width:100%;height:auto}.tile h3 small{display:block;margin:0 0 5px}.link-view-more{display:inline-block;padding:.5rem 1rem;margin-bottom:.5rem}.link-view-more:not(.btn-block){float:right}.no-content{background-color:#eee;color:#333;padding:4%;width:100%;text-align:center}.popup-carousel{position:absolute;right:0;top:0;height:100%;width:25%;background:#fff;vertical-align:middle;text-align:center;display:flex;align-items:center;justify-content:center}.popup-carousel img{width:80%;box-shadow:0 4px 8px 0 rgba(0,0,0,.3)}#menuOpcionesCiudadano{color:#fff;font-weight:400;font-size:.875rem}@font-face{font-family:Leelawadee;font-weight:400;src:local(&quot;Leelawadee IU&quot;),url(https://cdn.unimagdalena.edu.co/fonts/Leelawadee/Leelawadee-Regular.woff) format(&#x27;woff&#x27;),url(https://cdn.unimagdalena.edu.co/fonts/Leelawadee/Leelawadee-Regular.ttf) format(&quot;truetype&quot;),url(https://cdn.unimagdalena.edu.co/fonts/Leelawadee/leelawadee.eot) format(&#x27;embedded-opentype&#x27;)}@font-face{font-family:Leelawadee;font-weight:700;src:local(&quot;LeelawadeeBold&quot;),url(https://cdn.unimagdalena.edu.co/fonts/Leelawadee/leelawadee-Bold.woff) format(&#x27;woff&#x27;),url(https://cdn.unimagdalena.edu.co//fonts/Leelawadee/leelawadee-Bold.ttf) format(&quot;truetype&quot;),url(https://cdn.unimagdalena.edu.co/fonts/Leelawadee/leelawadeeBold.eot) format(&#x27;embedded-opentype&#x27;)}@media only screen and (min-width:768px){.nav-bar{position:relative}.nav-bar&gt;nav{width:100%}.nav-bar.menu-unidad nav&gt;ul&gt;li{width:auto}#sellosCalidad{width:auto;height:85px;margin:0}.tile{margin:.5rem 1rem}}@media only screen and (min-width:992px){#links-navigation li a{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-moz-flex;display:-webkit-flex;display:flex}.nav-bar,.nav-bar&gt;.brand a{-webkit-flex-flow:nowrap;flex-wrap:nowrap;justify-content:center}.nav-bar&gt;.brand{padding-right:1%;width:auto;text-align:center;max-width:28%}.nav-bar&gt;.brand a img{height:70px}.nav-bar&gt;.brand a h1{font-size:1rem}.nav-bar&gt;nav{width:auto}.nav-bar nav&gt;ul li ul li{position:relative}.nav-bar nav&gt;ul&gt;li{display:inline-block;margin-left:-4px}.nav-bar nav&gt;ul&gt;li:not(:last-child){border:0;border-right:1px solid #415b91}.nav-bar nav&gt;ul&gt;li&gt;a{padding:1rem .5rem;font-size:1rem}#links-navigation:hover li span:first-child,#selloColombia{padding-right:1rem}.nav-bar nav&gt;ul li ul a.menu:before{content:&quot;\003e&quot;;float:right;margin-left:.5rem;color:#d3d3d3}.nav-bar nav&gt;ul li ul a{text-align:left}.nav-bar nav&gt;ul&gt;li.in&gt;ul{position:absolute;top:100%;max-width:240px}.nav-bar nav&gt;ul&gt;li.in ul.right{right:50px}.nav-bar nav&gt;ul&gt;li.in&gt;ul&gt;li.second-in&gt;ul{position:absolute;z-index:40;top:0;left:100%;min-width:200px;max-width:250px;box-shadow:0 8px 15px rgba(0,0,0,.3);-webkit-box-shadow:0 8px 15px rgba(0,0,0,.3);-moz-box-shadow:0 8px 15px rgba(0,0,0,.3)}.nav-bar nav&gt;ul&gt;li.in ul{box-shadow:0 1px 3px 0 rgba(0,0,0,.4);-webkit-box-shadow:0 1px 3px 0 rgba(0,0,0,.4);-moz-box-shadow:0 1px 3px 0 rgba(0,0,0,.4)}#navbar-mobile{display:none}.toolbar .estamento-lineal.visible-lg,.toolbar .estamento-lineal.visible-md{display:inline-block!important}#links-navigation:hover li span:last-child,#nav-main{display:block}#links-navigation{left:auto;right:0;bottom:auto;top:40%;flex-direction:column;width:auto;z-index:20;background-color:#0183EF;border:0}#links-navigation li a{padding:.5rem 1rem;align-items:center;color:#fff}#links-navigation:hover{background-color:#fff}#links-navigation:hover li a{color:#004A87}#footer-bottom:before{content:&quot;&quot;;position:absolute;bottom:calc(100% - 11px);height:60px;width:100%;lefT:0;background-image:url(https://cdn.unimagdalena.edu.co/images/infografia/blue/default.png);background-size:auto 100%;background-repeat:no-repeat;background-position:bottom center}#selloColombia{margin-right:1rem;border-right:1px solid rgba(255,255,255,.35)}.tile.inline-tile .tile-body&gt;p{display:none}.tile.inline-tile{align-items:center;padding:.5rem 1rem}.tile.inline-tile .tile-img{height:150px;width:30%;vertical-align:top;display:inline-block}.tile.inline-tile .tile-img img{height:100%;width:auto}.tile.inline-tile .tile-body{width:calc(70% - 1rem);padding:.5rem 0 .5rem 1rem;display:inline-block}}@media only screen and (min-width:1200px){.nav-bar&gt;.brand a img{height:80px}.nav-bar&gt;.brand a h1{font-size:1.125rem}#links-navigation li span:first-child{font-size:2rem}.nav-bar nav&gt;ul&gt;li&gt;a{font-size:1rem;padding:1rem .5rem}}@media only screen and (min-width:1600px){.container{width:1300px}.nav-bar&gt;.brand{max-width:25%}.nav-bar&gt;.brand a img{height:90px}.nav-bar nav&gt;ul&gt;li&gt;a{font-size:1.125rem;padding:1rem .625rem}.nav-bar&gt;.brand a h1{font-size:1.25rem}.nav-bar&gt;.brand a h1 span{font-size:1.75rem}#links-navigation li span:first-child{font-size:2rem}}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Versión 1.6 28/08/2018 Editado por: Jorge Luis Pineda Montagut / CIDS --><header role="banner">    <div class="toolbar">        <a id="goto-content" href="#content-main" class="sr-only">Ir al contenido</a>        <a href="https://www.facebook.com/UniversidadDelMagdalena/" class="btn btn-xs btn-link" title="Facebook" target="_blank" rel="noopener noreferrer"><span aria-hidden="true" class="ion-social-facebook"></span><span class="sr-only">Facebook</span></a>        <a href="https://twitter.com/unimagdalena" class="btn btn-xs btn-link" title="Twitter" target="_blank" rel="noopener noreferrer"><span aria-hidden="true" class="ion-social-twitter"></span><span class="sr-only">Twitter</span></a>        <a href="https://www.instagram.com/unimagdalena/" class="btn btn-xs btn-link" title="Instagram" target="_blank" rel="noopener noreferrer"><span aria-hidden="true" class="ion-social-instagram-outline"></span><span class="sr-only">Instagram</span></a>        <a href="https://www.youtube.com/user/unimagdalenatv" class="btn btn-xs btn-link" title="Youtube" target="_blank" rel="noopener noreferrer"><span aria-hidden="true" class="ion-social-youtube"></span><span class="sr-only">Youtube</span></a>        <a href="https://www.unimagdalena.edu.co" class="btn btn-xs btn-link">Ir a Unimagdalena</a>        <a href="https://www.unimagdalena.edu.co/Publico/Ciudadano" class="btn btn-xs btn-link">Ciudadano</a>        <a [routerLink]="[ \'/estudiantes/login\']" class="btn btn-xs btn-link" *ngIf="!userService.isLogin()">Iniciar sesión</a>        <a [routerLink]="[ \'/estudiantes/dashboard\']" class="btn btn-xs btn-link" *ngIf="userService.isLogin() && userService.roleMatch([\'Estudiante\'])">Ir al perfil</a>        <a [routerLink]="[ \'/principal\']" class="btn btn-xs btn-link" *ngIf="userService.isLogin() && !userService.roleMatch([\'Estudiante\'])">Ir al perfil</a>        <button type="button" class="btn btn-sm btn-link text-white" style="font-size: .875rem;" (click)="Logout()" *ngIf="userService.isLogin()">Cerrar sesión</button>        <!-- Solo habilitar si el sistema es multi idioma. Reemplazar el action del formulario -->        <!-- <form action="/Home/ChangeIdioma" method="get" title="Selección de idioma">            <label class="sr-only" for="langPortal">Seleccionar idioma</label>			<select id="langPortal" name="idioma" onchange="this.form.submit();">				<option selected="selected" value="es">Español</option>				<option value="en">Inglés</option>			</select>        </form> -->    	<!-- Solo habilitar si el sistema posee un login o acceso a módulos administrables -->                <!-- <a href="/Home/DashBoard" class="btn btn-xs btn-link hidden-xs" title="Ir a mi perfil"><span class="glyphicon glyphicon-cog"></span><span class="sr-only">Ir al perfil</span></a> -->    	    	<!-- Solo habilitar si el sistema posee acceso a módulos administrables (una vez logueado). Solo mostrar cuando el usuario este logueado. Usar condición de lenguaje servidor -->        <!-- <a href="/Account/Login" class="btn btn-xs btn-link hidden-xs" title="Iniciar sesión"><span class="glyphicon glyphicon-user"></span><span class="sr-only">Iniciar sesión</span></a> -->            </div>    <div class="nav-bar">        <div class="brand">            <a [routerLink]="[\'/\']">                <img src="https://cdn.unimagdalena.edu.co/images/escudo/bg_dark/default.png" alt="Escudo de la Universidad del Magdalena" />                <h1><span>Bienestar</span> Unimagdalena</h1>            </a>        </div>        <div id="navbar-mobile" class="text-center">            <button type="button" class="btn btn-block btn-primary" title="Menu de navegación"><span aria-hidden="true" class="fas fa-bars"></span><span class="sr-only">Menú de navegación</span></button>        </div>        <nav role="navigation" id="nav-main">            <ul role="menubar">                <li>                    <a role="menuitem" [routerLink]="[\'/\']" routerLinkActive="active">Inicio</a>                </li>                <li>                    <a role="menuitem" href="#miUniversidad" aria-haspopup="true" aria-expanded="false">Mi Universidad</a>                    <ul role="menu" id="miUniversidad" aria-label="Mi Universidad">                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/Historia">Historia</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/MisionVision">Misión y visión</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/SimbolosInstitucionales">Símbolos institucionales</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/PEI">Proyecto Educativo Institucional</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/EstructuraOrganizacional">Estructura organizacional</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/UnidadesAdministrativas">Unidades administrativas</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Facultades">Facultades</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/DirectorioTelefonico">Directorio telefónico</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/PlanesGobierno">Planes de gobierno</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/PlanesDesarrollo">Planes de desarrollo</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/RendicionCuentas">Rendición de cuentas</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/Publico/InformesGestion">Informes de gestión</a>                        </li>                        <li role="none">                            <a role="menuitem" href="https://www.unimagdalena.edu.co/UnidadesOrganizativas/Direccion/8">Secretaría general</a>                        </li>                    </ul>                </li>                <li>                    <a role="menuitem" href="#ofertaAcademica" aria-haspopup="true" aria-expanded="false">Oferta académica</a>                    <ul role="menu" id="ofertaAcademica" aria-label="Oferta académica">                        <li>                            <a role="menuitem" href="#ofertaPregrado" class="menu">Pregrado</a>                            <ul role="menu" id="ofertaPregrado" aria-label="Pregrado">                                                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Pregrado?nivel=1">Profesional</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Pregrado?nivel=3">Tecnológico</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Pregrado?nivel=6">Técnico profesional</a>                                </li>                            </ul>                        </li>                        <li>                            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#ofertaPostgrado" class="menu">Postgrado</a>                            <ul role="menu" id="ofertaPostgrado" aria-label="Postgrado">                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Postgrado?nivel=2">Especializaciones</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Postgrado?nivel=4">Maestrías</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/Postgrado?nivel=5">Doctorados</a>                                </li>                            </ul>                        </li>                        <li>                            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#ofertaFormacionParaElTrabajo" class="menu">Formación para el trabajo y desarrollo humano</a>                            <ul role="menu" id="ofertaFormacionParaElTrabajo" aria-label="Formación para el trabajo y desarrollo humano">                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/FormacionParaElTrabajo?nivel=1004">Técnico laboral</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/OfertaAcademica/FormacionParaElTrabajo?nivel=1005">Técnico laboral por competencias</a>                                </li>                            </ul>                        </li>                        <li>                            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#formacionContinua" class="menu">Formación continua</a>                            <ul role="menu" id="formacionContinua" aria-label="Formación continua">                                <li role="none">                                    <a role="menuitem" href="http://estudiosgenerales.unimagdalena.edu.co/home/informacion" target="_blank" rel="noopener noreferrer">Idiomas</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="https://www.unimagdalena.edu.co/Diplomados/Listado">Diplomados</a>                                </li>                                <li role="none">                                    <a role="menuitem" href="http://estudiosgenerales.unimagdalena.edu.co/home/programanivelatorio" target="_blank" rel="noopener noreferrer">Nivelatorio</a>                                </li>                            </ul>                        </li>                    </ul>                </li>                <li>                    <a role="menuitem" [routerLink]="[ \'/convocatoria\']" routerLinkActive="active">Convocatorias</a>                </li>                <!-- <li>                    <a role="menuitem" href="http://vicextension.unimagdalena.edu.co/" target="_blank" rel="noopener noreferrer">Extensión</a>                </li>                <li>                    <a role="menuitem" href="https://www.unimagdalena.edu.co/Internacionalizacion">Internacionalización</a>                                    </li> -->                <li>                    <a role="menuitem" id="searchFormLink" href="#buscadorGeneral"><span aria-hidden="true" class="fas fa-search" title="Buscador general"></span><span class="sr-only">Buscador general</span></a>                    <ul id="buscadorGeneral" class="right">                        <li>                            <form class="form-inline" name="globalSearchForm" onsubmit="return searchForm(event)">                                <label class="sr-only" for="searchMain">Buscador general</label>                                <input class="form-control" name="search" id="searchMain" placeholder="Buscar..." maxlength="255" required />                                <button type="submit" class="btn btn-primary" title="Buscar"><span aria-hidden="true" class="fas fa-search"></span></button>                            </form>                        </li>                    </ul>                </li>            </ul>        </nav>    </div></header></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NavbarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NavbarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

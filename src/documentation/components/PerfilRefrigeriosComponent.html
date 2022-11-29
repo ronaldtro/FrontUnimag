@@ -1,0 +1,1531 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>PerfilRefrigeriosComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-perfil-refrigerios</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./perfil-refrigerios.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./perfil-refrigerios.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#auxInscritoDia">auxInscritoDia</a>
+                            </li>
+                            <li>
+                                <a href="#convocatoria">convocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#convocatoriasRefrigerio">convocatoriasRefrigerio</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#estudiante">estudiante</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#file_soporte">file_soporte</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelar">cancelar</a>
+                            </li>
+                            <li>
+                                <a href="#cancelarInscripcion">cancelarInscripcion</a>
+                            </li>
+                            <li>
+                                <a href="#enviarFormularioRefrigerio">enviarFormularioRefrigerio</a>
+                            </li>
+                            <li>
+                                <a href="#estadosInscripcion">estadosInscripcion</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClearFile">onClearFile</a>
+                            </li>
+                            <li>
+                                <a href="#onUploadFile">onUploadFile</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_inscripcionService: <a href="../injectables/InscripcionRService.html">InscripcionRService</a>, _estudianteService: <a href="../injectables/EstudiantesService.html">EstudiantesService</a>, spinner: NgxSpinnerService, messageService: MessageService, convocatoriaRefrigerios: <a href="../injectables/ConvocatoriaRefrigerioService.html">ConvocatoriaRefrigerioService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_inscripcionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InscripcionRService.html" target="_self" >InscripcionRService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_estudianteService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EstudiantesService.html" target="_self" >EstudiantesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>convocatoriaRefrigerios</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConvocatoriaRefrigerioService.html" target="_self" >ConvocatoriaRefrigerioService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelar"></a>
+                    <span class="name">
+                        <b>
+                            cancelar
+                        </b>
+                        <a href="#cancelar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelar(forma: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>, soporte)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forma</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>soporte</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelarInscripcion"></a>
+                    <span class="name">
+                        <b>
+                            cancelarInscripcion
+                        </b>
+                        <a href="#cancelarInscripcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelarInscripcion(beneficio)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>beneficio</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enviarFormularioRefrigerio"></a>
+                    <span class="name">
+                        <b>
+                            enviarFormularioRefrigerio
+                        </b>
+                        <a href="#enviarFormularioRefrigerio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>enviarFormularioRefrigerio()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="234"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:234</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadosInscripcion"></a>
+                    <span class="name">
+                        <b>
+                            estadosInscripcion
+                        </b>
+                        <a href="#estadosInscripcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estadosInscripcion(beneficio)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>beneficio</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClearFile"></a>
+                    <span class="name">
+                        <b>
+                            onClearFile
+                        </b>
+                        <a href="#onClearFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClearFile(soporte: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:229</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>soporte</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>undefined</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onUploadFile"></a>
+                    <span class="name">
+                        <b>
+                            onUploadFile
+                        </b>
+                        <a href="#onUploadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onUploadFile(event)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:223</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="auxInscritoDia"></a>
+                        <span class="name">
+                            <b>
+                            auxInscritoDia</b>
+                            <a href="#auxInscritoDia"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatoria"></a>
+                        <span class="name">
+                            <b>
+                            convocatoria</b>
+                            <a href="#convocatoria"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    ayudantia : null,
+    refrigerio : null,
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatoriasRefrigerio"></a>
+                        <span class="name">
+                            <b>
+                            convocatoriasRefrigerio</b>
+                            <a href="#convocatoriasRefrigerio"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="estudiante"></a>
+                        <span class="name">
+                            <b>
+                            estudiante</b>
+                            <a href="#estudiante"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Estudiante.html" target="_self" >Estudiante</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    beneficios:[]
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="file_soporte"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Optional</span>
+                            file_soporte</b>
+                            <a href="#file_soporte"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>File</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">app/components/admin/refrigerios/estudiantes/perfil-refrigerios/perfil-refrigerios.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Estudiante } from &#x27;src/app/interfaces/estudiantes.interface&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { EstudianteRefrigerios } from &#x27;src/app/interfaces/estudiante-refrigerio.interfase&#x27;;
+import { InscripcionRService } from &#x27;src/app/services/inscripcion-refrigerio.service&#x27;;
+import { ConvocatoriaRefrigerioService } from &#x27;src/app/services/convocatoria-refrigerio.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { EstudiantesService } from &#x27;src/app/services/estudiantes.service&#x27;;
+declare var $:any;
+
+@Component({
+  selector: &#x27;app-perfil-refrigerios&#x27;,
+  templateUrl: &#x27;./perfil-refrigerios.component.html&#x27;,
+  styleUrls: [&#x27;./perfil-refrigerios.component.css&#x27;],
+  providers: [MessageService]
+})
+export class PerfilRefrigeriosComponent implements OnInit {
+
+  estudiante:Estudiante &#x3D; {
+    beneficios:[]
+  };
+  auxInscritoDia:any &#x3D; {};
+  file_soporte?:File;
+  errores:any[] &#x3D; [];
+  convocatoriasRefrigerio:any[] &#x3D; [];
+  convocatoria:any &#x3D; {
+    ayudantia : null,
+    refrigerio : null,
+  }
+
+  constructor( private _inscripcionService:InscripcionRService, 
+    private _estudianteService: EstudiantesService,
+    private spinner: NgxSpinnerService, 
+    private messageService: MessageService,
+    private convocatoriaRefrigerios : ConvocatoriaRefrigerioService, private router:Router) { }
+
+  ngOnInit() {
+    this.spinner.show();
+
+    this._inscripcionService.getInfoEstudiante().subscribe(data&#x3D;&gt;{   
+      this.estudiante&#x3D;data[&#x27;datosEstudiante&#x27;];
+      this.estudiante.beneficios &#x3D; data[&#x27;beneficios&#x27;];
+      this._estudianteService.getFotoEstudiante(this.estudiante.codigo + &quot;&quot;).subscribe((data:string) &#x3D;&gt; {
+        this.estudiante.foto &#x3D; data;
+      });
+      this.spinner.hide();
+    }, err&#x3D;&gt; {
+      let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      this.spinner.hide();  
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });    
+    })
+    this.convocatoriaRefrigerios.getConvocatoriasInscripcion().subscribe((data:any)&#x3D;&gt;{
+      this.convocatoriasRefrigerio &#x3D; data;
+      this.spinner.hide();
+    });
+  }
+
+  estadosInscripcion(beneficio){
+    this.auxInscritoDia.codigo &#x3D; this.estudiante.codigo;
+    this.auxInscritoDia.convocatoria_id &#x3D; beneficio.idConvocatoria;
+    this.auxInscritoDia.beneficio &#x3D; beneficio.idBeneficio;
+    this.errores &#x3D; [];
+    this.spinner.show();
+    this._inscripcionService.consultarDias(this.auxInscritoDia).subscribe(data &#x3D;&gt; {
+      if(data[&#x27;success&#x27;]){
+        this.auxInscritoDia.dias &#x3D; data[&#x27;dias&#x27;];
+        for (let index &#x3D; 0; index &lt; this.auxInscritoDia.dias.length; index++) {
+          this.auxInscritoDia.dias[index].nuevoEstado &#x3D; null;
+        }
+      }else{
+        this.errores &#x3D; data[&#x27;errores&#x27;];
+        swal({
+          type: &#x27;error&#x27;,
+          title: &#x27;Error&#x27;,
+          text: &#x27;No se pudo efectuar la operación. Intente más tarde.&#x27;,
+        });
+      }    
+    }),error&#x3D;&gt;swal({
+      type: &#x27;error&#x27;,
+      title: &#x27;Error&#x27;,
+      text: &#x27;No se pudo efectuar la operación. Intente más tarde.&#x27;,
+    });
+    this.spinner.hide();
+    $(&#x27;#estadoDiaModal&#x27;).modal(&#x27;show&#x27;);
+  }
+
+  cancelarInscripcion(beneficio){
+    this.auxInscritoDia.codigo &#x3D; this.estudiante.codigo;
+    this.auxInscritoDia.convocatoria_id &#x3D; beneficio.idConvocatoria;
+    this.auxInscritoDia.beneficio &#x3D; beneficio.idBeneficio;
+    this.errores &#x3D; [];
+    if(beneficio.estadoPostulacionId &#x3D;&#x3D; 2 || beneficio.estadoPostulacionId &#x3D;&#x3D; 3){
+      $(&#x27;#cancelarSeleccion&#x27;).modal(&#x27;show&#x27;);
+    }else{
+      if (beneficio.estadoPostulacionId &#x3D;&#x3D; 1) {      
+        swal({
+          title: &#x27;Cancelar inscripción&#x27;,
+          text: &quot;¿Está seguro de cancelar la inscripción?&quot;,
+          type: &#x27;warning&#x27;,
+          showCancelButton: true,
+          confirmButtonColor: &#x27;green&#x27;,
+          confirmButtonText: &#x27;Aceptar&#x27;,
+          cancelButtonText: &#x27;Cancelar&#x27;,
+          reverseButtons: true
+        }).then((result) &#x3D;&gt; {
+          if (result.value) {
+            this.spinner.show()
+            this._inscripcionService.cancelarInscripcion(this.auxInscritoDia).subscribe(data &#x3D;&gt; {
+              if(data[&#x27;success&#x27;]){
+                for (let i &#x3D; 0; i &lt; this.estudiante.beneficios.length; i++) {
+                  if (this.estudiante.beneficios[i].idBeneficio &#x3D;&#x3D; this.auxInscritoDia.beneficio  &amp;&amp; this.estudiante.beneficios[i].idConvocatoria &#x3D;&#x3D; this.auxInscritoDia.convocatoria_id) {
+                    this.estudiante.beneficios.splice(i,1);
+                    break;
+                  }
+                }              
+                swal({
+                  title: &#x27;Acción realizada&#x27;,
+                  text: &#x27;Acción realizada satisfactoriamente.&#x27;,
+                  type: &#x27;success&#x27;,
+                  timer: 2000,
+                  showConfirmButton: false
+                });
+              }else{
+                swal({
+                  type: &#x27;error&#x27;,
+                  title: &#x27;Error&#x27;,
+                  text: &#x27;El usuario no se encuentra registrado en la base de datos&#x27;,
+                });
+              }
+              this.spinner.hide();
+            });
+          }
+        })
+      }
+    }
+  }
+
+  cancelar(forma:NgForm, soporte){
+    if (!forma.valid) {
+      swal({
+        type: &quot;error&quot;,
+        title: &quot;Error&quot;,
+        text: &quot;Complete los campos del formulario.&quot;,
+        timer: 2000,
+        showConfirmButton: false
+      });
+      return
+    } 
+
+    if(!this.file_soporte){
+      swal({
+        type: &quot;error&quot;,
+        title: &quot;Error&quot;,
+        text: &quot;Complete los campos del formulario.&quot;,
+        timer: 2000,
+        showConfirmButton: false
+      });
+      return
+    }
+
+    swal({
+      title: &#x27;Cambiar estado&#x27;,
+      text: &quot;¿Está seguro de cancelar la inscripción?&quot;,
+      type: &#x27;warning&#x27;,
+      showCancelButton: true,
+      confirmButtonColor: &#x27;green&#x27;,
+      reverseButtons: true,
+      confirmButtonText: &#x27;Aceptar&#x27;,
+      cancelButtonText: &#x27;Cancelar&#x27;,
+      confirmButtonClass: &#x27;btn btn-success m-1&#x27;,
+      cancelButtonClass: &#x27;btn m-1&#x27;
+    }).then((res) &#x3D;&gt; {
+      if (res.value) {
+
+        this.spinner.show();
+        let formData &#x3D; new FormData();
+        formData.append(&#x27;codigo&#x27;, &quot;&quot;+this.auxInscritoDia.codigo)
+        formData.append(&#x27;convocatoria_id&#x27;,&quot;&quot;+this.auxInscritoDia.convocatoria_id);
+        formData.append(&#x27;beneficio&#x27;,&quot;&quot;+this.auxInscritoDia.beneficio);
+        formData.append(&#x27;soporte&#x27;, this.file_soporte);
+        formData.append(&#x27;observacion&#x27;, this.auxInscritoDia.observacion);
+       
+        this._inscripcionService.cancelarSeleccion(formData).subscribe(data &#x3D;&gt; {
+          for (let i &#x3D; 0; i &lt; this.estudiante.beneficios.length; i++) {
+            if (this.estudiante.beneficios[i].idBeneficio &#x3D;&#x3D; this.auxInscritoDia.beneficio  &amp;&amp; this.estudiante.beneficios[i].idConvocatoria &#x3D;&#x3D; this.auxInscritoDia.convocatoria_id) {
+              this.estudiante.beneficios[i].estadoPostulacionId &#x3D; data[&#x27;estadoNuevo&#x27;][&#x27;id&#x27;];
+              this.estudiante.beneficios[i].estadoPostulacion &#x3D; data[&#x27;estadoNuevo&#x27;][&#x27;nombre&#x27;];
+            }
+          }
+          soporte.clear(); 
+          swal({
+            type: &quot;success&quot;,
+            title: &quot;Realizado&quot;,
+            text: &quot;Se ha cambiado el estado satisfactoriamente.&quot;,
+            timer: 2000,
+            showConfirmButton: false
+          });
+          this.file_soporte &#x3D; null;
+          forma.resetForm();
+          $(&#x27;#cancelarSeleccion&#x27;).modal(&#x27;hide&#x27;);
+           this.spinner.hide();
+        }, err &#x3D;&gt; {
+          let respuesta: RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+          swal({
+            type: &#x27;error&#x27;,
+            title: &#x27;Error&#x27;,
+            text: respuesta.msg,
+          });
+          this.spinner.hide()
+        });
+      }
+    });
+  }
+
+  onUploadFile(event){
+    for(let file of event.files) {
+      this.file_soporte&#x3D;file;
+    }
+  }
+
+  onClearFile(soporte:any &#x3D; undefined){
+    this.file_soporte&#x3D;null;
+    if(soporte) soporte.clear();
+  }
+
+  enviarFormularioRefrigerio(){
+    $(&#x27;#modalConvocatoriaRefrigerios&#x27;).modal(&#x27;hide&#x27;);
+    this.router.navigate([&#x27;/inscripcion&#x27;,this.convocatoria.refrigerio.id]);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;animated fadeIn&quot;&gt;
+    &lt;h2 class&#x3D;&quot;text-uppercase animated fadeIn&quot;&gt;Módulo de beneficio alimenticio&lt;/h2&gt;
+    &lt;hr&gt;
+
+    &lt;div class&#x3D;&quot;row animated fadeIn shadow-sm rounded border&quot; *ngIf&#x3D;&quot;estudiante&quot;&gt;
+        &lt;div class&#x3D;&quot;col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center&quot;&gt;
+            &lt;div class&#x3D;&quot;text-center img-profile shadow mt-2 mb-2&quot;&gt;
+                &lt;!-- &lt;img src&#x3D;&quot;http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo&#x3D;{{estudiante.codigo}}&quot; alt&#x3D;&quot;Perfil&quot; class&#x3D;&quot;rounded h-100&quot;&gt; --&gt;
+                &lt;img [src]&#x3D;&quot;estudiante.foto&quot; *ngIf&#x3D;&quot;estudiante.foto&quot; class&#x3D;&quot;rounded h-100&quot;&gt;
+                &lt;img src&#x3D;&quot;../../../../../assets/img/profile.png&quot; *ngIf&#x3D;&quot;!estudiante.foto&quot; class&#x3D;&quot;rounded h-100&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center&quot;&gt;
+            &lt;div class&#x3D;&quot;row text-center text-md-left&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                    &lt;h3 class&#x3D;&quot;h4 mb-3&quot;&gt;
+                        &lt;small class&#x3D;&quot;d-block text-muted&quot;&gt;Nombre&lt;/small&gt; {{estudiante.nombre}}
+                    &lt;/h3&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-4 col-xl-3&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0 text-muted&quot;&gt;Código&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{estudiante.codigo}}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-8 col-xl-9&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label class&#x3D;&quot;m-0 text-muted&quot;&gt;Correo electrónico&lt;/label&gt;
+                        &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{estudiante.email}}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;br&gt;
+
+    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+        &lt;a href&#x3D;&quot;#modalConvocatoriaRefrigerios&quot; class&#x3D;&quot;btn btn-lg btn-info shadow rounded-pill text-uppercase mb-3&quot; data-toggle&#x3D;&quot;modal&quot; *ngIf&#x3D;&quot;convocatoriasRefrigerio.length &gt; 0&quot;&gt;Inscribirme en Almuerzos y Refrigerios&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;fieldset class&#x3D;&quot;animated fadeIn&quot;&gt;
+        &lt;legend&gt;Convocatorias inscritas&lt;/legend&gt;
+        &lt;div class&#x3D;&quot;alert alert-info&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;estudiante.beneficios.length &#x3D;&#x3D; 0&quot;&gt;
+            &lt;strong&gt;No se ha postulado a algún beneficio alimenticio.&lt;/strong&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;table-responsive mt-3&quot; *ngIf&#x3D;&quot;estudiante.beneficios.length &gt; 0&quot;&gt;
+            &lt;table class&#x3D;&quot;table&quot;&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Convocatoria&lt;/th&gt;
+                        &lt;th&gt;Beneficio&lt;/th&gt;
+                        &lt;th&gt;Días&lt;/th&gt;
+                        &lt;th&gt;Estado postulación&lt;/th&gt;
+                        &lt;th&gt;Estado convocatoria&lt;/th&gt;
+                        &lt;th&gt;Acciones&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr *ngFor&#x3D;&quot;let beneficio of estudiante.beneficios; let i&#x3D;index&quot;&gt;
+                        &lt;td&gt;{{beneficio.convocatoria}}&lt;/td&gt;
+                        &lt;td&gt;{{beneficio.beneficio}}&lt;/td&gt;
+                        &lt;td&gt;{{beneficio.dias}}&lt;/td&gt;
+                        &lt;td&gt;{{beneficio.estadoPostulacion}}&lt;/td&gt;
+                        &lt;td&gt;{{beneficio.etapa !&#x3D; null ? beneficio.etapa : &#x27;Sin etapa&#x27; }}&lt;/td&gt;
+                        &lt;td&gt;
+                            &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Basic example&quot;&gt;
+                                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-secondary&quot; (click)&#x3D;&quot;estadosInscripcion(beneficio)&quot; title&#x3D;&quot;Estados de la inscripción&quot;&gt;
+                                    &lt;span class&#x3D;&quot;fas fa-info-circle&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;sr-only&quot;&gt;Estados de la inscripción&lt;/span&gt;
+                                &lt;/button&gt;
+
+                                &lt;button *ngIf&#x3D;&quot;beneficio.estadoPostulacionId &#x3D;&#x3D; 1 &amp;&amp; beneficio.etapa_id &#x3D;&#x3D; 11&quot; [routerLink]&#x3D;&quot;[ &#x27;/editarInscripcion&#x27;, beneficio.idConvocatoria,beneficio.idBeneficio ]&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-secondary&quot; title&#x3D;&quot;Editar inscripción&quot;&gt;
+                                    &lt;span class&#x3D;&quot;fas fa-pen&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;sr-only&quot;&gt;Editar inscripción&lt;/span&gt;
+                                &lt;/button&gt;
+
+                                &lt;button *ngIf&#x3D;&quot;beneficio.estadoPostulacionId &lt; 4&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-secondary&quot; (click)&#x3D;&quot;cancelarInscripcion(beneficio)&quot; title&#x3D;&quot;Cancelar inscripción&quot;&gt;
+                                    &lt;span class&#x3D;&quot;fas fa-trash-alt&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                                    &lt;span class&#x3D;&quot;sr-only&quot;&gt;Cancelar inscripción&lt;/span&gt;
+                                &lt;/button&gt;
+
+                            &lt;/div&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    &lt;div class&#x3D;&quot;col-12 text-center&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-default mr-md-1 mb-3&quot; [routerLink]&#x3D;&quot;[&#x27;/estudiantes&#x27;, &#x27;dashboard&#x27;]&quot;&gt;Volver al perfil&lt;/button&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;estadoDiaModal&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;supervisorTitle&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;estadoTitle&quot;&gt;Estados de inscripción&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Cerrar&quot;&gt;
+              &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                &lt;div class&#x3D;&quot;alert alert-danger alert&quot; *ngIf&#x3D;&quot;errores.length &gt; 0&quot;&gt;
+                    &lt;label&gt;&lt;b&gt;Corrige los errores:&lt;/b&gt;&lt;/label&gt;
+                    &lt;ul&gt;
+                        &lt;div *ngFor&#x3D;&quot;let error of errores&quot;&gt;
+                            &lt;li *ngIf&#x3D;&quot;error.errores.length&gt;0&quot;&gt;
+                                &lt;p&gt;{{error.errores[0].ErrorMessage}}&lt;/p&gt;
+                            &lt;/li&gt;
+                        &lt;/div&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;table-responsive animated fadeIn&quot;&gt;
+                    &lt;table class&#x3D;&quot;table&quot; id&#x3D;&quot;table&quot;&gt;
+                        &lt;thead&gt;
+
+                            &lt;tr&gt;
+                                &lt;th scope&#x3D;&quot;col&quot;&gt;Día&lt;/th&gt;
+                                &lt;th scope&#x3D;&quot;col&quot;&gt;Estado&lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                            &lt;tr *ngFor&#x3D;&quot;let estudiante of auxInscritoDia.dias; let i&#x3D;index;&quot;&gt;
+                                &lt;td&gt;
+                                    {{estudiante.dia}}
+                                &lt;/td&gt;
+                                &lt;td&gt;{{estudiante.estadoSlect | titlecase}}&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot;&gt;Cerrar&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;cancelarSeleccion&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;exampleModalLabel&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;exampleModalLabel&quot;&gt;Cancelar beneficio&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot; (click)&#x3D;&quot;forma.resetForm(); onClearFile(soporte);&quot;&gt;
+                        &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+                    &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;cancelar(forma,soporte)&quot; #forma&#x3D;&quot;ngForm&quot; novalidate&gt;
+                &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label for&#x3D;&quot;observacion&quot;&gt;Observación&lt;/label&gt;
+                                &lt;textarea class&#x3D;&quot;form-control &quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: observacion.errors?.required &amp;&amp; (forma.submitted || observacion.touched) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el motivo de su solicitud. Máx 455 caracteres&quot; name&#x3D;&quot;observacion&quot; id&#x3D;&quot;observacion&quot;
+                                    [(ngModel)]&#x3D;&quot;auxInscritoDia.observacion&quot; required #observacion&#x3D;&quot;ngModel&quot;&gt; &lt;/textarea&gt;
+
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label for&#x3D;&quot;codigo&quot;&gt;Soporte&lt;/label&gt;
+                                &lt;p-fileUpload id&#x3D;&quot;soporte&quot; name&#x3D;&quot;soporte[]&quot; (onSelect)&#x3D;&quot;onUploadFile($event)&quot; maxFileSize&#x3D;&quot;2000000&quot; [showUploadButton]&#x3D;&quot;false&quot; [showCancelButton]&#x3D;&quot;false&quot; accept&#x3D;&quot;application/pdf&quot; invalidFileSizeMessageDetail&#x3D;&quot;El tamaño máximo del archivo es: {0}&quot; invalidFileSizeMessageSummary&#x3D;&quot;{0}: Tamaño del archivo excedido,&quot;
+                                    invalidFileTypeMessageSummary&#x3D;&quot;{0}: Tipo de archivo inválido,&quot; invalidFileTypeMessageDetail&#x3D;&quot;Solo puedes cargar archivos de tipo {0}&quot; chooseLabel&#x3D;&quot;Cargar documento&quot; (onRemove)&#x3D;&quot;onClearFile()&quot; #soporte&gt;
+                                &lt;/p-fileUpload&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot; (click)&#x3D;&quot;forma.resetForm(); onClearFile(soporte);&quot;&gt;Cancelar&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success&quot;&gt;
+                            Guardar
+                        &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Modal refrigerios--&gt;
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;modalConvocatoriaRefrigerios&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;modalLabelConvocatoriaRefrigerios&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;modalLabelConvocatoriaRefrigerios&quot;&gt;Convocatorias de almuerzos y refrigerios&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Cerrar&quot;&gt;
+          &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-body text-center&quot;&gt;
+
+                &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                    &lt;label&gt;Selecccione la convocatoria de almuerzos y refrigerios a la cual desea inscribirse&lt;/label&gt;
+                    &lt;select class&#x3D;&quot;form-control&quot; name&#x3D;&quot;id&quot; (change)&#x3D;&quot;enviarFormularioRefrigerio()&quot; [(ngModel)]&#x3D;&quot;convocatoria.refrigerio&quot;&gt;
+                  &lt;option disabled selected [value]&#x3D;&quot;null&quot;&gt;- Seleccione una convocatoria -&lt;/option&gt;
+                  &lt;option *ngFor&#x3D;&quot;let convocatoria of convocatoriasRefrigerio&quot; [ngValue]&#x3D;&quot;convocatoria&quot;&gt;{{convocatoria.nombre}}&lt;/option&gt;
+                &lt;/select&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-default&quot; data-dismiss&#x3D;&quot;modal&quot;&gt;Cerrar&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;ngx-spinner bdColor&#x3D;&quot;rgba(51, 51, 51, 0.8)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;p-toast [style]&#x3D;&quot;{marginTop: &#x27;80px&#x27;}&quot; [baseZIndex]&#x3D;&quot;5000&quot;&gt;&lt;/p-toast&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./perfil-refrigerios.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.img-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-default{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="animated fadeIn">    <h2 class="text-uppercase animated fadeIn">Módulo de beneficio alimenticio</h2>    <hr>    <div class="row animated fadeIn shadow-sm rounded border" *ngIf="estudiante">        <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">            <div class="text-center img-profile shadow mt-2 mb-2">                <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{estudiante.codigo}}" alt="Perfil" class="rounded h-100"> -->                <img [src]="estudiante.foto" *ngIf="estudiante.foto" class="rounded h-100">                <img src="../../../../../assets/img/profile.png" *ngIf="!estudiante.foto" class="rounded h-100">            </div>        </div>        <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">            <div class="row text-center text-md-left">                <div class="col-12">                    <h3 class="h4 mb-3">                        <small class="d-block text-muted">Nombre</small> {{estudiante.nombre}}                    </h3>                </div>                <div class="col-md-4 col-xl-3">                    <div class="form-group">                        <label class="m-0 text-muted">Código</label>                        <p class="form-control-plaintext p-0">{{estudiante.codigo}}</p>                    </div>                </div>                <div class="col-md-8 col-xl-9">                    <div class="form-group">                        <label class="m-0 text-muted">Correo electrónico</label>                        <p class="form-control-plaintext p-0">{{estudiante.email}}</p>                    </div>                </div>            </div>        </div>    </div>    <br>    <div class="text-center">        <a href="#modalConvocatoriaRefrigerios" class="btn btn-lg btn-info shadow rounded-pill text-uppercase mb-3" data-toggle="modal" *ngIf="convocatoriasRefrigerio.length > 0">Inscribirme en Almuerzos y Refrigerios</a>    </div>    <fieldset class="animated fadeIn">        <legend>Convocatorias inscritas</legend>        <div class="alert alert-info" role="alert" *ngIf="estudiante.beneficios.length == 0">            <strong>No se ha postulado a algún beneficio alimenticio.</strong>        </div>        <div class="table-responsive mt-3" *ngIf="estudiante.beneficios.length > 0">            <table class="table">                <thead>                    <tr>                        <th>Convocatoria</th>                        <th>Beneficio</th>                        <th>Días</th>                        <th>Estado postulación</th>                        <th>Estado convocatoria</th>                        <th>Acciones</th>                    </tr>                </thead>                <tbody>                    <tr *ngFor="let beneficio of estudiante.beneficios; let i=index">                        <td>{{beneficio.convocatoria}}</td>                        <td>{{beneficio.beneficio}}</td>                        <td>{{beneficio.dias}}</td>                        <td>{{beneficio.estadoPostulacion}}</td>                        <td>{{beneficio.etapa != null ? beneficio.etapa : \'Sin etapa\' }}</td>                        <td>                            <div class="btn-group" role="group" aria-label="Basic example">                                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="estadosInscripcion(beneficio)" title="Estados de la inscripción">                                    <span class="fas fa-info-circle" aria-hidden="true"></span>                                    <span class="sr-only">Estados de la inscripción</span>                                </button>                                <button *ngIf="beneficio.estadoPostulacionId == 1 && beneficio.etapa_id == 11" [routerLink]="[ \'/editarInscripcion\', beneficio.idConvocatoria,beneficio.idBeneficio ]" type="button" class="btn btn-sm btn-outline-secondary" title="Editar inscripción">                                    <span class="fas fa-pen" aria-hidden="true"></span>                                    <span class="sr-only">Editar inscripción</span>                                </button>                                <button *ngIf="beneficio.estadoPostulacionId < 4" type="button" class="btn btn-sm btn-outline-secondary" (click)="cancelarInscripcion(beneficio)" title="Cancelar inscripción">                                    <span class="fas fa-trash-alt" aria-hidden="true"></span>                                    <span class="sr-only">Cancelar inscripción</span>                                </button>                            </div>                        </td>                    </tr>                </tbody>            </table>        </div>    </fieldset>    <div class="col-12 text-center">        <button type="button" class="btn btn-default mr-md-1 mb-3" [routerLink]="[\'/estudiantes\', \'dashboard\']">Volver al perfil</button>    </div></div><div class="modal fade" id="estadoDiaModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">    <div class="modal-dialog" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="estadoTitle">Estados de inscripción</h5>                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">              <span aria-hidden="true">&times;</span>            </button>            </div>            <div class="modal-body">                <div class="alert alert-danger alert" *ngIf="errores.length > 0">                    <label><b>Corrige los errores:</b></label>                    <ul>                        <div *ngFor="let error of errores">                            <li *ngIf="error.errores.length>0">                                <p>{{error.errores[0].ErrorMessage}}</p>                            </li>                        </div>                    </ul>                </div>                <div class="table-responsive animated fadeIn">                    <table class="table" id="table">                        <thead>                            <tr>                                <th scope="col">Día</th>                                <th scope="col">Estado</th>                            </tr>                        </thead>                        <tbody>                            <tr *ngFor="let estudiante of auxInscritoDia.dias; let i=index;">                                <td>                                    {{estudiante.dia}}                                </td>                                <td>{{estudiante.estadoSlect | titlecase}}</td>                            </tr>                        </tbody>                    </table>                </div>            </div>            <div class="modal-footer">                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>            </div>        </div>    </div></div><div class="modal fade" id="cancelarSeleccion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    <div class="modal-dialog" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="exampleModalLabel">Cancelar beneficio</h5>                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm(); onClearFile(soporte);">                        <span aria-hidden="true">&times;</span>                    </button>            </div>            <form (ngSubmit)="cancelar(forma,soporte)" #forma="ngForm" novalidate>                <div class="modal-body">                    <div class="row">                        <div class="col-12">                            <div class="form-group">                                <label for="observacion">Observación</label>                                <textarea class="form-control " [ngClass]="{\'is-invalid \': observacion.errors?.required && (forma.submitted || observacion.touched) }" type="text" placeholder="Ingrese el motivo de su solicitud. Máx 455 caracteres" name="observacion" id="observacion"                                    [(ngModel)]="auxInscritoDia.observacion" required #observacion="ngModel"> </textarea>                            </div>                        </div>                        <div class="col-12">                            <div class="form-group">                                <label for="codigo">Soporte</label>                                <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>                                </p-fileUpload>                            </div>                        </div>                    </div>                </div>                <div class="modal-footer">                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm(); onClearFile(soporte);">Cancelar</button>                    <button type="submit" class="btn btn-success">                            Guardar                        </button>                </div>            </form>        </div>    </div></div><!-- Modal refrigerios--><div class="modal fade" id="modalConvocatoriaRefrigerios" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaRefrigerios" aria-hidden="true">    <div class="modal-dialog" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="modalLabelConvocatoriaRefrigerios">Convocatorias de almuerzos y refrigerios</h5>                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">          <span aria-hidden="true">&times;</span>        </button>            </div>            <div class="modal-body text-center">                <div class="form-group">                    <label>Selecccione la convocatoria de almuerzos y refrigerios a la cual desea inscribirse</label>                    <select class="form-control" name="id" (change)="enviarFormularioRefrigerio()" [(ngModel)]="convocatoria.refrigerio">                  <option disabled selected [value]="null">- Seleccione una convocatoria -</option>                  <option *ngFor="let convocatoria of convocatoriasRefrigerio" [ngValue]="convocatoria">{{convocatoria.nombre}}</option>                </select>                </div>            </div>            <div class="modal-footer">                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>            </div>        </div>    </div></div><ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner><p-toast [style]="{marginTop: \'80px\'}" [baseZIndex]="5000"></p-toast></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'PerfilRefrigeriosComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PerfilRefrigeriosComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

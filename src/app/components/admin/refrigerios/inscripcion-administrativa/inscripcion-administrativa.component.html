@@ -1,0 +1,125 @@
+<div class="animated fadeIn">
+    <h2 class="text-uppercase text-center">Inscripción a beneficio<small class="btn-block"></small></h2>
+    <hr>
+    <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+    <p-messages [(value)]="errores"></p-messages>
+
+
+    <legend class="text-center">Información general</legend>
+    <p class="text-center">Seleccione el beneficio al que desea realizar las inscripciones</p>
+
+    <div class="" *ngIf="codigosInvalidos.length > 0">
+        <div class="alert alert-danger mb-3" role="alert">
+            <p class="m-0">{{codigosInvalidos.length}} códigos con errores<button class="btn btn-sm btn-link" (click)="modalCodigosErrores()">ver</button> </p>
+        </div>
+    </div>
+
+    <form #inscripcionForm="ngForm" novalidate (ngSubmit)="save(inscripcionForm)">
+        <fieldset>
+            <div class="row justify-content-center">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="codigo">Códigos estudiantiles</label>
+                        <textarea class="form-control" type="text" placeholder="Ingrese los códigos de los estudiantes separados por coma ( , )" name="codigo" id="codigo" [(ngModel)]="codigos" #codigo="ngModel" rows=4 required [ngClass]="{'is-invalid': codigo.errors?.required && (codigo.touched || inscripcionForm.submitted)}"></textarea>
+                        <div class="invalid-feedback">Digite los códigos de los estudiantes</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-6">
+                    <div class="form-group">
+                        <label for="convoca">Convocatoria</label>
+                        <select [ngClass]="{'is-invalid': convoca.errors?.required && (convoca.touched || inscripcionForm.submitted)}" id="convoca" class="form-control" name="convoca" [(ngModel)]="convocatoria" #convoca="ngModel" required (change)="selectConvo()">
+                            <option [value]="null" disabled selected>Elegir convocatoria</option>
+                            <option *ngFor="let convo of convocatorias" [ngValue]="convo">{{convo.nombre}} </option>
+                        </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-6" *ngIf="convocatoria">
+                    <div class="form-group">
+                        <label for="benefi">Beneficio</label>
+                        <select [ngClass]="{'is-invalid': benefi.errors?.required && (benefi.touched || inscripcionForm.submitted)}" id="benefi" class="form-control" name="benefi" [(ngModel)]="beneficio" #benefi="ngModel" (change)="selectBene()" required>
+                            <option [value]="null" disabled selected>Elegir beneficio</option>
+                            <option *ngFor="let bene of convocatoria.beneficios" [ngValue]="bene">{{bene.nombre}} </option>                    
+                        </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+
+                <div class="col-12 text-center" *ngIf="beneficio">
+                    <p class="text-center">Seleccione los días de la inscripción</p>
+                    <div class="form-check form-check-inline" *ngFor="let dia of beneficio.dias; let i=index">
+                        <input type="checkbox" class="form-check-input" name="evaluado.id" id="radio-{{dia.id}}" [(checklist)]="dias" [checklistValue]="dia.id" [disabled]="dia.estado == false" />
+                        <label class="form-check-label" for="radio-{{dia.id}}">{{dia.dia}}</label>
+                    </div>
+                </div>
+
+                <div class="col-12" *ngIf="beneficio">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label p-1" for="validacion">Desactivar validaciones</label>
+                        <input class="form-check-input" type="checkbox" name="validacion" value="" id="validacion" [(ngModel)]="validacion">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div *ngIf="validacion == true">
+                <div class="row">
+                    <div class="col-md-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="observa">Observación</label>
+                            <textarea class="form-control" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observa" id="observa" [(ngModel)]="observacion" #observa="ngModel" rows=4 required="validacion == true" [ngClass]="{'is-invalid': observa.errors?.required && (observa.touched || inscripcionForm.submitted)}"></textarea>
+                            <div class="invalid-feedback">Ingrese una observación</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-6">
+                        <div class="form-group">
+                            <label for="soporte">Soporte</label>
+                            <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>
+                            </p-fileUpload>
+                            <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="text-center">
+            <button type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver</button>
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Errores-->
+<div class="modal fade" id="modalErrores" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Códigos con errores</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+
+                <ul *ngFor="let item of codigosInvalidos">
+                    <li>Código: {{item.codigo}}</li>
+                    <li>Observaciones:
+                        <p *ngFor="let item2 of item.observaciones">{{item2.observacion}}</p>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

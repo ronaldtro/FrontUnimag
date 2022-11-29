@@ -1,0 +1,8 @@
+.det{
+    padding-top:0; 
+    padding-bottom:0.05
+}
+body .fc th{
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

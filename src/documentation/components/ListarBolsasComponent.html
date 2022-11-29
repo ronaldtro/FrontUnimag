@@ -1,0 +1,1492 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ListarBolsasComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewChecked" target="_blank" >AfterViewChecked</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-listar-bolsas</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./listar-bolsas.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./listar-bolsas.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#api">api</a>
+                            </li>
+                            <li>
+                                <a href="#appliedFilters">appliedFilters</a>
+                            </li>
+                            <li>
+                                <a href="#bolsa">bolsa</a>
+                            </li>
+                            <li>
+                                <a href="#bolsas">bolsas</a>
+                            </li>
+                            <li>
+                                <a href="#dtElement">dtElement</a>
+                            </li>
+                            <li>
+                                <a href="#dtOptions">dtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#dtTrigger">dtTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#funciones">funciones</a>
+                            </li>
+                            <li>
+                                <a href="#rutaPdf">rutaPdf</a>
+                            </li>
+                            <li>
+                                <a href="#tutorial">tutorial</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cambiarEstado">cambiarEstado</a>
+                            </li>
+                            <li>
+                                <a href="#initDtOptions">initDtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#initTutorial">initTutorial</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewChecked">ngAfterViewChecked</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit">ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#rerender">rerender</a>
+                            </li>
+                            <li>
+                                <a href="#verSoporte">verSoporte</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_bolsaPresupuestalService: <a href="../injectables/BolsaPresupuestalService.html">BolsaPresupuestalService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, spinner: NgxSpinnerService, elementRef: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>, funcionesP: <a href="../injectables/FuncionesJSService.html">FuncionesJSService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_bolsaPresupuestalService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BolsaPresupuestalService.html" target="_self" >BolsaPresupuestalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>elementRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>funcionesP</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FuncionesJSService.html" target="_self" >FuncionesJSService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarEstado"></a>
+                    <span class="name">
+                        <b>
+                            cambiarEstado
+                        </b>
+                        <a href="#cambiarEstado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cambiarEstado(bolsa)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bolsa</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initDtOptions"></a>
+                    <span class="name">
+                        <b>
+                            initDtOptions
+                        </b>
+                        <a href="#initDtOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initDtOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTutorial"></a>
+                    <span class="name">
+                        <b>
+                            initTutorial
+                        </b>
+                        <a href="#initTutorial"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTutorial()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewChecked"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterViewChecked
+                        </b>
+                        <a href="#ngAfterViewChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewChecked()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterViewInit
+                        </b>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rerender"></a>
+                    <span class="name">
+                        <b>
+                            rerender
+                        </b>
+                        <a href="#rerender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rerender()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:149</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verSoporte"></a>
+                    <span class="name">
+                        <b>
+                            verSoporte
+                        </b>
+                        <a href="#verSoporte"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>verSoporte(soporte)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:110</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>soporte</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="api"></a>
+                        <span class="name">
+                            <b>
+                            api</b>
+                            <a href="#api"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>Api.dev</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="appliedFilters"></a>
+                        <span class="name">
+                            <b>
+                            appliedFilters</b>
+                            <a href="#appliedFilters"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bolsa"></a>
+                        <span class="name">
+                            <b>
+                            bolsa</b>
+                            <a href="#bolsa"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/BolsaPresupuestal.html" target="_self" >BolsaPresupuestal</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bolsas"></a>
+                        <span class="name">
+                            <b>
+                            bolsas</b>
+                            <a href="#bolsas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtElement"></a>
+                        <span class="name">
+                            <b>
+                            dtElement</b>
+                            <a href="#dtElement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DataTableDirective</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(DataTableDirective)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtOptions"></a>
+                        <span class="name">
+                            <b>
+                            dtOptions</b>
+                            <a href="#dtOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>Object.assign({}, DTConfig.dtConf)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtTrigger"></a>
+                        <span class="name">
+                            <b>
+                            dtTrigger</b>
+                            <a href="#dtTrigger"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="funciones"></a>
+                        <span class="name">
+                            <b>
+                            funciones</b>
+                            <a href="#funciones"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/FuncionesJSService.html" target="_self" >FuncionesJSService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rutaPdf"></a>
+                        <span class="name">
+                            <b>
+                            rutaPdf</b>
+                            <a href="#rutaPdf"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tutorial"></a>
+                        <span class="name">
+                            <b>
+                            tutorial</b>
+                            <a href="#tutorial"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/components/admin/bolsasPresupuestales/listar-bolsas/listar-bolsas.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy, AfterViewChecked, ViewEncapsulation } from &#x27;@angular/core&#x27;;
+import { BolsaPresupuestalService } from &#x27;src/app/services/bolsa-presupuestal.service&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { BolsaPresupuestal } from &#x27;src/app/interfaces/bolsaPresupuestal.interface&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { DTConfig } from &#x27;src/app/class/dtconfig&#x27;;
+import { Api } from &#x27;src/app/class/api&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { DataTableDirective } from &#x27;angular-datatables&#x27;;
+import { FuncionesJSService } from &#x27;src/app/services/funciones-js.service&#x27;;
+
+declare var $:any;
+declare var jQuery:any;
+declare var Tutorial:any;
+
+@Component({
+  selector: &#x27;app-listar-bolsas&#x27;,
+  templateUrl: &#x27;./listar-bolsas.component.html&#x27;,
+  styleUrls: [&#x27;./listar-bolsas.component.css&#x27;],
+  encapsulation: ViewEncapsulation.None
+})
+export class ListarBolsasComponent implements OnInit, OnDestroy, AfterViewChecked {
+  bolsas:object[]&#x3D;[];
+  errores:object[]&#x3D;[];
+  bolsa:BolsaPresupuestal;
+  rutaPdf:string;
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  dtTrigger: Subject&lt;string&gt; &#x3D; new Subject();
+  dtOptions: any &#x3D; Object.assign({}, DTConfig.dtConf);
+  api:string &#x3D; Api.dev;
+  tutorial:any &#x3D; null;
+  appliedFilters:any[] &#x3D; [];
+  funciones:FuncionesJSService;
+  constructor(private _bolsaPresupuestalService:BolsaPresupuestalService,private router:Router,
+    private route:ActivatedRoute, private spinner: NgxSpinnerService, private elementRef: ElementRef, private funcionesP: FuncionesJSService) { this.funciones &#x3D; funcionesP;
+    this.spinner.show();
+
+    this._bolsaPresupuestalService.getListados().subscribe(data &#x3D;&gt; {
+      this.bolsas &#x3D; data.bolsas;
+      this.initDtOptions();
+      this.dtTrigger.next();
+      this.spinner.hide();
+    });
+    this.route.params.subscribe(parametros&#x3D;&gt;{
+      this.bolsa &#x3D; parametros[&#x27;bolsa&#x27;];
+    })
+  }
+
+  ngOnInit() {
+    
+  }
+
+  ngAfterViewChecked(): void {
+    this.funciones.reemplazarBotonesDatatable();
+  }
+
+  initDtOptions(){
+    this.dtOptions.order &#x3D; [[ 2, &quot;desc&quot; ]];
+    this.dtOptions.dom &#x3D; &quot;Bfrtip&quot;;
+    this.dtOptions.buttons &#x3D; [
+      {
+        extend: &#x27;copy&#x27;,
+        text: &#x27;Copiar&#x27;,
+        exportOptions: {
+          columns: [ 0, 1, 2, 3, 4]
+        }
+      },
+      {
+        extend: &#x27;print&#x27;,
+        text: &#x27;Imprimir&#x27;,
+        exportOptions: {
+          columns: [ 0, 1, 2, 3, 4]
+        }
+      },
+      {
+        extend: &#x27;excel&#x27;,
+        text: &#x27;Excel&#x27;,
+        exportOptions: {
+          columns: [ 0, 1, 2, 3, 4]
+        }
+      }
+    ];
+    this.dtOptions.stateSave &#x3D; false;
+    this.dtOptions.initComplete &#x3D; () &#x3D;&gt; {
+      
+        //let idx &#x3D; 0;
+        this.funciones.addFilter(this, 2, &quot;#filter-periodo&quot;);      
+        this.funciones.addFilter(this, 4, &quot;#filter-estado&quot;);
+        
+    }
+   }
+    ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+    jQuery(this.elementRef.nativeElement).find(&#x27;[data-toggle&#x3D;&quot;popover&quot;]&#x27;).popover(&#x27;hide&#x27;);
+
+    //remueve el tutorial si se cambia de página
+    if(this.tutorial) this.tutorial.close();
+  }
+  
+  ngAfterViewInit(){
+    jQuery(this.elementRef.nativeElement).find(&#x27;[data-toggle&#x3D;&quot;popover&quot;]&#x27;).popover({
+      trigger: &#x27;focus&#x27;
+    });
+
+  }
+
+  verSoporte(soporte){
+    this.rutaPdf &#x3D; soporte;
+    $(&#x27;#pdfSoporte&#x27;).modal(&#x27;show&#x27;);
+  }
+  cambiarEstado(bolsa){
+    swal({
+      title: &#x27;Cambiar estado&#x27;,
+      text: &quot;¿Está seguro de cambiar el estado?&quot;,
+      type: &#x27;warning&#x27;,
+      showCancelButton: true,
+      confirmButtonColor: &#x27;green&#x27;,
+      // cancelButtonColor: &#x27;#d33&#x27;,
+      confirmButtonText: &#x27;Aceptar&#x27;,
+      cancelButtonText: &#x27;Cancelar&#x27;,
+      reverseButtons: true
+    }).then((result) &#x3D;&gt; {
+      if (result.value) {
+        this.spinner.show();
+        this._bolsaPresupuestalService.cambiarEstado(bolsa.id).subscribe(data &#x3D;&gt; {
+          if(data[&#x27;success&#x27;]){
+            bolsa.estado &#x3D; !bolsa.estado;
+            swal(
+              &#x27;Estado modificado&#x27;,
+              &#x27;Acción realizada satisfactoriamente.&#x27;,
+              &#x27;success&#x27;
+            )
+            this.spinner.hide();
+          }else{
+            swal({
+              type: &#x27;error&#x27;,
+              title: &#x27;Error&#x27;,
+              text: &#x27;La bolsa presupuestal no se encuentra registrada en la base de datos&#x27;,
+            });
+            this.spinner.hide();
+          }
+        });
+      }
+    })
+  }
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) &#x3D;&gt; {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+
+  initTutorial(){
+    this.tutorial &#x3D; new Tutorial(
+      {
+        intro:{text:&#x27;&lt;p class&#x3D;&quot;h2 text-white text-uppercase font-weight-bold container&quot;&gt;Módulo de administración de bolsas presupuestales&lt;/p&gt;&lt;p class&#x3D;&quot;container&quot;&gt;El sistema permite visualizar y registrar las bolsas presupuestales relacionadas con los programas de estímulos de la Universidad del Magdalena. A continuación, podrá conocer los elementos que contiene esta ventana que le permitirán administrar las bolsas presupuestales en el sistema.&lt;/p&gt;&#x27;},
+        elements:[
+          {id: &#x27;#btn-crear&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/span&gt; AGREGAR BOLSA PRESUPUESTAL&quot; permite añadir una nueva bolsa presupuestal al sistema.&#x27;},
+          {id: &#x27;#btn-filtros&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fa fa-filter&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt; Filtrar registros&quot; permite visualizar u ocultar los filtros disponibles que posee el sistema para esta ventana con los cuales podrá realizar una búsqueda entre los registros listados en la tabla.&#x27;},
+          {id: &#x27;#btn-ayuda&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fa fa-question-circle&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;&quot; permite visualizar un cuadro de texto con información de ayuda para esta ventana.&#x27;},
+          {id: &#x27;#table-bolsas&#x27;, text: &#x27;Esta tabla contiene las bolsas presupuestales que se han registrado en el sistema. En la columna &quot;Acciones&quot; podrá encontrar botones que le permitirán administrar la información de los registros listados.&#x27;},
+          {id: &#x27;.btn-editar&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fas fa-pen&quot;&gt;&lt;/span&gt;&quot; permite modificar la información ingresada en la bolsa presupuestal.&#x27;, count: 1},
+          {id: &#x27;.btn-activar&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fas fa-eye&quot;&gt;&lt;/span&gt;&quot; permite activar la bolsa presupuestal para que esta se visualice en otros módulos del sistema. Esto no afecta a los registros que usen esta bolsa presupuestal actualmente.&#x27;, count: 1},
+          {id: &#x27;.btn-desactivar&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fas fa-eye-slash&quot;&gt;&lt;/span&gt;&quot; permite desactivar la bolsa presupuestal para que no se visualice en los demás módulos del sistema. Esto no afecta a los registros que usen esta bolsa presupuestal actualmente.&#x27;, count: 1},
+          {id: &#x27;.btn-reporte&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;far fa-file&quot;&gt;&lt;/span&gt;&quot; permite visualizar el documento de soporte subido al momento de registrar la bolsa presupuestal en el sistema.&#x27;, count: 1},
+          {id: &#x27;.dt-buttons&#x27;, text: &#x27;Los botones &quot;&lt;span class&#x3D;&quot;far fa-copy&quot;&gt;&lt;/span&gt; &lt;span class&#x3D;&quot;fas fa-print&quot;&gt;&lt;/span&gt; &lt;span class&#x3D;&quot;far fa-file-excel&quot;&gt;&lt;/span&gt;&quot; permiten copiar los datos visualizados en la tabla, generar un vista de impresión o exportarlos en formato Excel.&#x27;},
+          {id: &#x27;#table-bolsas_filter&#x27;, text: &#x27;La barra de búsqueda permite buscar un registro especifico escribiendo el nombre, la fuente o cualquier otra palabra que este relacionada con la bolsa presupuestal que desea encontrar.&#x27;},
+        ]
+      });
+      this.tutorial.start();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;mt-3 animated fadeIn&quot;&gt;
+    &lt;h2 class&#x3D;&quot;text-uppercase text-center&quot;&gt;Bolsas presupuestales &lt;small class&#x3D;&quot;btn-block text-muted&quot;&gt;El listado cuenta con {{bolsas.length}} registro(s)&lt;/small&gt;&lt;/h2&gt;
+    &lt;hr&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-12 text-center&quot;&gt;
+            &lt;a id&#x3D;&quot;btn-crear&quot; role&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success mb-3 mr-1 text-uppercase&quot; title&#x3D;&quot;Crear nueva bolsa presupuestal&quot; [routerLink]&#x3D;&quot;[ &#x27;/bolsasPresupuestales/guardar-bolsa&#x27;]&quot;&gt;&lt;span class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/span&gt; Agregar bolsa presupuestal&lt;/a&gt;
+            &lt;button id&#x3D;&quot;btn-filtros&quot; class&#x3D;&quot;btn btn-outline-dark mb-3 mr-1&quot; type&#x3D;&quot;button&quot; data-toggle&#x3D;&quot;collapse&quot; data-target&#x3D;&quot;#collapseFilter&quot; aria-expanded&#x3D;&quot;false&quot; aria-controls&#x3D;&quot;collapseFilter&quot;&gt;
+        &lt;span class&#x3D;&quot;fa fa-filter&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt; Filtrar registros
+      &lt;/button&gt;
+            &lt;a id&#x3D;&quot;btn-ayuda&quot; tabindex&#x3D;&quot;0&quot; role&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light mb-3&quot; data-toggle&#x3D;&quot;popover&quot; data-trigger&#x3D;&quot;focus&quot; data-placement&#x3D;&quot;bottom&quot; title&#x3D;&quot;Información de ayuda&quot; data-content&#x3D;&quot;A continuación, se muestran las bolsas presupuestales registradas en el sistema. Usted puede editar, activar o desactivar o ver el soporte del registro almacenado.&quot;&gt;
+                &lt;span class&#x3D;&quot;fa fa-question-circle&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                &lt;span class&#x3D;&quot;sr-only&quot;&gt;Información de ayuda&lt;/span&gt;
+            &lt;/a&gt;
+            &lt;!-- &lt;div class&#x3D;&quot;card mb-3&quot;&gt;
+          &lt;div class&#x3D;&quot;card-header&quot;&gt;Información&lt;/div&gt;
+          &lt;div class&#x3D;&quot;card-body text-secondary&quot;&gt;          
+            &lt;p class&#x3D;&quot;card-text text-left&quot;&gt;A continuación, se muestran las bolsas presupuestales registradas en el sistema. Usted puede editar, activar o desactivar o ver el soporte del registro almacenado.&lt;/p&gt;
+          &lt;/div&gt;
+      &lt;/div&gt; --&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;collapse col-lg-12&quot; id&#x3D;&quot;collapseFilter&quot;&gt;
+            &lt;div class&#x3D;&quot;card card-body px-3 pt-3&quot;&gt;
+                &lt;div class&#x3D;&quot;row&quot;&gt;
+                    &lt;div class&#x3D;&quot;col-12 col-sm-6 col-md-4&quot;&gt;
+                        &lt;div id&#x3D;&quot;filter-periodo&quot; class&#x3D;&quot;form-group&quot;&gt;
+                            &lt;label&gt;Filtrar por periodos&lt;/label&gt;
+
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;col-12 col-sm-6 col-md-4&quot;&gt;
+                        &lt;div id&#x3D;&quot;filter-estado&quot; class&#x3D;&quot;form-group&quot;&gt;
+                            &lt;label&gt;Filtrar por estado&lt;/label&gt;
+
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;d-flex flex-wrap justify-content-center mb-3&quot; *ngIf&#x3D;&quot;appliedFilters.length &gt; 0&quot;&gt;&lt;button *ngFor&#x3D;&quot;let filter of appliedFilters&quot; class&#x3D;&quot;btn btn-default btn-sm mb-1 m-1&quot; (click)&#x3D;&quot;funciones.removeFilter(this, filter)&quot;&gt;{{filter.name}} &lt;span class&#x3D;&quot;fa fa-times&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt; &lt;/div&gt;
+
+
+        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+            &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+                &lt;table id&#x3D;&quot;table-bolsas&quot; class&#x3D;&quot;table&quot; datatable [dtOptions]&#x3D;&quot;dtOptions&quot; [dtTrigger]&#x3D;&quot;dtTrigger&quot;&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Nombre&lt;/th&gt;
+                            &lt;th&gt;Fuente&lt;/th&gt;
+                            &lt;th&gt;Periodo&lt;/th&gt;
+                            &lt;th&gt;Valor&lt;/th&gt;
+                            &lt;th&gt;Estado&lt;/th&gt;
+                            &lt;th style&#x3D;&quot;width: 110px;&quot;&gt;Acciones&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr *ngFor&#x3D;&quot;let bolsa of bolsas; let i &#x3D; index&quot;&gt;
+                            &lt;td&gt;{{bolsa.fondo}}&lt;/td&gt;
+                            &lt;td&gt;{{bolsa.fuente}}&lt;/td&gt;
+                            &lt;td&gt;{{bolsa.periodo}}&lt;/td&gt;
+                            &lt;td&gt;{{bolsa.valor | currency:&#x27;COP&#x27;:&#x27;symbol-narrow&#x27;}}&lt;/td&gt;
+                            &lt;td&gt;{{bolsa.estado &#x3D;&#x3D; true ? &#x27;Activa&#x27; : &#x27;Inactiva&#x27;}}&lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Acciones&quot;&gt;
+                                    &lt;a role&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-dark bg-white border-secondary btn-editar&quot; title&#x3D;&quot;Editar registro&quot; [routerLink]&#x3D;&quot;[ &#x27;/bolsasPresupuestales/guardar-bolsa&#x27;, bolsa.id ]&quot;&gt;
+                                        &lt;span class&#x3D;&quot;fas fa-pen&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Editar registro&lt;/span&gt;
+                                    &lt;/a&gt;
+                                    &lt;button (click)&#x3D;&quot;cambiarEstado(bolsa)&quot; *ngIf&#x3D;&quot;!bolsa.estado&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-dark bg-white border-secondary btn-activar&quot; title&#x3D;&quot;Activar registro&quot;&gt;
+                        &lt;span class&#x3D;&quot;far fa-eye&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Activar registro&lt;/span&gt;
+                      &lt;/button&gt;
+                                    &lt;button (click)&#x3D;&quot;cambiarEstado(bolsa)&quot; *ngIf&#x3D;&quot;bolsa.estado&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-dark bg-white border-secondary btn-desactivar&quot; title&#x3D;&quot;Desactivar registro&quot;&gt;
+                        &lt;span class&#x3D;&quot;far fa-eye-slash&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Desactivar registro&lt;/span&gt;
+                      &lt;/button&gt;
+
+                                    &lt;button (click)&#x3D;&quot;verSoporte(bolsa.soporte)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-dark bg-white border-secondary btn-reporte&quot; title&#x3D;&quot;Ver soporte&quot;&gt;
+                        &lt;span class&#x3D;&quot;far fa-file&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Ver soporte&lt;/span&gt;
+                      &lt;/button&gt;
+                                &lt;/div&gt;
+
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- Modal --&gt;
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;pdfSoporte&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;modelTitleId&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog modal-lg modal-dialog-centered&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content &quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+
+                &lt;h4 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;modelTitleId&quot;&gt;Documento de soporte&lt;/h4&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+              &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                &lt;iframe [src]&#x3D;&quot;rutaPdf  | donseguro: api&quot; width&#x3D;&quot;100%&quot; height&#x3D;&quot;700px&quot; frameborder&#x3D;&quot;0&quot;&gt;&lt;/iframe&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;ngx-spinner bdColor&#x3D;&quot;rgba(0, 0, 0, 0.65)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;button class&#x3D;&quot;btn btn-default shadow-sm&quot; style&#x3D;&quot;position:fixed; bottom: 1rem; right: 1rem;z-index: 10&quot; (click)&#x3D;&quot;initTutorial()&quot;&gt;Ayuda &lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fa fa-question-circle&quot;&gt;&lt;/span&gt;&lt;/button&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./listar-bolsas.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="mt-3 animated fadeIn">    <h2 class="text-uppercase text-center">Bolsas presupuestales <small class="btn-block text-muted">El listado cuenta con {{bolsas.length}} registro(s)</small></h2>    <hr>    <div class="row">        <div class="col-12 text-center">            <a id="btn-crear" role="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear nueva bolsa presupuestal" [routerLink]="[ \'/bolsasPresupuestales/guardar-bolsa\']"><span class="fas fa-plus"></span> Agregar bolsa presupuestal</a>            <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">        <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros      </button>            <a id="btn-ayuda" tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las bolsas presupuestales registradas en el sistema. Usted puede editar, activar o desactivar o ver el soporte del registro almacenado.">                <span class="fa fa-question-circle" aria-hidden="true"></span>                <span class="sr-only">Información de ayuda</span>            </a>            <!-- <div class="card mb-3">          <div class="card-header">Información</div>          <div class="card-body text-secondary">                      <p class="card-text text-left">A continuación, se muestran las bolsas presupuestales registradas en el sistema. Usted puede editar, activar o desactivar o ver el soporte del registro almacenado.</p>          </div>      </div> -->        </div>        <div class="collapse col-lg-12" id="collapseFilter">            <div class="card card-body px-3 pt-3">                <div class="row">                    <div class="col-12 col-sm-6 col-md-4">                        <div id="filter-periodo" class="form-group">                            <label>Filtrar por periodos</label>                        </div>                    </div>                    <div class="col-12 col-sm-6 col-md-4">                        <div id="filter-estado" class="form-group">                            <label>Filtrar por estado</label>                        </div>                    </div>                </div>            </div>        </div>        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>        <div class="col-12">            <div class="table-responsive">                <table id="table-bolsas" class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">                    <thead>                        <tr>                            <th>Nombre</th>                            <th>Fuente</th>                            <th>Periodo</th>                            <th>Valor</th>                            <th>Estado</th>                            <th style="width: 110px;">Acciones</th>                        </tr>                    </thead>                    <tbody>                        <tr *ngFor="let bolsa of bolsas; let i = index">                            <td>{{bolsa.fondo}}</td>                            <td>{{bolsa.fuente}}</td>                            <td>{{bolsa.periodo}}</td>                            <td>{{bolsa.valor | currency:\'COP\':\'symbol-narrow\'}}</td>                            <td>{{bolsa.estado == true ? \'Activa\' : \'Inactiva\'}}</td>                            <td>                                <div class="btn-group" role="group" aria-label="Acciones">                                    <a role="button" class="btn btn-sm btn-outline-dark bg-white border-secondary btn-editar" title="Editar registro" [routerLink]="[ \'/bolsasPresupuestales/guardar-bolsa\', bolsa.id ]">                                        <span class="fas fa-pen"></span><span class="sr-only">Editar registro</span>                                    </a>                                    <button (click)="cambiarEstado(bolsa)" *ngIf="!bolsa.estado" type="button" class="btn btn-sm btn-outline-dark bg-white border-secondary btn-activar" title="Activar registro">                        <span class="far fa-eye"></span><span class="sr-only">Activar registro</span>                      </button>                                    <button (click)="cambiarEstado(bolsa)" *ngIf="bolsa.estado" type="button" class="btn btn-sm btn-outline-dark bg-white border-secondary btn-desactivar" title="Desactivar registro">                        <span class="far fa-eye-slash"></span><span class="sr-only">Desactivar registro</span>                      </button>                                    <button (click)="verSoporte(bolsa.soporte)" type="button" class="btn btn-sm btn-outline-dark bg-white border-secondary btn-reporte" title="Ver soporte">                        <span class="far fa-file"></span><span class="sr-only">Ver soporte</span>                      </button>                                </div>                            </td>                        </tr>                    </tbody>                </table>            </div>        </div>    </div></div><!-- Modal --><div class="modal fade" id="pdfSoporte" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">        <div class="modal-content ">            <div class="modal-header">                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>                <button type="button" class="close" data-dismiss="modal" aria-label="Close">              <span aria-hidden="true">&times;</span>            </button>            </div>            <div class="modal-body">                <iframe [src]="rutaPdf  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>            </div>        </div>    </div></div><ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner><button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ListarBolsasComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ListarBolsasComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

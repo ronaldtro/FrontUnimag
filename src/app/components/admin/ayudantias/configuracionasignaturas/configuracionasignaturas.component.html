@@ -1,0 +1,156 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="mt-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Configuración de asignaturas
+        <!-- <small class="d-block text-muted">El listado cuenta con registro(s)</small> -->
+    </h2>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <button type="button" (click)="actualizar()" class="btn btn-success mb-3">Actualizar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="text-center">
+          <h5>Asignaturas</h5>
+        </div>
+        <div class="table-responsive">
+            <table id="table" class="table table-stripper table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 30px;"></th>
+                        <th scope="col" class="text-center" style="width: 80px;">Código</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" style="width: 20px;"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="4">
+                            <input type="text" class="form-control form-control-sm" placeholder="Buscar asignatura" maxlength="255" [(ngModel)]="busqueda.asignatura">
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr *ngFor="let asignatura of asignaturasPadres | filter: ['nombre'] : busqueda.asignatura">
+                        <td>
+                            <label for="asignatura_{{asignatura.id}}">
+                              <input id="asignatura_{{asignatura.id}}" value="{{asignatura.id}}" type="radio" name="asignaturas" [(ngModel)]="asigPadre">
+                            </label>
+                        </td>
+                        <td class="text-center">{{asignatura.codigo}}</td>
+                        <td class="text-center">{{asignatura.nombre}}</td>
+                        <td class="text-center">
+                            <button (click)="verAsignaturas(asignatura)" class="btn btn-sm btn-outline-dark border-secondary" type="button" title="Ver asignaturas relacionadas">
+                                <span class="fa fa-list-ul" aria-hidden="true"></span><span class="badge">{{asignatura.hijas.length}}</span>
+                                <span class="sr-only">Ver asignaturas relacionadas</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="text-center">
+            <h5>Asignaturas equivalentes</h5>
+          </div>
+          <div class="table-responsive">
+              <table id="table" class="table table-stripper table-sm table-bordered">
+                  <thead>
+                      <tr>
+                          <th scope="col" style="width: 30px;"></th>
+                          <th scope="col" class="text-center" style="width: 80px;">Código</th>
+                          <th scope="col" class="text-center">Nombre</th>
+                      </tr>
+                      <tr>
+                        <th colspan="4">
+                            <input type="text" class="form-control form-control-sm" placeholder="Buscar asignatura" maxlength="255" [(ngModel)]="busqueda.equivalente">
+                        </th>
+                        
+                    </tr>
+                  </thead>
+                  <tbody>
+                      
+                      <tr *ngFor="let asignatura of asignaturasHijas | filter: ['nombre'] : busqueda.equivalente">
+                          <td>
+                              <input type="checkbox" name="asignatura.id" id="radio-{{asignatura.id}}" [(checklist)]="asigHijas" [checklistValue]="asignatura" />
+                          </td>
+                          <td class="text-center">{{asignatura.codigo}}</td>
+                          <td class="text-center">{{asignatura.nombre}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+          <div class="text-center">
+              <button type="button" (click)="agregarAsignaturas()" class="btn btn-success mb-3">Guardar</button>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="verDetalleAsignatura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Asignaturas relacionadas con {{detalleAsignatura.nombre}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm();">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <form (ngSubmit)="eliminarRelacion(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                      <label><b>Corrige los errores:</b></label>
+                      <ul>
+                        <div *ngFor="let error of errores">
+                          <li *ngIf="error.errores.length>0">
+                            <p>{{error.errores[0].ErrorMessage}}</p>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="tableRelacionadas" class="table table-stripper">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Código</th>
+                                    <th scope="col" class="text-center">Nombre</th>
+                                    <th scope="col" style="width: 20px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr *ngFor="let asignatura of detalleAsignatura.hijas">
+                                    <td class="text-center">{{asignatura.codigo}}</td>
+                                    <td class="text-center">{{asignatura.nombre}}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group" aria-label="Acciones">
+                                            <button (click)="eliminarRelacion(asignatura)" class="btn btn-sm btn-outline-dark border-secondary" type="button" title="Eliminar relación con la asignatura seleccionada">
+                                                <span class="fa fa-trash" aria-hidden="true"></span>
+                                                <span class="sr-only">Eliminar relación con la asignatura seleccionada</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                  </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-12" *ngIf="detalleAsignatura.hijas.length == 0">
+                            <div class="alert alert-info" role="alert"><b>No hay asignaturas relacionadas</b></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm(); errores=[];">Cerrar</button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<fieldset class="animated fadeIn">
+    <legend>Convocatorias inscritas</legend>
+    <div class="alert alert-info" role="alert" *ngIf="postulaciones.length == 0">
+        <strong>No se ha postulado a ninguna disciplina.</strong>
+    </div>
+
+    <div class="table-responsive animated fadeIn">
+        <table datatable class="table" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+            <thead>
+                <tr>
+                    <th>Convocatoria</th>
+                    <th>Disciplina</th>
+                    <th>Estado postulación</th>
+                    <th>Estado convocatoria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let postulacion of postulaciones; let i=index">
+                    <td>{{postulacion.nombreConvocatoria}}</td>
+                    <td>{{postulacion.nombreDisciplina}}</td>
+                    <td>{{postulacion.estadoPostulacion}}</td>
+                    <td>{{postulacion.estadoConvocatoria}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            
+                            <button *ngIf="postulacion.idEstadoPostulacion < 4"  type="button" class="btn btn-sm btn-outline-secondary" (click)="cancelarInscripcion(postulacion)" title="Cancelar inscripción">
+                                <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                                <span class="sr-only">Cancelar inscripción</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+
+

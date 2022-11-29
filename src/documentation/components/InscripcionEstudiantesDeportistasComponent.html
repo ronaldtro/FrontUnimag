@@ -1,0 +1,1376 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>InscripcionEstudiantesDeportistasComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-inscripcion-estudiantes</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./inscripcion-estudiantes.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./inscripcion-estudiantes.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#convocatoria">convocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#error">error</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#etapaActual">etapaActual</a>
+                            </li>
+                            <li>
+                                <a href="#etapas">etapas</a>
+                            </li>
+                            <li>
+                                <a href="#idConvocatoria">idConvocatoria</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#esIgual">esIgual</a>
+                            </li>
+                            <li>
+                                <a href="#esMayorAHoy">esMayorAHoy</a>
+                            </li>
+                            <li>
+                                <a href="#esMenorAEtapaActual">esMenorAEtapaActual</a>
+                            </li>
+                            <li>
+                                <a href="#goBack">goBack</a>
+                            </li>
+                            <li>
+                                <a href="#guardarInscripcion">guardarInscripcion</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_inscripcionArtistasDeportistasService: <a href="../injectables/InscripcionArtistasDeportistasService.html">InscripcionArtistasDeportistasService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, messageService: MessageService, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, spinner: NgxSpinnerService, _location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_inscripcionArtistasDeportistasService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InscripcionArtistasDeportistasService.html" target="_self" >InscripcionArtistasDeportistasService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esIgual"></a>
+                    <span class="name">
+                        <b>
+                            esIgual
+                        </b>
+                        <a href="#esIgual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>esIgual(fechaInicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fechaFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fechaInicio</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>fechaFin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esMayorAHoy"></a>
+                    <span class="name">
+                        <b>
+                            esMayorAHoy
+                        </b>
+                        <a href="#esMayorAHoy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>esMayorAHoy(fechaFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fechaFin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esMenorAEtapaActual"></a>
+                    <span class="name">
+                        <b>
+                            esMenorAEtapaActual
+                        </b>
+                        <a href="#esMenorAEtapaActual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>esMenorAEtapaActual(fechaFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:125</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fechaFin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <b>
+                            goBack
+                        </b>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarInscripcion"></a>
+                    <span class="name">
+                        <b>
+                            guardarInscripcion
+                        </b>
+                        <a href="#guardarInscripcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardarInscripcion(inscripcion)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Se envía el objeto inscripción al Backend a través del servicio &#39;InscripcionArtistasDeportistasService&#39;
+para registrar al estudiante en la disciplina de la convocatoria que haya seleccionado.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>inscripcion</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Objeto que contiene toda la información de 
+la inscripción</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatoria"></a>
+                        <span class="name">
+                            <b>
+                            convocatoria</b>
+                            <a href="#convocatoria"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    disciplinas:[]
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="error"></a>
+                        <span class="name">
+                            <b>
+                            error</b>
+                            <a href="#error"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Message[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="etapaActual"></a>
+                        <span class="name">
+                            <b>
+                            etapaActual</b>
+                            <a href="#etapaActual"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    id:null,
+    nombre:null,
+    fechaInicio:null,
+    fechaFin:null,
+    peso:null
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="etapas"></a>
+                        <span class="name">
+                            <b>
+                            etapas</b>
+                            <a href="#etapas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="idConvocatoria"></a>
+                        <span class="name">
+                            <b>
+                            idConvocatoria</b>
+                            <a href="#idConvocatoria"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">app/components/admin/deportistas-artistas/estudiantes/inscripcion-estudiantes/inscripcion-estudiantes.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Message } from &#x27;@angular/compiler/src/i18n/i18n_ast&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import { Location } from &#x27;@angular/common&#x27;;
+import { InscripcionArtistasDeportistasService } from &#x27;src/app/services/inscripcion-artistas-deportistas.service&#x27;;
+
+@Component({
+  selector: &#x27;app-inscripcion-estudiantes&#x27;,
+  templateUrl: &#x27;./inscripcion-estudiantes.component.html&#x27;,
+  styleUrls: [&#x27;./inscripcion-estudiantes.component.css&#x27;],
+  providers: [MessageService]
+})
+export class InscripcionEstudiantesDeportistasComponent implements OnInit {
+
+  idConvocatoria:number;
+
+  errores:Message[]&#x3D;[];
+
+  etapas: any [] &#x3D; [];
+  etapaActual &#x3D; {
+    id:null,
+    nombre:null,
+    fechaInicio:null,
+    fechaFin:null,
+    peso:null
+  };
+
+  error:any;
+
+  convocatoria:any&#x3D;{
+    disciplinas:[]
+  };
+
+  constructor(private _inscripcionArtistasDeportistasService:InscripcionArtistasDeportistasService,
+    private route:ActivatedRoute, 
+    private messageService: MessageService,
+    private router:Router,
+    private spinner: NgxSpinnerService,
+    private _location: Location) { }
+
+  ngOnInit() {
+    this.spinner.show();
+
+    this.route.params.subscribe(parametros &#x3D;&gt; {
+    this.idConvocatoria &#x3D; parametros[&#x27;id&#x27;];
+
+    this._inscripcionArtistasDeportistasService.getDatosInscripcion(this.idConvocatoria).subscribe(data&#x3D;&gt;{
+     
+      this.convocatoria.disciplinas &#x3D; data[&#x27;disciplinas_convocatoria&#x27;];
+    
+      this.etapas &#x3D; data[&#x27;etapas&#x27;];
+      if (data[&#x27;etapaActual&#x27;] !&#x3D; null) {
+        this.etapaActual &#x3D; data[&#x27;etapaActual&#x27;];
+      } else {
+        this.etapaActual.id &#x3D; 0;
+      }
+
+      this.spinner.hide();
+       
+    }, err&#x3D;&gt; {
+      let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Oops...&#x27;,
+        text: respuesta.msg,
+      });
+    });
+  });
+  }
+
+
+  /**
+   * Se envía el objeto inscripción al Backend a través del servicio &#x27;InscripcionArtistasDeportistasService&#x27;
+   * para registrar al estudiante en la disciplina de la convocatoria que haya seleccionado.
+   * 
+   * @param {any} inscripcion  Objeto que contiene toda la información de 
+   * la inscripción
+   * 
+   */
+  guardarInscripcion(inscripcion){
+    
+    swal({
+      title: &#x27;Postularse a la convocatoria&#x27;,
+      text: &quot;¿Está seguro de realizar esta acción?&quot;,
+      type: &#x27;warning&#x27;,
+      showCancelButton: true,
+      confirmButtonColor: &#x27;green&#x27;,
+      confirmButtonText: &#x27;Aceptar&#x27;,
+      cancelButtonText: &#x27;Cancelar&#x27;,
+      reverseButtons: true
+    }).then((result) &#x3D;&gt; {
+      if(result.value){
+        
+        this._inscripcionArtistasDeportistasService.guardarInscripcion(inscripcion).subscribe(data&#x3D;&gt;{
+
+          if(data[&quot;success&quot;]){
+            swal({
+              title: &quot;Realizado&quot;,
+              text: &quot;Se ha inscrito correctamente&quot;,
+              type: &quot;success&quot;,
+              timer: 1500,
+              showConfirmButton: false
+            });        
+            this.errores &#x3D; [];
+            setTimeout(() &#x3D;&gt; {
+              this.router.navigate([&#x27;/estudiantes&#x27;, &#x27;dashboard&#x27;]);
+            }, 1500);
+          }else{
+            swal({
+              type: &#x27;error&#x27;,
+              title: &#x27;Error&#x27;,
+              text: &#x27;Ya se había registrado anteriormente en esta disciplina&#x27;,
+            });
+          }
+    
+        });
+      }
+    });
+  }
+
+  esMenorAEtapaActual(fechaFin:string){
+    return new Date(fechaFin + &#x27;T23:59:59Z&#x27;) &lt; new Date(this.etapaActual.fechaFin + &#x27;T23:59:59Z&#x27;);
+  }
+
+  esMayorAHoy(fechaFin:string){
+    return new Date(fechaFin + &#x27;T23:59:59Z&#x27;) &gt;&#x3D; new Date();
+  }
+
+  esIgual(fechaInicio:string, fechaFin:string){
+    return new Date(fechaInicio + &#x27;T23:59:59Z&#x27;).getTime() &#x3D;&#x3D;&#x3D; new Date(fechaFin + &#x27;T23:59:59Z&#x27;).getTime();
+  }
+
+  goBack():void{
+    this._location.back();
+  }
+
+
+
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h2 class&#x3D;&quot;text-uppercase animated fadeIn text-center&quot;&gt;Inscripción a convocatoria&lt;small class&#x3D;&quot;btn-block&quot;&gt;{{convocatoria.nombre}}&lt;/small&gt;&lt;/h2&gt;
+&lt;hr class&#x3D;&quot;animated fadeIn&quot;&gt;
+&lt;p-toast [style]&#x3D;&quot;{marginTop: &#x27;80px&#x27;}&quot; [baseZIndex]&#x3D;&quot;5000&quot;&gt;&lt;/p-toast&gt;
+
+&lt;div *ngIf&#x3D;&quot;errores.length &gt; 0&quot;&gt;
+    &lt;div class&#x3D;&quot;alert alert-danger alert text-center&quot;&gt;
+        &lt;ul&gt;
+            &lt;div *ngFor&#x3D;&quot;let error of errores&quot;&gt;
+                &lt;p&gt;{{error}}&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;error !&#x3D; null&quot;&gt;
+    &lt;div class&#x3D;&quot;alert alert-danger alert text-center&quot;&gt;
+        &lt;p&gt;{{error}}&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;error &#x3D;&#x3D; null&quot;&gt;
+    {{error}}
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+            &lt;div class&#x3D;&quot;animated fadeIn&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;etapaActual !&#x3D; null&quot;&gt;
+                    &lt;div class&#x3D;&quot;alert alert-info text-center mb-3&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;etapaActual.id !&#x3D; 0&quot;&gt;
+                        &lt;p class&#x3D;&quot;m-0&quot;&gt;La convocatoria se encuentra en etapa de &lt;strong&gt;{{etapaActual.nombre}} &lt;/strong&gt; &lt;span *ngIf&#x3D;&quot;!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)&quot;&gt;del {{etapaActual.fechaInicio | date : &#x27;dd/MM/yyyy&#x27;}} al {{etapaActual.fechaFin | date : &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;                            &lt;span *ngIf&#x3D;&quot;esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)&quot;&gt; el {{etapaActual.fechaInicio | date : &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;.&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;text-center mb-3 animated fadeIn&quot;&gt;
+                &lt;button class&#x3D;&quot;btn btn-outline-success rounded-pill shadow-sm collapsed mr-2&quot; type&#x3D;&quot;button&quot; data-toggle&#x3D;&quot;collapse&quot; data-target&#x3D;&quot;#collapseEtapas&quot; aria-expanded&#x3D;&quot;false&quot; aria-controls&#x3D;&quot;collapseEtapas&quot;&gt;
+                    &lt;span class&#x3D;&quot;fas fa-list-ul&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt; Ver etapas de la convocatoria
+                &lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;jumbotron jumbotron-fluid py-3 px-3 rounded collapse&quot; id&#x3D;&quot;collapseEtapas&quot;&gt;
+                &lt;label class&#x3D;&quot;labels-sm&quot;&gt;Etapas de la convocatoria&lt;/label&gt;
+                &lt;div class&#x3D;&quot;d-flex flex-wrap flex-md-wrap mb-3&quot;&gt;
+                    &lt;div class&#x3D;&quot;w-16 p-2 border d-flex flex-column justify-content-between&quot; *ngFor&#x3D;&quot;let etapa of etapas; let first &#x3D; first; let last &#x3D; last;&quot; [ngClass]&#x3D;&quot;{&#x27;border-0 bg-success text-white shadow&#x27;: etapa.estado_id &#x3D;&#x3D; etapaActual.id, &#x27;text-dark bg-white&#x27;: etapa.estado_id !&#x3D; etapaActual.id &amp;&amp; !esMenorAEtapaActual(etapa.fechaFin), &#x27;text-muted font-italic&#x27;: esMenorAEtapaActual(etapa.fechaFin), &#x27;rounded-left&#x27;: first, &#x27;rounded-right&#x27;: last}&quot;&gt;
+                        &lt;span class&#x3D;&quot;mb-2&quot;&gt;{{etapa.nombre}}&lt;/span&gt;
+                        &lt;small class&#x3D;&quot;d-block&quot; [ngClass]&#x3D;&quot;{&#x27;text-white&#x27;: etapa.estado_id &#x3D;&#x3D; etapaActual.id, &#x27;text-dark&#x27;: etapa.estado_id !&#x3D; etapaActual.id &amp;&amp; !esMenorAEtapaActual(etapa.fechaFin), &#x27;text-muted font-italic&#x27;: esMenorAEtapaActual(etapa.fechaFin)}&quot;&gt;
+                          &lt;span *ngIf&#x3D;&quot;esIgual(etapa.fechaInicio, etapa.fechaFin)&quot;&gt;{{etapa.fechaInicio | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;
+                          &lt;span *ngIf&#x3D;&quot;!esIgual(etapa.fechaInicio, etapa.fechaFin)&quot;&gt;{{etapa.fechaInicio | date: &#x27;dd/MM/yyyy&#x27;}} - {{etapa.fechaFin | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;
+                          
+                        &lt;/small&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+  
+        &lt;div class&#x3D;&quot;row labels-sm border shadow-sm mb-3 convocatoriaInfo&quot; *ngFor&#x3D;&quot;let disciplina of convocatoria.disciplinas; let i &#x3D; index&quot;&gt;
+            &lt;div class&#x3D;&quot;col-lg-5 p-3 bg-info text-white d-flex flex-wrap align-items-start flex-column justify-content-between&quot;&gt;
+                &lt;h3 class&#x3D;&quot;h4 border-bottom mb-3 pb-3 w-100&quot;&gt;
+                    &lt;strong&gt;{{disciplina.nombreDisciplina}}&lt;/strong&gt;
+                    &lt;small class&#x3D;&quot;d-block text-white mt-1&quot;&gt;{{disciplina.nombreModalidad}} &lt;/small&gt;
+                &lt;/h3&gt;
+                &lt;div class&#x3D;&quot;w-100&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-warning btn-block mb-1 shadow font-weight-bold text-uppercase&quot; (click)&#x3D;&quot;guardarInscripcion(disciplina)&quot;&gt;Postularme &lt;span class&#x3D;&quot;sr-only&quot;&gt;a la plaza &lt;/span&gt;&lt;/button&gt;
+                    &lt;a class&#x3D;&quot;btn btn-light d-block mb-1 shadow font-weight-bold text-uppercase&quot; role&#x3D;&quot;button&quot; *ngIf&#x3D;&quot;etapaActual.peso &gt;&#x3D; 5&quot;&gt;Ver resultados &lt;span class&#x3D;&quot;sr-only&quot;&gt;de la plaza &lt;/span&gt;&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-lg-7&quot;&gt;
+                &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                    &lt;label class&#x3D;&quot;m-0&quot;&gt;Criterios de evaluación&lt;/label&gt;
+                    
+                    &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+                            &lt;table class&#x3D;&quot;table&quot;&gt;
+                                &lt;thead&gt; 
+                                    &lt;tr&gt;
+                                        &lt;th style&#x3D;&quot;width: 180px;&quot;&gt;Nombre&lt;/th&gt;
+                                        &lt;th style&#x3D;&quot;width: 20px &quot;&gt;Porcentaje&lt;/th&gt;
+                                    &lt;/tr&gt;
+                                &lt;/thead&gt;
+                                &lt;tbody&gt;
+                                    &lt;tr *ngFor&#x3D;&quot;let item of disciplina.items&quot;&gt;
+                                        &lt;td&gt;
+                                            {{item.nombre}}        
+                                        &lt;/td&gt;
+                                        &lt;td&gt;
+                                            {{item.porcentaje}}%
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/tbody&gt;
+                              
+                            &lt;/table&gt;
+                
+                        &lt;/div&gt;
+
+                    &lt;!-- &lt;p *ngFor&#x3D;&quot;let item of disciplina.items&quot; class&#x3D;&quot;form-control-plaintext&quot; class&#x3D;&quot;p-0&quot;&gt;{{item.nombre}} - {{item.porcentaje}}%&lt;/p&gt; --&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+  
+    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+        &lt;pagination-controls (pageChange)&#x3D;&quot;p &#x3D; $event&quot; autoHide&#x3D;&quot;true&quot; previousLabel&#x3D;&quot;Anterior&quot; nextLabel&#x3D;&quot;Siguiente&quot;&gt;&lt;/pagination-controls&gt;
+    &lt;/div&gt;
+    
+    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+        &lt;!-- &lt;button class&#x3D;&quot;btn btn-light&quot; [routerLink]&#x3D;&quot;[ &#x27;/convocatoria&#x27; ]&quot; type&#x3D;&quot;button&quot;&gt;Volver a convocatorias&lt;/button&gt; --&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;col-12 text-center&quot; *ngIf&#x3D;&quot;error !&#x3D; null&quot;&gt;
+    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-default mr-md-1 mb-3&quot; (click)&#x3D;&quot;goBack()&quot;&gt;Volver al perfil&lt;/button&gt;
+&lt;/div&gt;
+
+
+
+&lt;!-- Modal --&gt;
+&lt;!-- &lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;inscripcionModal&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;inscripcionModalLabel&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog modal-lg&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;inscripcionModalLabel&quot;&gt;Disposiciones generales para postulación a plazas&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;postularForm.resetForm();&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Cerrar&quot;&gt;
+            &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+          &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;postularse(postularForm)&quot; #postularForm&#x3D;&quot;ngForm&quot; novalidate&gt;
+                &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                    &lt;p&gt;
+                        De conformidad con lo previsto en el &lt;b&gt;Articulo 8, Capítulo II (Título I - Disposiciones Generales) de la Resolución Rectoral N° 869 de 2018&lt;/b&gt; &lt;i&gt;Por medio de la cual se establece el Reglamento General del Programa de Becas de la Universidad del Magdalena&quot;&lt;/i&gt;,
+                        todo aspirante que tenga la intención de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas, deberán cumplir con la siguiente responsabilidad:
+                    &lt;/p&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;i&gt;
+                Verificar e informar a la Dirección de Bienestar Universitario antes de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas;
+                sí se encuentra como beneficiario de alguna de estas u otros beneficios ofrecidos por parte de la Universidad, como también, sí es beneficiario de estímulos o cualquier apoyo económico otorgado por instituciones o entidades del orden nacional,
+                toda vez que, al inscribirse siendo beneficiario según lo enunciado, quedará excluido del proceso.
+              &lt;/i&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;p&gt;
+                        En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el aspirante deberá diligenciar en el presente formulario de inscripción lo siguiente:
+                    &lt;/p&gt;
+                    &lt;ul style&#x3D;&quot;list-style: none;&quot;&gt;
+                        &lt;li&gt;
+                            &lt;p&gt;¿Es usted beneficiario de algún tipo de beca y otro beneficio ofrecido por parte de la Universidad mediante el Programa de Becas, o es beneficiario de estímulos y/o apoyos económicos otorgados por instituciones o entidades
+                                del orden nacional?&lt;/p&gt;
+                            &lt;div class&#x3D;&quot;form-group text-center&quot;&gt;
+                                &lt;label for&#x3D;&quot;respuesta_si&quot; class&#x3D;&quot;sr-only&quot;&gt;Respuesta&lt;/label&gt;
+                                &lt;div class&#x3D;&quot;form-check form-check-inline&quot;&gt;
+                                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;radio&quot; name&#x3D;&quot;respuesta&quot; id&#x3D;&quot;respuesta_si&quot; [(ngModel)]&#x3D;&quot;respuestaAceptar&quot; #respuestaBool&#x3D;&quot;ngModel&quot; value&#x3D;&quot;true&quot; required&gt;
+                                    &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;respuesta_si&quot;&gt;Sí&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;form-check form-check-inline&quot;&gt;
+                                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;radio&quot; name&#x3D;&quot;respuesta&quot; id&#x3D;&quot;respuesta_no&quot; [(ngModel)]&#x3D;&quot;respuestaAceptar&quot; #respuestaBool&#x3D;&quot;ngModel&quot; value&#x3D;&quot;false&quot; required&gt;
+                                    &lt;label class&#x3D;&quot;form-check-label&quot; for&#x3D;&quot;respuesta_no&quot;&gt;No&lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;row&quot;&gt;
+                                &lt;div class&#x3D;&quot;col-sm-12 col-lg-4&quot; *ngIf&#x3D;&quot;respuestaAceptar&quot;&gt;
+                                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                        &lt;label for&#x3D;&quot;tiposBeneficios&quot;&gt;Tipos de beneficios&lt;/label&gt;
+                                        &lt;select class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((postularForm.submitted || tiposBeneficios?.touched) &amp;&amp; tiposBeneficios.errors?.required) }&quot; [(ngModel)]&#x3D;&quot;tipo_beneficio_id&quot; id&#x3D;&quot;tiposBeneficios&quot; name&#x3D;&quot;tiposBeneficios&quot; [required]&#x3D;&quot;respuestaAceptar&quot;
+                                            #tiposBeneficios&#x3D;&quot;ngModel&quot;&gt;
+                      &lt;option value&#x3D;&quot;null&quot; selected disabled&gt;Seleccione el tipo de beneficio&lt;/option&gt;
+                      &lt;option *ngFor&#x3D;&quot;let tipoBeneficio of tiposBeneficiosSelect&quot; value&#x3D;&quot;{{tipoBeneficio.id}}&quot;&gt;{{tipoBeneficio.nombre}}&lt;/option&gt;
+                    &lt;/select&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;col-sm-12 col-lg-8&quot; *ngIf&#x3D;&quot;respuestaAceptar&quot;&gt;
+                                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                        &lt;label for&#x3D;&quot;benefic&quot;&gt;Nombre de beneficio&lt;/label&gt;
+                                        &lt;input class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: benefic.errors?.required &amp;&amp; (benefic?.touched || postularForm.submitted) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el nombre del beneficio. Máx. 255 caracteres.&quot; name&#x3D;&quot;benefic&quot; id&#x3D;&quot;benefic&quot; [(ngModel)]&#x3D;&quot;beneficio&quot;
+                                            maxlength&#x3D;&quot;255&quot; [required]&#x3D;&quot;respuestaAceptar&quot; #benefic&#x3D;&quot;ngModel&quot;&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;p&gt;
+                                &lt;strong&gt;Nota: &lt;/strong&gt;Para respaldo de lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Dirección de Bienestar Universitario el &lt;strong&gt;Formato de Declaración Juramentada&lt;/strong&gt;                                formulado para el Programa de Becas.
+                            &lt;/p&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;div class&#x3D;&quot;alert alert-secondary&quot; role&#x3D;&quot;alert&quot;&gt;
+                        &lt;p class&#x3D;&quot;text-center text-muted font-weight-bold font-italic mb-0&quot;&gt;
+                            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la &lt;a href&#x3D;&quot;https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf&quot;
+                                target&#x3D;&quot;_blank&quot; download&#x3D;&quot;resolución 056 del 31 de enero del 2019.pdf&quot;&gt;resolución 056 del 31 de enero del 2019&lt;/a&gt;.
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot; (click)&#x3D;&quot;postularForm.resetForm();&quot;&gt;Cancelar&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success&quot;&gt;Aceptar&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt; --&gt;
+
+
+&lt;ngx-spinner bdColor&#x3D;&quot;rgba(51, 51, 51, 0.8)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./inscripcion-estudiantes.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.labels-sm label {
+    font-size: 0.875rem;
+    color: dimgrey;
+}
+
+.w-16 {
+    width: 100%;
+}
+
+.btn-default{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.table td{
+    padding: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+    .w-16 {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width:768px){
+    .convocatoriaInfo{
+        width:70%; 
+        float: none; 
+        margin: 0 auto;
+    }
+}
+
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h2 class="text-uppercase animated fadeIn text-center">Inscripción a convocatoria<small class="btn-block">{{convocatoria.nombre}}</small></h2><hr class="animated fadeIn"><p-toast [style]="{marginTop: \'80px\'}" [baseZIndex]="5000"></p-toast><div *ngIf="errores.length > 0">    <div class="alert alert-danger alert text-center">        <ul>            <div *ngFor="let error of errores">                <p>{{error}}</p>            </div>        </ul>    </div></div><div *ngIf="error != null">    <div class="alert alert-danger alert text-center">        <p>{{error}}</p>    </div></div><div *ngIf="error == null">    {{error}}    <div class="row">        <div class="col-md-12">            <div class="animated fadeIn">                <div *ngIf="etapaActual != null">                    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">                        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : \'dd/MM/yyyy\'}} al {{etapaActual.fechaFin | date : \'dd/MM/yyyy\'}}</span>                            <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : \'dd/MM/yyyy\'}}</span>.</p>                    </div>                </div>            </div>            <div class="text-center mb-3 animated fadeIn">                <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mr-2" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">                    <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria                </button>            </div>            <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">                <label class="labels-sm">Etapas de la convocatoria</label>                <div class="d-flex flex-wrap flex-md-wrap mb-3">                    <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{\'border-0 bg-success text-white shadow\': etapa.estado_id == etapaActual.id, \'text-dark bg-white\': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), \'text-muted font-italic\': esMenorAEtapaActual(etapa.fechaFin), \'rounded-left\': first, \'rounded-right\': last}">                        <span class="mb-2">{{etapa.nombre}}</span>                        <small class="d-block" [ngClass]="{\'text-white\': etapa.estado_id == etapaActual.id, \'text-dark\': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), \'text-muted font-italic\': esMenorAEtapaActual(etapa.fechaFin)}">                          <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: \'dd/MM/yyyy\'}}</span>                          <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: \'dd/MM/yyyy\'}} - {{etapa.fechaFin | date: \'dd/MM/yyyy\'}}</span>                                                  </small>                    </div>                </div>            </div>        </div>    </div>          <div class="row labels-sm border shadow-sm mb-3 convocatoriaInfo" *ngFor="let disciplina of convocatoria.disciplinas; let i = index">            <div class="col-lg-5 p-3 bg-info text-white d-flex flex-wrap align-items-start flex-column justify-content-between">                <h3 class="h4 border-bottom mb-3 pb-3 w-100">                    <strong>{{disciplina.nombreDisciplina}}</strong>                    <small class="d-block text-white mt-1">{{disciplina.nombreModalidad}} </small>                </h3>                <div class="w-100">                    <button type="button" class="btn btn-warning btn-block mb-1 shadow font-weight-bold text-uppercase" (click)="guardarInscripcion(disciplina)">Postularme <span class="sr-only">a la plaza </span></button>                    <a class="btn btn-light d-block mb-1 shadow font-weight-bold text-uppercase" role="button" *ngIf="etapaActual.peso >= 5">Ver resultados <span class="sr-only">de la plaza </span></a>                </div>            </div>            <div class="col-lg-7">                <div class="form-group">                    <label class="m-0">Criterios de evaluación</label>                                        <div class="table-responsive">                            <table class="table">                                <thead>                                     <tr>                                        <th style="width: 180px;">Nombre</th>                                        <th style="width: 20px ">Porcentaje</th>                                    </tr>                                </thead>                                <tbody>                                    <tr *ngFor="let item of disciplina.items">                                        <td>                                            {{item.nombre}}                                                </td>                                        <td>                                            {{item.porcentaje}}%                                        </td>                                    </tr>                                </tbody>                                                          </table>                                        </div>                    <!-- <p *ngFor="let item of disciplina.items" class="form-control-plaintext" class="p-0">{{item.nombre}} - {{item.porcentaje}}%</p> -->                </div>            </div>        </div>      <div class="text-center">        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>    </div>        <div class="text-center">        <!-- <button class="btn btn-light" [routerLink]="[ \'/convocatoria\' ]" type="button">Volver a convocatorias</button> -->    </div></div><div class="col-12 text-center" *ngIf="error != null">    <button type="button" class="btn btn-default mr-md-1 mb-3" (click)="goBack()">Volver al perfil</button></div><!-- Modal --><!-- <div class="modal fade" id="inscripcionModal" tabindex="-1" role="dialog" aria-labelledby="inscripcionModalLabel" aria-hidden="true">    <div class="modal-dialog modal-lg" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="inscripcionModalLabel">Disposiciones generales para postulación a plazas</h5>                <button type="button" (click)="postularForm.resetForm();" class="close" data-dismiss="modal" aria-label="Cerrar">            <span aria-hidden="true">&times;</span>          </button>            </div>            <form (ngSubmit)="postularse(postularForm)" #postularForm="ngForm" novalidate>                <div class="modal-body">                    <p>                        De conformidad con lo previsto en el <b>Articulo 8, Capítulo II (Título I - Disposiciones Generales) de la Resolución Rectoral N° 869 de 2018</b> <i>Por medio de la cual se establece el Reglamento General del Programa de Becas de la Universidad del Magdalena"</i>,                        todo aspirante que tenga la intención de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas, deberán cumplir con la siguiente responsabilidad:                    </p>                    <ul>                        <li>                            <i>                Verificar e informar a la Dirección de Bienestar Universitario antes de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas;                sí se encuentra como beneficiario de alguna de estas u otros beneficios ofrecidos por parte de la Universidad, como también, sí es beneficiario de estímulos o cualquier apoyo económico otorgado por instituciones o entidades del orden nacional,                toda vez que, al inscribirse siendo beneficiario según lo enunciado, quedará excluido del proceso.              </i>                        </li>                    </ul>                    <p>                        En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el aspirante deberá diligenciar en el presente formulario de inscripción lo siguiente:                    </p>                    <ul style="list-style: none;">                        <li>                            <p>¿Es usted beneficiario de algún tipo de beca y otro beneficio ofrecido por parte de la Universidad mediante el Programa de Becas, o es beneficiario de estímulos y/o apoyos económicos otorgados por instituciones o entidades                                del orden nacional?</p>                            <div class="form-group text-center">                                <label for="respuesta_si" class="sr-only">Respuesta</label>                                <div class="form-check form-check-inline">                                    <input class="form-check-input" type="radio" name="respuesta" id="respuesta_si" [(ngModel)]="respuestaAceptar" #respuestaBool="ngModel" value="true" required>                                    <label class="form-check-label" for="respuesta_si">Sí</label>                                </div>                                <div class="form-check form-check-inline">                                    <input class="form-check-input" type="radio" name="respuesta" id="respuesta_no" [(ngModel)]="respuestaAceptar" #respuestaBool="ngModel" value="false" required>                                    <label class="form-check-label" for="respuesta_no">No</label>                                </div>                            </div>                            <div class="row">                                <div class="col-sm-12 col-lg-4" *ngIf="respuestaAceptar">                                    <div class="form-group">                                        <label for="tiposBeneficios">Tipos de beneficios</label>                                        <select class="form-control" [ngClass]="{\'is-invalid\': ((postularForm.submitted || tiposBeneficios?.touched) && tiposBeneficios.errors?.required) }" [(ngModel)]="tipo_beneficio_id" id="tiposBeneficios" name="tiposBeneficios" [required]="respuestaAceptar"                                            #tiposBeneficios="ngModel">                      <option value="null" selected disabled>Seleccione el tipo de beneficio</option>                      <option *ngFor="let tipoBeneficio of tiposBeneficiosSelect" value="{{tipoBeneficio.id}}">{{tipoBeneficio.nombre}}</option>                    </select>                                    </div>                                </div>                                <div class="col-sm-12 col-lg-8" *ngIf="respuestaAceptar">                                    <div class="form-group">                                        <label for="benefic">Nombre de beneficio</label>                                        <input class="form-control" [ngClass]="{\'is-invalid \': benefic.errors?.required && (benefic?.touched || postularForm.submitted) }" type="text" placeholder="Ingrese el nombre del beneficio. Máx. 255 caracteres." name="benefic" id="benefic" [(ngModel)]="beneficio"                                            maxlength="255" [required]="respuestaAceptar" #benefic="ngModel">                                    </div>                                </div>                            </div>                            <p>                                <strong>Nota: </strong>Para respaldo de lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Dirección de Bienestar Universitario el <strong>Formato de Declaración Juramentada</strong>                                formulado para el Programa de Becas.                            </p>                        </li>                    </ul>                    <div class="alert alert-secondary" role="alert">                        <p class="text-center text-muted font-weight-bold font-italic mb-0">                            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la <a href="https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf"                                target="_blank" download="resolución 056 del 31 de enero del 2019.pdf">resolución 056 del 31 de enero del 2019</a>.                        </p>                    </div>                </div>                <div class="modal-footer">                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="postularForm.resetForm();">Cancelar</button>                    <button type="submit" class="btn btn-success">Aceptar</button>                </div>            </form>        </div>    </div></div> --><ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'InscripcionEstudiantesDeportistasComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InscripcionEstudiantesDeportistasComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

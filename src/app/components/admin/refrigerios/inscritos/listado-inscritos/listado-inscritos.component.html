@@ -1,0 +1,565 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<h2 class="text-uppercase text-center">{{convocatoria.nombre}}<small class="btn-block text-muted">El listado cuenta con {{convocatoria.estudiantes.length}} registro(s)</small></h2>
+<hr>
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="animated fadeIn">
+            <div *ngIf="etapaActual != null">
+                <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                    <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span>
+                        <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="animated fadeIn" *ngIf="codigosInvalidos.length > 0">
+            <div class="alert alert-danger mb-3" role="alert">
+                <p class="m-0">Códigos inválidos</p>
+                <ul>
+                    <li *ngFor="let item of codigosInvalidos">{{item.codigo}} - {{item.observacion}}</li>
+                </ul>
+            </div>
+        </div> -->
+
+        <div *ngIf="codigosInvalidos.length > 0" >
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" (click)="codigosInvalidos = [];" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>     
+                <div class="col-12 ">
+                    <div class="form-group">                
+                        <span>{{codigosInvalidos.length}} codigos invalidos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 text-center">
+                <button  
+                  (click)="Invalidos()"         
+                  class="btn btn-success text-uppercase mb-3 mr-1"
+                  type="button"
+                  title="Ver codigos invalios">
+                  <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                  Codigos invalidos
+              </button>
+            </div>
+           
+        </div>
+
+
+        <div class="text-center mb-3 animated fadeIn">
+
+            <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+                        <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+            </button>
+
+            <button id="btn-filtros" class="btn btn-outline-dark rounded-pill shadow-sm mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+            </button>
+
+            <button *ngIf="(userService.roleMatch(['AdminRefrigerios']))" (click)="cambiarEstadosMultiples()" class="btn btn-outline-dark rounded-pill shadow-sm mb-3 mr-1" type="button" title="Cambiar estados de estudiantes">
+                Cambiar estado de estudiantes
+            </button>
+
+            <a tabindex="0" *ngIf="userService.roleMatch(['AdminRefrigerios'])" role="button" class="btn btn-light rounded-pill shadow-sm mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los estudiantes que están inscritos. Desde la columna de acciones, puede acceder a las diferentes funcionalidades. Los datos de esta tabla, pueden ser exportados en un archivo o imprimirlos.">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Información de ayuda</span>
+            </a>
+
+        </div>
+
+        <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+            <label class="labels-sm">Etapas de la convocatoria</label>
+            <div class="d-flex flex-wrap flex-md-wrap mb-3">
+                <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                    <span class="mb-2">{{etapa.nombre}}</span>
+                    <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+                      <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+                      <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse mb-3 mb-3" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-programa" class="form-group">
+                            <label>Filtrar por programa</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-beneficio" class="form-group">
+                            <label>Filtrar por beneficio</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-estado" class="form-group">
+                            <label>Filtrar por estado</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="form-group">
+                            <label>Filtrar por día</label>
+                            <select class="form-control input-sm" id="filter-dia">
+                                <option value="">- Mostrar todos -</option>
+                                <option value="Lunes">Lunes</option>
+                                <option value="Martes">Martes</option>
+                                <option value="Miércoles">Miércoles</option>
+                                <option value="Jueves">Jueves</option>
+                                <option value="Viernes">Viernes</option>
+                                <option value="Sábado">Sábado</option>
+                                <option value="Domingo">Domingo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+        <div class="alert alert-info text-center mb-3" *ngIf="estudiantes.length > 0">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <p>Códigos de estudiantes para cambio de estado</p>
+                    <p> <span *ngFor="let item of estudiantes; let last = last">{{item.codigo}}<span *ngIf="!last">, </span></span>
+                    </p>
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="cambiarEstadoCheck()">Cambiar estado</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive animated fadeIn">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Programa</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Beneficio</th>
+                        <th scope="col">Días seleccionados</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudiante of convocatoria.estudiantes; let i=index;">
+                        <td><input type="checkbox" name="radio-{{estudiante.idEstudiante}}{{estudiante.beneficio_id}}" id="radio-{{estudiante.idEstudiante}}{{estudiante.beneficio_id}}" [(checklist)]="estudiantes" [checklistValue]="estudiante" /></td>
+                        <td>{{estudiante.codigo}}</td>
+                        <td>{{estudiante.nombreEstudiante | titlecase}}</td>
+                        <td>{{funciones.sentenceCase(estudiante.programa)}}</td>
+                        <td>
+                            <span *ngIf="estudiante.sexo">M</span>
+                            <span *ngIf="!estudiante.sexo">F</span>
+                        </td>
+                        <td>{{estudiante.beneficio}}</td>
+                        <td>{{estudiante.dias}}</td>
+                        <td>{{estudiante.estadoInscripcion}}</td>
+                        <td>{{estudiante.email}}</td>
+                        <td class="text-center" attr.data-order="estudiante.nombreEstudiante">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{estudiante.idEstudiante}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{estudiante.idEstudiante}}">
+                                        <button *ngIf="(userService.roleMatch(['AdminRefrigerios']))" (click)="cambiarEstadoModal(estudiante)" class="dropdown-item" type="button" title="Cambiar estado">
+                                            Cambiar estado
+                                        </button>
+                                        <button *ngIf="(userService.roleMatch(['AdminRefrigerios']))" (click)="cambiarEstadoDiaModal(estudiante)" class="dropdown-item" type="button" title="Cambiar estado por días">
+                                            Cambiar estado por días
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-12 text-center">
+        <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/convocatoriasRefrigerio' ]">Volver</button>
+    </div>
+</div>
+
+<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="estadoForm.resetForm()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="cambiarEstado(estadoForm,soporte)" #estadoForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((estadoForm.submitted || estado.touched) && estado.errors?.required) }" [(ngModel)]="registroCambioEstado.estado_id" id="estado" name="estado" required #estado="ngModel">
+                                    <option value="null" selected disabled>Seleccione un estado</option>
+                                    <option *ngFor="let estadoSelect of estadosEstudiante" value="{{estadoSelect.id}}">{{estadoSelect.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="observacionCambioEstado">Observación</label>
+                                <textarea class="form-control" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacionCambioEstado" id="observacionCambioEstado" [(ngModel)]="registroCambioEstado.observacion" #observacionCambioEstado="ngModel"
+                                    rows=4> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="soporte">Soporte</label>
+                                <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>
+                                </p-fileUpload>
+                                <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estadoForm.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="historialEstadosModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="historialEstadoTitle">Historial de estados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive animated fadeIn">
+                            <table class="table" id="tableHistorialEstado">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let estado of historialEstados; let i=index;">
+                                        <td>{{estado.nombre}}</td>
+                                        <td>{{estado.fecha}}</td>
+                                        <td>
+                                            <button *ngIf="estado.soporte != null" (click)="verSoporteEstado(estado)" type="button" title="Ver soporte">
+                                                <span class="fas fa-eye"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pdfSoporte" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeSoporte()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="rutaPdf  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="estadoDiaModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="estadoDiaForm.resetForm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="cambiarDiaEstado(estadoDiaForm)" #estadoDiaForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="table-responsive animated fadeIn">
+                        <table class="table" id="table">
+                            <thead>
+
+                                <tr>
+                                    <th scope="col">Día</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Nuevo estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let estudiante of auxInscritoDia.dias; let i=index;">
+                                    <td>
+                                        {{estudiante.dia}}
+                                    </td>
+                                    <td>{{estudiante.estadoSlect | titlecase}}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" [(ngModel)]="auxInscritoDia.dias[i].nuevoEstado" id="estado{{i}}" name="estado{{i}}" #estado{{i}}="ngModel">
+                            <option value="null" selected disabled>Seleccione un estado</option>
+                            <option *ngFor="let estadoSelect of estadosEstudiante" value="{{estadoSelect.id}}">{{estadoSelect.nombre}}</option>
+                          </select>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estadoDiaForm.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="estadoModalMultiple" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Cambiar estados de estudiantes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="estadoFormMultiple.resetForm(); arrayCodigos = [] ;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form (ngSubmit)="cambiarEstadoMultiple(estadoFormMultiple,soporte)" #estadoFormMultiple="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="animated fadeIn" *ngIf="codigosInvalidos.length > 0">
+                        <div class="alert alert-danger mb-3" role="alert">
+                            <p class="m-0">Códigos inválidos</p>
+                            <ul>
+                                <li *ngFor="let item of codigosInvalidos">{{item.codigo}} - {{item.observacion}}</li>
+                            </ul>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="codigo">Códigos estudiantiles</label>
+                                <textarea class="form-control" type="text" placeholder="Ingrese los códigos de los estudiantes separados por coma ( , )" name="codigo" id="codigo" [(ngModel)]="codigos" #codigo="ngModel" rows=4 required [ngClass]="{'is-invalid': codigo.errors?.required && (codigo.touched || estadoFormMultiple.submitted)}"></textarea>
+                                <div class="invalid-feedback">Digite los códigos de los estudiantes</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="estadoMultiple">Estado</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((estadoFormMultiple.submitted || estadoMultiple.touched) && estadoMultiple.errors?.required) }" [(ngModel)]="registroCambioEstado.estado_id" id="estadoMultiple" name="estadoMultiple" required #estadoMultiple="ngModel">
+                                    <option value="null" selected disabled>Seleccione un estado</option>
+                                    <option *ngFor="let estadoSelect of estadosEstudiante" value="{{estadoSelect.id}}">{{estadoSelect.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="observacionMultiple">Observación</label>
+                                <textarea class="form-control" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacionMultiple" id="observacionMultiple" [(ngModel)]="registroCambioEstado.observacion" #observacionMultiple="ngModel" rows=4></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="soporte">Soporte</label>
+                                <p-fileUpload id="soporteMultiple" name="soporteMultiple" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}"
+                                    invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido," invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento"
+                                    (onRemove)="onClearFile()" styleClass="is-invalid" #soporteMultiple>
+                                </p-fileUpload>
+                                <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estadoFormMultiple.resetForm(); arrayCodigos = [] ;">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="estadoModalCheck" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="estadoFormCheck.resetForm()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <form (ngSubmit)="cambiarCheck(estadoFormCheck,soporte)" #estadoFormCheck="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((estadoFormCheck.submitted || estado.touched) && estado.errors?.required) }" [(ngModel)]="registroCambioEstado.estado_id" id="estado" name="estado" required #estado="ngModel">
+                                        <option value="null" selected disabled>Seleccione un estado</option>
+                                        <option *ngFor="let estadoSelect of estadosEstudiante" value="{{estadoSelect.id}}">{{estadoSelect.nombre}}</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="observacionCambioEstado">Observación</label>
+                                <textarea class="form-control" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacionCambioEstado" id="observacionCambioEstado" [(ngModel)]="registroCambioEstado.observacion" #observacionCambioEstado="ngModel"
+                                    rows=4> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="soporte">Soporte</label>
+                                <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>
+                                </p-fileUpload>
+                                <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estadoFormCheck.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+ <!-- códigos invalidios -->
+ <div class="modal fade" id="codigosInvalidos" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content ">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Códigos inválidos</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="codigosInvalidos = [];" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>            
+         <div class="modal-body">
+            <div class="row"   *ngFor="let item of codigosInvalidos; let i ">
+                  <p  class="d-inline-block w-100 " ><small class="d-inline-block w-100 text-truncate"><strong>Código: </strong> {{item.codigo}} </small></p>
+                  <p  class="d-inline-block w-100 " ><small class="d-inline-block w-100 text-truncate"><strong>Observación:</strong>  {{item.observacion}}</small></p>
+                  <br>
+             </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal" (click)="codigosInvalidos = [];" >Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>

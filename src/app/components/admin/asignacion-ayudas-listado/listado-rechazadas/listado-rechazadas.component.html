@@ -1,0 +1,68 @@
+<div class="table-responsive">
+    <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table-estudiantes" style="width:100%;">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre completo</th>
+                <th>Sexo</th>
+                <th>Tipo doc</th>
+                <th>Num doc</th>
+                <th>Estrato</th>
+                <th>Departamento origen</th>
+                <th>Municipio</th>
+                <th>Sisben</th>
+                <th>Dirección de residencia</th>
+                <th>Teléfono</th>
+                <th>Celular</th>
+                <th>Email</th>
+                <th>Facultad</th>
+                <th>Programa</th>
+                <th>Colegio</th>
+                <th>Condiciones especiales</th>
+                <th>Convocatoria almuerzos/refrigerios</th>
+                <th>Programa de inclusión y permanencia</th>
+                <th>Ayudantias académicas, extensión y administrativas</th>
+                <th>Programa jovenes en acción</th>
+                <th>Rapimercar</th>
+                <th>Solicitante</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let estudiante of estudiantes">
+                <td>{{estudiante.codigo}}</td>
+                <td>{{estudiante.nombre | titlecase}}</td>
+                <td>{{estudiante.sexo}}</td>
+                <td>{{estudiante.tipo_identificacion}}</td>
+                <td>{{estudiante.identificacion}}</td>
+                <td>{{estudiante.estrato}}</td>
+                <td>{{estudiante.departamento}}</td>
+                <td>{{estudiante.municipio}}</td>
+                <td>{{estudiante.sisben | number: '1.0-2'}}</td>
+                <td>{{estudiante.direccion}}</td>
+                <td>{{estudiante.telefono}}</td>
+                <td>{{estudiante.celular}}</td>
+                <td>{{estudiante.email}}</td>
+                <td>{{estudiante.facultad}}</td>
+                <td>{{estudiante.programa}}</td>
+                <td>{{estudiante.colegio}}</td>
+                <td>
+                    <span *ngFor="let condicion of estudiante.condiciones_especiales; let last = last">{{condicion.nombre}} <span *ngIf="!last">, </span></span>
+                </td>
+                <td>{{estudiante.tiene_beneficio_alimenticio}}</td>
+                <td>{{estudiante.es_inclusion}}</td>
+                <td>{{estudiante.tiene_ayudantia}}</td>
+                <td>{{estudiante.es_joven_en_accion}}</td>
+                <td>{{estudiante.almacen_mas_cercano}}</td>
+                <td title="{{estudiante.solicitante}}">{{estudiante.solicitante.split('@')[0]}}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline-dark" (click)="modalDetalles(estudiante)" data-toggle="modal" data-target="#detallesModal" title="Ver detalles de {{estudiante.nombre}}">
+<span class="fas fa-search" aria-hidden="true"></span>
+<span class="sr-only">Ver detalles de {{estudiante.nombre}}</span>
+</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<app-detalle-solicitud-ayuda #modalDetalle></app-detalle-solicitud-ayuda>

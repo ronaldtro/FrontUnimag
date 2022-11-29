@@ -1,0 +1,136 @@
+<h2 class="text-uppercase animated fadeIn text-center">Grupos <small class="btn-block text-muted">Detalles del grupo</small></h2>
+  <hr class="animated fadeIn">
+  
+  <form #grupoForm="ngForm" novalidate (ngSubmit)="guardarGrupo(grupoForm)" class="animated fadeIn">
+    <fieldset>
+        <legend>Información general</legend>
+       
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6">
+                <div id="nombre" class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del grupo. Máx. 255 caracteres" name="nombre" maxlength="255" [(ngModel)]="grupo.nombre" #nombre="ngModel" required [ngClass]="{'is-invalid': nombre.errors?.required && (nombre.touched || grupoForm.submitted)}" readonly disabled>
+                    <div class="invalid-feedback">Escriba el nombre del grupo</div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6">
+                <div id="nivel_formativo" class="form-group">
+                    <label for="nivelFormativo">Nivel formativo</label>
+                    <select id="nivelFormativo" class="form-control" name="nivelFormativo" [ngClass]="{'is-invalid': ((grupoForm.submitted || nivelFormativo.touched) && (nivelFormativo.errors?.required))}" [(ngModel)]="grupo.idNivelFormativo" #nivelFormativo="ngModel" readonly disabled>
+                        <option value="null" disabled selected>Seleccione el nivel formativo</option> 
+                        <option *ngFor="let nivelFormativo of listaNivelesFormativos" [ngValue]="nivelFormativo.idNivelFormativo">{{nivelFormativo.nombre}}</option>
+                    </select>    
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+              <div id="disciplina" class="form-group">
+                  <label for="disciplina">Disciplina</label>
+                  <select id="disciplina" class="form-control" name="disciplina" [ngClass]="{'is-invalid': ((grupoForm.submitted || disciplina.touched) && (disciplina.errors?.required))}" [(ngModel)]="grupo.idDisciplina" #disciplina="ngModel" readonly disabled>
+                      <option value="null" disabled selected>Seleccione la disciplina</option> 
+                      <option *ngFor="let disciplina of listaDisciplinas" [ngValue]="disciplina.idDisciplina">{{disciplina.nombre}}</option>
+                  </select>    
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label for="imagen">Imagen <button type="button" class="d-block btn btn-link btn-sm p-0 mt-2" (click)="verImagen()">Ver imagen cargada</button></label>
+                </div>
+            </div>
+        
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea type="text" name="descripcion" id="descripcion" rows="5" class="form-control" [ngClass]="{'is-invalid': ((grupoForm.submitted || descripcion.touched) && (descripcion.errors?.required) )}" [(ngModel)]="grupo.descripcion" readonly disabled #descripcion="ngModel" placeholder="Descripción del grupo"
+                    ></textarea>    
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Datos del encargado </legend>
+    
+        <div class="table-responsive mt-3">
+            <table id="table_encargado" class="table">
+                <thead>
+                    <tr>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="grupo.encargado != null">
+                        <td>{{grupo.encargado.identificacion}}</td>
+                        <td>{{grupo.encargado.nombre}}</td>
+                        <td>{{grupo.encargado.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+
+    <hr>
+    <fieldset>
+        <legend> Horario del grupo </legend>
+  
+        <div class="table-responsive mt-3">
+            <table id="table_dias" class="table">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                        <th>Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dia of grupo.dias; let i=index">
+                        <td>{{dia.nombre}}</td>
+                        <td>{{dia.horaInicio }} - {{dia.horaFin }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend> Roles </legend>
+        <div class="table-responsive mt-3">
+            <table id="table_roles" class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rol of grupo.listaRoles; let i=index">
+                        <td>{{rol.nombre}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver al listado</button>
+    </div>
+  </form>
+  
+<!-- Modal para mostrar imagen-->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId">Imagen de grupo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="img-responsive" style="max-width: 100%; max-height: 100%; margin:0 auto;" [src]="grupo.file_imagen | donseguro: api" alt="Imagen de grupo">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

@@ -1,0 +1,22 @@
+.labels-sm label {
+    font-size: 0.875rem;
+    color: dimgrey;
+}
+
+.w-16 {
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .w-16 {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .w-16 {
+        width: 16.6667%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {}

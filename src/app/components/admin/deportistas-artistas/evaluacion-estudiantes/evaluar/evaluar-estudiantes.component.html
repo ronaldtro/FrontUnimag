@@ -1,0 +1,65 @@
+<div class="animated fadeIn">
+  <h2 class="text-uppercase">Evaluar estudiante <small class="btn-block text-muted">Formulario de evaluación del estudiante</small></h2>
+  <hr>
+
+  <app-perfil-deportistas [idInscripcion]="idInscripcion" > </app-perfil-deportistas>
+
+  <div class="row">
+     
+      <div class="col-sm-12 pt-3">
+
+          <form (ngSubmit)="guardarEvaluacion(forma)" #forma="ngForm" novalidate>
+              <h4 class="text-center text-dark">Criterios de evaluación</h4>
+              <!-- <div class="alert alert-info" role="alert" *ngIf="evaluacion.length == 0">
+                  <strong>Debe ingresar los criterios de evaluación antes de evaluar al estudiante.</strong> Para ingresar los criterios de evaluación a esta plaza <a [routerLink]="[ '/plazas/criteriosEvaluacion/', convocatoria ]">haga clic aquí</a>.
+              </div> -->
+
+              <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Criterio</th>
+                              <th scope="col" style="width: 150px;">Valor máximo</th>
+                              <th scope="col" style="width: 150px;">Porcentaje</th>
+                              <th scope="col" class="text-center" style="width: 150px;">Calificación</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of listaItemsDisciplina; let i=index">
+                              <td>{{item.nombreItem}}</td>
+                              <td>{{item.valorMaximo}}</td>
+                              <td>{{item.porcentaje}}% </td>
+
+                              <td class="text-center">
+                                  <input [disabled]="(fechaActual > fechaUltimaEtapa)" class="form-control" [ngClass]="{'is-invalid ': (puntaje_i.errors?.min || puntaje_i.errors?.max  || puntaje_i.errors?.required) && (puntaje_i.touched || forma.submitted)}" type="number" min="0" max="{{item.valorMaximo}}" id="puntaje_{{i}}" name="puntaje_{{i}}"
+                                      [(ngModel)]="item.puntaje" #puntaje_i="ngModel" required>
+
+                                   <div class="invalid-feedback" *ngIf="(puntaje_i.errors?.min)">
+                                      Solo números mayores o iguales que 0.
+                                  </div>
+                                  <div class="invalid-feedback" *ngIf="(puntaje_i.errors?.max)">
+                                    Solo números menores o iguales que {{item.valorMaximo}}.
+                                  </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div *ngIf="listaItemsDisciplina.length > 0" class="alert alert-info text-center" role="alert">
+                  El puntaje porcentual total del estudiante es <strong > {{getPuntajePorcentual() | number : '1.2-2'}}%</strong>.
+              </div>
+              <div *ngIf="listaItemsDisciplina.length == 0" class="alert alert-danger text-center" role="alert">
+                    No hay ítems asignados a esta disciplina
+              </div>
+              <div class="col-12 text-center mb-3">
+                  <button type="button" class="btn btn-light mb-3 mr-1" (click)="goBack()">Volver</button>
+                  <button *ngIf="fechaActual <= fechaUltimaEtapa" type="submit" class="btn btn-success mb-3">Guardar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

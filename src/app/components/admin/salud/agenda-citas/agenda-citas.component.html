@@ -1,0 +1,167 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner> 
+<div class="mt-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Agenda de citas <small class="d-block text-muted">El listado cuenta con {{agenda.length}} registro(s)</small></h2>
+    <hr>
+
+
+          <div class="text-center mb-3 animated fadeIn">
+            <button id="btn-filtros" class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+            </button>
+
+        </div>
+        <div class="collapse mb-3" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-profesional" class="form-group">
+                            <label>Filtrar por profesional</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-servicio" class="form-group">
+                            <label>Filtrar por servicio</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-estado" class="form-group">
+                            <label>Filtrar por estado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+
+      <div class="row mb-5"  >
+          <div class="table-responsive">
+                <table id="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripper">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">Id</th> -->
+
+                            <th scope="col" class="text-center">Fecha</th>
+                            <th scope="col" class="text-center">Hora</th>
+                            <th scope="col" class="text-center">Lugar</th>
+                            <th scope="col" class="text-center">Paciente</th>
+                            <th scope="col" class="text-center">Profesional</th>
+                            <th scope="col" class="text-center">Servicio</th>
+                            <th scope="col" class="text-center">Estado</th>
+                            <th scope="col" class="text-center" style="width: 100px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of agenda ; let i = index; ">
+                            
+                            <td>{{ item.fecha | date:'fullDate' }}</td>
+                            <td class="text-center">{{item.fecha  | date:'shortTime' }}</td>
+                            <td class="text-center">{{item.lugar}}</td>
+                            <td class="text-center">{{item.paciente}}</td>
+                            <td class="text-center">{{item.especialista}}</td>
+                            <td class="text-center">{{item.especialidad}}</td> 
+                            <td class="text-center">{{item.estado }}</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                  <!-- (click)="editar(per)" (click)="estadoDato(per)" -->
+                                    <button class="btn btn-sm btn-outline-dark border-secondary " (click)="detalleCita(item)" type="button" title="Detalles">
+                                        <span class="fa fa-info-circle" aria-hidden="true"></span>
+                                        <span class="sr-only">Detalles</span>
+                                    </button>
+                                    <button *ngIf ="item.estado_id != 3" [ngClass]="{'btn-desactivar': item.estado_id == 1, 'btn-activar':item.estado_id == 3}"  (click)="citaCancelar(item)"  class="btn btn-sm btn-outline-dark border-secondary" type="button" [title]="item.estado_id == 1? 'Cancelar cita' : 'Activar'">
+                                        <span [ngClass]="{'fa-calendar-times': item.estado_id == 1, 'fa-eye':item.estado_id == 3}"  class="far" aria-hidden="true"></span>
+                                        <span *ngIf="item.estado_id == 3" class="sr-only">Activar registro</span>
+                                        <span *ngIf="item.estado_id == 1 " class="sr-only">Cancelar cita</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+      </div>
+
+
+
+</div>
+
+
+<div class="modal fade" id="detalleCita" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content  ">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalle de la cita</h5>
+                <button type="button" class="close" data-dismiss="modal"  aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+    <form>
+        <div class="modal-body"> 
+                <!-- {{citas|json}} -->
+                <div class="container-fluid">                      
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12 p-3 bg-info text-white mb-4">
+                            <h3 class="h4">
+                            
+                                <b class="d-block ">{{cita.paciente}}  </b>
+                                <small class="d-block text-white mb-3">Paciente<b></b></small>
+                                <small class="d-block text-white">Profesional: {{cita.especialista}} </small>
+                                <small class="d-block text-white">Servicio: {{cita.especialidad}}</small>
+                            </h3>
+                                
+                        </div>
+                      </div>
+                 
+
+                     <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Estado de la cita:</b></label>
+                                <p class="form-control-plaintext det" >{{cita.estado}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                    <label><b>Consultorio:</b></label>
+                                <p class="form-control-plaintext det">{{cita.lugar}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                    <label><b>Lugar:</b></label>
+                                <p class="form-control-plaintext det">{{cita.lugar}}</p>
+                            </div>
+                        </div> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                    <label><b>Fecha:</b></label>
+                                <p class="form-control-plaintext det">{{ cita.fecha | date:'fullDate' }}</p>
+                            </div>
+                        </div> 
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                    <label><b>Hora:</b></label>
+                                <p class="form-control-plaintext det"> {{cita.fecha  | date:'shortTime' }}</p>
+                            </div>
+                        </div> 
+                     </div>
+                       
+                    </div>
+                </div>
+                        
+              
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            
+        </div>
+    </form>
+        </div>
+    </div>
+    </div> 

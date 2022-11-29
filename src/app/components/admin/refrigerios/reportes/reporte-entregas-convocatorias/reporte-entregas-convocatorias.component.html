@@ -1,0 +1,74 @@
+<div class="my-3 text-center animated fadeIn">
+  <div class="text-center">
+      <h2 class="text-uppercase text-center animated fadeIn">Reporte de entregas de almuerzos y refrigerios <small class="d-block text-muted">El listado cuenta con {{entregas.length}} registro(s)</small></h2>
+      <button class="btn btn-light animated fadeIn" (click)="backClicked()" type="button">Ir atrás</button>
+      <hr>
+  </div>
+  <div class="row">
+      <div class="col-lg-12 text-center">
+
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1 center" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+
+        <div class="collapse col-lg-12" id="collapseFilter">
+              <div class="card card-body px-3 pt-3 mb-3">
+                  <div class="row">
+                      <!-- <div class="col-12 col-sm-6 col-md-4">
+                          <div id="filter-tipoBeneficio" class="form-group">
+                              <label>Filtrar por tipo de fecha</label>
+
+                          </div>
+                      </div> -->
+                      <div class="col-12 col-sm-6 col-md-6">
+                          <div id="filter-convocatoria" class="form-group">
+                              <label>Filtrar por convocatoria</label>
+
+                          </div>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-6">
+                              <div id="filter-beneficio" class="form-group">
+                                  <label>Filtrar por beneficio</label>
+          
+                              </div>
+                          </div>
+
+                  </div>
+              </div>
+          </div>
+
+      </div>
+</div>
+<div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+  <div class="table-responsive animated fadeIn">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+          <thead>
+              <tr>
+                  <th class="text-center" scope="col">Convocatoria</th>
+                  <th class="text-center" scope="col">Beneficio</th>
+                  <th class="text-center" scope="col">Fecha de entrega</th>
+                  <th class="text-center" scope="col">Entregas excusadas</th>
+                  <th class="text-center" scope="col">Entregas por sistemas</th>
+                  <th class="text-center" scope="col">Entregas extemporaneas</th>
+                  <th class="text-center" scope="col">Entregas totales</th>
+                  <th class="text-center" scope="col">Fallas</th>
+                  <th class="text-center" scope="col">Fallas por sistema</th>
+                
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="text-center" *ngFor="let entrega of entregas">
+                  <td>{{entrega.convocatoria}}</td>  
+                  <td>{{entrega.beneficio}}</td>
+                  <td attr.data-order="{{entrega.fecha_entrega}}">{{entrega.fecha_entrega | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{entrega.entregas_excusadas}}</td>
+                  <td>{{entrega.entregas_por_sistema}}</td>
+                  <td>{{entrega.entregas_extemporaneas}}</td>
+                  <td>{{entrega.entregas_totales}}</td>
+                  <td>{{entrega.fallas}}</td>
+                  <td>{{entrega.fallas_por_sistema}}</td>
+              </tr>
+      </table>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

@@ -1,0 +1,241 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<h2 class="text-uppercase text-center">Plazas <small class="d-block text-muted">Formulario de edición de solicitud de plazas</small></h2>
+<hr>
+
+<div class="alert alert-danger alert" *ngIf="errores.length > 0">
+    <label><b>Corrige los errores:</b></label>
+    <ul>
+        <div *ngFor="let error of errores">
+            <li *ngIf="error.errores.length>0">
+                <p>{{error.errores[0].ErrorMessage}}</p>
+            </li>
+        </div>
+    </ul>
+</div>
+
+<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+
+    <fieldset>
+        <legend>Información general</legend>
+        <div class="alert alert-info">
+            Todos los campos de información en este formulario son obligatorios a excepción del campo 'Perfil' que se completa automáticamente a medida que los demás campos de información son completados.
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="convocatorias.length == 0">
+            En la fecha actual no hay convocatorias en etapa de solicitud de plazas.
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="convocatoria_id">Convocatoria</label>
+                    <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || convocatoria_id.touched) && convocatoria_id.errors?.required) }" id="convocatoria_id" name="convocatoria_id" [(ngModel)]="plaza.convocatoria_id" required #convocatoria_id="ngModel"
+                        (change)="canjearObjeto()">
+            <option disabled [ngValue]="null" selected>Seleccione convocatoria</option>
+            <option *ngFor="let item of convocatorias" [value]="item.id">{{item.nombre}}</option>
+          </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tipo_ayudantia">Tipo de ayudantía</label>
+                    <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || tipo_ayudantia.touched) && tipo_ayudantia.errors?.required) }" id="tipo_ayudantia" name="tipo_ayudantia" [(ngModel)]="plaza.tipo_ayudantia" required #tipo_ayudantia="ngModel"
+                        (change)="limpiarPlaza()">
+            <option disabled [ngValue]="null" selected>Seleccione tipo de ayudantía</option>
+            <option *ngFor="let item of tiposAyudantias" [value]="item.id">{{item.nombre}}</option>
+          </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="tipo_plaza">Nombre de plaza</label>
+                    <ng-select [items]="tiposPlazas | selecPlaza: plaza.tipo_ayudantia" id="tipo_plaza" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || tipo_plaza.touched) && tipo_plaza.errors?.required) }" bindValue="id" placeholder="Seleccione plaza"
+                        name="tipo_plaza" #tipo_plaza="ngModel" [(ngModel)]="plaza.tipo_plaza_id" required>
+                        <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                            <div class="ng-option disabled">
+                                No hay resultados
+                            </div>
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="cupos_solicitados">Cupos solicitados</label>
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': ( (forma.submitted || cupos_solicitados.touched) && (cupos_solicitados.errors?.required || cupos_solicitados.errors?.min) )  }" name="cupos_solicitados" #cupos_solicitados="ngModel" [(ngModel)]="plaza.cupos_solicitados"
+                        [min]="1" required placeholder="Ingrese el no. de cupos solicitados. Mín. 1">
+                    <div class="invalid-feedback" *ngIf="( (forma.submitted || cupos_solicitados.touched) && cupos_solicitados.errors?.min )">
+                        Solo números mayores que o iguales que 1.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="porcentaja_creditos_requeridos">Porcentaje de créditos aprobados</label>
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': ( (forma.submitted || porcentaja_creditos_requeridos.touched) && (porcentaja_creditos_requeridos.errors?.required || porcentaja_creditos_requeridos.errors?.min || porcentaja_creditos_requeridos.errors?.max) )  }"
+                        name="porcentaja_creditos_requeridos" #porcentaja_creditos_requeridos="ngModel" [(ngModel)]="plaza.porcentaja_creditos_requeridos" [min]="0" [max]="100" required placeholder="Ingrese el porcentaje de créditos aprobados. Mín. 1. Max. 100.">
+                    <div class="invalid-feedback" *ngIf="( (forma.submitted || porcentaja_creditos_requeridos.touched) && porcentaja_creditos_requeridos.errors?.min )">
+                        Solo números mayores o iguales que 0.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="( (forma.submitted || porcentaja_creditos_requeridos.touched) && porcentaja_creditos_requeridos.errors?.max )">
+                        Solo números menores o iguales que 100.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="promedio_minimo">Promedio mínimo del estudiante</label>
+                    <input type="number" class="form-control" [ngClass]="{'is-invalid': ( (forma.submitted || promedio_minimo.touched) && (promedio_minimo.errors?.required || promedio_minimo.errors?.min || promedio_minimo.errors?.max) )  }" name="promedio_minimo" #promedio_minimo="ngModel"
+                        [(ngModel)]="plaza.promedio_minimo" [min]="convocatoriaSeleccionada ? convocatoriaSeleccionada['promedioMinimo'] : 0" [max]="500" required placeholder="Ingrese el promedio mínimo. Max. 100.">
+                    <div class="invalid-feedback" *ngIf="( (forma.submitted || promedio_minimo.touched) && promedio_minimo.errors?.min )">
+                        Solo números mayores o iguales que {{convocatoriaSeleccionada ? convocatoriaSeleccionada['promedioMinimo'] : 0}}.
+                    </div>
+                    <div class="invalid-feedback" *ngIf="( (forma.submitted || promedio_minimo.touched) && promedio_minimo.errors?.max )">
+                        Solo números menores o iguales que 500.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="perfil">Perfil</label>
+                    <textarea class="form-control" [value]="completarPerfil()" name="perfil" rows="4" placeholder="El perfil de la plaza se construirá cuando se seleccionen los requisitos del estudiante." readonly></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="competencias_requeridas">Competencias requeridas</label>
+                    <textarea class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || competencias_requeridas.touched) && competencias_requeridas.errors?.required) }" name="competencias_requeridas" #competencias_requeridas="ngModel" [(ngModel)]="plaza.competencias_requeridas"
+                        rows="4" placeholder="Ej: Capacidad para resolver problemas, capacidad de trabajo en equipo y liderazgo, etc. Máx. 1000 caracteres." required maxlength="1000" [required]="tipoConvocatoria == 1"></textarea>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="facultad">Facultad</label>
+
+                    <ng-select [items]="facultades" id="facultad" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || facultad.touched) && facultad.errors?.required) }" bindValue="id" placeholder="Seleccione facultad" name="facultad" #facultad="ngModel" [(ngModel)]="plaza.facultades"
+                        [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="plaza.programas.length == 0">
+                        <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                            <div class="ng-option disabled">
+                                No hay resultados
+                            </div>
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="programa">Programa</label>
+                    <ng-select [items]="programas" id="programa" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || programa.touched) && programa.errors?.required) }" bindValue="id" placeholder="Seleccione programa" name="programa" #programa="ngModel" [(ngModel)]="plaza.programas"
+                        [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="plaza.facultades.length == 0">
+                        <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                            <div class="ng-option disabled">
+                                No hay resultados
+                            </div>
+                        </ng-template>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Actividades a realizar <button (click)="agregarActividad()" type="button" class="btn btn-outline-primary btn-sm"><i
+          class="fas fa-plus"></i>Agregar actividad</button></legend>
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th style="width: 100px;" class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of plaza.actividades; let j = index;trackBy:trackByIndex">
+                            <td>
+                                <input type="text" class="form-control" [ngClass]="{'is-invalid': ( (forma.submitted || actividad_j.touched) && (actividad_j.errors?.required || actividad_j.errors?.maxlength) )  }" name="actividad_{{j}}" id="actividad_{{j}}" #actividad_j="ngModel" [(ngModel)]="item.descripcion"
+                                    maxlength="500" required placeholder="Ingrese la actividad. Max. 500.">
+                            </td>
+                            <td class="text-center">
+                                <button (click)="quitarElemento(j, plaza.actividades)" type="button" class="btn btn-light btn-sm" title="Eliminar registro"><span
+                    class="fas fa-times"></span><span class="sr-only">Eliminar registro</span></button>
+                            </td>
+                        </tr>
+                        <tr class="table-info">
+                            <td colspan="4" *ngIf="plaza.actividades.length == 0" role="alert">
+                                No hay actividades relacionadas con la plaza. Para ingresar debe presionar en el botón "<i class="fas fa-plus"></i> Agregar actividad".
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Asignaturas previas <button (click)="agregarAsignatura()" type="button" class="btn btn-outline-primary btn-sm"><i
+          class="fas fa-plus"></i>Agregar asignatura</button></legend>
+        <small id="emailHelp" class="form-text text-muted" *ngIf="convocatoriaSeleccionada">El puntaje mínimo según la
+      convocatoria seleccionada es {{convocatoriaSeleccionada['puntajeMinimo']}}.</small>
+        <div class="row">
+            <div class="col-12 table-responsive" style="overflow: visible;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Asignatura</th>
+                            <th style="width: 200px;">Puntaje</th>
+                            <th style="width: 100px;" class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of plaza.asignaturas; let i = index;trackBy:trackByIndex">
+                            <td>
+                                <ng-select [items]="asignaturas" id="nombre_{{i}}" bindLabel="titulo" (change)="verificarAsignaturas(item)" [ngClass]="{'is-invalid': ((forma.submitted || nombre_i.touched) && nombre_i.errors?.required) }" bindValue="codigo" placeholder="Seleccione asignatura"
+                                    name="nombre_{{i}}" #nombre_i="ngModel" [(ngModel)]="item.codigo" required>
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                            </td>
+                            <td>
+                                <input class="form-control" [ngClass]="{'is-invalid': ( (forma.submitted || puntaje_i.touched) && (puntaje_i.errors?.required || puntaje_i.errors?.min || puntaje_i.errors?.max) )  }" type="number" [min]="convocatoriaSeleccionada ? convocatoriaSeleccionada['puntajeMinimo'] : 1"
+                                    [max]="500" id="puntaje_{{i}}" name="puntaje_{{i}}" [(ngModel)]="item.puntaje" required #puntaje_i="ngModel" required>
+                            </td>
+                            <td>
+                                <button (click)="quitarElemento(i, plaza.asignaturas)" type="button" class="btn btn-light btn-sm" title="Eliminar registro"><i
+                    class="fas fa-times"></i><span class="sr-only">Eliminar registro</span></button>
+                            </td>
+                        </tr>
+                        <tr class="table-info">
+                            <td colspan="4" *ngIf="plaza.asignaturas.length == 0" role="alert">
+                                No hay asignaturas relacionadas con la plaza. Para ingresar debe presionar en el botón "<i class="fas fa-plus"></i> Agregar asignatura".
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-light mb-3 mr-1" [routerLink]="[ '/plazas/listarPlazasSolicitadas' ]">Cancelar</button>
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+    </div>
+
+</form>

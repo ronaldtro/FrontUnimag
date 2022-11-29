@@ -1,0 +1,164 @@
+<div class="animated fadeIn mt-3">
+    <h2 class="text-uppercase text-center"><small class="d-block text-muted font-weight-normal">Detalle de plaza</small> {{plaza.tipoPlaza}}
+    </h2>
+    <hr>
+    <div class="row labels-sm">
+        <div class="row labels-sm">
+            <div class="col-lg-3">
+                <ul class="list-group list-group-flush mb-3 text-center text-lg-left">
+                    <li class="list-group-item pt-0 pl-0 pr-0">
+                        <div class="form-group m-0">
+                            <label class="m-0">Convocatoria</label>
+                            <p class="form-control-plaintext p-0">{{plaza.convocatoria}}</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item pl-0 pr-0">
+                        <div class="form-group m-0">
+                            <label class="m-0">Tipo de ayudantía</label>
+                            <p class="form-control-plaintext p-0">Ayudantía {{plaza.tipoAyudantia}}</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item pl-0 pr-0">
+                        <div class="form-group m-0">
+                            <label class="m-0">Promedio mínimo ponderado</label>
+                            <p class="form-control-plaintext p-0">{{plaza.promedio_minimo}}
+                                <!-- <strong>{{plaza.cupos_solicitados}}</strong> --></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item pl-0 pr-0">
+                        <div class="form-group m-0">
+                            <label class="m-0">Porcentaje de créditos aprobados</label>
+                            <p class="form-control-plaintext p-0">{{plaza.porcentaje_creditos_aprobados}} %</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item pl-0 pr-0 border-bottom-0">
+                        <div class="form-group m-0">
+                            <label class="m-0">Cupos solicitados</label>
+                            <p class="form-control-plaintext p-0">{{plaza.cupos_solicitados}}
+                                <!-- <strong>{{plaza.cupos_solicitados}}</strong> --></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div class="form-group">
+                    <label class="m-0">Perfil</label>
+                    <p class="form-control-plaintext">{{plaza.perfil}}</p>
+                </div>
+                <div class="form-group" *ngIf="plaza.competencias_requeridas">
+                    <label class="m-0">Competencias requeridas</label>
+                    <p class="form-control-plaintext">{{plaza.competencias_requeridas}}</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 text-center text-md-left" *ngIf="plaza.programas && plaza.programas.length>0" [ngClass]="{'col-lg-6': plaza.facultades.length, 'col-lg-12': !plaza.facultades.length}">
+                        <label>Programas a los que debe pertenecer el estudiante</label>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item pt-2 pb-2" *ngFor="let programa of plaza.programas; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">{{programa.nombre}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-center text-md-left" *ngIf="plaza.facultades && plaza.facultades.length>0" [ngClass]="{'col-lg-6': plaza.programas.length, 'col-lg-12': !plaza.programas.length}">
+                        <label>Facultades a las que debe pertenecer el estudiante</label>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item pt-2 pb-2" *ngFor="let facultad of plaza.facultades; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">{{facultad.nombre}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 text-center text-md-left" *ngIf="plaza.asignaturas && plaza.asignaturas.length>0" [ngClass]="{'col-md-12': plaza.programas.length || plaza.facultades.length, 'col-md-12': !plaza.programas.length || !plaza.facultades.length}">
+                        <label>Asignaturas aprobadas por el estudiante</label>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item pt-2 pb-2" *ngFor="let asignatura of plaza.asignaturas; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">
+                                {{asignatura.nombre}}.
+                                <small class="ml-2 d-block d-lg-inline-block text-muted">Nota mín: {{asignatura.puntaje}}</small>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 text-center text-md-left" *ngIf="plaza.actividades && plaza.actividades.length>0">
+                        <label>Actividades a realizar</label>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item pt-2 pb-2" *ngFor="let actividad of plaza.actividades; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">
+                                {{actividad.descripcion}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-light mb-3 mr-1" (click)="backClicked()">Volver al listado</button>
+            <button *ngIf="userService.roleMatch(['Admin']) && plaza.etapa_id == 2" (click)="solicitudP(plaza)" class="btn btn-success mb-3" type="button" title="Responder solicitud">Responder solicitud</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="solicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Solicitud de plaza</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="forma.resetForm();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <form (ngSubmit)="responderSolicitud(forma)" #forma="ngForm" novalidate>
+                    <div class="modal-body">
+                        <!-- <p-messages [(value)]="errores" ></p-messages> -->
+                        <div class="alert alert-info" role="alert">
+                            <table class="table table-borderless table-sm">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Convocatoria:</th>
+                                        <td>{{solicitudPlaza.convocatoria}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Solicitante:</th>
+                                        <td>{{solicitudPlaza.solicitanteNombre}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Plaza:</th>
+                                        <td>{{solicitudPlaza.tipoPlazaNombre}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Cupos solicitados:</th>
+                                        <td>{{solicitudPlaza.cupos_solicitados}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="aprobados">Cupos aprobados :</label>
+                                    <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || aprobados.touched) && (aprobados.errors?.required || aprobados.errors?.min || aprobados.errors?.max ) }" type="number" placeholder="Ingrese el número de cupos aprobados" aria-describedby="ayudaInput"
+                                        name="aprobados" id="aprobados" [min]="0" [max]="solicitudPlaza.cupos_solicitados" [(ngModel)]="solicitudPlaza.cuposAprobados" required #aprobados="ngModel">
+                                    <div class="invalid-feedback" *ngIf="aprobados.errors?.min">
+                                        Número inválido
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="aprobados.errors?.max">
+                                        El número de cupos aprobados es mayor a los solicitados que son {{solicitudPlaza.cupos_solicitados}}
+                                    </div>
+                                    <small id="ayudaInput" class="form-text text-muted">
+                  Ingrese "0" para rechazar la solicitud, o ingrese el número de cupos aprobados.
+                </small>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm();">Cancelar</button>
+                        <button type="submit" class="btn btn-success">
+            Guardar
+          </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

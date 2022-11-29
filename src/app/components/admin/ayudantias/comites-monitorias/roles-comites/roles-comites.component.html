@@ -1,0 +1,116 @@
+<h2 class="text-uppercase animated fadeIn text-center" text-center>Roles para miembros de Comités de Monitorías Académicas<small class="btn-block text-muted">El listado cuenta con {{roles?.length}} registros</small></h2>
+<hr>
+
+<div class="row animated fadeIn">
+  <div class="col-12 text-center">
+    <button *ngIf="userService.roleMatch(['AdminMonitorias'])" (click)="modalAgregarRol()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear rol"><i class="fa fa-plus" aria-hidden="true"></i> Agregar rol para miembro de comité</button>
+    <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+      <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+    </button>
+    <a tabindex="0" id="btn-ayuda" *ngIf="userService.roleMatch(['AdminMonitorias'])" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" 
+      title="Información de ayuda" data-content="A continuación, se muestran los roles de los comités registrados en el sistema. Puede agregar un nuevo rol de comité presionando en el botón 'AGREGAR ROL COMITÉ'.">
+      <span class="fa fa-question-circle" aria-hidden="true"></span>
+      <span class="sr-only">Información de ayuda</span>
+    </a>
+  </div>
+  <div class="collapse col-lg-12" id="collapseFilter">
+    <div class="card card-body px-3 pt-3">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4">
+          <div id="filter-estado" class="form-group">
+            <label>Filtrar por estado</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table-comites">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th style="width: 120px;">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rol of roles  ; let i=index">
+            <td attr.data-order="{{rol.nombre}}">{{ rol.nombre }}</td>
+            <td>{{ rol.estado ? 'Activo' : 'Inactivo' }}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Acciones">
+                <button  type="button" class="btn btn-sm btn-outline-dark border-secondary btn-editar" (click)="modalEditarRol(rol)" title="Editar registro">
+                  <span class="fas fa-pen" aria-hidden="true"></span>
+                  <span class="sr-only">Editar registro</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-activar" *ngIf="!rol.estado && userService.roleMatch(['AdminMonitorias'])" (click)="cambiarEstadoRol(rol) " title="Cambiar estado">
+                  <span class="far fa-eye" aria-hidden="true"></span>    
+                  <span class="sr-only">Cambiar estado</span>        
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-desactivar" *ngIf="rol.estado && userService.roleMatch(['AdminMonitorias'])" (click)="cambiarEstadoRol(rol)" title="Cambiar estado">
+                  <span class="far fa-eye-slash" aria-hidden="true"></span>
+                  <span class="sr-only">Cambiar estado</span>         
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-3 mb-3">
+      <button type="button" class="btn btn-light" (click)="backClicked()">Volver</button>
+    </div>
+  </div>
+</div>
+
+<!-- ModalCrearRol -->
+<div class="modal fade" id="crearRolModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 *ngIf="rol.id == null" class="modal-title" id="modelTitleId">Agregar rol para miembro de comité</h4>
+                <h4 *ngIf="rol.id != null" class="modal-title" id="modelTitleId">Editar rol para miembro de comité</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="rolForm.resetForm();" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="crearRol(rolForm)" #rolForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" [ngClass]="{'is-invalid': ((rolForm.submitted || nombre.touched) && (nombre.errors?.required) )}" [(ngModel)]="rol.nombre" required #nombre="ngModel" placeholder="Ingrese el nombre del rol. Máx. 455 caracteres"
+                                        maxlength="455" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="rolForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<!-- <button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button> -->

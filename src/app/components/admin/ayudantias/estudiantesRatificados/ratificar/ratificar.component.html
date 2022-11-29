@@ -1,0 +1,120 @@
+<div class="animated fadeIn">
+  <h2 class="text-center">Ratificación de monitores</h2>
+  
+  <h3>Información de la plaza</h3>
+  <div class="card mb-3 shadow">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group mb-2">
+            <label class="small font-weight-bold m-0">Nombre de la plaza</label>
+            <p class="form-control-plaintext">{{plaza.tipo_plaza}}</p>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <div class="form-group mb-2">
+            <label class="small font-weight-bold m-0">Porcentaje de créditos requeridos</label>
+            <p class="form-control-plaintext">{{plaza.porcentaja_creditos_requeridos}}</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="form-group mb-2">
+            <label class="small font-weight-bold m-0">Promedio mínimo</label>
+            <p class="form-control-plaintext">{{plaza.promedio_minimo}}</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="form-group mb-2">
+            <label class="small font-weight-bold m-0">Cupos solicitados</label>
+            <p class="form-control-plaintext">{{plaza.cupos_solicitados}}</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group mb-0">
+            <label class="small font-weight-bold m-0">Convocatoria</label>
+            <p class="form-control-plaintext">{{plaza.convocatoria_titulo}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="text-center text-secondary mb-3">
+    A continuación se listan los estudiantes que fueron monitores de esta plaza en un periodo inmediatamente anterior y que por las evaluaciones recibidas por los estudiantes asistentes a las monitorias y por su tutor encargado podrian ser ratificados para esta nueva plaza.
+    Se recomienda tener en cuenta las condiciones establecidas para la selección de ratificados en las convocatorias de monitorías académicas.
+  </p>
+  <div class="card card-body p-2 mb-3 shadow">
+    <table class="table table-hover table-bordered" *ngIf="monitoresARatificar.length">
+      <thead>
+        <tr>
+          <th rowspan="2" class="align-middle">Estudiante</th>
+          <th rowspan="2" class="align-middle">Programa al que pertenece</th>
+          <th colspan="2" class="align-middle text-center">Evaluación del asistentes</th>
+          <th rowspan="2" class="align-middle">Evaluación del tutor</th>
+          <th rowspan="2" class="align-middle">Seleccionar</th>
+        </tr>
+        <tr>
+          <th class="small">No. de evaluaciones</th>
+          <th class="small">Prom. evaluación</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let monitor of monitoresARatificar">
+        <tr [ngClass]="{'table-success': estudiantesSeleccionados.indexOf(monitor) != -1, 'table-info': monitor.porcentaje_cred == 100, 'table-warning': monitor.porcentaje_cred < plaza.porcentaja_creditos_requeridos || monitor.promedio_acum < plaza.promedio_minimo}">
+          <td>{{monitor.nombre | titlecase}} <span class="d-block small text-secondary">Código: {{monitor.codigo}}</span></td>
+          <td>{{monitor.programa | titlecase}}  <span class="d-block small text-secondary">{{monitor.facultad | titlecase}}</span></td>
+          <td>{{monitor.no_calificaciones}}</td>
+          <td [ngClass]="{'font-weight-bold': monitor.calificaciones >= 80}">{{(monitor.calificaciones || 0) | number : '1.0-2'}}%</td>
+          <td [ngClass]="{'font-weight-bold': monitor.calificaciones >= 80}">{{monitor.calificacion_tutor | number : '1.0-2'}}%</td>
+          <td>
+            <div class="custom-control custom-switch text-center">
+              <input type="checkbox" class="custom-control-input" id="customSwitch-{{monitor.id_estudiante}}" [(checklist)]="estudiantesSeleccionados" [checklistValue]="monitor" [maxSelectedItems]="plaza.cupos_solicitados" [disabled]="monitor.es_ratificado">
+              <label class="custom-control-label" for="customSwitch-{{monitor.id_estudiante}}">
+                  <span class="sr-only">Ratificar</span>
+                  <span *ngIf="monitor.porcentaje_cred == 100" class="fas fa-exclamation-circle" aria-hidden="true" title="El estudiante tiene un porcentaje de créditos de 100 por lo que puede haber terminado académicamente este semestre."></span>
+                  <span *ngIf="monitor.porcentaje_cred < plaza.porcentaja_creditos_requeridos" class="fas fa-exclamation-circle mr-1" aria-hidden="true" title="El estudiante posee un porcentaje de créditos aprobados ({{monitor.porcentaje_cred}}) menor al indicado en la plaza ({{plaza.porcentaja_creditos_requeridos}})."></span>
+                  <span *ngIf="monitor.promedio_acum < plaza.promedio_minimo" class="fas fa-exclamation-circle mr-1" aria-hidden="true" title="El estudiante posee un promedio mínimo acumulado ({{monitor.promedio_acum}}) menor al indicado en la plaza ({{plaza.promedio_minimo}})."></span>
+              </label>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-info" *ngIf="!monitoresARatificar.length">
+      Esta plaza no cuenta con estudiantes para ratificar
+    </div>
+    <div *ngIf="userService.roleMatch(['AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && plaza.cupos_solicitados - estudiantesSeleccionados.length > 0">
+      <form #buscarEstudianteForm="ngForm" novalidate (ngSubmit)="buscarEstudiante(buscarEstudianteForm)">
+        <fieldset class="text-center" onsubmit="">
+          <legend class="h5">Ingresar estudiante a ratificar</legend>
+          <small class="d-block mb-2"> Puede buscar un estudiante a través de su código estudiantil que haya sido monitor el semestre pasado con otro código (simultaniedad) pero ya no cumpla con los requisitos para seguir siendo monitor. <strong>Tenga en cuenta que esta bajo su responsabilidad agregar estudiantes que cumplan con los criterios exigidos por la convocatoria vigente.</strong></small>
+          <div class="row justify-content-center">
+            <div class="form-group col-xl-4 col-md-5">
+              <label for="buscar_estudiante" class="sr-only">Buscar estudiante</label>
+              <input text="text" class="form-control" id="buscar_estudiante" maxlength="12" pattern="\d{6,12}" placeholder="Ingrese el código estudiantil" [(ngModel)]="data.codigo" #codigo="ngModel" name="codigo" [ngClass]="{'is-invalid': (codigo.errors?.required || codigo.errors?.pattern) && (codigo.touched || buscarEstudianteForm.submitted)}" aria-describedby="error_codigo_encontrado" required>
+              <small class="text-danger" id="error_codigo_encontrado" class="text-muted" *ngIf="(codigo.errors?.required || codigo.errors?.pattern) && (codigo.touched || buscarEstudianteForm.submitted)">
+                <span *ngIf="codigo.errors?.required">El campo es requerido</span>
+                <span *ngIf="codigo.errors?.pattern">Ingrese un código válido</span>
+              </small>
+            </div>
+
+          </div>
+          
+          <button type="submit" class="btn btn-success">Consultar estudiante</button>
+        </fieldset>
+      </form>
+      
+    </div>
+    <div class="text-center alert alert-warning border-0 py-2" *ngIf="monitoresARatificar.length && plaza.cupos_solicitados == estudiantesSeleccionados.length">
+        <strong>La plaza no se ofertará publicamente</strong>
+    </div>
+    <div class="text-center alert alert-info border-0 py-2" *ngIf="plaza.cupos_solicitados > estudiantesSeleccionados.length">
+        <strong>Cupos solicitados: {{plaza.cupos_solicitados}} | cupos a ofertar: {{plaza.cupos_solicitados - estudiantesSeleccionados.length}}</strong>
+    </div>
+    <p class="small text-center font-weight-bold mb-2">Al seleccionar los estudiantes para ratificar solo quedaran disponibles los cupos restantes que solicite. Si los cupos se llenan con los estudiantes ratificados, la plaza no se ofertará publicamente. Si modifica el porcentaje de créditos aprobados o el promedio mínimo del estudiante tendrá que volver a seleccionar a los estudiantes ratificados.</p>
+  </div>
+  <div class="text-center mb-3">
+    <button type="button" class="btn btn-light" (click)="goBack()">Cancelar</button>
+    <button type="button" class="btn btn-success mr-1" (click)="ratificarEstudiantes()">Guardar</button>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

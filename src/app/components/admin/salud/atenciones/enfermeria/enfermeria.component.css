@@ -1,0 +1,18 @@
+.ui-calendar{
+    width: 100%!important;
+}
+.titulo{
+    font-weight: 600;
+}
+.summary{
+    background-color: #eee;
+}
+.summary .form-group label, .summary label{
+    font-size: 0.875rem;
+    color:dimgrey;
+}
+.asterisk {
+    color: red;
+    margin-right: 0.4rem;
+    font-weight: bold;
+}

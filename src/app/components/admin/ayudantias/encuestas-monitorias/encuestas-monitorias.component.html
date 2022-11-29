@@ -1,0 +1,92 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="container">
+  <div class="my-4">
+    <h2 class="text-center text-uppercase">Encuesta de evaluación de monitoría académica</h2>
+    <hr>
+    <div *ngIf="encuesta">
+        <div class="row animated fadeIn shadow-sm rounded border mb-3" *ngIf="encuesta.monitor">
+            <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">
+                <div class="text-center img-profile shadow mt-2 mb-2">
+                    <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{encuesta.monitor.codigo}}" alt="Perfil" class="rounded h-100"> -->
+                    <img [src]="encuesta.monitor.foto" *ngIf="encuesta.monitor.foto" class="rounded h-100">
+                    <img src="../../../../../assets/img/profile.png" *ngIf="!encuesta.monitor.foto" class="rounded h-100">
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">
+                <div class="row text-center text-md-left">
+                    <div class="col-12">
+                        <h3 class="h4 mb-3">
+                            <small class="d-block text-muted">Nombre</small> {{encuesta.monitor.nombre}}
+                        </h3>
+                    </div>
+                    <div class="col-md-3 col-xl-3">
+                        <div class="form-group">
+                            <label class="m-0 text-muted">Código</label>
+                            <p class="form-control-plaintext p-0">{{encuesta.monitor.codigo}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-4">
+                        <div class="form-group">
+                            <label class="m-0 text-muted">Convocatoria</label>
+                            <p class="form-control-plaintext p-0">{{encuesta.monitor.nombreConvocatoria}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xl-5">
+                        <div class="form-group">
+                            <label class="m-0 text-muted">Plaza</label>
+                            <p class="form-control-plaintext p-0">{{encuesta.monitor.nombrePlaza}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <ul>
+              <li *ngIf="userService.roleMatch(['SupervisorAyudante'])">A continuación encontrará 9 elementos mediante los cuales usted evaluará el desempeño del Monitor Académico a su cargo de conformidad a lo establecido en la Resolución Rectoral 734 de 2019.</li>
+              <li *ngIf="userService.roleMatch(['SupervisorAyudante'])">Para evaluar los distintos items deberá seleccionar una calificación del <b>0</b> al <b>6</b>, <b>10</b> o <b>13</b> (dependiendo del item), siendo 0 equivalente a <b>Insatisfecho</b> y 6, 10 o 13 (dependiendo del item) equivalente a <b>Muy satisfecho</b>.</li>
+              <li *ngIf="userService.roleMatch(['Estudiante'])">A continuación encontrará 5 elementos mediante los cuales usted evaluará el desempeño de su Monitor Académico de conformidad a lo establecido en la Resolución Rectoral 734 de 2019.</li>
+              <li *ngIf="userService.roleMatch(['Estudiante'])">Para evaluar los distintos items deberá seleccionar una calificación del <b>0</b> al <b>20</b>, siendo 0 equivalente a <b>Insatisfecho</b> y 20 equivalente a <b>Muy satisfecho</b>.</li>
+              <li>Al terminar de diligenciar la encuesta de evaluación deberá hacer clic en el botón <b>'Enviar encuesta'</b> ubicado en la parte inferior de la ventana.</li>
+            </ul>
+        </div>
+        <p class="text-center text-muted">Su opinión es muy valiosa para ayudarnos a brindarles un buen servicio, por lo cual agradecemos su objetividad en el diligenciamiento de la información.</p>
+        <form #encuestaForm="ngForm" novalidate (ngSubmit)="enviarEncuesta(encuestaForm)">
+          <div class="card shadow-sm mb-3" *ngFor="let componente of encuesta.componentes">
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center">No.</th>
+                    <th class="text-center">{{componente.nombre}}</th>
+                    <th class="text-center " style="width: 140px;">Evaluación</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of componente.items; let i = index" [ngClass]="((encuestaForm.submitted || calificacion.touched) && calificacion.errors?.required) ? 'table-danger' : ''">
+                    <td class="text-center">{{i+1}}</td>
+                    <td>{{item.nombre}}.</td>
+                    <td class="text-center">
+                      <label class="sr-only" for="calificacion_{{i}}">Calificación correspondiente a la pregunta número {{i+1}}</label>
+                      <select [(ngModel)]="item.calificacion" id="calificacion_{{i}}" class="form-control" [ngClass]="{'is-invalid': ((encuestaForm.submitted || calificacion.touched) && calificacion.errors?.required), 'texto-claro': item.calificacion == undefined }"
+                      name="calificacion_{{item.id}}" id="calificacion_{{item.id}}" #calificacion="ngModel" required>
+                          <option [value]="undefined" selected disabled>{{item.min_calificacion}} - {{item.max_calificacion}}</option>
+                          <option *ngFor="let calificacion of item.valoresCalificacion" [value]="calificacion">{{calificacion}}</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="text-center">
+              <button type="submit" class="btn btn-success">Enviar encuesta</button>
+          </div>
+        </form>
+    </div>
+    <div class="alert alert-danger text-center" *ngIf="!encuesta">
+      El token de verificación ha expirado o no existe.
+    </div>
+  </div>
+</div>
+
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

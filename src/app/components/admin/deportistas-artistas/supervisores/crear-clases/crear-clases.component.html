@@ -1,0 +1,127 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Clases <small class="btn-block text-muted">El listado cuenta con {{listaClases.length}} clases</small></h2>
+  <hr>
+  <div class="row">
+      <div class="col-12 text-center">
+          <button (click)="modalCrearClase()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear clase">
+          <span class="fas fa-plus"></span> Crear clase</button>
+          <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las clases registradas en el sistema. Usted puede editar, activar o desactivar las clases.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+      </div>
+
+      <div class="col-12">
+          <div class="table-responsive">
+              <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                      <tr>
+                          <th>Tema</th>
+                          <th>Hora inicio</th>
+                          <th>Fecha</th>
+                          <th>Grupo</th>
+                          <th style="width: 90px;">Estado</th>
+                          <th style="width: 100px;">Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let clase of listaClases; let i = index">
+                          <td>{{ clase.tema }}</td>
+                          <td>{{ clase.fecha | date:'shortTime'}}</td>
+                          <td attr.data-order="{{clase.fecha}}">{{ clase.fecha | date: 'dd/MM/yyyy'}}</td>
+                          <td>{{ clase.nombreGrupo }}</td>
+                          <td>{{ clase.estado == true ? 'Activo' : 'Inactivo'}}</td>
+                          <td>
+                              <div class="btn-group" role="group" aria-label="Acciones">
+                                  <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="modalEditarClase(clase)" title="Editar clase"><span class="fas fa-pen"></span><span class="sr-only">Editar clase</span></a>
+                                  <button (click)="cambiarEstado(clase)" *ngIf="!clase.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Activar clase"><span class="far fa-eye"></span><span class="sr-only">Activar clase</span></button>
+                                  <button (click)="cambiarEstado(clase)" *ngIf="clase.estado"  type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Desactivar clase"><span class="far fa-eye-slash"></span><span class="sr-only">Desactivar clase</span></button>
+
+                                  <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{clase.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{clase.id}}">
+                                        <button class="dropdown-item" type="button" title="Asignar estudiantes" [routerLink]="[ '/asignar-estudiantes-clase', clase.id ]">
+                                          Asignar estudiantes a la clase
+                                        </button>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- Modal para crear y editar clases-->
+<div class="modal fade" id="crearClaseModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content ">
+          <div class="modal-header">
+
+              <h5 *ngIf="clase.id == null" class="modal-title" id="modelTitleId">Crear clase</h5>
+              <h5 *ngIf="clase.id != null" class="modal-title" id="modelTitleId">Editar clase</h5>
+              <button type="button" class="close" data-dismiss="modal" (click)="claseForm.resetForm();" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+
+          <form (ngSubmit)="guardarClase(claseForm)" #claseForm="ngForm" novalidate>
+              <div class="modal-body">
+                 
+                  <fieldset>
+                      <div class="alert alert-info">
+                          Todos los campos son obligatorios
+                      </div>
+                      <div class="col-xs-12">
+                          <div class="form-group">
+                              <label for="tema">Tema</label>
+                              <input type="text" name="tema" id="tema" class="form-control" [ngClass]="{'is-invalid': ((claseForm.submitted || tema.touched) && (tema.errors?.required) )}" [(ngModel)]="clase.tema"  #tema="ngModel" placeholder="Tema de la clase"
+                                  maxlength="455" required/>
+                          </div>
+                        
+                            <div class="form-group">
+                                <label for="grupo">Grupo</label>
+                                <select id="grupo" class="form-control" name="grupo" [ngClass]="{'is-invalid': ((claseForm.submitted || grupo.touched) && (grupo.errors?.required))}" [(ngModel)]="clase.idGrupo" #grupo="ngModel" required>
+                                    <option value="null" disabled selected>Seleccione el grupo</option> 
+                                    <option *ngFor="let grupo of listaGrupos" [ngValue]="grupo.idGrupo">{{grupo.nombreGrupo}}</option>
+                                </select>
+                                
+                            </div>
+                          
+                          <div id="fecha" class="form-group">
+                            <label>Fecha</label>
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-12 p-0">
+                                    <p-calendar name="fecha" [(ngModel)]="clase.fecha" dateFormat="dd/mm/yy" [readonlyInput]="true" required
+                                        #fecha="ngModel" [locale]="es" (onBlur)='validation(fecha)' (onSelect)='validation(fecha)' showTime="showTime" hourFormat="12" [maxDate]="dateNow"></p-calendar>
+                                </div> 
+                            </div>
+                            <div class="invalid-feedback " [ngClass]="{'d-block': fecha.errors?.required && (fecha.touched || claseForm.submitted)}">Seleccione una fecha</div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" name="descripcion" rows="4" type="text"  class="form-control" [ngClass]="{'is-invalid': ((claseForm.submitted || descripcion.touched) && (descripcion.errors?.required) )}" [(ngModel)]="clase.descripcion"  #descripcion="ngModel" placeholder="Ingrese una descripción"
+                                maxlength="455" required></textarea>
+                          </div>
+
+                      </div>
+                  </fieldset>
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="claseForm.resetForm();">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Guardar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

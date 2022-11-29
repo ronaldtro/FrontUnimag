@@ -1,0 +1,371 @@
+<div class="animated fadeIn">
+    <h2 class="text-uppercase text-center">Información del estudiante</h2>
+    <hr>
+    <div class="text-center p-3" *ngIf="!estudiante">
+        <i class="fas fa-spinner fa-spin display-2"></i>
+        <p class="display-5">
+            Estamos obteniendo la información del estudiante. Por favor espere...
+        </p>
+    </div>
+
+    <!-- <app-profile></app-profile> -->
+    <div *ngIf="estudiante">
+        <div class="row animated fadeIn shadow-sm rounded border mb-3" *ngIf="estudiante">
+            <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">
+                <div class="text-center img-profile shadow mt-2 mb-2">
+                    <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{estudiante.codigo}}" alt="Perfil" class="rounded h-100"> -->
+                    <img [src]="estudiante.foto" *ngIf="estudiante.foto" class="rounded h-100">
+                    <img src="../../../../../assets/img/profile.png" *ngIf="!estudiante.foto" class="rounded h-100">
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">
+                <div class="row text-center text-md-left">
+                    <div class="col-12">
+                        <h3 class="h4 mb-3">
+                            <small class="d-block text-muted">Nombre</small> {{estudiante.nombre}}
+                        </h3>
+                    </div>
+                    <div class="col-md-4 col-xl-3">
+                        <div class="form-group">
+                            <label class="m-0 text-muted">Código</label>
+                            <p class="form-control-plaintext p-0">{{estudiante.codigo}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xl-9">
+                        <div class="form-group">
+                            <label class="m-0 text-muted">Correo electrónico</label>
+                            <p class="form-control-plaintext p-0">{{estudiante.email}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h3 class="h4">
+                        <small class="d-block text-muted">Nombre</small>
+                        {{estudiante.nombre}}
+                    </h3></li>
+                <li class="list-group-item">Código: {{estudiante.codigo}}</li>
+                <li class="list-group-item">Email: {{estudiante.email}}</li>
+            </ul>
+            </div> -->
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="#modalConvocatoriaRefrigerios" class="btn btn-lg btn-info shadow rounded-pill text-uppercase mb-3" data-toggle="modal" *ngIf="convocatoriasRefrigerio.length > 0">Inscribirme en Almuerzos y Refrigerios</a>
+        </div>
+        <!-- <div id="rutaHumanitaria">
+            <div class="card border-success shadow mb-3">
+                <div class="card-body py-2">
+                    <div class="row align-items-center text-center text-md-left">
+                        <div class="col-12 col-md">
+                            <p class="font-weight-bold text-uppercase mb-2">Solicitud de ruta humanitaria</p>
+                            <p>Como medida de contingencia debido al COVID-19 se ha habilitado un formulario para solicitar el acceso a una ruta humanitaria que le permita regresar a su hogar.</p>
+                        </div>
+                        <div class="col-12 col-md-auto text-center">
+                            <span class="text-center small d-block mb-2" *ngIf="datosEmergencia.apoyo_id != null">Ya ha realizado una solicitud</span>
+                            <button type="button" class="btn rounded shadow text-uppercase" [ngClass]="{'btn-success': datosEmergencia.apoyo_id == null, 'btn-outline-success': datosEmergencia.apoyo_id != null}" data-toggle="modal" data-target="#rutaModal">
+                                <span *ngIf="datosEmergencia.apoyo_id == null">Realizar solicitud</span>
+                                <span *ngIf="datosEmergencia.apoyo_id != null">Ver solicitud</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div> -->
+        
+        <p class="text-muted text-center">Puedes acceder a los diferentes módulos ofrecidos a continuación.</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-3">
+                    <h5 class="card-header text-center bg-success text-white py-lg-3"><span class="fas fa-chalkboard-teacher" aria-hidden="true"></span> Ayudantías</h5>
+                    <div class="card-body p-2">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a [routerLink]="['/estudiantes/perfil/1']">Mis postulaciones</a>
+                            </li>
+                            <li class="list-group-item" *ngIf="convocatoriasAyudantia.length > 0">
+                                <a href="#modalConvocatoriaAyudantias" data-toggle="modal"><strong>Inscribirme</strong></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                    <div class="card shadow-sm mb-3">
+                        <h5 class="card-header text-center bg-info text-white py-lg-3"><span class="fas fa-chalkboard-teacher" aria-hidden="true"></span> Monitorías</h5>
+                        <div class="card-body p-2">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/estudiantes/perfil/3']">Mis postulaciones</a>
+                                </li>
+                                <li class="list-group-item" *ngIf="convocatoriasMonitorias.length > 0">
+                                    <a href="#modalConvocatoriaMonitorias" data-toggle="modal"><strong>Inscribirme</strong></a>
+                                </li>
+    
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-lg-4">
+                <div class="card shadow-sm mb-3">
+                    <h5 class="card-header text-center bg-primary text-white py-lg-3"><span class="fas fa-utensils" aria-hidden="true"></span> Almuerzos y refrigerios</h5>
+                    <div class="card-body p-2">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a [routerLink]="['/perfilRefrigerios']">Inscripciones anteriores</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a [routerLink]="['/estudiantes/listadoFallasEstudiante', estudiante.id]">Listado de fallas</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a [routerLink]="['/excusas']">Excusas</a>
+                            </li>
+                            <li class="list-group-item" *ngIf="convocatoriasRefrigerio.length > 0">
+                                <!-- <a [routerLink]="['/inscripcion',1003]"><strong>Inscribirme</strong></a> -->
+                                <a href="#modalConvocatoriaRefrigerios" data-toggle="modal"><strong>Inscribirme</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          
+            <!-- <div class="col-lg-4">
+                <div class="card shadow-sm mb-3">
+                    <h5 class="card-header text-center bg-info text-white py-lg-3"><span class="fas fa-heart" aria-hidden="true"></span> Salud</h5>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a [routerLink]="['/citasAgenda']">Agendar cita</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a [routerLink]="['/miCitas']">Historial de citas</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a [routerLink]="['/actualizarDatos']">Actualizar datos personales</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal ruta humanitaria-->
+<div class="modal fade" id="rutaModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitud de ruta humanitaria</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <form (ngSubmit)="guardarSolicitud(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <fieldset [disabled]="datosEmergencia.apoyo_id">
+                            <div class="form-group" *ngIf="estudiante">
+                                <label for="ruta-correo">Correo electrónico</label>
+                                <input type="text" name="email" id="ruta-correo" class="form-control" value="{{estudiante.email}}" readonly>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" *ngIf="estudiante">
+                                        <label for="ruta-departamento">Departamento de origen</label>
+                                        <input type="text" name="departamento" id="ruta-departamento" class="form-control" value="{{estudiante.departamento}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" *ngIf="estudiante">
+                                        <label for="ruta-municipio">Municipio de origen</label>
+                                        <input type="text" name="municipio" id="ruta-municipio" class="form-control" value="{{estudiante.municipio}}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3 text-right">
+                                <input type="checkbox" id="ruta-destino-diferente" name="destino-diferente" class="custom-control-input" [(ngModel)]="datosEmergencia.destino_diferente">
+                                <label class="custom-control-label" for="ruta-destino-diferente">Me dirijo a un lugar diferente al de mi origen</label>
+                            </div>
+
+                            <div class="row" *ngIf="datosEmergencia.destino_diferente">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ruta-departamento_destino">Departamento de destino</label>
+                                        <select class="form-control" name="departamento_destino" [(ngModel)]="datosEmergencia.departamento" #departamento_destino="ngModel" [ngClass]="{'is-invalid': ((forma.submitted || departamento_destino.touched) && departamento_destino.errors?.required) }" [required]="datosEmergencia.destino_diferente">
+                                            <option [value]="undefined" disabled>- Seleccione un departamento -</option>
+                                            <option *ngFor="let departamento of departamentos;" [ngValue]="departamento">{{departamento.departamento}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" *ngIf="datosEmergencia.departamento != null">
+                                        <label for="ruta-municipio_destino">Municipio de destino</label>
+                                        <select class="form-control" name="municipio_destino" [(ngModel)]="datosEmergencia.municipio" #municipio_destino="ngModel" [ngClass]="{'is-invalid': ((forma.submitted || municipio_destino.touched) && municipio_destino.errors?.required) }" [required]="datosEmergencia.departamento != undefined">
+                                            <option [value]="undefined" disabled>- Seleccione un municipio -</option>
+                                            <option *ngFor="let municipio of datosEmergencia.departamento.municipios;" [ngValue]="municipio">{{municipio.municipio}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ruta-direccion">Dirección de la casa actual donde se encuentra en Santa Marta</label>
+                                <input type="text" name="direccion_alterna" id="ruta-direccion" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || direccion_alterna.touched) && direccion_alterna.errors?.required) }" [(ngModel)]="datosEmergencia.direccion_alterna" #direccion_alterna="ngModel" required placeholder="Indique la dirección y el barrio" maxlength="255">
+                            </div>
+                            <div class="form-group mb-1">
+                                <label for="ruta-telefono">Teléfono de contacto</label>
+                                <input type="tel" name="telefono_alterno" id="ruta-telefono" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || telefono_alterno.touched) && telefono_alterno.errors?.required) }" [(ngModel)]="datosEmergencia.telefono_alterno" #telefono_alterno="ngModel" required placeholder="Ingrese un teléfono en el que podamos contactarte" maxlength="11">
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3 text-right">
+                                <input type="checkbox" id="ruta-telefono-propio" name="telefono-propio" class="custom-control-input" [(ngModel)]="datosEmergencia.es_telefono_propio">
+                                <label class="custom-control-label" for="ruta-telefono-propio">El teléfono ingresado es mio</label>
+                            </div>
+                            <div class="form-group" *ngIf="!datosEmergencia.es_telefono_propio">
+                                <label for="ruta-acudiente">Nombre del propietario del teléfono</label>
+                                <input type="text" name="acudiente" id="ruta-acudiente" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || acudiente.touched) && acudiente.errors?.required) }" [(ngModel)]="datosEmergencia.acudiente" #acudiente="ngModel" [required]="!datosEmergencia.es_telefono_propio" placeholder="Indique el nombre de la persona a la que pertenece el número ingresado" maxlength="255">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ruta-eps">Entidad de salud</label>
+                                <ng-select [items]="eps" id="ruta-eps" bindLabel="nombre" bindValue="id" placeholder="Seleccione una EPS" name="eps_id" #eps_id="ngModel" [(ngModel)]="datosEmergencia.eps_id"
+                                    [closeOnSelect]="true">
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                                <span class="small">Si no se encuentra su entidad de salud escribir o seleccionar la acción 'NO TIENE'</span>
+                                <!-- <select name="eps_id" id="ruta-eps" class="form-control" [(ngModel)]="datosEmergencia.eps_id">
+                                    <option value="">No posee EPS</option>
+                                    <option *ngFor="let entidad of eps" [value]="entidad.id">{{entidad.nombre}}</option>
+                                </select> -->
+                                
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12 col-md-auto">
+                                    ¿Tiene alguna condición médica especial?
+                                </div>
+                                <div class="col-12 col-md-auto">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="condicion_especial_si" name="condicion_especial" class="custom-control-input" [value]="true" [(ngModel)]="datosEmergencia.tiene_condicion_medica">
+                                        <label class="custom-control-label" for="condicion_especial_si">Si</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="condicion_especial_no" name="condicion_especial" class="custom-control-input" [value]="false" [(ngModel)]="datosEmergencia.tiene_condicion_medica">
+                                        <label class="custom-control-label" for="condicion_especial_no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" *ngIf="datosEmergencia.tiene_condicion_medica == true">
+                                <label for="ruta-condicion_medica">Indique su condición médica especial</label>
+                                <input type="text" name="condicion_medica" id="ruta-condicion_medica" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || condicion_medica.touched) && condicion_medica.errors?.required) }" [(ngModel)]="datosEmergencia.condicion_medica" #condicion_medica="ngModel" [required]="datosEmergencia.tiene_condicion_medica == true" placeholder="Ej: diabetes, hipertensión, etc." maxlength="255">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ruta-situacion">Describa la situación actual por la cual solicita el traslado</label>
+                                <textarea class="form-control" rows="4" maxlength="1000" id="ruta-situacion" name="situacion_actual" [(ngModel)]="datosEmergencia.situacion_actual" [ngClass]="{'is-invalid': ((forma.submitted || situacion_actual.touched) && situacion_actual.errors?.required) }" #situacion_actual="ngModel" required placeholder="Indique el motivo por el cual esta solicitando el traslado. Max. 1000 caracteres."></textarea>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="alert alert-info border-0 text-center">
+                        <p class="small mb-0">El registro de esta solicitud no implica la asignación automática del beneficio. La unidad encargada se contactará con usted basado en la información ingresada para validar la información.</p>
+                    </div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <span *ngIf="!datosEmergencia.apoyo_id">Cancelar</span>
+                        <span *ngIf="datosEmergencia.apoyo_id">Cerrar</span>
+                    </button>
+                    <button type="submit" class="btn btn-success" *ngIf="!datosEmergencia.apoyo_id">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalConvocatoriaAyudantias" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaAyudantias" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelConvocatoriaAyudantias">Convocatorias de ayudantías</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="form-group">
+                    <label>Selecccione la convocatoria de ayudantía a la cual desea aplicar en una plaza</label>
+                    <select class="form-control" name="id" (change)="enviarFormularioAyudantia()" [(ngModel)]="convocatoria.ayudantia">
+            <option disabled selected [value]="null">- Seleccione una convocatoria -</option>
+            <option *ngFor="let convocatoria of convocatoriasAyudantia" [ngValue]="convocatoria">{{convocatoria.nombre}}</option>
+          </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalConvocatoriaMonitorias" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaMonitorias" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelConvocatoriaMonitorias">Convocatorias de monitorías</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="form-group">
+                    <label>Selecccione la convocatoria de monitoría a la cual desea aplicar en una plaza</label>
+                    <select class="form-control" name="id" (change)="enviarFormularioMonitoria()" [(ngModel)]="convocatoria.monitoria">
+                        <option disabled selected [value]="null">- Seleccione una convocatoria -</option>
+                        <option *ngFor="let convocatoria of convocatoriasMonitorias" [ngValue]="convocatoria">{{convocatoria.nombre}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal refrigerios-->
+<div class="modal fade" id="modalConvocatoriaRefrigerios" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaRefrigerios" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelConvocatoriaRefrigerios">Convocatorias de almuerzos y refrigerios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body text-center">
+
+                <div class="form-group">
+                    <label>Selecccione la convocatoria de almuerzos y refrigerios a la cual desea inscribirse</label>
+                    <select class="form-control" name="id" (change)="enviarFormularioRefrigerio()" [(ngModel)]="convocatoria.refrigerio">
+                        <option disabled selected [value]="null">- Seleccione una convocatoria -</option>
+                        <option *ngFor="let convocatoria of convocatoriasRefrigerio" [ngValue]="convocatoria">{{convocatoria.nombre}}</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

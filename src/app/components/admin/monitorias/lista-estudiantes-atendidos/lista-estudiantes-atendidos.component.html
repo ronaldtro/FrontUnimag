@@ -1,0 +1,83 @@
+
+<h2 class="h4 font-weight-bold mb-3 text-center" *ngIf="convocatoria">{{convocatoria.titulo}}</h2>
+<h2 class="h4 font-weight-bold mb-3 text-center" *ngIf="!convocatoria">Todas las convocatorias</h2>
+
+<div class="text-center mb-3">
+  <button type="button" class="btn btn-success mr-1" [disabled]="codigosSeleccionados.length == 0" (click)="enviarEncuesta()">Enviar encuesta <span class="badge badge-light" *ngIf="codigosSeleccionados.length > 0">{{codigosSeleccionados.length}}</span></button>
+  <button id="btn-filtros" class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+    <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+  </button>
+</div>
+
+<div class="collapse mb-3" id="collapseFilter">
+  <div class="card card-body px-3 pt-3">
+      <div class="row">
+          <div class="col-12 col-sm-6 col-md-4">
+              <div id="filter-programa" class="form-group">
+                  <label>Filtrar por programa</label>
+              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4">
+            <div id="filter-monitor" class="form-group">
+                <label>Filtrar por nombre de monitor</label>
+            </div>
+        </div>
+          <div class="col-12 col-sm-6 col-md-4">
+              <div id="filter-plaza" class="form-group">
+                  <label>Filtrar por plaza</label>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+<div class="table-responsive mb-3">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table text-center" id="table-plazas" style="width:100%;">
+    <thead>
+        <tr>
+          <th style="width: 40px;"></th>
+          <th>Cód. estudiante</th>
+          <th>Nombre estudiante</th>
+          <th>Programa estudiante</th>
+          <th>Cód. monitor</th>
+          <th>Nombre monitor</th>
+          <th>Plaza</th>
+          <th>Cant. asistencias</th>
+          <th>Hrs. asistidas</th>
+          <th>Hrs. totales</th>
+          <th>% de asistencia</th>
+          <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of estudiantes">
+        <td>
+          <input type="checkbox" name="codigo-{{estudiante.id}}" [id]="estudiante.id" [(checklist)]="codigosSeleccionados" [checklistValue]="estudiante" [maxSelectedItems]="100" *ngIf="!estudiante.tiene_token"/>
+        </td>
+        <td>{{estudiante.codigo_estudiante}}</td>
+        <td>{{estudiante.nombre_estudiante}}</td>
+        <td>{{estudiante.programa_estudiante}}</td>
+        <td>{{estudiante.codigo_monitor}}</td>
+        <td>{{estudiante.nombre_monitor}}</td>
+        <td>{{estudiante.plaza}}</td>
+        <td>{{estudiante.cant_asistencia}}</td>
+        <td>{{estudiante.horas_asistidas}}</td>
+        <td>{{estudiante.horas_monitorias}}</td>
+        <td>{{(estudiante.horas_asistidas / estudiante.horas_monitorias) * 100 | number: '1.0-2'}}%</td>
+        <td>
+          <button class="btn btn-sm" [ngClass]="{'btn-outline-dark': !estudiante.tiene_token,'btn-outline-success': estudiante.tiene_token}" title="Enviar token para encuesta">
+            <span class="far fa-envelope" aria-hidden="true" *ngIf="!estudiante.tiene_token"></span>
+            <span class="fas fa-envelope" aria-hidden="true" *ngIf="estudiante.tiene_token"></span>
+            <span class="sr-only">Enviar token</span>
+          </button>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

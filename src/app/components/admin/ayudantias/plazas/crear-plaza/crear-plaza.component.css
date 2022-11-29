@@ -1,0 +1,6 @@
+.ng-select.is-invalid .ng-select-container {
+    border-color: red!important;
+}
+.table-responsive{
+    overflow: visible;
+}

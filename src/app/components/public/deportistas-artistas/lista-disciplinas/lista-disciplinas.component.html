@@ -1,0 +1,354 @@
+<h2 class="text-uppercase animated fadeIn text-center mt-4">Convocatoria de deportistas y artistas<small class="btn-block">{{convocatoria.nombre}}</small></h2>
+<hr class="animated fadeIn">
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<div *ngIf="error != null">
+    <div class="alert alert-danger alert text-center">
+        <p>{{error}}</p>
+    </div>
+</div>
+
+<div *ngIf="error == null">
+    {{error}}
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="animated fadeIn">
+                <div *ngIf="etapaActual != null">
+                    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span><span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-3 animated fadeIn">
+                <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mr-2" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+                    <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+                </button>
+                <button id="btn-filtros" class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                    <span class="fa fa-filter" aria-hidden="true"></span> Filtrar disciplinas
+                </button>
+            </div>
+            <div class="text-center mb-3 animated fadeIn">
+                <a data-target="#modalEnviarToken" data-toggle="modal" href="#modalEnviarToken" class="ml-2">Olvidé mi código de seguimiento</a>
+            </div>
+
+            <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+                <label class="labels-sm">Etapas de la convocatoria</label>
+                <div class="d-flex flex-wrap flex-md-wrap mb-3">
+                    <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                        <span class="mb-2">{{etapa.nombre}}</span>
+                        <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+                          <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+                          <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse mb-3" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row"> 
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-modalidad" class="form-group">
+                                <label>Filtrar por modalidad</label>
+                                <select id="modalidad" class="form-control" name="modalidad" (change)="filtrarDisciplinas($event)" >
+                                    <option value="null" disabled selected>Seleccione la modalidad</option> 
+                                    <option *ngFor="let modalidad of listaModalidades" [value]="modalidad.id">{{modalidad.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+        <div *ngFor="let disciplina of convocatoria.disciplinas | paginate: { itemsPerPage: 7, currentPage: p }; let i = index">
+            <div class="row labels-sm border shadow-sm mb-3 convocatoriaInfo" *ngIf="idModalidad == disciplina.idModalidad || idModalidad == 0" >
+                <div class="col-md-5 col-lg-4 p-3 bg-info text-white d-flex flex-wrap align-items-start flex-column justify-content-between">
+                    <h3 class="h4 border-bottom mb-3 pb-3 w-100">
+                        <strong>{{disciplina.nombreDisciplina}}</strong>
+                        <small class="d-block text-white mt-1">{{disciplina.nombreModalidad}} </small>
+                    </h3>
+                    <div class="w-100">
+                        <button type="button" class="btn btn-warning btn-block mb-1 shadow font-weight-bold text-uppercase" (click)="abrirModalInscribirse(disciplina)" *ngIf="etapaActual.id == 20"> Postularme </button>
+                        <button type="button" class="btn btn-warning btn-block mb-1 shadow font-weight-bold text-uppercase" [routerLink]="['/deportistas-artistas/estudiantes-seleccionados', disciplina.id]" *ngIf="etapaActual.id == 22"> Ver resultados </button>
+                    </div>
+                </div>
+                <div class="col-md-7 col-lg-8">
+                    <div class="row h-100">
+                        <div class="col-12">  
+                            <label class="m-0"><strong>Requerimientos</strong></label>
+                            <p>{{disciplina.requerimientos}}</p>
+                        </div>
+                        <div class="d-flex align-items-end flex-column" style="height: 40px;">        
+                            <a class="mt-auto" style="padding-left: 15px;" [routerLink]="" (click)="abrirModalCriteriosEvaluacion(disciplina)" >Ver criterios de evaluación</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
+</div>
+
+<div class="col-12 text-center" *ngIf="error != null">
+    <button type="button" class="btn btn-default mr-md-1 mb-3" (click)="goBack()">Volver al perfil</button>
+</div>
+
+<!-- Modal para realizar inscripción en la convocatoria-->
+<div class="modal fade" id="inscribirseModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modelTitleId">Ingresar datos personales</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="inscripcionForm.resetForm();" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form (ngSubmit)="guardarInscripcion(inscripcionForm)" #inscripcionForm="ngForm" novalidate>
+                <div class="modal-body">
+                    
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <fieldset>
+                      <div class="alert alert-info">
+                          Todos los campos son obligatorios
+                      </div>
+                      
+                      <div class="row">
+                          
+                        <div class="col-12 col-lg-5">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Tipo de identificación</label>
+                                <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion" [ngClass]="{'is-invalid': ((inscripcionForm.submitted || tipoIdentificacion.touched) && (tipoIdentificacion.errors?.required))}" [(ngModel)]="inscripcion.tipoIdentificacion" #tipoIdentificacion="ngModel" required>
+                                    <option value="null" disabled selected>Seleccione el tipo de identificación</option> 
+                                    <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">{{tipo.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-10 col-lg-5">
+                            <div  class="form-group">
+                                <label for="identificacion">Identificación</label>
+                                <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de identificación" name="identificacion" [(ngModel)]="inscripcion.identificacion" #identificacion="ngModel" required [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || inscripcionForm.submitted)}">
+                            </div>
+                        </div>
+
+                        <div class="col-2 d-flex align-items-center">
+                            <button (click)="buscarEstudiante($event)" class="btn btn-success mt-3"><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div  class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input [disabled]="camposDeshabilitados" type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo" name="nombre" maxlength="255" [(ngModel)]="inscripcion.nombre" #nombre="ngModel" required [ngClass]="{'is-invalid': nombre.errors?.required && (nombre.touched || inscripcionForm.submitted)}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div  class="form-group">
+                                <label for="direccion">Dirección</label>
+                                <input [disabled]="camposDeshabilitados" type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" name="direccion" maxlength="255" [(ngModel)]="inscripcion.direccion" #direccion="ngModel" required [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || inscripcionForm.submitted)}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="sexo">Sexo</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" [value]="true" [(ngModel)]="inscripcion.sexo" required #sexo="ngModel">
+                                <label class="form-check-label" for="sexoMasculino">Masculino</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input [disabled]="camposDeshabilitados" class="form-check-input" type="radio" name="sexo" id="sexoFemenino" [value]="false" [(ngModel)]="inscripcion.sexo" required #sexo="ngModel">
+                                <label class="form-check-label" for="sexoFemenino">Femenino</label>
+                            </div>
+                            <small *ngIf="((inscripcionForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                        </div>
+
+                        </div>
+
+                          <div class="col-12 col-sm-12 col-md-6">
+                              <div id="fecha_nacimiento" class="form-group">
+                                  <label>Fecha de nacimiento</label>
+                                  <div class="ui-g ui-fluid">
+                                      <div class="ui-g-12 ui-md-12 p-0">
+                                          <p-calendar [disabled]="camposDeshabilitados" inputStyleClass="form-control" name="fecha_nacimiento" [(ngModel)]="inscripcion.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required 
+                                          [locale]="es" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2019" #fecha_nacimiento="ngModel" [ngClass]="{'is-invalid': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || inscripcionForm.submitted)}"></p-calendar>
+                                      </div>
+                                  </div>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || inscripcionForm.submitted)}">Seleccione una fecha</div>
+                              </div>
+                          </div>
+                      
+                          <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="correo">Correo electrónico</label>
+                                    <input type="text" class="form-control" id="correo" placeholder="Ingrese su correo electrónico" name="correo" maxlength="255" [(ngModel)]="inscripcion.email" #correo="ngModel" required [ngClass]="{'is-invalid': correo.errors?.required && (correo.touched || inscripcionForm.submitted)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                </div>
+                           </div>
+                           <div class="col-12">
+                            <div class="alert alert-warning text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                                <p class="m-0">Debe diligenciar la carta y la hoja de vida con los formatos que se indican aquí</p>
+                            </div>
+                           </div>
+
+                            <div class="col-sm-12">
+                                <div id="carta" class="form-group">
+                                        
+                                    <label for="carta">Carta</label>
+                                    <a style="color:black;" tabindex="0" class="mb-2 ml-2" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="El tamaño máximo del archivo debe ser de 2 MB y en formato PDF">
+                                        <span class="fa fa-question-circle" aria-hidden="true"></span>
+                                        <span class="sr-only">Información de ayuda</span>
+                                    </a>
+                                    <a [href]="listaPlantillas[0].ruta_plantilla | donseguro:api" *ngIf="listaPlantillas[0]" style="color:black; cursor:pointer;" class="mb-2 ml-3" title="Descargar formato de carta">
+                                        <span class="fas fa-download" ></span>
+                                        <span class="sr-only">Descargar formato de carta</span>
+                                    </a>
+                                    
+                                    <p-fileUpload id="carta" name="carta[]" (onSelect)="onUploadFileCarta($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                        invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileCarta()" #carta required [ngClass]="{'is-invalid': carta.errors?.required && (carta.touched || inscripcionForm.submitted)}">
+                                    </p-fileUpload>
+                                    <div class="invalid-feedback " [ngClass]="{'d-block': !inscripcion.file_carta  && inscripcionForm.submitted }">Debe cargar la carta</div>
+                                </div>
+                            </div>
+
+                           <div class="col-sm-12">
+                                <div id="hojaDeVida" class="form-group">
+                                    
+                                    <label for="hojaDeVida">Hoja de vida</label>
+                                    <a style="color:black;" tabindex="0" class="mb-2 ml-2" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="El tamaño máximo del archivo debe ser de 2 MB y en formato PDF">
+                                        <span class="fa fa-question-circle" aria-hidden="true"></span>
+                                        <span class="sr-only">Información de ayuda</span>
+                                    </a>
+                                    <a [href]="listaPlantillas[1].ruta_plantilla | donseguro:api" *ngIf="listaPlantillas[1]" style="color:black; cursor:pointer;" class="mb-2 ml-3" title="Descargar formato de hoja de vida">
+                                        <span class="fas fa-download" ></span>
+                                        <span class="sr-only">Descargar formato de hoja de vida</span>
+                                    </a>
+                                    <p-fileUpload id="hojaDeVida" name="hojaDeVida[]" (onSelect)="onUploadFileHojaDeVida($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                        invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileHojaDeVida()" #hojaDeVida required [ngClass]="{'is-invalid': hojaDeVida.errors?.required && (hojaDeVida.touched || inscripcionForm.submitted)}">
+                                    </p-fileUpload>
+                                    <div class="invalid-feedback" [ngClass]="{'d-block': !inscripcion.file_hojaDeVida  && inscripcionForm.submitted}" >Debe cargar la hoja de vida</div>
+                                </div>
+                            </div>
+
+                          <div class="col-sm-12">
+                            <div id="certificado" class="form-group">
+                                
+                                <label for="certificado">Certificado</label>
+                                <a  style="color:black;" tabindex="0" class="mb-2 ml-2" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="El tamaño máximo del archivo debe ser de 2 MB y en formato PDF">
+                                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                                    <span class="sr-only">Información de ayuda</span>
+                                </a>
+                                <p-fileUpload id="certificado" name="certificado[]" (onSelect)="onUploadFileCertificado($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileCertificado()" #certificado required [ngClass]="{'is-invalid': certificado.errors?.required && (certificado.touched || inscripcionForm.submitted)}">
+                                </p-fileUpload>
+                                <div class="invalid-feedback " [ngClass]="{'d-block': !inscripcion.file_certificado  && inscripcionForm.submitted }">Debe cargar un archivo de certificado</div>
+                            </div>
+                          </div>
+
+                          
+                        </div>
+
+                    </fieldset>
+  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="inscripcionForm.resetForm(); quitarArchivos();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para mostrar items de evaluacion -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Criterios de evaluación</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead> 
+                            <tr>
+                                <th style="width: 180px;">Nombre</th>
+                                <th style="width: 20px ">Porcentaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of disciplina.items">
+                                <td>
+                                    {{item.nombre}}        
+                                </td>
+                                <td>
+                                    {{item.porcentaje}}%
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para enviar token a correo de los estudiantes-->
+<div class="modal fade" id="modalEnviarToken" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId">Enviar enlace a su correo electrónico para seguir estado de la convocatoria</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form (ngSubmit)="enviarToken(enviarTokenForm)" #enviarTokenForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="correoRecuperacion">Correo electrónico</label>
+                            <input type="email" name="correoRecuperacion" id="correoRecuperacion" class="form-control" [ngClass]="{'is-invalid': ((enviarTokenForm.submitted || correoRecuperacion.touched) && (correoRecuperacion.errors?.required) )}" [(ngModel)]="recuperacionToken.correo" #correoRecuperacion="ngModel" placeholder="Ingrese su correo electrónico actual" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                 required/>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="identificacionRecuperacion">Identificación</label>
+                            <input type="number" name="identificacionRecuperacion" id="identificacionRecuperacion" class="form-control" [ngClass]="{'is-invalid': ((enviarTokenForm.submitted || identificacionRecuperacion.touched) && (identificacionRecuperacion.errors?.required))}" [(ngModel)]="recuperacionToken.identificacion" #identificacionRecuperacion="ngModel" placeholder="Ingrese su número de identificación"
+                                 required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="enviarTokenForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

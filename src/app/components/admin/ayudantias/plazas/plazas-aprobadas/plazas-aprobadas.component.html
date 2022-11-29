@@ -1,0 +1,268 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<h2 class="animated fadeIn text-uppercase text-center">Plazas revisadas <span *ngIf="tipoConvocatoria == 1">por Bienestar</span><span *ngIf="tipoConvocatoria == 3">por Comité</span> <small class="btn-block text-muted">El listado cuenta con {{plazasAprobadas.length}} registro(s)</small></h2>
+
+<hr>
+
+<div class="alert alert-info text-center mb-3" *ngIf="convocatoria.id != null">
+    <strong>{{convocatoria.titulo}}</strong>
+</div>
+
+<p class="text-center text-muted" *ngIf="cantTotalPostulados > 0">Se han inscrito {{cantTotalPostulados}} estudiantes en total entre todas las plazas disponibles.</p>
+<div class="row animated fadeIn">
+    <div class="alert alert-warning mb-3" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <p class="small">A continuación, se muestran todas las solicitudes de plazas que han sido revisadas por {{ tipoConvocatoria == 1 ? 'Bienestar' : 'los Comités' }}. Desde la columna 'Acciones' puede acceder a las diferentes opciones para cada registro. Las opciones varían según el estado en el que se encuentre
+            la plaza.</p>
+        <p class="small">Dependiendo de la etapa de la convocatoria podrá visualizar que algunas filas de la tabla se resaltan con un color distintivo. las plazas que iniciaron el proceso de evaluación de los estudiantes son resaltadas en color azul, y las plazas que
+            ya han aprobado al menos a un estudiante son resaltadas en color verde.</p>
+    </div>
+</div>
+<!-- Inicio filtros aplicados -->
+<div class="text-center mb-3 animated fadeIn">
+    <button id="btn-filtros" class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+    </button>
+
+</div>
+
+<div class="collapse mb-3" id="collapseFilter">
+    <div class="card card-body px-3 pt-3">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-convocatoria" class="form-group">
+                    <label>Filtrar por convocatoria</label>
+
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">
+                <div id="filter-solicitante" class="form-group">
+                    <label>Filtrar por solicitante</label>
+
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-plaza" class="form-group">
+                    <label>Filtrar por plaza</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" *ngIf="userService.roleMatch(['Unidad', 'UnidadMonitorias'])">
+                <div id="filter-tipoPlaza" class="form-group">
+                    <label>Filtrar por tipo de plaza</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-estado" class="form-group">
+                    <label>Filtrar por estado</label>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+<!-- Fin filtros aplicados -->
+
+<div class="row animated fadeIn">
+    <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+
+    <div class="col-md-12">
+        <div class="table-responsive mb-3">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_plazasRevisadas">
+                <thead>
+                    <tr>
+                        <th scope="col">Convocatoria</th>
+                        <th scope="col">Solicitante</th>
+                        <th scope="col">Plaza</th>
+                        <th scope="col">Tipo de plaza</th>
+                        <th scope="col" class="text-center" style="width: 70px;">Cupos <span class="fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Cupos aprobados / cupos solicitados"></span></th>
+                        <th scope="col">Cupos ratificados</th>
+                        <th scope="col" style="width: 80px;">Fecha de solicitud</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Competencias requeridas</th>
+                        <th scope="col">Cantidad postulados</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" style="width: 120px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let solicitud of plazasAprobadas" [ngClass]="{'table-success': solicitud.estadoAprobados == 'Aprobados','table-info': solicitud.estadoAprobados == 'Evaluados'}">
+                        <td>{{ solicitud.convocatoria }}</td>
+                        <td>{{ solicitud.solicitanteNombre }} </td>
+                        <td>{{ solicitud.tipoPlazaNombre }} </td>
+                        <td>{{ solicitud.tipoAyudantia }} </td>
+                        <td class="text-center">{{ solicitud.cuposAprobados }} / {{ solicitud.cuposSolicitados }}</td>
+                        <td>{{ solicitud.cuposRatificados }} </td>
+                        <td attr.data-order="{{solicitud.fechaSolicitud}}">{{solicitud.fechaSolicitud | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{ solicitud.perfil }} </td>
+                        <td>{{ solicitud.competenciasRequeridas }} </td>
+                        <td>{{solicitud.cantidadPostulados}}</td>
+                        <td>{{solicitud.estadoNombre}}</td>
+                        <td attr.data-order="{{solicitud.cantidadPostulados}}">
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <!-- <a title="Detalle de la plaza" [routerLink]="[ '/plazas/verPlaza', solicitud.id]" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" role="button">
+                                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                    <span class="sr-only">Detalle de la plaza</span>
+                                </a>
+                                <a *ngIf="((userService.roleMatch(['Unidad']) && solicitud.etapa_id <= 6 && solicitud.estadoId == 2 ) || userService.roleMatch(['Admin']))" title="Asignar criterios de evaluación" [routerLink]="[ '/plazas','criteriosEvaluacion', solicitud.id]" class="btn btn-sm btn-outline-dark border-secondary btn-criterios"
+                                    role="button">
+                                    <span class="fas fa-clipboard-list" aria-hidden="true"></span>
+                                    <span class="sr-only">Asignar criterios de evaluación</span>
+                                </a> -->
+                                <button title="Agregar estudiante" *ngIf="((userService.roleMatch(['Admin', 'AdminMonitorias']) && solicitud.estadoId == 2 )|| (userService.roleMatch(['Unidad', 'UnidadMonitorias']) && solicitud.estadoId == 2)) && solicitud.convocatoriaEstadoControl != 3" class="btn btn-sm btn-outline-dark border-secondary btn-addEstudiante" type="button"
+                                    (click)="openModal(solicitud.id)">
+                                    <span class="fas fa-user-plus" aria-hidden="true"></span>
+                                    <span class="sr-only">Agregar estudiante</span> 
+                                </button>
+                                <a *ngIf="userService.roleMatch(['Unidad', 'Admin', 'UnidadMonitorias', 'AdminMonitorias', 'ComiteMonitorias']) && solicitud.estadoId == 2 && id != undefined" [routerLink]="[ '/plazas', solicitud.id, 'estudiantes', id]" class="btn btn-sm btn-outline-dark border-secondary btn-verEstudiante" title="{{userService.roleMatch(['ComiteMonitorias']) ? 'Ver estudiantes aprobados' : 'Ver estudiantes postulados'}}" role="button">
+                                    <span class="fas fa-user" aria-hidden="true" [ngClass]="{'text-muted': solicitud.cantidadPostulados == 0 && tipoConvocatoria == 1, 'text-success': solicitud.cuposRatificados > 0 && solicitud.cuposRatificados == solicitud.cuposAprobados && tipoConvocatoria == 3}"></span> <span class="badge badge-light" *ngIf="solicitud.cantidadPostulados > 0">{{solicitud.cantidadPostulados}}</span>
+                                    <span class="sr-only">{{userService.roleMatch(['ComiteMonitorias']) ? 'Ver estudiantes aprobados' : 'Ver estudiantes postulados'}}</span>
+                                </a>
+                                
+                                <a *ngIf="userService.roleMatch(['Unidad', 'Admin', 'UnidadMonitorias', 'AdminMonitorias', 'ComiteMonitorias']) && solicitud.estadoId == 2 && id == undefined" [routerLink]="[ '/plazas', solicitud.id, 'estudiantes']" class="btn btn-sm btn-outline-dark border-secondary btn-verEstudiante" title="{{userService.roleMatch(['ComiteMonitorias']) ? 'Ver estudiantes aprobados' : 'Ver estudiantes postulados'}}" role="button">
+                                    <span class="fas fa-user" aria-hidden="true" [ngClass]="{'text-muted': solicitud.cantidadPostulados == 0 && tipoConvocatoria == 1, 'text-success': solicitud.cuposRatificados > 0 && solicitud.cuposRatificados == solicitud.cuposAprobados && tipoConvocatoria == 3}"></span> <span class="badge badge-light" *ngIf="solicitud.cantidadPostulados > 0">{{solicitud.cantidadPostulados}}</span>
+                                    <span class="sr-only">{{userService.roleMatch(['ComiteMonitorias']) ? 'Ver estudiantes aprobados' : 'Ver estudiantes postulados'}}</span>
+                                </a>
+                                
+                               
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="fas fa-ellipsis-v" aria-hidden="true"></span>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <button *ngIf="userService.roleMatch(['UnidadMonitorias', 'AdminMonitorias', 'ComiteMonitorias']) && solicitud.estadoId == 2 && tipoConvocatoria == 3" (click)="obtenerPropuestas(solicitud)" class="dropdown-item btn btn-sm btn-outline-dark border-secondary btn-verEstudiante" title="Descargar propuestas metodológicas" [disabled]="solicitud.cantidadPostulados <= 1">
+                                            <span class="fas fa-download" aria-hidden="true"></span>
+                                            <span class="sr-only">Descargar propuestas metodológicas</span>
+                                            Descargar propuestas (.Zip)
+                                        </button>
+                                        <a *ngIf="((((userService.roleMatch(['Unidad']) && solicitud.etapa_id <= 6 && solicitud.estadoId == 2) || userService.roleMatch(['Admin'])) && tipoConvocatoria == 1)
+                                                || (((userService.roleMatch(['ComiteMonitorias', 'UnidadMonitorias']) && solicitud.etapa_id <= 26 && solicitud.estadoId == 2) || userService.roleMatch(['AdminMonitorias'])) && tipoConvocatoria == 3)) && solicitud.convocatoriaEstadoControl != 3" title="Asignar criterios de evaluación" [routerLink]="[ '/plazas','criteriosEvaluacion', solicitud.id]" class="dropdown-item btn btn-sm btn-outline-dark border-secondary btn-criterios"
+                                            role="button">
+                                            <span class="fas fa-clipboard-list" aria-hidden="true"></span>
+                                            <span class="sr-only">Asignar criterios de evaluación</span>
+                                            Asignar criterios de evaluación
+                                         </a>
+                                         <a title="Detalle de la plaza" [routerLink]="[ '/plazas/verPlaza', solicitud.id]" class="dropdown-item btn btn-sm btn-outline-dark border-secondary btn-detalle" role="button">
+                                            <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                            <span class="sr-only">Detalle de la plaza</span>
+                                            Detalle de la plaza
+                                        </a>
+                                     </div>
+                                    
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <!-- <tfoot>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Solicitante</th>
+                        <th scope="col"></th>
+                        <th scope="col">Tipo de plaza</th>
+                        <th scope="col"></th>
+                        <th scope="col">Fecha de solicitud</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Competencias requeridas</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </tfoot> -->
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalEstudiante" tabindex="-1" role="dialog" aria-labelledby="modalEstudianteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form #codigoForm="ngForm" novalidate (ngSubmit)="postular(codigoForm)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEstudianteLabel">Añadir Estudiante</h5>
+
+                    <button *ngIf="userService.roleMatch(['Admin'])" type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm(codigoForm); ">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                    <button *ngIf="userService.roleMatch(['Unidad'])" type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm(codigoForm);">    
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input type="number" id="codigo" name="codigo" class="form-control" placeholder="Escribe el código aquí" required [(ngModel)]="agregarEstudiante.codigo" #codigoTxt="ngModel" pattern=".{5,}" [ngClass]="{'is-invalid': (codigoForm.submitted || codigoTxt.touched) && codigoTxt.errors?.required || codigoTxt.errors?.pattern}">
+                        </div>
+                    </div>
+                    <div *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="solicitante">Solicitante</label>
+                                <input class="form-control" [ngClass]="{'is-invalid ': solicitante.errors?.required && (codigoForm.submitted || solicitante.touched) }" type="text" placeholder="Ingrese el solicitante. Máx 255 caracteres" name="solicitante" id="solicitante" [(ngModel)]="agregarEstudiante.solicitante"
+                                    required #solicitante="ngModel" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="observacion">Observación</label>
+                                <textarea class="form-control " rows="2" [ngClass]="{'is-invalid ': observacion.errors?.required && (codigoForm.submitted || observacion.touched) }" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacion"
+                                    id="observacion" [(ngModel)]="agregarEstudiante.observacion" required #observacion="ngModel" maxlength="455"> </textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="soporte">Soporte <small class="text-muted">(Solo formato PDF)</small></label>
+                                <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                </p-fileUpload>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': !agregarEstudiante.soporte && codigoForm.submitted }">Debe cargar un archivo de soporte</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="tipoConvocatoria == 3" class="col-12">
+                        <div class="form-group">
+                            <label for="formato">Propuesta metodológica <small class="text-muted">(Solo formato PDF)</small></label>
+                            <p-fileUpload id="formato" name="formato[]" (onSelect)="onUploadFileFormato($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileFormato()" required #formato>
+                            </p-fileUpload>
+                            <div class="invalid-feedback" [ngClass]="{'d-block': !agregarEstudiante.propuesta_metodologica && codigoForm.submitted }">Debe cargar el archivo de propuesta metodológica</div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="validacion">Desactivar validaciones <small class="text-muted">(Seleccionar cuando sea necesario)</small></label>
+                            <select [(ngModel)]="agregarEstudiante.validacion" class="form-control" name="validacion" id="validacion" #validacion="ngModel">
+                                <option value="1">Si</option>
+                                <option value="null" selected>No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12" *ngIf="userService.roleMatch(['AdminMonitorias'])">
+                        <div class="form-group">
+                            <label for="estado_convocatoria_estudiante_id">Estado estudiante</label>
+                            <select [(ngModel)]="agregarEstudiante.estado_convocatoria_estudiante_id" class="form-control" name="estado_convocatoria_estudiante_id" id="validacion" #estado_convocatoria_estudiante_id="ngModel">
+                                <option [value]="1" selected>Postulado</option>
+                                <option [value]="6" selected>Ratificado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" (click)="resetForm(codigoForm); ">Cerrar</button>
+                    <button type="submit" class="btn btn-success ml-1">Agregar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

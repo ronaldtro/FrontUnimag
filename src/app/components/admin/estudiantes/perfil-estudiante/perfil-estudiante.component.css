@@ -1,0 +1,15 @@
+.img-profile{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}

@@ -1,0 +1,112 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Recepción de beneficio alimenticio<small class="btn-block font-weight-bold">Entrega de {{beneficio.nombre | lowercase}}</small></h2>
+    <hr>
+    <p class="text-center font-weight-bold">
+        En el día de hoy ({{today|date:'dd/MM/yyyy'}}) se han entregado {{cantidadEntregas | number}} {{beneficio.nombre}}.
+    </p>
+    <div *ngIf="errores2.length > 0">
+        <div class="alert alert-danger alert">
+            <ul>
+                <li *ngFor="let error of errores2">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div *ngIf="errores2.length == 0">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-xs-10 col-sm-8 col-md-6 col-xl-6 d-flex flex-wrap justify-content-center">
+                        <div class="form-inline text-center">
+                            <label for="codigoInput" class="mb-2 mr-sm-2">Código estudiantil</label>
+                            <input type="text" class="form-control form-control-lg mb-2 mr-sm-2" id="codigoInput" placeholder="Código del estudiante" [(ngModel)]="codigo" name="codigoInput" maxlength="255" #codigoInput (change)="foco($event)">
+                            
+                        </div>
+                    </div>
+                </div>
+                <small class="d-block text-muted text-center">Espere la lectura de la huella. Si se ingresa el código manualmente verifique la información ingresada con el carnet estudiantil del estudiante.</small>
+            </div>
+        </div>
+        
+        <div class="card shadow mb-3" *ngIf="estudiante.codigo != null">
+            <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">
+                            <div class="text-center img-profile shadow mt-2 mb-2">
+                                <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{estudiante.codigo}}" alt="Perfil" class="rounded h-100"> -->
+                                <img [src]="estudiante.foto" *ngIf="estudiante.foto" class="rounded h-100">
+                                <img src="../../../../../assets/img/profile.png" *ngIf="!estudiante.foto" class="rounded h-100">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">
+                            <div class="row text-center text-md-left">
+                                <div class="col-12">
+                                    <h3 class="h5 mb-3">
+                                        <small class="d-block text-muted">Nombre</small>{{estudiante.nombre}}
+                                    </h3>
+                                </div>
+                                <div class="col-md-4 col-xl-3">
+                                    <div class="form-group">
+                                        <label class="m-0 text-muted">Código</label>
+                                        <p class="form-control-plaintext p-0">{{estudiante.codigo}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8" [ngClass]="{'col-xl-8': estudiante.dias == null, 'col-xl-3': estudiante.dias != null}">
+                                    <div class="form-group">
+                                        <label class="m-0 text-muted">Beneficio</label>
+                                        <p class="form-control-plaintext p-0">{{estudiante.beneficio != null ? estudiante.beneficio : 'No tiene beneficio'}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6" *ngIf="estudiante.dias != null">
+                                    <div class="form-group">
+                                        <label class="m-0 text-muted">Días</label>
+                                        <p class="form-control-plaintext p-0">
+                                            <span *ngFor="let item of estudiante.dias; let last = last">{{item}}<span *ngIf="!last">, </span></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" *ngIf="estudiante.estado != null">
+                                    <div class="form-group">
+                                        <label class="m-0 text-muted">Estado</label>
+                                        <p class="form-control-plaintext p-0 font-weight-bold">{{estudiante.estado}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" *ngIf="estudiante.estado != null">
+                                    <div class="form-group">
+                                        <label class="m-0 text-muted">No. de fallas</label>
+                                        <p class="form-control-plaintext p-0 font-weight-bold">{{estudiante.cuentaFallas}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div *ngIf="estudiante.idEstado == 1">
+            <div class="alert alert-success alert font-weight-bold text-center py-3 text-uppercase">
+                <p class="mb-0">Entrega Exitosa</p>
+            </div>
+        </div>
+        <div *ngIf="errores.length > 0">
+            <div class="alert alert-danger alert font-weight-bold text-center">
+                <p>Observaciones:</p>
+                <ul class="list-group list-group-flush">
+                    <li *ngFor="let error of errores" class="list-group-item bg-transparent">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-12 text-center">
+            <button *ngIf="errores.length > 0 || estudiante.codigo != null" type="button" class="btn btn-success mr-1" (click)="limpiar()">Limpiar</button>
+            <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/principal' ]">Volver</button>
+        </div>
+    </div>
+    <br>
+</div>

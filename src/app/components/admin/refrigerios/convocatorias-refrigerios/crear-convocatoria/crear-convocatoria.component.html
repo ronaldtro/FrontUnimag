@@ -1,0 +1,742 @@
+<div class="animated fadeIn">
+    <h2 class="text-uppercase text-center">Convocatorias de almuerzos y refrigerios<small class="btn-block text-muted">Formulario de
+  creación de convocatoria</small></h2>
+    <hr>
+    <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+    <p-messages [(value)]="errores"></p-messages>
+
+
+    <form #convocatoriaForm="ngForm" novalidate (ngSubmit)="save(convocatoriaForm)">
+        <fieldset>
+            <legend>Información general</legend>
+            <!-- <div class="alert alert-info">
+            Todos los campos en este formulario son obligatorios
+        </div> -->
+            <div class="alert alert-info">
+                <strong>Debe presionar el botón "Guardar" para efectuar los cambios</strong>
+            </div>
+            <div class="row">
+
+                <div class="col-12 col-sm-12 col-md-3 col-xl-3">
+                    <div class="form-group">
+                        <label for="presupuesto"><span style="color:red;">*</span>Presupuesto</label>
+                        <select [ngClass]="{'is-invalid': presupuesto.errors?.required && (presupuesto.touched || convocatoriaForm.submitted)}" id="presupuesto" class="form-control" name="presupuesto" [(ngModel)]="convocatoria.bolsa_presupuestal_id" #presupuesto="ngModel" required
+                            (change)="changeTitulo(convocatoria.bolsa_presupuestal_id)">
+          <option [value]="null" disabled selected>Elegir un presupuesto</option>
+          <option *ngFor="let bolsa of bolsas" [value]="bolsa.id">{{bolsa.periodo}} ({{bolsa.valor | currency:'COP'
+            }})</option>
+
+        </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-6">
+                    <div class="form-group">
+                        <label for="titulo"><span style="color:red;">*</span>Título</label>
+                        <input type="text" class="form-control" id="titulo" placeholder="Título de la convocatoría. Máx. 255 caracteres" name="titulo" maxlength="255" [(ngModel)]="convocatoria.titulo" #titulo="ngModel" required [ngClass]="{'is-invalid': titulo.errors?.required && (titulo.touched || convocatoriaForm.submitted)}">
+
+                        <div class="invalid-feedback">Escríba el título de la convocatoria</div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-3 col-xl-3">
+                    <div class="form-group">
+                        <label><span style="color:red;">*</span>Fecha de expedición</label>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <p-calendar inputStyleClass="form-control {{isValid}}" name="fecha_expedicion" [(ngModel)]="convocatoria.fecha_expedicion" dateFormat="dd/mm/yy" [readonlyInput]="true" required (onBlur)='validation(fecha_expedicion)' (onSelect)='validation(fecha_expedicion)'
+                                    #fecha_expedicion="ngModel" [locale]="es" [maxDate]="dateNow"></p-calendar>
+
+                            </div>
+                        </div>
+                        <div class="invalid-feedback " [ngClass]="{'d-block': fecha_expedicion.errors?.required && (fecha_expedicion.touched || convocatoriaForm.submitted)}">Seleccione una fecha</div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        <label for="fallas"><span style="color:red;">*</span>Nro. de fallas para pérdida del beneficio</label>
+                        <input class="form-control " [ngClass]="{'is-invalid ': ((fallas.errors?.min || fallas.errors?.max) || ((convocatoriaForm.submitted || fallas.touched) && fallas.errors?.required)) }" type="number" placeholder="Ingrese el número de fallas para la pérdida del beneficio"
+                            name="fallas" id="fallas" required [(ngModel)]="convocatoria.fallas" [min]="1" [max]="999999" #fallas="ngModel">
+                        <div class="invalid-feedback" *ngIf="fallas.errors?.min">
+                            Números mayores o iguales a {{fallas.errors?.requiredValue}}
+                        </div>
+                        <div class="invalid-feedback" *ngIf="fallas.errors?.max">
+                            Números menores o iguales a {{fallas.errors?.requiredValue}}
+                        </div>
+                        <div class="invalid-feedback ">Ingrese el número de fallas</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        <label for="cantidad_beneficios"><span style="color:red;">*</span>Nro. máximo de beneficios a inscribirse</label>
+                        <input class="form-control " [ngClass]="{'is-invalid ': ((cantidad_beneficios.errors?.min || cantidad_beneficios.errors?.max) || ((convocatoriaForm.submitted || cantidad_beneficios.touched) && cantidad_beneficios.errors?.required)) }" required type="number"
+                            placeholder="Ingrese el número máximo de beneficios a los que un estudiante puede inscribirse" name="cantidad_beneficios" id="cantidad_beneficios" [(ngModel)]="convocatoria.cantidad_beneficios" [min]="1" [max]="999999" #cantidad_beneficios="ngModel">
+                        <div class="invalid-feedback" *ngIf="cantidad_beneficios.errors?.min">
+                            Números mayores o iguales a {{cantidad_beneficios.errors?.requiredValue}}
+                        </div>
+                        <div class="invalid-feedback" *ngIf="cantidad_beneficios.errors?.max">
+                            Números menores o iguales a {{cantidad_beneficios.errors?.requiredValue}}
+                        </div>
+                        <div class="invalid-feedback ">Ingrese el número de beneficios</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        <label for="estrato"><span style="color:red;">*</span>Estrato máximo para aceptar inscripción</label>
+                        <input class="form-control " [ngClass]="{'is-invalid ': ((estrato.errors?.min || estrato.errors?.max) || ((convocatoriaForm.submitted || estrato.touched) && estrato.errors?.required)) }" required type="number" placeholder="Ingrese el estrato socioeconómico mínimo para impedir inscripción"
+                            name="estrato" id="estrato" [(ngModel)]="convocatoria.estrato" [min]="0" [max]="999999" #estrato="ngModel">
+                        <div class="invalid-feedback" *ngIf="estrato.errors?.min">
+                            Números mayores o iguales a {{estrato.errors?.requiredValue}}
+                        </div>
+                        <div class="invalid-feedback" *ngIf="estrato.errors?.max">
+                            Números menores o iguales a {{estrato.errors?.requiredValue}}
+                        </div>
+                        <div class="invalid-feedback ">Ingrese el número del estrato socioeconómico</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-6">
+                    <div class="form-group">
+                        <label for="modalidad"><span style="color:red;">*</span>Comunidad estudiantil a la que se entregará el beneficio</label>
+                        <ng-select [items]="modalidades" id="id" bindLabel="nombre" [ngClass]="{'is-invalid': ((convocatoriaForm.submitted || modalidad.touched) && modalidad.errors?.required) }" bindValue="id" placeholder="Seleccione las modalidades" name="modalidad" #modalidad="ngModel"
+                            [(ngModel)]="convocatoria.modalidades" [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="true">
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-6">
+                    <div class="form-group">
+                        <label for="restricion">Condiciones de estudiantes que solo pueden realizar la inscripción</label>
+                        <ng-select [items]="condiciones" id="id" bindLabel="nombre" bindValue="id" placeholder="Seleccione las condiciones que deben cumplir" name="restricion" #restricion="ngModel" [(ngModel)]="convocatoria.restricciones" [multiple]="true" [closeOnSelect]="false"
+                            [hideSelected]="true">
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <div class="form-group">
+                        <label for="descripcion">Descripción <small class="text-muted">(Opcional)</small></label>
+                        <textarea type="text" class="form-control" id="descripcion" placeholder="Descripción de la convocatoría. Información opcional. Máx. 500 caracteres." name="descripcion" [(ngModel)]="convocatoria.descripcion" #descripcion="ngModel" rows="5" maxlength="500"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <div class="form-group">
+                        <label for="soporte"><span style="color:red;">*</span>Soporte</label>
+                        <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                            invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                        </p-fileUpload>
+                        <div class="invalid-feedback " [ngClass]="{'d-block': !convocatoria.file_soporte  && convocatoriaForm.submitted }">Debe cargar un archivo de soporte</div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend>Etapas de la convocatoria <small><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+        data-target="#exampleModal" (click)="mostrar=true; editar=false; guardar=true;">Añadir
+        etapas</button></small></legend>
+
+            <div class="table-responsive mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th>#</th> -->
+                            <th>Estado</th>
+                            <th style="width: 350px;">Fecha</th>
+                            <th style="width: 80px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let etapa of convocatoria.etapas | orderBy:'fecha_inicio' ; let i=index">
+                            <!-- <td >{{i+1}}</td> -->
+                            <td>{{etapa.estado_id | iDToName:estados}}</td>
+                            <td>{{etapa.fecha_inicio | date: "short"}} - {{etapa.fecha_fin | date: "short"}}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-outline-dark border-secondary btn-sm mr-1" data-toggle="modal" data-target="#exampleModal" (click)="idx=i; editar=true; guardar=false; mostrar=true; editEtapa(i);" title="Editar registro">
+              <span class="fas fa-pen"></span>
+              <span class="sr-only">Editar registro</span>
+            </button>
+                                <button type="button" class="btn btn-outline-dark border-secondary btn-sm" (click)="deleteEtapas(etapa);" title="Eliminar registro">
+                      <span class="fas fa-times"></span>
+                      <span class="sr-only">Eliminar registro</span>
+                  </button>
+                            </td>
+                        </tr>
+                        <tr class="table-info" *ngIf="!convocatoriaForm.submitted && convocatoria.etapas.length==0">
+                            <td colspan="3">
+                                Presione el botón "Añadir etapas" para agregar una etapa a la convocatoria
+                            </td>
+                        </tr>
+                        <tr class="table-danger" *ngIf="convocatoriaForm.submitted && convocatoria.etapas.length==0">
+                            <td colspan="3">
+                                La convocatoria debe tener al menos una etapa
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend>Beneficios de la convocatoria <small><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+        (click)="modalBeneficio()">Añadir
+        beneficio</button></small></legend>
+
+            <div class="table-responsive mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Beneficio</th>
+                            <th>Día(s)</th>
+                            <th>Horario de entrega</th>
+                            <th>Cupos</th>
+                            <th>Cafeterías de entrega</th>
+                            <th style="width: 80px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bene of convocatoria.beneficios | orderBy:'idBeneficio' ; let i=index">
+                            <!-- <td >{{i+1}}</td> -->
+                            <td>{{bene.beneficio}}</td>
+                            <td><span *ngFor="let item of bene.listDiasNombre; let last = last">{{item}}<span *ngIf="!last">, </span></span>
+                            </td>
+                            <td>{{bene.nombre_inicio}} - {{bene.nombre_fin}}</td>
+                            <td>{{bene.valor}}</td>
+                            <td><span *ngFor="let item of bene.cafeterias; let last = last">{{item}}<span *ngIf="!last">, </span></span>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-outline-dark border-secondary btn-sm mr-1" data-toggle="modal" (click)="modalEditarBeneficio(bene);" title="Editar registro">
+              <span class="fas fa-pen"></span>
+              <span class="sr-only">Editar registro</span>
+            </button>
+                                <button type="button" class="btn btn-outline-dark border-secondary btn-sm" (click)="deleteBeneficio(bene);" title="Eliminar registro">
+                      <span class="fas fa-times"></span>
+                      <span class="sr-only">Eliminar registro</span>
+                  </button>
+                            </td>
+                        </tr>
+                        <tr class="table-info" *ngIf="!convocatoriaForm.submitted && convocatoria.beneficios.length==0">
+                            <td colspan="6">
+                                Presione el botón "Añadir beneficio" para agregar un beneficio a la convocatoria
+                            </td>
+                        </tr>
+                        <tr class="table-danger" *ngIf="convocatoriaForm.submitted && convocatoria.beneficios.length==0">
+                            <td colspan="6">
+                                La convocatoria debe tener al menos un beneficio
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <div *ngIf="convocatoria.beneficios.length != 0">
+            <hr>
+
+            <fieldset>
+                <legend>Condiciones de selección directa <small><button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+                (click)="modalCondiciones()">Añadir
+                condiciones</button></small></legend>
+
+                <div class="table-responsive mt-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th>#</th> -->
+                                <th>Condición</th>
+                                <th>Prioridad</th>
+                                <th>Nro. de fallas permitidas</th>
+                                <th>Nro. máximo de beneficios</th>
+                                <th>Validar horario del estudiante</th>
+                                <th style="width: 80px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let condi of convocatoria.condiciones | orderBy:'peso' ; let i=index">
+                                <!-- <td >{{i+1}}</td> -->
+                                <td>{{condi.condicion_id == '1' ? condi.condicion + ' ' + condi.estrato : condi.condicion}}</td>
+                                <td>{{condi.peso}}</td>
+                                <td>{{condi.numero_fallas != null ? condi.numero_fallas : 'No aplica'}}</td>
+                                <td>{{condi.cantidad_beneficios != null ? condi.cantidad_beneficios : 'No aplica'}}</td>
+                                <td>{{condi.validar_horario == '1' ? 'SI' : 'NO'}}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-dark border-secondary btn-sm mr-1" data-toggle="modal" (click)="modalEditarCondicion(condi);" title="Editar registro">
+                      <span class="fas fa-pen"></span>
+                      <span class="sr-only">Editar registro</span>
+                    </button>
+                                    <button type="button" class="btn btn-outline-dark border-secondary btn-sm" (click)="deleteCondicion(condi);" title="Eliminar registro">
+                              <span class="fas fa-times"></span>
+                              <span class="sr-only">Eliminar registro</span>
+                          </button>
+                                </td>
+                            </tr>
+                            <tr class="table-info" *ngIf="!convocatoriaForm.submitted && convocatoria.condiciones.length==0">
+                                <td colspan="6">
+                                    Presione el botón "Añadir condiciones" para agregar las condiciones a la convocatoria
+                                </td>
+                            </tr>
+                            <tr class="table-danger" *ngIf="convocatoriaForm.submitted && convocatoria.condiciones.length==0">
+                                <td colspan="6">
+                                    La convocatoria debe tener al menos una condición
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+
+        </div>
+
+
+        <div class="alert alert-info">
+            <strong>Debe presionar el botón "Guardar" para efectuar los cambios</strong>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-light mr-md-1 mb-3" [routerLink]="[ '/convocatoriasRefrigerio' ]">Volver al listado</button>
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos de la etapa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mostrar=false; clearModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-2 row" *ngIf="mostrar">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="estado">Etapa</label>
+                            <select [ngClass]="{'is-invalid': (send && (!estado.value || estado.value=='')) || (estado.touched && (!estado.value || estado.value=='')) }" id="estado" class="form-control" name="estado" [(ngModel)]="etapa.estado_id" #estado="ngModel" (change)="changePeso(etapa.estado_id)">
+
+              <option value="null" selected disabled>Elija un estado</option>
+              <option *ngFor="let estado of estados" [value]="estado.id">{{estado.nombre}} </option>
+
+            </select>
+                            <div class="invalid-feedback">Seleccione una de las opciones</div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 mt-3">
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <label>Fecha de inicio</label>
+                                <p-calendar inputStyleClass="form-control {{isFechaValid(etapa.fecha_inicio, fecha_inicio.touched)}}" showTime="true" hourFormat="12" name="fecha_inicio" [(ngModel)]="etapa.fecha_inicio" dateFormat="dd/mm/yy" [readonlyInput]="true" #fecha_inicio="ngModel"
+                                    [minDate]="dateNow" [locale]="es" (ngModelChange)="etapa.fecha_fin = etapa.fecha_inicio"></p-calendar>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': !etapa.fecha_inicio && (send || fecha_inicio.touched)}">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 mt-3">
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <label>Fecha de fin</label>
+                                <p-calendar inputStyleClass="form-control {{isFechaValid(etapa.fecha_fin, fecha_fin.touched)}}" name="fecha_fin" showTime="true" hourFormat="12" [(ngModel)]="etapa.fecha_fin" dateFormat="dd/mm/yy" [readonlyInput]="true" #fecha_fin="ngModel" [minDate]="dateNow"
+                                    [locale]="es"></p-calendar>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': !etapa.fecha_fin && (send || fecha_fin.touched)}">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)="mostrar=false; clearModal()">Cancelar</button>
+                <button type="button" class="btn btn-success" *ngIf="guardar==true" (click)="addEtapas(etapa.fecha_inicio, etapa.fecha_fin, etapa.estado_id, etapa.peso_etapa) ">Añadir</button>
+                <button type="button" class="btn btn-success" *ngIf="editar==true" (click)="saveEdit(idx, etapa.fecha_inicio, etapa.fecha_fin, etapa.estado_id, etapa.peso_etapa)">Añadir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBeneficio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Beneficios de la convocatoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+            </div>
+            <form (ngSubmit)="agregarBeneficio(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        Todos los campos son obligatorios.
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="beneficio">Beneficio</label>
+                                <select [ngClass]="{'is-invalid': ((forma.submitted || beneficio.touched) && beneficio.errors?.required) }" id="beneficio" class="form-control" name="beneficio" [(ngModel)]="benefi.idBeneficio" #beneficio="ngModel" required>
+  
+              <option value="null" selected disabled>Elija un beneficio</option>
+              <option *ngFor="let beneficio of beneficios" [value]="beneficio.id">{{beneficio.nombre}} </option>
+  
+            </select>
+                                <div class="invalid-feedback">Seleccione una de las opciones</div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="dia">Día</label>
+                                <ng-select [items]="dias" id="dia" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || dia.touched) && dia.errors?.required) }" bindValue="id" placeholder="Seleccione día(s)" name="dia" #dia="ngModel" [(ngModel)]="benefi.listDias" [multiple]="true"
+                                    [closeOnSelect]="false" [hideSelected]="true" [required]="true">
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                                <div class="invalid-feedback">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="cafe">Cafeterias de entrega</label>
+                                <ng-select [items]="cafeterias" id="cafe" bindLabel="nombre" [ngClass]="{'is-invalid': ((forma.submitted || cafe.touched) && cafe.errors?.required) }" bindValue="id" placeholder="Seleccione las cafeteria(s)" name="cafe" #cafe="ngModel" [(ngModel)]="benefi.idCafeterias"
+                                    [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="true">
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <label for="valor">Cupos</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (valor.errors?.required || valor.errors?.min || valor.errors?.max) && (valor.touched ||forma.submitted) }" type="number" placeholder="Ingrese el número de cupos para este día" name="valor" id="valor"
+                                    [(ngModel)]="benefi.valor" [min]="1" [max]="999999" required #valor="ngModel">
+                                <div class="invalid-feedback" *ngIf="valor.errors?.min">
+                                    Números mayores o iguales a {{valor.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="valor.errors?.max">
+                                    Números menores o iguales a {{valor.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="hora_inicio">Hora inicial</label>
+                                <ng-select [ngClass]="{'is-invalid ': ((forma.submitted || hora_inicio.touched) && hora_inicio.errors?.required) }" type="number" placeholder="Ingrese el número de cupos para este día" name="valor" id="valor" [items]="tiempo" id="hora_inicio" bindLabel="nombre"
+                                    bindValue="id" placeholder="Seleccione la hora de inicio" name="hora_inicio" #hora_inicio="ngModel" [(ngModel)]="benefi.hora_inicio" [closeOnSelect]="true" [hideSelected]="true" required>
+                                </ng-select>
+                                <div class="invalid-feedback">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="hora_fin">Hora final</label>
+                                <ng-select [ngClass]="{'is-invalid ': ((forma.submitted || hora_fin.touched) && hora_fin.errors?.required) }" [items]="tiempo" id="hora_fin" bindLabel="nombre" bindValue="id" placeholder="Seleccione la hora de finalización" name="hora_fin" #hora_fin="ngModel"
+                                    [(ngModel)]="benefi.hora_fin" [closeOnSelect]="true" [hideSelected]="true" required>
+                                </ng-select>
+                                <div class="invalid-feedback">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Añadir
+                      </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal condiciones -->
+<div class="modal fade" id="agregarCondicion" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="modelTitleId">Condiciones de selección directa</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="condicionForm.resetForm();" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <button (click)="condicionForm.resetForm();" type="button" class="btn btn-primary mb-3 mr-1 text-uppercase" title="Agregar condición" data-toggle="collapse" data-target="#collapseNuevaCondicion" aria-expanded="false" aria-controls="collapseNuevaCondicion">
+                          <span class="fas fa-plus"></span> Agregar condición
+                      </button>
+                </div>
+
+                <div class="collapse px-3 py-2 card" id="collapseNuevaCondicion">
+                    <form (ngSubmit)="agregarCondicion(condicionForm)" #condicionForm="ngForm" novalidate>
+                        <fieldset>
+                            <legend>
+                                Agregar condición
+                            </legend>
+                            <div class="row">
+                                <div [ngClass]="{'col-12 col-md-8 col-xl-8 col-sm-12': condicion.condicion_id != 1, 'col-12 col-md-5 col-xl-5 col-sm-12': condicion.condicion_id == 1}">
+                                    <div class="form-group">
+                                        <label for="condicionSelect"><span style="color:red;">*</span>Condición</label>
+                                        <select class="form-control" [ngClass]="{'is-invalid': ((condicionForm.submitted || condicionSelect.touched) && condicionSelect.errors?.required) }" [(ngModel)]="condicion.condicion_id" id="condicionSelect" name="condicionSelect" required #condicionSelect="ngModel">
+                                    <option value="null" selected disabled>Seleccione una condición</option>
+                                    <option *ngFor="let condi of condicionesRespaldo" [ngValue]="condi.id">{{condi.nombre}}</option>
+                                  </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-3 col-xl-3" *ngIf="condicion.condicion_id == 1">
+                                    <div class="form-group">
+                                        <label for="estratoCondicion" class="mr-1"><span style="color:red;">*</span>Estrato <span class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></span></label>
+                                        <input class="form-control " [ngClass]="{'is-invalid': (((condicionForm.submitted || estratoCondicion.touched) && estratoCondicion.errors?.required) || (estratoCondicion.errors?.min || estratoCondicion.errors?.max)) }" type="number" placeholder="Ingrese el estrato"
+                                            name="estratoCondicion" id="estratoCondicion" [(ngModel)]="condicion.estrato" [min]="0" [max]="999999" #estratoCondicion="ngModel" required="condicion.condicion_id == 1">
+                                        <div class="invalid-feedback" *ngIf="estratoCondicion.errors?.min">
+                                            Números mayores o iguales a {{estratoCondicion.errors?.requiredValue}}
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="estratoCondicion.errors?.max">
+                                            Números menores o iguales a {{estratoCondicion.errors?.requiredValue}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                                    <div class="form-group">
+                                        <label for="pesoCondicion"><span style="color:red;">*</span>Prioridad de seleccón</label>
+                                        <input class="form-control " [ngClass]="{'is-invalid': (((condicionForm.submitted || pesoCondicion.touched) && pesoCondicion.errors?.required) || (pesoCondicion.errors?.min || pesoCondicion.errors?.max)) }" type="number" placeholder="Ingrese la prioridad de selección"
+                                            name="pesoCondicion" id="pesoCondicion" [(ngModel)]="condicion.peso" [min]="1" [max]="999999" #pesoCondicion="ngModel" required>
+                                        <div class="invalid-feedback" *ngIf="pesoCondicion.errors?.min">
+                                            Números mayores o iguales a {{pesoCondicion.errors?.requiredValue}}
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="pesoCondicion.errors?.max">
+                                            Números menores o iguales a {{pesoCondicion.errors?.requiredValue}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                                    <div class="form-group">
+                                        <label for="fallasCondicion">Nro. de fallas</label>
+                                        <input class="form-control " [ngClass]="{'is-invalid ': fallasCondicion.errors?.min || fallasCondicion.errors?.max }" type="number" placeholder="Ingrese el número de fallas para la pérdida del beneficio" name="fallasCondicion" id="fallasCondicion" [(ngModel)]="condicion.numero_fallas"
+                                            [min]="0" [max]="999999" #fallasCondicion="ngModel">
+                                        <div class="invalid-feedback" *ngIf="fallasCondicion.errors?.min">
+                                            Números mayores o iguales a {{fallasCondicion.errors?.requiredValue}}
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="fallasCondicion.errors?.max">
+                                            Números menores o iguales a {{fallasCondicion.errors?.requiredValue}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                                    <div class="form-group">
+                                        <label for="beneficiosCondicion">Nro. de beneficios</label>
+                                        <input class="form-control" [ngClass]="{'is-invalid ': beneficiosCondicion.errors?.min || beneficiosCondicion.errors?.max }" type="number" placeholder="Ingrese el número de beneficios" name="beneficiosCondicion" id="beneficiosCondicion" [(ngModel)]="condicion.cantidad_beneficios"
+                                            [min]="1" [max]="999999" #beneficiosCondicion="ngModel">
+                                        <div class="invalid-feedback" *ngIf="beneficiosCondicion.errors?.min">
+                                            Números mayores o iguales a {{beneficiosCondicion.errors?.requiredValue}}
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="beneficiosCondicion.errors?.max">
+                                            Números menores o iguales a {{beneficiosCondicion.errors?.requiredValue}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                                    <div class="form-group">
+                                        <label for="horario">Validar horario del estudiante</label>
+                                        <select [(ngModel)]="condicion.validar_horario" class="form-control" name="horario" id="horario" #horario="ngModel">
+                                            <option value="null" disabled selected>Seleccione una opción</option>
+                                            <option value="1">SI</option>
+                                            <option value="0">NO</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Guardar</button>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Condición</th>
+                                <th>Prioridad</th>
+                                <th>Nro. de fallas permitidas</th>
+                                <th>Nro. máximo de beneficios</th>
+                                <th>Validar horario del estudiante</th>
+                                <th style="width: 50px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let condi of condicions | orderBy:'peso' ; let i=index">
+                                <!-- <td >{{i+1}}</td> -->
+                                <td>{{condi.condicion_id == '1' ? condi.condicion + ' ' + condi.estrato : condi.condicion}}</td>
+                                <td>{{condi.peso}}</td>
+                                <td>{{condi.numero_fallas != null ? condi.numero_fallas : 'No aplica'}}</td>
+                                <td>{{condi.cantidad_beneficios != null ? condi.cantidad_beneficios : 'No aplica'}}</td>
+                                <td>{{condi.validar_horario == '1' ? 'SI' : 'NO'}}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Acciones">
+                                        <button (click)="eliminarCondicion(condi.condicion_id)" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Eliminar beneficio"><span class="fas fa-trash"></span><span class="sr-only">Eliminar beneficio</span></button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="condicionForm.resetForm();" data-dismiss="modal">Cancelar</button>
+                <button (click)="anadirCondiciones()" type="button" class="btn btn-primary" title="Añadir condiciones">Añadir condiciones</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarCondicion" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="modelTitleId">Editar condición de selección directa</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="editarCondicionForm.resetForm();" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="editarCondicion(editarCondicionForm)" #editarCondicionForm="ngForm" novalidate>
+                <div class="modal-body">
+
+                    <div class="form-row">
+                        <div [ngClass]="{'col-12 col-md-8 col-xl-8 col-sm-12': condicion.condicion_id != 1, 'col-12 col-md-5 col-xl-5 col-sm-12': condicion.condicion_id == 1}">
+                            <div class="form-group">
+                                <label for="condicionSelectEdit"><span style="color:red;">*</span>Condición</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((editarCondicionForm.submitted || condicionSelectEdit.touched) && condicionSelectEdit.errors?.required) }" [(ngModel)]="condicion.condicion_id" id="condicionSelectEdit" name="condicionSelectEdit"
+                                    required #condicionSelectEdit="ngModel">
+                                    <option value="null" selected disabled>Seleccione una condición</option>
+                                    <option *ngFor="let condi of condicionesRespaldo" [ngValue]="condi.id">{{condi.nombre}}</option>
+                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-3 col-xl-3" *ngIf="condicion.condicion_id == 1">
+                            <div class="form-group">
+                                <label for="estratoCondicionEdit"><span style="color:red;">*</span>Estrato <span class="fa fa-question-circle" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom"></span></label>
+                                <input class="form-control " [ngClass]="{'is-invalid': (((editarCondicionForm.submitted || estratoCondicionEdit.touched) && estratoCondicionEdit.errors?.required) || (estratoCondicionEdit.errors?.min || estratoCondicionEdit.errors?.max)) }" type="number"
+                                    placeholder="Ingrese el estrato" name="estratoCondicionEdit" id="estratoCondicionEdit" [(ngModel)]="condicion.estrato" [min]="0" [max]="999999" #estratoCondicionEdit="ngModel" required="condicion.condicion_id == 1">
+                                <div class="invalid-feedback" *ngIf="estratoCondicionEdit.errors?.min">
+                                    Números mayores o iguales a {{estratoCondicionEdit.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="estratoCondicionEdit.errors?.max">
+                                    Números menores o iguales a {{estratoCondicionEdit.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="pesoCondicionEdit"><span style="color:red;">*</span>Prioridad de seleccón</label>
+                                <input class="form-control " [ngClass]="{'is-invalid': (((editarCondicionForm.submitted || pesoCondicionEdit.touched) && pesoCondicionEdit.errors?.required) || (pesoCondicionEdit.errors?.min || pesoCondicionEdit.errors?.max)) }" type="number" placeholder="Ingrese la prioridad de selección"
+                                    name="pesoCondicionEdit" id="pesoCondicionEdit" [(ngModel)]="condicion.peso" [min]="1" [max]="999999" #pesoCondicionEdit="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="pesoCondicionEdit.errors?.min">
+                                    Números mayores o iguales a {{pesoCondicionEdit.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="pesoCondicionEdit.errors?.max">
+                                    Números menores o iguales a {{pesoCondicionEdit.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="fallasCondicionEdit">Nro. de fallas</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': fallasCondicionEdit.errors?.min || fallasCondicionEdit.errors?.max }" type="number" placeholder="Ingrese el número de fallas para la pérdida del beneficio" name="fallasCondicionEdit" id="fallasCondicionEdit"
+                                    [(ngModel)]="condicion.numero_fallas" [min]="0" [max]="999999" #fallasCondicionEdit="ngModel">
+                                <div class="invalid-feedback" *ngIf="fallasCondicionEdit.errors?.min">
+                                    Números mayores o iguales a {{fallasCondicionEdit.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="fallasCondicionEdit.errors?.max">
+                                    Números menores o iguales a {{fallasCondicionEdit.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="beneficiosCondicionEdit">Nro. de beneficios</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': beneficiosCondicionEdit.errors?.min || beneficiosCondicionEdit.errors?.max }" type="number" placeholder="Ingrese el número de beneficios" name="beneficiosCondicionEdit" id="beneficiosCondicionEdit"
+                                    [(ngModel)]="condicion.cantidad_beneficios" [min]="1" [max]="999999" #beneficiosCondicionEdit="ngModel">
+                                <div class="invalid-feedback" *ngIf="beneficiosCondicionEdit.errors?.min">
+                                    Números mayores o iguales a {{beneficiosCondicionEdit.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="beneficiosCondicionEdit.errors?.max">
+                                    Números menores o iguales a {{beneficiosCondicionEdit.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-4 col-xl-4">
+                            <div class="form-group">
+                                <label for="horarioEdit">Validar horario del estudiante</label>
+                                <select [(ngModel)]="condicion.validar_horario" class="form-control" name="horarioEdit" id="horarioEdit" #horarioEdit="ngModel">
+                                                            <option value="null" disabled selected>Seleccione una opción</option>
+                                                            <option value="1">SI</option>
+                                                            <option value="0">NO</option>
+                                                        </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="editarCondicionForm.resetForm()">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Editar</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

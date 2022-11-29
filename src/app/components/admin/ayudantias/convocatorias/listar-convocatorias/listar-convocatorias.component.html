@@ -1,0 +1,167 @@
+<h2 class="text-uppercase animated fadeIn text-center" text-center>Convocatorias vigentes<small class="btn-block text-muted">El listado cuenta con {{convocatorias.length}} registros</small></h2>
+<hr>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<div class="row animated fadeIn">
+    <div class="col-12 text-center">
+        <a *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias'])" id="btn-crear" role="button" class="btn btn-success text-uppercase mb-3 mr-1" [routerLink]="['/convocatorias/crear', id ]"><i class="fa fa-plus" aria-hidden="true"></i> Agregar convocatoria</a>
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+        <a tabindex="0" id="btn-ayuda" *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias'])" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las convocatorias registradas para el periodo vigente. Puede agregar una nueva convocatoria presionando en el botón 'AGREGAR CONVOCATORIA'. También puede ver el historial de convocatorias almacenadas en el sistema haciendo clic en el enlace ubicado al final de la tabla.">
+            <span class="fa fa-question-circle" aria-hidden="true"></span>
+            <span class="sr-only">Información de ayuda</span>
+        </a>
+        <!-- <div class="card mb-3">
+          <div class="card-header">Información</div>
+          <div class="card-body text-secundary">          
+            <p class="card-text text-left text-muted">A continuación, se muestran las convocatorias registradas para el periodo vigente. <a [routerLink]="['/convocatorias', 'historial']">Ver el historial completo de convocatorias</a></p>
+          </div>
+      </div>   -->
+    </div>
+    <div class="collapse col-lg-12" id="collapseFilter">
+        <div class="card card-body px-3 pt-3">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4" >
+                        <div id="filter-control" class="form-group">
+                            <label>Filtrar por estado de control</label>
+                        
+                        </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div id="filter-estado" class="form-group">
+                        <label>Filtrar por estado</label>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+    <div class="col-12">
+        <div class="table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table-convocatorias">
+                <thead>
+                    <tr>
+                        <!-- <th></th> -->
+                        <th style="width: 150px;">Fecha de expedición</th>
+                        <th>Nombre</th>
+                        <th>Control</th>
+                        <th>Estado</th>
+                        <th style="width: 120px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let convocatoria of convocatorias  ; let i=index">
+                        <!-- <td>{{i+1}}</td> -->
+                        <td attr.data-order="{{convocatoria.fecha_expedicion}}">{{convocatoria.fecha_expedicion | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{convocatoria.titulo}}</td>
+                        <td>{{convocatoria.estado_control_id | iDToName:estados}}</td>
+                        <td>
+                            {{convocatoria.estado ? 'Activa' : 'Inactiva'}}
+                            <!-- <span *ngIf="convocatoria.estado">Activa</span>
+                            <span *ngIf="!convocatoria.estado">Inactiva</span> -->
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" [routerLink]="[ '/convocatorias/detalle', convocatoria.id ]" title="Ver detalles completos">
+                                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                    <span class="sr-only">Ver detalles completos</span>
+                                </button>
+                                <button *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias'])" type="button" class="btn btn-sm btn-outline-dark border-secondary btn-editar" [routerLink]="[ '/convocatorias/editar', convocatoria.id ]" title="Editar registro">
+                                    <span class="fas fa-pen" aria-hidden="true"></span>
+                                    <span class="sr-only">Editar registro</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-activar" *ngIf="!convocatoria.estado && (userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias']))" (click)="updateConvocatoria(convocatoria) " title="Cambiar estado">
+                                    <span class="far fa-eye" aria-hidden="true"></span>    
+                                    <span class="sr-only">Cambiar estado</span>        
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-desactivar" *ngIf="convocatoria.estado && (userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias']))" (click)="updateConvocatoria(convocatoria)" title="Cambiar estado">
+                                    <span class="far fa-eye-slash" aria-hidden="true"></span>
+                                    <span class="sr-only">Cambiar estado</span>         
+                                </button>
+                                <a *ngIf="userService.roleMatch(['Revisor'])" class="btn btn-sm btn-outline-dark border-secondary btn-verEstudiantes" role="button" [routerLink]="['/supervisorAyudantia', convocatoria.id]" title="Ver estudiantes seleccionados">
+                                    <span class="fas fa-users" aria-hidden="true"></span>
+                                    <span class="sr-only">Ver estudiantes seleccionados</span>
+                                </a>
+                                <!-- <button 
+                                    type="button" 
+                                    class="btn btn-sm btn-outline-dark border-secondary" 
+                                    (click)="viewDoc(convocatoria.soporte)" 
+                                    title="Ver soporte">
+                                    <span class="far fa-file" aria-hidden="true"></span>      
+                                    <span class="sr-only">Ver soporte</span>
+                                </button>
+                                <button (click)="getlista(convocatoria)" title="Exportar estudiantes postulados" class="btn btn-sm btn-outline-dark border-secondary" >
+                                    <span class="fas fa-users" aria-hidden="true"></span>
+                                    <span class="sr-only">Exportar estudiantes postulados</span>
+                                </button> -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{convocatoria.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{convocatoria.id}}">
+                                        <button (click)="viewDoc(convocatoria.soporte)" class="dropdown-item" type="button" title="Ver soporte">
+                                            Ver soporte
+                                        </button>
+                                        <a class="dropdown-item" role="button" [routerLink]="['/plazas/plazasRespondidas', convocatoria.id, id]">
+                                            Ver plazas               
+                                        </a>
+                                        <a *ngIf="userService.roleMatch(['AdminMonitorias'])" class="dropdown-item" role="button" [routerLink]="['/monitorias/estudiantes-atendidos', convocatoria.id]">
+                                            Ver estudiantes atendidos por monitores
+                                        </a>
+                                        <a *ngIf="userService.roleMatch(['AdminMonitorias'])" class="dropdown-item" role="button" [routerLink]="['/comitesMonitorias/verResultadosEncuestas', convocatoria.id, id]">
+                                            Ver resultados de encuestas de evaluación
+                                        </a>
+                                        <button *ngIf="userService.roleMatch(['Admin'])" class="dropdown-item" type="button" (click)="getlista(convocatoria)">
+                                            Exportar estudiantes postulados
+                                        </button>
+                                        <a *ngIf="userService.roleMatch(['Admin','AdminMonitorias','UnidadMonitorias'])" class="dropdown-item" role="button" [routerLink]="['/cuantificacionPlazas', convocatoria.id]">
+                                            Reporte de cantidad de estudiantes por plaza              
+                                        </a>
+                                        <a *ngIf="userService.roleMatch(['Admin','AdminMonitorias','UnidadMonitorias'])" class="dropdown-item" role="button" [routerLink]="['/horasActividades', convocatoria.id]">
+                                            Reporte de horas realizadas por estudiante               
+                                        </a>
+                                        <button *ngIf="userService.roleMatch(['ComiteMonitorias'])" class="dropdown-item" type="button" (click)="reporteHorasEstudianteComite(convocatoria)">
+                                            Reporte de horas realizadas por estudiante               
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--<tr class="table-info" *ngIf="convocatorias.length==0">
+                        <td colspan="5">
+                            No hay registros para mostrar en el momento. Presione el botón "Agregar convocatoria" para añadir una nueva convocatoria
+                        </td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <p id="historialConvocatorias" class="text-center"><a [routerLink]="['/convocatorias/historial', id]">Ver el historial completo de convocatorias</a></p>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="urlDoc  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

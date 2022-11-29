@@ -1,0 +1,1207 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>ConvocatoriaService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>app/services/convocatoria.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#headers">headers</a>
+                            </li>
+                            <li>
+                                <a href="#url">url</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#actualizarEstado">actualizarEstado</a>
+                            </li>
+                            <li>
+                                <a href="#editarConvocatoria">editarConvocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#geDatosEst">geDatosEst</a>
+                            </li>
+                            <li>
+                                <a href="#getConvocatoria">getConvocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#getConvocatoriasInscripcion">getConvocatoriasInscripcion</a>
+                            </li>
+                            <li>
+                                <a href="#getCuantificacionActividades">getCuantificacionActividades</a>
+                            </li>
+                            <li>
+                                <a href="#getDatos">getDatos</a>
+                            </li>
+                            <li>
+                                <a href="#guardarConvocatoria">guardarConvocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#historialConvocatorias">historialConvocatorias</a>
+                            </li>
+                            <li>
+                                <a href="#listConvocatorias">listConvocatorias</a>
+                            </li>
+                            <li>
+                                <a href="#listConvocatoriasMonitorias">listConvocatoriasMonitorias</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: Http, httpClient: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">app/services/convocatoria.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code>Http</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>httpClient</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actualizarEstado"></a>
+                    <span class="name">
+                        <b>
+                            actualizarEstado
+                        </b>
+                        <a href="#actualizarEstado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>actualizarEstado(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, estado: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">app/services/convocatoria.service.ts:125</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>estado</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editarConvocatoria"></a>
+                    <span class="name">
+                        <b>
+                            editarConvocatoria
+                        </b>
+                        <a href="#editarConvocatoria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editarConvocatoria(convocatoria: <a href="../interfaces/Convocatoria.html">Convocatoria</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">app/services/convocatoria.service.ts:92</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>convocatoria</td>
+                                    <td>
+                                                <code><a href="../interfaces/Convocatoria.html" target="_self" >Convocatoria</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="geDatosEst"></a>
+                    <span class="name">
+                        <b>
+                            geDatosEst
+                        </b>
+                        <a href="#geDatosEst"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>geDatosEst(id)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">app/services/convocatoria.service.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;Blob&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConvocatoria"></a>
+                    <span class="name">
+                        <b>
+                            getConvocatoria
+                        </b>
+                        <a href="#getConvocatoria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getConvocatoria(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">app/services/convocatoria.service.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getConvocatoriasInscripcion"></a>
+                    <span class="name">
+                        <b>
+                            getConvocatoriasInscripcion
+                        </b>
+                        <a href="#getConvocatoriasInscripcion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getConvocatoriasInscripcion()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">app/services/convocatoria.service.ts:177</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCuantificacionActividades"></a>
+                    <span class="name">
+                        <b>
+                            getCuantificacionActividades
+                        </b>
+                        <a href="#getCuantificacionActividades"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCuantificacionActividades(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">app/services/convocatoria.service.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDatos"></a>
+                    <span class="name">
+                        <b>
+                            getDatos
+                        </b>
+                        <a href="#getDatos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDatos(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">app/services/convocatoria.service.ts:27</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarConvocatoria"></a>
+                    <span class="name">
+                        <b>
+                            guardarConvocatoria
+                        </b>
+                        <a href="#guardarConvocatoria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardarConvocatoria(convocatoria: <a href="../interfaces/Convocatoria.html">Convocatoria</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">app/services/convocatoria.service.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>convocatoria</td>
+                                    <td>
+                                                <code><a href="../interfaces/Convocatoria.html" target="_self" >Convocatoria</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="historialConvocatorias"></a>
+                    <span class="name">
+                        <b>
+                            historialConvocatorias
+                        </b>
+                        <a href="#historialConvocatorias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>historialConvocatorias()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">app/services/convocatoria.service.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listConvocatorias"></a>
+                    <span class="name">
+                        <b>
+                            listConvocatorias
+                        </b>
+                        <a href="#listConvocatorias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listConvocatorias(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">app/services/convocatoria.service.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listConvocatoriasMonitorias"></a>
+                    <span class="name">
+                        <b>
+                            listConvocatoriasMonitorias
+                        </b>
+                        <a href="#listConvocatoriasMonitorias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>listConvocatoriasMonitorias()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">app/services/convocatoria.service.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="headers"></a>
+                        <span class="name">
+                            <b>
+                            headers</b>
+                            <a href="#headers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new HttpHeaders({
+    &#x27;Authorization&#x27; : &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;),
+    &#x27;content-type&#x27;:&#x27;application/json&#x27;
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">app/services/convocatoria.service.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="url"></a>
+                        <span class="name">
+                            <b>
+                            url</b>
+                            <a href="#url"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>Api.dev</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">app/services/convocatoria.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Api } from &#x27;../class/api&#x27;;
+import { Http, Headers, RequestOptions, ResponseContentType, ResponseType } from &#x27;@angular/http&#x27;;
+import { HttpHeaders, HttpClient } from &#x27;@angular/common/http&#x27;;
+import &#x27;rxjs/Rx&#x27;
+import { Convocatoria } from &#x27;../interfaces/convocatorias.interface&#x27;;
+import { Observable } from &#x27;rxjs/Rx&#x27;;
+
+
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class ConvocatoriaService {
+  url &#x3D; Api.dev; 
+  //headers &#x3D; new Headers({&#x27;content-type&#x27;:&#x27;application/json&#x27;})
+  headers &#x3D; new HttpHeaders({
+    &#x27;Authorization&#x27; : &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;),
+    &#x27;content-type&#x27;:&#x27;application/json&#x27;
+  });
+  constructor(private http: Http, 
+              private httpClient:HttpClient,
+              ) { }
+  
+            
+              
+  getDatos(id:number){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/DatosNuevaConvocatoria/${id}&#x60;
+    return this.httpClient.get(url, {headers:this.headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+  }
+
+  guardarConvocatoria(convocatoria:Convocatoria){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/GuardarConvocatoria&#x60;
+    let headers &#x3D; new HttpHeaders({&#x27;Authorization&#x27;: &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;)});
+    headers.append(&#x27;Content-Type&#x27;, &#x27;multipart/form-data&#x27;);
+    headers.append(&#x27;Accept&#x27;, &#x27;application/json&#x27;);
+    let formData &#x3D; new FormData();
+    formData.append(&#x27;bolsa_presupuestal_id&#x27;, &quot;&quot;+convocatoria.bolsa_presupuestal_id);
+    formData.append(&#x27;tipo_id&#x27;, &quot;&quot;+convocatoria.tipo_id);
+    formData.append(&#x27;titulo&#x27;, convocatoria.titulo);
+    formData.append(&#x27;nota_minima&#x27;,&quot;&quot;+convocatoria.nota_minima);
+    formData.append(&#x27;maximo_horas&#x27;,&quot;&quot;+convocatoria.maximo_horas);
+    if(convocatoria.descripcion){
+      formData.append(&#x27;descripcion&#x27;, convocatoria.descripcion);
+    }
+    if(convocatoria.file_soporte_resolucion!&#x3D;null){
+      formData.append(&#x27;file_soporte_resolucion&#x27;, convocatoria.file_soporte);
+    }
+    if(convocatoria.file_formato!&#x3D;null){
+      formData.append(&#x27;file_formato&#x27;, convocatoria.file_formato);
+    }
+    formData.append(&#x27;fecha_expedicion&#x27;, convocatoria.fecha_expedicion.toDateString());
+    formData.append(&#x27;file_soporte&#x27;, convocatoria.file_soporte)
+    formData.append(&#x27;etapasString&#x27;, JSON.stringify(convocatoria.etapas));
+    
+    return this.httpClient.post(url, formData, {headers:headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+    
+  }
+
+  listConvocatorias(id:number){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/ListarConvocatorias/${id}&#x60;
+    return this.httpClient.get(url, {headers:this.headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+  }
+
+  listConvocatoriasMonitorias(){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/ListarConvocatoriasMonitorias&#x60;
+    return this.httpClient.get(url, {headers:this.headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+  }
+
+
+  historialConvocatorias(){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/ListarHistorialConvocatorias&#x60;
+    return this.httpClient.get(url,  {headers:this.headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+  }
+
+  getConvocatoria(id: number){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/GetConvocatoria/${id}&#x60;    
+    return this.httpClient.get(url, {headers: this.headers}).map(data&#x3D;&gt;{return data;});
+  }
+  
+  
+  editarConvocatoria(convocatoria:Convocatoria){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/EditarConvocatoria&#x60;
+    let headers &#x3D; new HttpHeaders({&#x27;Authorization&#x27;: &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;)});
+    headers.append(&#x27;Content-Type&#x27;, &#x27;multipart/form-data&#x27;);
+    headers.append(&#x27;Accept&#x27;, &#x27;application/json&#x27;);
+    let formData &#x3D; new FormData();
+    formData.append(&#x27;bolsa_presupuestal_id&#x27;, &quot;&quot;+convocatoria.bolsa_presupuestal_id);
+    formData.append(&#x27;fecha_expedicion&#x27;, convocatoria.fecha_expedicion.toDateString());
+    formData.append(&#x27;tipo_id&#x27;, &quot;&quot;+convocatoria.tipo_id);
+    formData.append(&#x27;titulo&#x27;, convocatoria.titulo);
+    formData.append(&#x27;nota_minima&#x27;,&quot;&quot;+convocatoria.nota_minima);
+    formData.append(&#x27;maximo_horas&#x27;,&quot;&quot;+convocatoria.maximo_horas);
+    if(convocatoria.file_soporte!&#x3D;null){
+      formData.append(&#x27;file_soporte&#x27;, convocatoria.file_soporte);
+    }
+    if(convocatoria.file_soporte_resolucion!&#x3D;null){
+      formData.append(&#x27;file_soporte_resolucion&#x27;, convocatoria.file_soporte_resolucion);
+    }
+    if(convocatoria.file_formato!&#x3D;null){
+      formData.append(&#x27;file_formato&#x27;, convocatoria.file_formato);
+    }
+    if(convocatoria.descripcion){
+      formData.append(&#x27;descripcion&#x27;, convocatoria.descripcion);
+    }
+    formData.append(&#x27;etapasString&#x27;, JSON.stringify(convocatoria.etapas));
+    formData.append(&quot;id&quot;, &quot;&quot;+convocatoria.id);
+    formData.append(&quot;estado&quot;, &quot;&quot;+convocatoria.estado);
+    return this.httpClient.post(url, formData, {headers:headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+    
+  }
+
+  actualizarEstado(id: number, estado:boolean){
+    let url &#x3D; &#x60;${this.url}/Convocatorias/ActualizarEstado&#x60;
+    let data &#x3D; {
+      id:id,
+      estado:estado
+    }
+    return this.httpClient.post(url, data, {headers:this.headers}).map(data&#x3D;&gt;{
+      return data;
+    });
+  }
+
+  // getDatosEst(id){
+  //   return this.httpClient.get(&#x60;${Api.dev}/Convocatorias/exportarData/${id}&#x60;, {headers:this.headers}).map(resp&#x3D;&gt;{ 
+  //     // console.log(resp);
+  //     return resp});
+  // }
+
+  // geDatosEst(id){
+     
+  //   //let headers &#x3D; new HttpHeaders().set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;));
+  //   let mediaType &#x3D; &#x27;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#x27;;
+  //   let options &#x3D; new RequestOptions();
+  //   options.headers &#x3D; new Headers();
+  //   options.headers.append(&#x27;Authorization&#x27;,  &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;));
+  //   options.headers.append(&#x27;responseType&#x27;, &#x27;blob&#x27;);
+
+  //   return this.http.get(&#x60;${Api.dev}/PublicConvocatoria/exportarData/${id}&#x60;, options).map(
+  //     response &#x3D;&gt; {
+  //       return new Blob([ response[&#x27;_body&#x27;] ], { type: mediaType });
+  //     });
+
+  // }
+
+  geDatosEst(id):Observable&lt;Blob&gt;{
+    let headers &#x3D; new Headers({
+      &#x27;Authorization&#x27; : &#x27;Bearer &#x27; + localStorage.getItem(&#x27;userToken&#x27;),
+      &#x27;content-type&#x27;:&#x27;application/json&#x27;
+    });
+    let options &#x3D; new RequestOptions({responseType: ResponseContentType.Blob});
+    options.headers &#x3D; headers;
+    return this.http.get(&#x60;${Api.dev}/Convocatorias/exportarData/${id}&#x60;,options)
+    .map(res&#x3D;&gt; res.blob())
+
+  }
+
+  getCuantificacionActividades(id:number) {
+    let url &#x3D; &#x60;${Api.dev}/Convocatorias/CuantificacionActividades/${id}&#x60;;
+    return this.httpClient.get(url, { headers: this.headers }).map(data &#x3D;&gt; {
+      return data;
+    });
+  }
+
+  getConvocatoriasInscripcion() {
+    let url &#x3D; &#x60;${Api.dev}/Convocatorias/GetConvocatoriasInscripcionAyudantia&#x60;;
+    return this.httpClient.get(url, { headers: this.headers }).map(data &#x3D;&gt; {
+      return data;
+    });
+  }
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConvocatoriaService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

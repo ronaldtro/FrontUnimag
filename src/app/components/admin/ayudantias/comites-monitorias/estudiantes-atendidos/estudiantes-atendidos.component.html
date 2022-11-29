@@ -1,0 +1,166 @@
+<div class="animated fadeIn">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+    <h2 class="text-uppercase text-center">Estudiantes asistentes a monitoría<small class="btn-block text-muted">Listado de los
+            estudiantes asistentes a las monitorías. El listado cuenta con {{asistentes?.length}} registro(s)</small></h2>
+    <hr>
+    <div id="perfil" class="row summary mb-3">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white text-center text-lg-left">
+            <h3 class="h4">
+                <small class="d-block text-white">Estudiante:</small>
+                <b class="d-block text-white mb-4">{{ monitor.nombre }}</b>
+                <small class="d-block text-white">Código:</small>
+                <b class="d-block text-white mb-4">{{ monitor.codigo }}</b>
+                <small class="d-block text-white" *ngIf="monitor.estado_estudiante">Estado:</small>
+                <b>{{ monitor.estado_estudiante }}</b>
+                <!-- <hr style="background:white;">
+                <small class="d-block text-white">Supervisor asignado</small>
+                <b class="d-block text-uppercase">{{ monitor.nombreSupervisor }}</b>
+                <a href="mailto:{{monitor.emailSupervisor}}" target="_blank" class="d-inline-block w-100 text-white" *ngIf="monitor.emailSupervisor != null"><small class="d-inline-block w-100 text-truncate">{{ monitor.emailSupervisor }}</small></a> -->
+            </h3>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row p-1 pt-sm-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Plaza</label>
+                                <p class="form-control-plaintext p-0">{{plaza.Nombre}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de ayudantía</label>
+                                <p class="form-control-plaintext p-0">{{plaza.tipo.nombre}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Convocatoria</label>
+                                <p class="form-control-plaintext p-0">{{plaza.convocatoria}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Unidad encargada</label>
+                                <p class="form-control-plaintext p-0">{{plaza.unidad}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" *ngIf="plaza.estado_convocatoria">
+                            <div class="form-group">
+                                <label class="m-0">Etapa ayudantía</label>
+                                <p class="form-control-plaintext p-0">{{plaza.estado_convocatoria}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Programa</label>
+                                <p class="form-control-plaintext p-0">{{ monitor.nombrePrograma }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row h-100">
+                        <div class="col-12 p-3">
+                            <label class="d-block">Total de horas realizadas</label>
+                            <strong class="h1">{{getInteger(horas)}}h <span
+                                    *ngIf="getInteger(getDecimals(horas) * 60) > 0">{{getDecimals(horas) * 60 | number : '1.0-0'}}m
+                                </span></strong>
+                        </div>
+                        <div class="col-12 p-3">
+                            <label class="d-block">Total de horas con asistentes</label>
+                            <strong class="h1">{{getInteger(horasAsistentes)}}h <span
+                                    *ngIf="getInteger(getDecimals(horasAsistentes) * 60) > 0">{{getDecimals(horasAsistentes) * 60 | number : '1.0-0'}}m
+                                </span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="alert alert-info mb-3" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ul class="pl-3">
+                <li>
+                    A continuación, se muestran todos los estudiantes que han asistido a las monitorias realizadas por el monitor con su respectivo número de horas asistidas y porcentaje de asistencia.
+                </li>
+                <li *ngIf="userService.roleMatch(['ComiteMonitorias']) && plaza.estado_convocatoria_id >= etapa.Inicio_de_actividades">
+                    La cantidad de estudiantes seleccionados automáticamente para enviarles la encuesta de evaluación es <b>{{ asistenteEncuesta.length }}</b>.
+                </li>
+                <li *ngIf="userService.roleMatch(['ComiteMonitorias']) && plaza.estado_convocatoria_id >= etapa.Inicio_de_actividades">
+                    Si desea enviar la encuesta de evaluación a otros estudiantes atendidos seleccione a los deseados haciendo clic en el botón de selección ubicado en la parte derecha de la tabla y luego 
+                    haga clic en el botón 'Enviar encuesta' ubicado en la parte inferior de la ventana.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+    </div>
+    <div class="collapse col-lg-12" id="collapseFilter">
+        <div class="card card-body px-3 pt-3">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4" >
+                    <div id="filter-programa" class="form-group">
+                        <label>Filtrar por programa</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+    <div class="row pt-3">
+        <div class="col-12">
+            <div class="table-responsive animated fadeIn">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_estudiantesAtendidos">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Programa</th>
+                            <th scope="col">Sexo</th>
+                            <th scope="col">No. horas<br>asistidas <span class="fas fa-question-circle" data-toggle="tooltip" 
+                              data-placement="bottom" title="No. de horas asistidas / Total de horas con asistentes"></span></th>
+                            <th scope="col">Porcentaje de asistencia</th>
+                            <th scope="col" style="width: 30px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let asistente of asistentes; let i = index">
+                            <td class="text-center">{{ asistente.codigo }}</td>
+                            <td class="text-center">{{ asistente.nombre }}</td>
+                            <td class="text-center text-uppercase">{{ asistente.programa }}</td>
+                            <td class="text-center">
+                                <span *ngIf="asistente.sexo == true; else  elseTemplate">
+                                    M
+                                </span>
+                                <ng-template  #elseTemplate >
+                                    <span *ngIf="asistente.sexo == false">F</span>
+                                </ng-template>
+                            </td>
+                            <td class="text-center">{{ asistente.horas_asistidas }}h / {{ horasAsistentes }}h</td>
+                            <td class="text-center">{{ (asistente.horas_asistidas/horasAsistentes)*100 | number : '1.2-2' }}%</td>
+                            <td>
+                                <input type="checkbox" name="asistente.id" [id]="asistente.id" [(checklist)]="asistenteEncuesta" [checklistValue]="asistente.codigo" *ngIf="asistente.horas_asistidas > 0 && (plaza.estado_convocatoria_id >= etapa.Inicio_de_actividades || plaza.estado_convocatoria_id == 0)"/>
+                                <span class="fas fa-envelope text-muted ml-2" aria-hidden="true" *ngIf="asistente.tiene_token_activo" title="La encuesta ya ha sido enviada a este correo."></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mb-3">
+                <button id="volver" type="button" class="btn btn-light mr-1" [routerLink]="[ '/plazas', plaza.plaza_id , 'estudiantes']">Volver</button>
+                <button id="enviarEncuesta" *ngIf="userService.roleMatch(['AdminMonitorias','ComiteMonitorias']) && (plaza.estado_convocatoria_id >= etapa.Inicio_de_actividades || plaza.estado_convocatoria_id == 0)" type="button" class="btn btn-success mr-1" (click)="enviarEncuesta()">Enviar encuesta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<!-- <button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button> -->

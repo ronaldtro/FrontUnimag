@@ -1,0 +1,40 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Formatos de hoja de vida y carta para convocatorias </h2>
+  <hr>
+
+  <form #plantillaForm="ngForm" novalidate (ngSubmit)="guardarPlantilla(plantillaForm)" class="animated fadeIn">
+
+    <div class="card">
+      <h5 class="card-header">Ingrese el formato de hoja de vida y de carta</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+              <div id="hoja_de_vida" class="form-group">
+                  <label for="hoja_de_vida">Hoja de vida <a style="padding: .25rem .5rem;font-size: .875rem;" [href]="listaPlantillas[1].ruta_plantilla | donseguro:api" *ngIf="listaPlantillas[1]"
+            >Descargar documento cargado</a></label>
+                  <p-fileUpload id="hoja_de_vida" name="hoja_de_vida[]" (onSelect)="onUploadFileHojaDeVida($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                      invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileHojaDeVida()" #hoja_de_vida>
+                  </p-fileUpload>
+              </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+              <div id="carta" class="form-group">
+                  <label for="carta">Carta<a style="padding: .25rem .5rem;font-size: .875rem;" [href]="listaPlantillas[0].ruta_plantilla | donseguro:api" *ngIf="listaPlantillas[0]" 
+            >Descargar documento cargado</a></label>
+                  <p-fileUpload id="carta" name="carta[]" (onSelect)="onUploadFileCarta($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                      invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileCarta()" #carta>
+                  </p-fileUpload>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-light mr-md-1" (click)="goBack()">Volver</button>
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </div> 
+  </form>
+ 
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

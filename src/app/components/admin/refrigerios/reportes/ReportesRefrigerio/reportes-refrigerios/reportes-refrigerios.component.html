@@ -1,0 +1,31 @@
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner> -->
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Reportes del módulo de almuerzos y refrigerios
+    </h2>
+
+    <p class="text-center">
+        A continuación podrá ver los reportes disponibles en el sistema. Depende del reporte se descargará un archivo o se visualizará en una nueva ventana con opciones de descarga y filtrado.
+    </p>
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-8">
+            <ul class="list-group list-group-flush">
+                <!-- *ngIf="userService.roleMatch(['AdminRefrigerios']) -->
+                 <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','ContaduriaBeneficios'])"><a [routerLink]="[ '/reporte-entregas',id ]" title="Reporte de entregas por convocatorias de almuerzos y refrigerios">Reporte de entregas por convocatorias de almuerzos y refrigerios.</a></li>
+                 <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','EntregasExtemporaneas'])"><a [routerLink]="[ '/reporte-entregas-estudiantes',id ]" title="Reporte de entregas por estudiantes de almuerzos y refrigerios">Reporte de entregas por estudiantes de almuerzos y refrigerios.</a></li>
+                 <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','EntregasExtemporaneas'])"><a [routerLink]="[ '/registroExtemporanea']" title="Reportes de entregas extemporáneas">Reporte de entregas extemporáneas.</a></li>
+                 <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','EntregasExtemporaneas','ProyeccionSocial'])" ><a [routerLink]="[ '/criteriosSeleccion', id ]" title="Reporte de estudiantes seleccionados">Reporte de estudiantes seleccionados.</a></li>
+                 <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','ProyeccionSocial'])"><a [routerLink]="[ '/listadoFallas', id ]" title="Reporte de fallas">Reporte de fallas.</a></li>
+                 <!--<li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','ProyeccionSocial'])"><a [routerLink]="[ '/listadoEntregasEstados', id]" title="Reporte de entregas por estado">Reporte de entregas por estado.</a></li>-->
+            </ul>
+        </div>
+    </div>
+    
+
+    <div class="col-12" >   
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver al listado</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<h2 class="text-uppercase">Estudiantes evaluados - {{estudiantesEvaluados.convocatoria}}<small class="btn-block text-muted">Listado
+    de plazas evaluados. El listado cuenta con {{estudiantesEvaluados.evaluados.length}} registro(s)</small></h2>
+<hr>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<div class="alert alert-info" role="alert">
+    Seleccione los estudiantes aprobados para esta plaza según el número de cupos disponibles. <strong>Una vez seleccione los estudiantes aprobados presione el botón 'Guardar'</strong> que se encuentra ubicado al final del listado. Verifique que los estudiantes
+    seleccionados cumplan con la nota mínima de aprobación para la convocatoria vigente.
+</div>
+<h3 class="text-center text-uppercase">Cupos disponibles: {{cupos - aprobados.listadoAprobados.length}}</h3>
+<h4>Puntaje mínimo de selección: {{estudiantesEvaluados.nota_minima}}</h4>
+<!-- {{aprobados.listadoAprobados | json}} -->
+<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="table-responsive animated fadeIn">
+                <table class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">No. de identificación</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Sexo</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Puntaje</th>
+                            <th scope="col">Seleccionar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let evaluado of estudiantesEvaluados.evaluados">
+                            <td>{{evaluado.codigo}}</td>
+                            <td>{{evaluado.identificacion}}</td>
+                            <td>{{evaluado.nombre}}</td>
+                            <td>
+                                <span *ngIf="evaluado.sexo">M</span>
+                                <span *ngIf="!evaluado.sexo">F</span>
+                            </td>
+                            <td>{{evaluado.estado}}</td>
+                            <td>
+                                {{evaluado.puntaje}}
+                            </td>
+                            <td class="text-right">
+                                <div class="custom-control custom-checkbox" *ngIf="estudiantesEvaluados.convocatoria_estado_control_id != 3">
+                                    <input *ngIf="evaluado.puntaje >= estudiantesEvaluados.nota_minima" type="checkbox" class="custom-control-input" name="evaluado.id" [id]="evaluado.id" [(checklist)]="aprobados.listadoAprobados" [checklistValue]="evaluado.id" [maxSelectedItems]="estudiantesEvaluados.cupos"
+                                    />
+                                    <label *ngIf="evaluado.puntaje >= estudiantesEvaluados.nota_minima" class="custom-control-label" [for]="evaluado.id"> <span style="color: white">ok</span> </label>
+                                    
+                                </div>
+                                <button *ngIf="(_userService.roleMatch(['Unidad', 'Admin','AdminMonitorias','UnidadMonitorias', 'ComiteMonitorias']) )" [routerLink]="[ '/plazas','estudianteEvaluado',evaluado.id]" class="btn btn-light btn-sm" type="button" title="Ver evaluación">
+                                    <span class="fas fa-eye" aria-hidden="true"></span>
+                                    <span class="sr-only">Ver evaluación</span>
+                                </button>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-12 text-center mb-3">
+            <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/plazas',id, 'estudiantes']">Volver</button>
+            <!-- <button type="submit" class="btn btn-success">Guardar</button> -->
+            <button type="submit" *ngIf="aprobados.listadoAprobados.length > 0 && ((estudiantesEvaluados.tipo_convocatoria == tiposConvocatorias.AYUDANTIA && estudiantesEvaluados.etapa_id == 4) || (estudiantesEvaluados.tipo_convocatoria == tiposConvocatorias.MONITORIA && estudiantesEvaluados.etapa_id == 22))" class="btn btn-success">Guardar</button>
+        </div>
+    </div>
+</form>
+<!-- *ngIf="estudiantesEvaluados.etapa_id == 4" -->

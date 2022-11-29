@@ -1,0 +1,1322 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>FacultadesComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/facultades/facultades.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-facultades</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./facultades.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./facultades.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dtElement">dtElement</a>
+                            </li>
+                            <li>
+                                <a href="#dtOptions">dtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#dtTrigger">dtTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#facultad">facultad</a>
+                            </li>
+                            <li>
+                                <a href="#facultades">facultades</a>
+                            </li>
+                            <li>
+                                <a href="#index">index</a>
+                            </li>
+                            <li>
+                                <a href="#periodos">periodos</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#crear">crear</a>
+                            </li>
+                            <li>
+                                <a href="#editar">editar</a>
+                            </li>
+                            <li>
+                                <a href="#editarGuardar">editarGuardar</a>
+                            </li>
+                            <li>
+                                <a href="#estadoDato">estadoDato</a>
+                            </li>
+                            <li>
+                                <a href="#guardar">guardar</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_facultadesService: <a href="../injectables/FacultadesService.html">FacultadesService</a>, messageService: MessageService, spinner: NgxSpinnerService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_facultadesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FacultadesService.html" target="_self" >FacultadesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crear"></a>
+                    <span class="name">
+                        <b>
+                            crear
+                        </b>
+                        <a href="#crear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>crear()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">app/components/admin/facultades/facultades.component.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editar"></a>
+                    <span class="name">
+                        <b>
+                            editar
+                        </b>
+                        <a href="#editar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editar(obj)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">app/components/admin/facultades/facultades.component.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editarGuardar"></a>
+                    <span class="name">
+                        <b>
+                            editarGuardar
+                        </b>
+                        <a href="#editarGuardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editarGuardar(forma: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">app/components/admin/facultades/facultades.component.ts:103</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forma</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoDato"></a>
+                    <span class="name">
+                        <b>
+                            estadoDato
+                        </b>
+                        <a href="#estadoDato"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estadoDato(obj)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">app/components/admin/facultades/facultades.component.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardar"></a>
+                    <span class="name">
+                        <b>
+                            guardar
+                        </b>
+                        <a href="#guardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardar(forma: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">app/components/admin/facultades/facultades.component.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forma</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">app/components/admin/facultades/facultades.component.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtElement"></a>
+                        <span class="name">
+                            <b>
+                            dtElement</b>
+                            <a href="#dtElement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DataTableDirective</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtOptions"></a>
+                        <span class="name">
+                            <b>
+                            dtOptions</b>
+                            <a href="#dtOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DataTables.Settings</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>DTConfig.dtConf</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtTrigger"></a>
+                        <span class="name">
+                            <b>
+                            dtTrigger</b>
+                            <a href="#dtTrigger"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Message[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="facultad"></a>
+                        <span class="name">
+                            <b>
+                            facultad</b>
+                            <a href="#facultad"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    nombre: null,
+    estado: null
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="facultades"></a>
+                        <span class="name">
+                            <b>
+                            facultades</b>
+                            <a href="#facultades"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="index"></a>
+                        <span class="name">
+                            <b>
+                            index</b>
+                            <a href="#index"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="periodos"></a>
+                        <span class="name">
+                            <b>
+                            periodos</b>
+                            <a href="#periodos"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Periodo.html" target="_self" >Periodo[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">app/components/admin/facultades/facultades.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FacultadesService } from &#x27;src/app/services/facultades.service&#x27;;
+import { DataTableDirective } from &#x27;angular-datatables&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { DTConfig } from &#x27;src/app/class/dtconfig&#x27;;
+import { Periodo } from &#x27;src/app/interfaces/periodo.interface&#x27;;
+import { Message } from &#x27;primeng/components/common/api&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+declare var $: any;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+
+
+@Component({
+  selector: &#x27;app-facultades&#x27;,
+  templateUrl: &#x27;./facultades.component.html&#x27;,
+  styleUrls: [&#x27;./facultades.component.css&#x27;],
+  providers: [MessageService]
+})
+export class FacultadesComponent implements OnInit {
+
+  facultad: any &#x3D; {
+    nombre: null,
+    estado: null
+  }
+
+  facultades: any &#x3D; []
+
+  index: number &#x3D; 0;
+  dtElement: DataTableDirective;
+  dtTrigger: Subject&lt;string&gt; &#x3D; new Subject();
+  dtOptions: DataTables.Settings &#x3D; DTConfig.dtConf;
+  periodos: Periodo[] &#x3D; [];
+  errores:Message[]&#x3D;[];
+
+
+
+  constructor(private _facultadesService: FacultadesService, private messageService: MessageService, private spinner: NgxSpinnerService) { }
+
+  ngOnInit() {
+    this.spinner.show();
+    this._facultadesService.getDatosFacultades().subscribe(data &#x3D;&gt; {
+      this.facultades &#x3D; data[&#x27;datosFacultades&#x27;];
+      this.dtTrigger.next();
+      this.spinner.hide();
+    });
+  }
+
+  crear() {
+    this.errores &#x3D; [];
+    this.facultad &#x3D; { nombre: null, estado: true };
+    $(&#x27;#crearFacultad&#x27;).modal(&#x27;show&#x27;);
+  }
+
+  guardar(forma: NgForm) {
+    if (!forma.valid) {
+      swal({
+        type: &quot;error&quot;,
+        title: &quot;Error&quot;,
+        text: &quot;Complete los campos del formulario&quot;,
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } else {
+      this._facultadesService.postCrearFacultad(this.facultad)
+        .subscribe(data &#x3D;&gt; {
+          if (data[&#x27;success&#x27;]) {
+            this.facultades.push(data[&#x27;objRetornado&#x27;]);
+            swal({
+              type: &quot;success&quot;,
+              title: &quot;Realizado&quot;,
+              text: &quot;Se ha guardado satisfactoriamente el item.&quot;,
+              timer: 1500,
+              showConfirmButton: false
+            });
+            $(&#x27;#crearFacultad&#x27;).modal(&#x27;hide&#x27;);
+            forma.resetForm(this.facultad);
+          } else {
+            for (let i &#x3D; 0; i &lt; data[&#x27;errores&#x27;].length; i++) {
+              if (data[&#x27;errores&#x27;][i].errores.length &gt; 0) {
+                swal({
+                  type: &quot;error&quot;,
+                  title: &quot;Error&quot;,
+                  text: data[&#x27;errores&#x27;][i].errores[0][&#x27;ErrorMessage&#x27;],
+                  timer: 2000,
+                  showConfirmButton: false
+                });
+              }
+            }
+          }
+        });
+    }
+  }
+  editar(obj) {
+    this.errores &#x3D; [];
+    this.index &#x3D; this.facultades.indexOf(obj);
+    let copy &#x3D; Object.assign({}, obj);
+    $(&#x27;#editarFacultad&#x27;).modal(&#x27;show&#x27;);
+    this.facultad &#x3D; copy;
+  }
+  
+  editarGuardar(forma: NgForm) {
+    if (!forma.valid) {
+      swal({
+        type: &quot;error&quot;,
+        title: &quot;Error&quot;,
+        text: &quot;Complete los campos del formulario&quot;,
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } else {
+      this._facultadesService.postEditarFacultad(this.facultad)
+        .subscribe(data &#x3D;&gt; {
+          if (data[&#x27;success&#x27;]) {
+            this.facultades[this.index] &#x3D; data[&#x27;objRetornado&#x27;];
+            swal({
+              type: &quot;success&quot;,
+              title: &quot;Realizado&quot;,
+              text: &quot;Se ha editado satisfactoriamente el item.&quot;,
+              timer: 2000,
+              showConfirmButton: false
+            });
+            $(&#x27;#editarFacultad&#x27;).modal(&#x27;hide&#x27;);
+            forma.resetForm(this.facultad);
+          } else {
+            for (let i &#x3D; 0; i &lt; data[&#x27;errores&#x27;].length; i++) {
+              if (data[&#x27;errores&#x27;][i].errores.length &gt; 0) {
+                swal({
+                  type: &quot;error&quot;,
+                  title: &quot;Error&quot;,
+                  text: data[&#x27;errores&#x27;][i].errores[0][&#x27;ErrorMessage&#x27;],
+                  timer: 2000,
+                  showConfirmButton: false
+                });
+              }
+            }
+          }
+        });
+    }
+  }
+
+  estadoDato(obj) {
+    swal({
+      title: &#x27;Cambiar estado&#x27;,
+      text: &#x27;¿Está seguro de cambiar el estado?&#x27;,
+      type: &#x27;warning&#x27;,
+      showCancelButton: true,
+      confirmButtonColor: &#x27;green&#x27;,
+      cancelButtonText: &#x27;Cancelar&#x27;,
+      confirmButtonText: &#x27;Aceptar&#x27;,
+      reverseButtons: true
+    }).then((res) &#x3D;&gt; {
+      if (res.value) {
+        this._facultadesService.postEstadoFacultad(obj).subscribe(data &#x3D;&gt; {
+          let index &#x3D; this.facultades.indexOf(obj);
+          this.facultades[index] &#x3D; data[&#x27;objRetornado&#x27;];;
+        });
+        swal({
+          type: &quot;success&quot;,
+          title: &quot;Realizado&quot;,
+          text: &quot;Se ha cambiado el estado satisfactoriamente.&quot;,
+          timer: 2000,
+          showConfirmButton: false
+        });
+      } else if (res.dismiss &#x3D;&#x3D;&#x3D; swal.DismissReason.cancel) {
+        swal({
+          type: &quot;error&quot;,
+          title: &quot;Cancelado&quot;,
+          text: &quot;Se ha cancelado la acción.&quot;,
+          timer: 2000,
+          showConfirmButton: false
+        });
+      }
+    });
+  }
+
+
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner bdColor&#x3D;&quot;rgba(51, 51, 51, 0.8)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;div class&#x3D;&quot;mt-3&quot;&gt;
+    &lt;div class&#x3D;&quot;row animated fadeIn&quot;&gt;
+        &lt;h2 class&#x3D;&quot;text-uppercase&quot;&gt;Facultades &lt;small class&#x3D;&quot;d-block text-muted&quot;&gt;El listado cuenta con {{facultades.length}}
+        registro(s)&lt;/small&gt;&lt;/h2&gt;
+        &lt;hr&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;row animated fadeIn  &quot;&gt;
+        &lt;div class&#x3D;&quot;col-md-3&quot;&gt;
+            &lt;button (click)&#x3D;&quot;crear()&quot; class&#x3D;&quot;btn btn-block btn-success text-uppercase mb-3&quot; type&#x3D;&quot;button&quot; title&#x3D;&quot;Crear nueva facultad&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-plus&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+        Nueva Facultad
+      &lt;/button&gt;
+            &lt;div class&#x3D;&quot;card border-secondary mb-3&quot;&gt;
+                &lt;div class&#x3D;&quot;card-header&quot;&gt;Información&lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body text-secundary&quot;&gt;
+                    &lt;p class&#x3D;&quot;card-text text-left&quot;&gt;A continuación, se muestran las facultades y módulos administrativos de configuración. Haz clic en el que deseas acceder.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-md-9&quot;&gt;
+            &lt;div class&#x3D;&quot;table-responsive animated fadeIn&quot;&gt;
+                &lt;table datatable [dtOptions]&#x3D;&quot;dtOptions&quot; [dtTrigger]&#x3D;&quot;dtTrigger&quot; class&#x3D;&quot;table table-stripper&quot;&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th scope&#x3D;&quot;col&quot;&gt;Nombre&lt;/th&gt;
+                            &lt;th scope&#x3D;&quot;col&quot;&gt;Código&lt;/th&gt;
+                            &lt;th scope&#x3D;&quot;col&quot;&gt;Estado&lt;/th&gt;
+                            &lt;th scope&#x3D;&quot;col&quot; class&#x3D;&quot;text-center w-25&quot;&gt;Acciones&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr *ngFor&#x3D;&quot;let fac of facultades&quot;&gt;
+                            &lt;td&gt;{{fac.nombre}}&lt;/td&gt;
+                            &lt;td&gt;{{fac.codigo}}&lt;/td&gt;
+                            &lt;td&gt;{{fac.estado? &#x27;Activo&#x27; : &#x27;Inactivo&#x27; }}&lt;/td&gt;
+                            &lt;td class&#x3D;&quot;text-center&quot;&gt;
+                                &lt;button (click)&#x3D;&quot;editar(fac)&quot; class&#x3D;&quot;btn btn-sm btn-light mb-1&quot; type&#x3D;&quot;button&quot; title&#x3D;&quot;Editar&quot;&gt;
+                  &lt;i class&#x3D;&quot;fa fa-pen&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Editar&lt;/span&gt;
+                &lt;/button&gt;
+                                &lt;button (click)&#x3D;&quot;estadoDato(fac)&quot; class&#x3D;&quot;btn btn-sm btn-light mb-1&quot; type&#x3D;&quot;button&quot; [title]&#x3D;&quot;fac.estado? &#x27;Desactivar&#x27; : &#x27;Activar&#x27;&quot;&gt;
+                  &lt;i [ngClass]&#x3D;&quot;{&#x27;fa-eye-slash&#x27;: fac.estado, &#x27;fa-eye&#x27;:!fac.estado}&quot; class&#x3D;&quot;far&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+                  &lt;span *ngIf&#x3D;&quot;!fac.estado&quot; class&#x3D;&quot;sr-only&quot;&gt;Activar registro&lt;/span&gt;
+                  &lt;span *ngIf&#x3D;&quot;fac.estado&quot; class&#x3D;&quot;sr-only&quot;&gt;Desactivar registro&lt;/span&gt;
+                &lt;/button&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;crearFacultad&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;exampleModalLabel&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+
+    &lt;div class&#x3D;&quot;modal-dialog&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;exampleModalLabel&quot;&gt;Crear facultad&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot; (click)&#x3D;&quot;forma.resetForm();&quot;&gt;
+          &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;guardar(forma)&quot; #forma&#x3D;&quot;ngForm&quot; novalidate&gt;
+                &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label for&#x3D;&quot;nombre&quot;&gt;&lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Nombre&lt;/label&gt;
+                                &lt;input class&#x3D;&quot;form-control &quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: nombre.errors?.required &amp;&amp; (forma.submitted || nombre.touched) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el nombre de la facultad&quot; name&#x3D;&quot;nombre&quot; id&#x3D;&quot;nombre&quot; [(ngModel)]&#x3D;&quot;facultad.nombre&quot; required #nombre&#x3D;&quot;ngModel&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label for&#x3D;&quot;codigo&quot;&gt;&lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Código&lt;/label&gt;
+                                &lt;input class&#x3D;&quot;form-control &quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: codigo.errors?.required &amp;&amp; (forma.submitted || codigo.touched) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el código de la facultad&quot; name&#x3D;&quot;codigo&quot; id&#x3D;&quot;codigo&quot; [(ngModel)]&#x3D;&quot;facultad.codigo&quot; required #codigo&#x3D;&quot;ngModel&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot; (click)&#x3D;&quot;forma.resetForm();&quot;&gt;Cancelar&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success&quot;&gt;
+            Guardar
+          &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;editarFacultad&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;exampleModalLabel&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;exampleModalLabel&quot;&gt;Crear facultad&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot; (click)&#x3D;&quot;forma2.resetForm();&quot;&gt;
+          &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;editarGuardar(forma2)&quot; #forma2&#x3D;&quot;ngForm&quot; novalidate&gt;
+                &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-row&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label for&#x3D;&quot;nombre&quot;&gt;&lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Nombre&lt;/label&gt;
+                                &lt;input class&#x3D;&quot;form-control &quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: nombreEditar.errors?.required &amp;&amp; (forma2.submitted || nombreEditar.touched) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el nombre de la facultad&quot; name&#x3D;&quot;nombre&quot; id&#x3D;&quot;nombre&quot; [(ngModel)]&#x3D;&quot;facultad.nombre&quot; required
+                                    #nombreEditar&#x3D;&quot;ngModel&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label for&#x3D;&quot;codigo&quot;&gt;&lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Código&lt;/label&gt;
+                                &lt;input class&#x3D;&quot;form-control &quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: codigoEditar.errors?.required &amp;&amp; (forma.submitted || codigoEditar.touched) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el código de la facultad&quot; name&#x3D;&quot;codigo&quot; id&#x3D;&quot;codigo&quot; [(ngModel)]&#x3D;&quot;facultad.codigo&quot; required
+                                    #codigoEditar&#x3D;&quot;ngModel&quot;&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot; (click)&#x3D;&quot;forma2.resetForm();&quot;&gt;Cancelar&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success&quot;&gt;
+            Guardar
+          &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./facultades.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner><div class="mt-3">    <div class="row animated fadeIn">        <h2 class="text-uppercase">Facultades <small class="d-block text-muted">El listado cuenta con {{facultades.length}}        registro(s)</small></h2>        <hr>    </div>    <div class="row animated fadeIn  ">        <div class="col-md-3">            <button (click)="crear()" class="btn btn-block btn-success text-uppercase mb-3" type="button" title="Crear nueva facultad">        <i class="fa fa-plus" aria-hidden="true"></i>        Nueva Facultad      </button>            <div class="card border-secondary mb-3">                <div class="card-header">Información</div>                <div class="card-body text-secundary">                    <p class="card-text text-left">A continuación, se muestran las facultades y módulos administrativos de configuración. Haz clic en el que deseas acceder.</p>                </div>            </div>        </div>        <div class="col-md-9">            <div class="table-responsive animated fadeIn">                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripper">                    <thead>                        <tr>                            <th scope="col">Nombre</th>                            <th scope="col">Código</th>                            <th scope="col">Estado</th>                            <th scope="col" class="text-center w-25">Acciones</th>                        </tr>                    </thead>                    <tbody>                        <tr *ngFor="let fac of facultades">                            <td>{{fac.nombre}}</td>                            <td>{{fac.codigo}}</td>                            <td>{{fac.estado? \'Activo\' : \'Inactivo\' }}</td>                            <td class="text-center">                                <button (click)="editar(fac)" class="btn btn-sm btn-light mb-1" type="button" title="Editar">                  <i class="fa fa-pen" aria-hidden="true"></i><span class="sr-only">Editar</span>                </button>                                <button (click)="estadoDato(fac)" class="btn btn-sm btn-light mb-1" type="button" [title]="fac.estado? \'Desactivar\' : \'Activar\'">                  <i [ngClass]="{\'fa-eye-slash\': fac.estado, \'fa-eye\':!fac.estado}" class="far" aria-hidden="true"></i>                  <span *ngIf="!fac.estado" class="sr-only">Activar registro</span>                  <span *ngIf="fac.estado" class="sr-only">Desactivar registro</span>                </button>                            </td>                        </tr>                    </tbody>                </table>            </div>        </div>    </div></div><div class="modal fade" id="crearFacultad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    <div class="modal-dialog" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="exampleModalLabel">Crear facultad</h5>                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm();">          <span aria-hidden="true">&times;</span>        </button>            </div>            <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>                <div class="modal-body">                    <div class="row">                        <div class="col-12">                            <div class="form-group">                                <label for="nombre"><span style="color:red;">*</span>Nombre</label>                                <input class="form-control " [ngClass]="{\'is-invalid \': nombre.errors?.required && (forma.submitted || nombre.touched) }" type="text" placeholder="Ingrese el nombre de la facultad" name="nombre" id="nombre" [(ngModel)]="facultad.nombre" required #nombre="ngModel">                            </div>                        </div>                        <div class="col-12">                            <div class="form-group">                                <label for="codigo"><span style="color:red;">*</span>Código</label>                                <input class="form-control " [ngClass]="{\'is-invalid \': codigo.errors?.required && (forma.submitted || codigo.touched) }" type="text" placeholder="Ingrese el código de la facultad" name="codigo" id="codigo" [(ngModel)]="facultad.codigo" required #codigo="ngModel">                            </div>                        </div>                    </div>                </div>                <div class="modal-footer">                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm();">Cancelar</button>                    <button type="submit" class="btn btn-success">            Guardar          </button>                </div>            </form>        </div>    </div></div><div class="modal fade" id="editarFacultad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    <div class="modal-dialog" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="exampleModalLabel">Crear facultad</h5>                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma2.resetForm();">          <span aria-hidden="true">&times;</span>        </button>            </div>            <form (ngSubmit)="editarGuardar(forma2)" #forma2="ngForm" novalidate>                <div class="modal-body">                    <div class="form-row">                        <div class="col-12">                            <div class="form-group">                                <label for="nombre"><span style="color:red;">*</span>Nombre</label>                                <input class="form-control " [ngClass]="{\'is-invalid \': nombreEditar.errors?.required && (forma2.submitted || nombreEditar.touched) }" type="text" placeholder="Ingrese el nombre de la facultad" name="nombre" id="nombre" [(ngModel)]="facultad.nombre" required                                    #nombreEditar="ngModel">                            </div>                        </div>                        <div class="col-12">                            <div class="form-group">                                <label for="codigo"><span style="color:red;">*</span>Código</label>                                <input class="form-control " [ngClass]="{\'is-invalid \': codigoEditar.errors?.required && (forma.submitted || codigoEditar.touched) }" type="text" placeholder="Ingrese el código de la facultad" name="codigo" id="codigo" [(ngModel)]="facultad.codigo" required                                    #codigoEditar="ngModel">                            </div>                        </div>                    </div>                </div>                <div class="modal-footer">                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma2.resetForm();">Cancelar</button>                    <button type="submit" class="btn btn-success">            Guardar          </button>                </div>            </form>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'FacultadesComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FacultadesComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,301 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">  <h2 class="text-uppercase text-center">Detalle de la atención.
+  <small class="d-block text-muted">información detallada de la atención de enfermería - {{atencion.tipos_atenciones_enfermeria}}.</small>
+</h2>
+<hr>
+</div>
+<app-perfil-salud [tipoBusqueda]="profile_by" ></app-perfil-salud>
+
+<div class="card mb-4">
+  <div class="card-body">
+      <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>Detalles DE LA atención</strong></div>
+      <!-- tipo -->
+      <div class="card border-info  mb-3">
+        <div class="card-body">
+            <div class="form-row">
+                <div class="col-12 ">
+                    <div id="tipo" class="form-group">
+                          <label for="tipo">Tipos de atencion para enfermeria</label>                               
+                          <input type="text" name="tipo" id="tipo"  class="form-control form-control-sm" disabled  [(ngModel)]="atencion.tipos_atenciones_enfermeria"/>                       
+                    </div>                       
+                </div>            
+            </div>
+        </div> 
+      </div> 
+      <!-- motivo -->
+      <div class="card border-info  mb-3">
+        <div class="card-body">
+            <div class="form-row">
+                <div class="col-12 ">
+                        <div id="motivo_consulta" class="form-group">
+                            <label for="motivo_consulta">Motivo de consulta</label>                               
+                            <div class="card">
+                              <div class="card-body div">
+                                    <p>
+                                      {{atencion.motivo_Coonsulta}}
+                                    </p>
+                              </div>
+                            </div>                             
+                        </div>
+                        <div id="impresion_diagnostica" class="form-group">
+                            <label for="impresion_diagnostica">Impresion diagnostica </label>     
+                           <div class="card">
+                              <div class="card-body div">
+                                    <p>
+                                      {{atencion.impresion_diagnostica}}
+                                    </p>
+                              </div>
+                           </div>          
+                        </div>
+                </div>
+            
+            </div>
+        </div> 
+      </div>       
+      <!-- sexual -->
+      <div class="card border-info  mb-3"  *ngIf="sexual != null">
+        <div class="card-body">          
+            <div class="card-header text-center text-uppercase text-white bg-info mb-3"><strong>GINECO - OBSTÉTRICOS</strong></div>
+            <div class="row"  >
+              <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Menarquia">Menarquía (Años) </label>
+                        <input type="number" class="form-control form-control-sm"
+                        name="Menarquia" disabled
+                        id="Menarquia"
+                        [(ngModel)]="sexual.menarquia" readonly
+                      />                        
+                    </div>
+              </div>
+  
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label for="Sexarquia">Sexarquía (Años)</label>                                                
+                            <input type="number" class="form-control form-control-sm"
+                            name="Sexarquia" 
+                            id="Sexarquia" disabled
+                            [(ngModel)]="sexual.sexarquia" readonly
+                          />
+                  </div>
+              </div>
+              <!-- obtenerFecha | date: 'dd/MM/yyyy' -->
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label for="fum">FUM </label>
+                    <div class="form-group">
+                        <p class="form-control form-control-sm div "> {{sexual.fum | obtenerFecha | date: 'dd/MM/yyyy' }} </p>
+                    </div>                      
+                </div>
+              </div>
+  
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label for="Sexarquia">CICLOS</label>                                                
+                        <input type="number" class="form-control form-control-sm"
+                        name="ciclos" 
+                        id="ciclos" disabled
+                        [(ngModel)]="sexual.ciclos" readonly
+                      />
+              </div>
+          </div>
+            
+      </div>
+                <div class="form-row" >
+                  
+  
+                  <div class="col-md-3">
+                          <div class="form-group">
+                              <label for="Abortos">Abortos </label>
+                              <input type="number" name="Abortos" id="Abortos"  disabled class="form-control form-control-sm"
+                              [(ngModel)]="sexual.abortos" readonly />
+                          </div>
+                  </div>
+  
+                  <div class="col-md-3">
+                          <div class="form-group">
+                              <label for="Partos">Partos</label>
+                              <input type="number" name="Partos" id="Partos"  disabled class="form-control form-control-sm"
+                              [(ngModel)]="sexual.partos" readonly/>
+                          </div>
+                  </div>
+                  <div class="col-md-3">
+                          <div class="form-group">
+                              <label for="cesareas">Cesareas</label>
+                              <input type="number" name="cesareas" id="cesareas"  disabled class="form-control form-control-sm"
+                              [(ngModel)]="sexual.cesareas" readonly/>
+                          </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="citologia">Citologia</label>
+                        <div class="form-group">
+                          <p class="form-control form-control-sm div "> {{sexual.citologia | obtenerFecha | date: 'dd/MM/yyyy' }} </p>
+                      </div> 
+                    </div>
+            </div>
+            </div>
+            <div class="form-row" >
+              <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="Cesareas">Cesáreas</label>
+                          <input type="number" name="Cesareas" id="Cesareas"  disabled class="form-control form-control-sm"
+                          [(ngModel)]="sexual.cesareas" readonly />
+                      </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group">
+                    <label for="planificacion">planificacion</label>
+                    <input type="text" name="planificacion" id="planificacion" disabled class="form-control form-control-sm"
+                    [(ngModel)]="sexual.planificacion" readonly />
+                  </div>
+              </div>
+            
+            </div>
+            <div class="form-row" >
+              <div class="col-md-12">
+                      <div class="form-group">
+                          <label for="anticonceptivo">Anticonceptivos</label>
+                          <input type="text" name="anticonceptivo" id="anticonceptivo" disabled class="form-control form-control-sm"
+                          [(ngModel)]="sexual.anticonceptivo" readonly />
+                      </div>
+              </div>
+            </div>
+            <div class="form-row">            
+                <div class="col-12 ">
+                    <div id="observacion_g" class="form-group">
+                        <label for="observacion_gineco">Observaciones salud sexual: </label>               
+                        <div class="card">
+                            <div class="card-body div">
+                                  <p>
+                                    {{sexual.observaciones}}
+                                  </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+            </div>
+      </div>
+      <!-- metabolicos -->
+      <div class="card border-info  mb-3"   *ngIf=" metabolicos != null">
+          <div class="card-body">
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>riesgos metabólicos</strong></div> 
+              <div class="form-row" >
+                      <div class="col-md-3">
+                              <div class="form-group">
+                                  <label for="peso">peso (Kg)</label>
+                                  <input type="number" class="form-control form-control-sm"
+                                  name="peso" disabled
+                                  id="peso"
+                                  [(ngModel)]="metabolicos.peso" readonly
+                                /> 
+                              </div>
+                      </div> 
+                      <div class="col-md-3">
+                              <div class="form-group">
+                                  <label for="perimetro_abdominal">Perimétro abdominal </label>
+                                  <input type="number" class="form-control form-control-sm"
+                                  name="abdomen" disabled
+                                  id="abdomen"
+                                  [(ngModel)]="metabolicos.abdomen" readonly
+                                /> 
+                              </div>
+                      </div>                 
+                      <div class="col-md-3">
+                              <div class="form-group">
+                                  <label for="estatura">Estatura (cm)</label>
+                                  <input type="number" class="form-control form-control-sm"
+                                  name="estatura" disabled
+                                  id="estatura"
+                                  [(ngModel)]="metabolicos.estatura" readonly
+                                /> 
+                              </div>
+                      </div>            
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              <label for="presion">Presión arterial</label>
+                              <input type="text" class="form-control form-control-sm"
+                              name="presion" disabled
+                              id="presion"
+                              [(ngModel)]="metabolicos.presion" readonly
+                            /> 
+                          </div>
+                      </div>
+                      <div class="col-md-12">
+                      <div class="form-group">
+                              <label for="glicemmia">glicemia</label>
+                              <input type="text" class="form-control form-control-sm"
+                              name="glicemia" disabled
+                              id="glicemia"
+                              [(ngModel)]="metabolicos.glicemia" readonly
+                            /> 
+                      </div>
+                      </div>                                             
+              </div>
+          </div>
+      </div> 
+      <!-- cie 10 -->
+      <div class="card border-info  mb-3">
+        <div class="card-body">
+            <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>CIE 10</strong></div>
+            <table class="table table-striped">
+                <thead>
+                  <tr>            
+                    <th scope="col">código</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of atencion.cie10" >             
+                    <td >{{item.codigo}}</td>
+                    <td>{{item.nombre}}</td>
+                  </tr>    
+                </tbody>
+              </table>
+        </div>
+      </div>
+      <!-- formulación -->
+      <div class="card border-info  mb-3" *ngIf="atencion.tipos_atenciones_enfermeria_id == 3">
+        <div class="card-body">
+            <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>medicación</strong></div>
+            <table class="table table-striped" >
+              <thead>
+                      <tr>
+                          <th scope="col">Medicamento(s) </th>
+                          <th scope="col">Tipo de medicamento</th>
+                          <th scope="col" >Procedimiento</th>
+                          <th scope="col" >Observaciones</th>  
+                      </tr>
+              </thead>
+              <tbody>
+                      <tr *ngFor="let item of atencion.medicamento; let i ">
+                          <td>{{item.receta}}</td>
+                          <td>{{item.tipo}}</td>
+                          <td>{{item.procedimiento}}</td>
+                          <td>{{item.observacionMedicamento}}</td>   
+                      </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>

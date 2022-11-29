@@ -1,0 +1,130 @@
+<div class="mt-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Estudios realizados <small class="btn-block text-muted">El listado cuenta con {{nivelesProfesionales.length}} registro(s)</small></h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button (click)="modalCrearEstudio()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear estudio">
+            <span class="fas fa-plus"></span> Crear estudio</button>
+            <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+          </button>
+            <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los estudios registrados en el sistema. Usted puede editar, activar o desactivar el registro almacenado.">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Información de ayuda</span>
+            </a>
+            <!-- <div class="card border-light mb-3">
+            <div class="card-header">Información</div>
+            <div class="card-body text-secondary">          
+              <p class="card-text text-left">A continuación, se muestran los usuarios registradas en el sistema. Usted puede editar, activar o desactivar el registro almacenado.</p>
+            </div>
+        </div> -->
+            <div class="collapse mb-3" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-nivelProfesional" class="form-group">
+                                <label>Filtrar por nivel profesional</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-estado" class="form-group">
+                                <label>Filtrar por estado</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Nivel profesional</th>
+                            <th style="width: 90px;">Estado</th>
+                            <th style="width: 100px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let estudio of estudios; let i = index">
+                            <td>{{estudio.nombre}}</td>
+                            <td>{{estudio.nivelProfesional}}</td>
+                            <td>{{estudio.estado == true ? 'Activo' : 'Inactivo'}}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                    <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="modalEditarEstudio(estudio)" title="Editar registro"><span class="fas fa-pen"></span><span class="sr-only">Editar registro</span></a>
+                                    <button (click)="cambiarEstado(estudio)" *ngIf="!estudio.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Activar registro"><span class="far fa-eye"></span><span class="sr-only">Activar registro</span></button>
+                                    <button (click)="cambiarEstado(estudio)" *ngIf="estudio.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Desactivar registro"><span class="far fa-eye-slash"></span><span class="sr-only">Desactivar registro</span></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="crearEstudioModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h5 *ngIf="estudio.id == null" class="modal-title" id="modelTitleId">Crear Estudio</h5>
+                <h5 *ngIf="estudio.id != null" class="modal-title" id="modelTitleId">Editar Estudio</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="estudioForm.resetForm();" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form (ngSubmit)="guardarEstudio(estudioForm)" #estudioForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="nivelProfesionalForm">Nivel profesional</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((estudioForm.submitted || nivelProfesionalForm.touched) && nivelProfesionalForm.errors?.required) }" [(ngModel)]="estudio.nivelProfesional_id" id="nivelProfesionalForm" name="nivelProfesionalForm"
+                                    required #nivelProfesionalForm="ngModel">
+                        <option value="null" selected disabled>Seleccione el tipo de profesión</option>
+                        <option *ngFor="let nivel of nivelesProfesionales" value="{{nivel.id}}">{{nivel.nombre}}</option>
+                      </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control" [ngClass]="{'is-invalid': ((estudioForm.submitted || nombre.touched) && (nombre.errors?.required) )}" [(ngModel)]="estudio.nombre" required #nombre="ngModel" placeholder="Nombre del estudio"
+                                    maxlength="455" />
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estudioForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

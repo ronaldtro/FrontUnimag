@@ -1,0 +1,254 @@
+<div class="card shadow-sm mt-4 mb-3">
+    <div class="card-body">
+        <h2 class="text-center intro font-weight-bold text-uppercase">Indicadores del sistema</h2>
+        <p class="text-center">Resultados generales de los indicadores obtenidos de los datos almacenados en el sistema.</p>
+
+        <div class="text-center mb-3">
+            <button class="btn btn-primary rounded-pill shadow mb-2 mb-sm-0 mr-sm-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        Filtrar resultados
+      </button>
+            <button class="btn btn-light rounded-pill shadow mb-2 mb-sm-0" type="button" data-toggle="collapse" data-target="#collapseMeasures" aria-expanded="false" aria-controls="collapseMeasures">
+        Índice de indicadores
+      </button>
+        </div>
+
+
+        <div class="collapse" id="collapseFilter">
+            Aqui van los filtros
+        </div>
+        <div class="collapse" id="collapseMeasures">
+
+            <ul>
+                <li>
+                    <a href="#estudiantes">Número de estudiantes en el sistema</a>
+                </li>
+                <li>
+                    <a href="#convocatorias">Número de convocatorias registradas en el sistema</a>
+                </li>
+                <li>
+                    <a href="#estratos">Número de estudiantes beneficiarios por estrato</a>
+                </li>
+                <li>
+                    <a href="#sexos">Número de estudiantes beneficiarios por sexos</a>
+                </li>
+                <li>
+                    <a href="#municipios">Número de estudiantes beneficiarios por municipios</a>
+                </li>
+                <li>
+                    <a href="#condiciones">Número de estudiantes beneficiarios con condiciones especiales</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="row">
+            <!-- <div class="col-auto">
+        <div class="card shadow border-0 mb-3">
+          <div class="card-header border-bottom-0">
+            <small class="font-weight-bold">No. de estudiantes beneficiarios por estrato</small>
+          </div>
+          <div class="card-body p-2">
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Estrato</th>
+                    <th>Beneficiarios</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let estrato of estratos">
+                    <td>{{estrato.estrato}}</td>
+                    <td>{{estrato.beneficiarios}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div> -->
+            <div id="estudiantes" class="col-12">
+                <div class="card shadow mb-2">
+                    <div class="card-body p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg">
+                                <span class="h5 d-block text-blue intro font-weight-bold mb-2">Número de estudiantes en el sistema</span>
+                                <p class="small mb-0">Estudiantes que han ingresado el sistema al menos una vez o han sido registrados para la asignación de algún beneficio</p>
+                            </div>
+                            <div class="col-12 col-lg-auto">
+                                <span class="display-4 font-weight-bold">{{informacion.estudiantesSistemas | number : '1.0-0'}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="convocatorias" class="col-12">
+                <div class="card shadow mb-2">
+                    <div class="card-body p-2">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="h5 d-block text-blue intro font-weight-bold mb-2">Número de convocatorias registradas en el sistema</span>
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0">Tipo de convocatoria</th>
+                                                <th class="border-top-0 text-secondary">Creada</th>
+                                                <th class="border-top-0 text-success">En ejecución</th>
+                                                <th class="border-top-0 text-danger">Cerrada</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let convocatoria of informacion.tiposCOnvocatorias">
+                                                <td>{{convocatoria.nombre}}</td>
+                                                <td>{{convocatoria.creadas}}</td>
+                                                <td>{{convocatoria.enEjecucion}}</td>
+                                                <td>{{convocatoria.cerradas}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="estratos" class="col-12 col-lg-5">
+                <div class="card shadow mb-3">
+                    <div class="card-body p-2">
+                        <apx-chart #chartStratum [series]="chartStratumOptions.series" [chart]="chartStratumOptions.chart" [xaxis]="chartStratumOptions.xaxis" [title]="chartStratumOptions.title"></apx-chart>
+                    </div>
+                </div>
+
+            </div>
+            <div id="sexos" class="col-12 col-lg-7">
+                <div class="card shadow mb-3">
+                    <div class="card-body p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 order-2 order-lg-1" *ngIf="sexos.length > 1">
+                                <div class="row">
+                                    <div class="col-6 col-lg-12">
+                                        <div class="border rounded p-2 text-center mb-2">
+                                            <img src="/assets/img/icons/man.png" class="img-fluid d-block mx-auto mb-1">
+                                            <span class="d-block h3 font-weight-bold mb-1">{{sexos[1].valor | number : '1.0-0'}}</span> Hombres
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-12">
+                                        <div class="border rounded p-2 text-center">
+                                            <img src="/assets/img/icons/woman.png" class="img-fluid d-block mx-auto mb-1">
+                                            <span class="d-block h3 font-weight-bold mb-1">{{sexos[0].valor | number : '1.0-0'}}</span> Mujeres
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-12 col-lg-9 order-1 order-lg-2">
+                                <apx-chart #chartSex [series]="chartSexOptions.series" [chart]="chartSexOptions.chart" [labels]="chartSexOptions.labels" [title]="chartSexOptions.title"></apx-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="municipios" class="col-12">
+                <div class="row align-items-strench">
+                    <div class="col-lg-12">
+                        <div class="card shadow mb-2">
+                            <div class="card-body p-2">
+                                <span class="h5 d-block text-blue intro font-weight-bold mb-2">No. de estudiantes beneficiarios por municipios</span>
+                                <div class="table-responsive">
+                                    <table class="table table-sm" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table-municipios">
+                                        <thead>
+                                            <!-- <tr>
+                        <th rowspan="2" class="text-center align-middle border-top-0">Municipio</th>
+                        <th colspan="3" class="text-center border-top-0">Beneficios</th>
+                        <th rowspan="2" class="text-center align-middle border-top-0">Total</th>
+                      </tr>
+                      <tr>
+                        <th class="small text-center font-weight-bold" style="width: 168px;">Ayudantías administrativas y de extensión</th>
+                        <th class="small text-center font-weight-bold" style="width: 100px">Almuerzos y refrigerios</th>
+                        <th class="small text-center font-weight-bold" style="width: 90px;">Monitorias académicas</th>
+                      </tr> -->
+                                            <tr>
+                                                <th class="text-center align-middle border-top-0">Municipio</th>
+                                                <th class="small text-center font-weight-bold" style="width: 168px;">Ayudantías administrativas y de extensión</th>
+                                                <th class="small text-center font-weight-bold" style="width: 100px">Almuerzos y refrigerios</th>
+                                                <th class="small text-center font-weight-bold" style="width: 90px;">Monitorias académicas</th>
+                                                <th class="text-center align-middle border-top-0">Total</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let municipio of municipios">
+                                                <td>{{municipio.municipio | titlecase}}</td>
+                                                <td class="text-center">{{municipio.ayudantias}}</td>
+                                                <td class="text-center">{{municipio.refrigerios}}</td>
+                                                <td class="text-center">{{municipio.monitorias}}</td>
+                                                <td class="text-center">{{municipio.ayudantias + municipio.refrigerios + municipio.monitorias}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 pb-2">
+                        <div class="card shadow mb-2 h-100">
+                            <div class="card-body p-2">
+
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+            <div id="condiciones" class="col-12">
+                <div class="card shadow mb-2">
+                    <div class="card-body p-2">
+                        <span class="h5 d-block text-blue intro font-weight-bold mb-2">No. de estudiantes beneficiarios por condiciones especiales</span>
+                        <div class="table-responsive">
+                            <table class="table table-sm" datatable [dtOptions]="dtOptions" id="table-condiciones">
+                                <thead>
+                                    <!-- <tr>
+                    <th rowspan="2" class="text-center align-middle border-top-0">Municipio</th>
+                    <th colspan="3" class="text-center border-top-0">Beneficios</th>
+                    <th rowspan="2" class="text-center align-middle border-top-0">Total</th>
+                  </tr>
+                  <tr>
+                    <th class="small text-center font-weight-bold" style="width: 168px;">Ayudantías administrativas y de extensión</th>
+                    <th class="small text-center font-weight-bold" style="width: 100px">Almuerzos y refrigerios</th>
+                    <th class="small text-center font-weight-bold" style="width: 90px;">Monitorias académicas</th>
+                  </tr> -->
+                                    <tr>
+                                        <th class="text-center align-middle border-top-0">Condición</th>
+                                        <th class="small text-center font-weight-bold" style="width: 168px;">Ayudantías administrativas y de extensión</th>
+                                        <th class="small text-center font-weight-bold" style="width: 100px">Almuerzos y refrigerios</th>
+                                        <th class="small text-center font-weight-bold" style="width: 90px;">Monitorias académicas</th>
+                                        <th class="text-center align-middle border-top-0">Total</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let condicion of condiciones">
+                                        <td>{{condicion.condicion | titlecase}}</td>
+                                        <td class="text-center">{{condicion.beneficios.ayudantias}}</td>
+                                        <td class="text-center">{{condicion.beneficios.almuerzos_refrigerios}}</td>
+                                        <td class="text-center">{{condicion.beneficios.monitorias}}</td>
+                                        <td class="text-center">{{condicion.beneficios.ayudantias + condicion.beneficios.almuerzos_refrigerios + condicion.beneficios.monitorias}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

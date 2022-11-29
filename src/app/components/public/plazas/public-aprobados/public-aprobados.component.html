@@ -1,0 +1,45 @@
+<div class="animated fadeIn mt-3 container">
+    <h2 class="text-uppercase text-center">Resultados Estudiantes postulados <small class="d-block text-muted">El listado cuenta con {{aprobados.evaluados.length}} registro(s)</small></h2>
+
+    <hr>
+    <div class="alert alert-info" role="alert">
+        <p class="text-center m-0">A continuación, se muestran los resultados de los estudiantes postulados a la plaza <strong>{{aprobados.nombre}}</strong> solicitada por <strong>{{aprobados.solicitante}}</strong></p>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">Código</th>
+                            <th class="text-center" scope="col">Nombre</th>
+                            <th class="text-center" scope="col">Programa</th>
+                            <th class="text-center" scope="col" style="width: 80px; background-color: #eee;">Puntaje</th>
+                            <th class="text-center" scope="col" style="width: 80px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr class="text-center" *ngFor="let evaluado of aprobados.evaluados">
+                            <td>{{evaluado.codigo}}</td>
+                            <td>{{evaluado.nombre}}</td>
+                            <td>{{evaluado.programa}}</td>
+                            <td class="text-center" style="background-color: #eee;">{{evaluado.puntaje|number:'.2-2'}}</td>
+                            <td>
+                                <a *ngIf="(evaluado.estadoId == 3 || evaluado.estadoId == 4)" [routerLink]="[ '/plaza','evaluado',evaluado.id]" class="btn btn-sm btn-light " role="button" title="Ver evaluación"><span class="fas fa-eye"></span><span class="sr-only">Ver evaluación</span>              
+                </a>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-light" [routerLink]="['/plazasConvocatorias/',aprobados.convocatoria]" type="button">Ir atrás</button>
+    </div>
+
+</div>
+
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

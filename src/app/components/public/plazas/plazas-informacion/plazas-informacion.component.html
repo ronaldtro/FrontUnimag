@@ -1,0 +1,144 @@
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn mt-3 container" *ngIf="plaza != null">
+    <h2 class="text-center"><small class="text-muted d-block font-weight-normal">Información de la plaza</small> <span class="text-uppercase">{{plaza.tipo_plaza_id | iDToName:tiposPlazas}}</span></h2>
+    <hr>
+    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual != null">
+        <p class="m-0">La convocatoria de esta plaza se encuentra en etapa de <strong>{{etapaActual.nombre}}</strong> del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}.</p>
+
+    </div>
+    <div class="alert alert-secondary" role="alert" *ngIf="plaza.tipo_convocatoria == tiposConvocatorias.AYUDANTIA">
+        <p class="text-center text-muted font-weight-bold font-italic mb-0">
+            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la <a href="https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf"
+                target="_blank" download="resolución 056 del 31 de enero del 2019.pdf">resolución 056 del 31 de enero del 2019</a>.
+        </p>
+    </div>
+
+    <div class="row labels-sm">
+        <div class="col-lg-3">
+            <ul class="list-group list-group-flush text-center text-lg-left" *ngIf="plaza != null">
+                <li class="list-group-item pt-0 pl-0 pr-0">
+                    <div class="form-group m-0">
+                        <label class="m-0">Convocatoria</label>
+                        <p class="form-control-plaintext p-0">{{plaza.convocatoriaNombre | sentenceCase}}</p>
+                    </div>
+                </li>
+                <li class="list-group-item pl-0 pr-0">
+                    <div class="form-group m-0">
+                        <label class="m-0">Tipo de ayudantía</label>
+                        <p class="form-control-plaintext p-0">Ayudantía {{plaza.tipo_ayudantia | iDToName:tiposAyudantias}}</p>
+                    </div>
+                </li>
+                <li class="list-group-item pl-0 pr-0">
+                    <div class="form-group m-0">
+                        <label class="m-0">Promedio ponderado</label>
+                        <p class="form-control-plaintext p-0">{{plaza.promedio}}
+                            <!-- <strong>{{plaza.cupos_solicitados}}</strong> --></p>
+                    </div>
+                </li>
+                <li class="list-group-item pl-0 pr-0">
+                    <div class="form-group m-0">
+                        <label class="m-0">Porcentaje de creditos aprobados</label>
+                        <p class="form-control-plaintext p-0">{{plaza.porcentaja_creditos_requeridos}} %</p>
+                    </div>
+                </li>
+                <li class="list-group-item pl-0 pr-0 border-bottom-0">
+                    <div class="form-group m-0">
+                        <label class="m-0">Cupos disponibles</label>
+                        <p class="form-control-plaintext p-0">{{plaza.cupos_aprobados}}
+                            <!-- <strong>{{plaza.cupos_solicitados}}</strong> --></p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-success btn-block mb-2 shadow text-uppercase font-weight-bold" (click)="postularseModal()" *ngIf="(etapaActual?.id == 3 && plaza?.tipo_convocatoria == 1) || (etapaActual?.id == 20 && plaza?.tipo_convocatoria == 3)">Postularme</button>
+                <!-- <button type="button" class="btn btn-success btn-block mb-3 shadow"  (click)="goLogin()" *ngIf="etapaActual.id == 3">Postularme</button> -->
+                <a class="btn btn-primary btn-block mb-2 shadow text-uppercase font-weight-bold" [routerLink]="['/plaza/aprobados/',plaza.id]" role="button" *ngIf="(etapaActual?.id >= 5 && etapaActual?.id <= 10) || (etapaActual?.id >= 24 && etapaActual?.id <= 28)">Ver resultados <span class="sr-only">de la plaza {{plaza.tipo_plaza_id | iDToName:tiposPlazas}}</span></a>
+                <!-- <a role="button" class="btn btn-link btn-block mb-3" [routerLink]="['/plazasConvocatorias/',plaza.convocatoria_id]">Volver al listado</a> -->
+                <button type="button" (click)="goBack()" class="btn btn-light btn-block mb-3">Volver al listado</button>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="form-group">
+                <label class="m-0">Perfil</label>
+                <p class="form-control-plaintext">{{plaza.perfil | sentenceCase}}</p>
+            </div>
+            <div class="form-group" *ngIf="plaza.competenciasRequeridas">
+                <label class="m-0">Competencias requeridas</label>
+                <p class="form-control-plaintext">{{plaza.competenciasRequeridas | sentenceCase}}</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 text-center text-md-left" *ngIf="plaza.programas && plaza.programas.length>0" [ngClass]="{'col-lg-4': plaza.facultades.length, 'col-lg-6': !plaza.facultades.length}">
+                    <label>Programas a los que debe pertenecer el estudiante</label>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item pt-2 pb-2" *ngFor="let programa of plaza.programas; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">{{programa.nombre}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6 text-center text-md-left" *ngIf="plaza.facultades && plaza.facultades.length>0" [ngClass]="{'col-lg-4': plaza.programas.length, 'col-lg-6': !plaza.programas.length}">
+                    <label>Facultades a las que debe pertenecer el estudiante</label>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item pt-2 pb-2" *ngFor="let facultad of plaza.facultades; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">{{facultad.nombre}}</li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 text-center text-md-left" *ngIf="plaza.asignaturasAprobadas && plaza.asignaturasAprobadas.length>0" [ngClass]="{'col-md-4': plaza.programas.length || plaza.facultades.length, 'col-md-6': !plaza.programas.length || !plaza.facultades.length}">
+                    <label>Asignaturas aprobadas por el estudiante previamente</label>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item pt-2 pb-2" *ngFor="let asignatura of plaza.asignaturasAprobadas; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">
+                            {{asignatura.nombre}}.
+                            <small class="ml-2 d-block d-lg-inline-block text-muted">Nota mín: {{asignatura.puntaje}}</small>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 text-center text-md-left" *ngIf="plaza.actividades && plaza.actividades.length>0">
+                    <label>Actividades a realizar</label>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item pt-2 pb-2" *ngFor="let actividad of plaza.actividades; let i=index; let first = first;" [ngClass]="{'border-top-0': first}">
+                            {{actividad | sentenceCase}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" *ngIf="plaza.requisitosEvaluacion && plaza.requisitosEvaluacion.length > 0">
+                <div class="col-12">
+                    <label>Requisitos de evaluación</label>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0">Descripción</th>
+                                    <th class="border-top-0" style="width: 90px;">Porcentaje</th>
+                                    <th class="border-top-0" style="width: 128px;">Puntaje máximo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let requisito of plaza.requisitosEvaluacion; let i=index;">
+                                    <td>{{requisito.descripcion | sentenceCase}}</td>
+                                    <td class="text-center">{{requisito.porcentaje}} %</td>
+                                    <td class="text-center">{{requisito.valor_maximo}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Disposiciones generales para postulación a plazas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <app-postulacion-plaza></app-postulacion-plaza>
+        </div>
+    </div>
+</div>

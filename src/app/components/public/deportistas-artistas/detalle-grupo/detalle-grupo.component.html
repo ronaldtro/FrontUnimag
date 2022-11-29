@@ -1,0 +1,552 @@
+<div *ngIf="isDataAvailable">
+<!-- <h2 class="text-uppercase animated fadeIn text-center mt-4">{{grupo.nombre}}</h2>
+<hr class="animated fadeIn"> -->
+
+<!-- <div class="row">
+  <div class="col-12">
+      <div class="alert alert-primary" role="alert">
+        Encargado: {{grupo.encargado.nombre}}
+      </div>
+  </div>
+  <div class="col-12">
+    <p>{{grupo.descripcion}}</p>
+  </div>
+  <div class="col-12">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#integrantes">Integrantes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#horario">Horario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#premios">Premios</a>
+        </li>
+      </ul>
+  </div>
+  <div class="col-12">
+    <div class="tab-content">
+      <div id="integrantes" class="tab-pane fade show active">
+        <h3>Lista de integrantes</h3>
+       
+        <div class="table-responsive" *ngIf="grupo.integrantes.length > 0">
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th style="width: 180px;">Nombre</th>
+                        <th style="width: 20px ">Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let integrante of grupo.integrantes;">
+                        <td class="text-uppercase">
+                            {{integrante.nombreIntegrante}}        
+                        </td>
+                        <td class="text-uppercase">
+                            {{integrante.nombreRol}} 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div  *ngIf="grupo.integrantes.length == 0" class="alert alert-info" role="alert">
+          Aun no hay integrantes en este grupo
+        </div>
+      </div>
+      <div id="horario" class="tab-pane fade">
+        <h3>Horarios</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th style="width: 100px;">Dia</th>
+                        <th style="width: 20px ">Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dia of grupo.dias">
+                        <td>
+                            {{dia.nombre}}        
+                        </td>
+                        <td>
+                            {{dia.horaInicio}} - {{dia.horaFin}} 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div id="premios" class="tab-pane fade">
+        <h3>Lista de premios</h3>
+        <div *ngIf="grupo.meritos.length > 0" class="table-responsive">
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th style="width: 100px;">Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let merito of grupo.meritos">
+                        <td>
+                            {{merito.nombre}}        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="grupo.meritos.length == 0" class="alert alert-info" role="alert">
+          Este grupo no ofrece ningún premio
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 text-center">
+      <button type="button" class="btn btn-light mr-md-1" (click)="goBack()">Volver</button>
+      <button data-toggle="modal" data-target="#inscribirEstudianteModal" type="button" class="btn btn-success mt-3 mb-3 ml-1 text-uppercase" title="Inscribirme">Inscribirme</button>
+  </div>
+</div> -->
+
+<!-- <div class="modal fade" id="inscribirEstudianteModal" tabindex="-1" role="dialog" aria-labelledby="inscribirEstudianteModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="inscribirEstudianteModalLabel">Inscribirse en grupo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <form (ngSubmit)="guardarInscripcionEstudiante(inscribirEstudianteForm)" #inscribirEstudianteForm="ngForm" novalidate>
+            <div class="modal-body">
+                <div class="mt-2 row">
+                    <div class="col-sm-12 col-md-12 col-lg-5">
+                        <div class="form-group">
+                            <label for="tipoIdentificacion">Tipo de identificación</label>
+                            <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion" [ngClass]="{'is-invalid': ((inscribirEstudianteForm.submitted || tipoIdentificacion.touched) && (tipoIdentificacion.errors?.required))}" [(ngModel)]="estudiante.tipoIdentificacion" #tipoIdentificacion="ngModel" required>
+                                <option value="null" disabled selected>Seleccione el tipo de identificacion</option> 
+                                <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">{{tipo.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10 col-lg-5">
+                        <div id="identificacion" class="form-group">
+                            <label for="identificacion">Identificación</label>
+                            <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de identificacion" name="identificacion" maxlength="255" [(ngModel)]="estudiante.identificacion" #identificacion="ngModel" required [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || inscribirEstudianteForm.submitted)}">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center;" class="col-sm-2 col-md-2 col-lg-2">
+                        <button (click)="buscarEstudiante($event)" class="btn btn-success mt-3"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div id="nombreEstudiante" class="form-group">
+                            <label for="nombreEstudiante">Nombre</label>
+                            <input [disabled]="camposDeshabilitados" type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su nombre completo" name="nombreEstudiante" maxlength="255" [(ngModel)]="estudiante.nombre" #nombreEstudiante="ngModel" required [ngClass]="{'is-invalid': nombreEstudiante.errors?.required && (nombreEstudiante.touched || inscribirEstudianteForm.submitted)}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div id="direccion" class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input [disabled]="camposDeshabilitados" type="text" class="form-control" id="direccion" placeholder="Ingrese su direccion" name="direccion" maxlength="255" [(ngModel)]="estudiante.direccion" #direccion="ngModel" required [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || inscribirEstudianteForm.submitted)}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="sexo">Sexo</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" [value]="true" [(ngModel)]="estudiante.sexo" required #sexo="ngModel">
+                                <label class="form-check-label" for="sexoMasculino">Masculino</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input [disabled]="camposDeshabilitados" class="form-check-input" type="radio" name="sexo" id="sexoFemenino" [value]="false" [(ngModel)]="estudiante.sexo" required #sexo="ngModel">
+                                <label class="form-check-label" for="sexoFemenino">Femenino</label>
+                            </div>
+                            <small *ngIf="((inscribirEstudianteForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-6">
+                        <div id="fecha_nacimiento" class="form-group">
+                            <label>Fecha de nacimiento</label>
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-12 p-0">
+                                    <p-calendar [disabled]="camposDeshabilitados" inputStyleClass="form-control {{isValid}}" name="fecha_nacimiento" [(ngModel)]="estudiante.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required 
+                                    [locale]="es" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2019" #fecha_nacimiento="ngModel" [ngClass]="{'is-invalid': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || inscribirEstudianteForm.submitted)}"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback" [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || inscribirEstudianteForm.submitted)}">Seleccione una fecha</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="rol">Roles</label>
+                            <select id="rol" class="form-control" name="rol" [ngClass]="{'is-invalid': ((inscribirEstudianteForm.submitted || rol.touched) && (rol.errors?.required))}" [(ngModel)]="estudiante.idRol" #rol="ngModel" required>
+                                <option value="null" disabled selected>Seleccione el rol</option> 
+                                <option *ngFor="let rolPersona of listaRoles" [value]="rolPersona.id">{{rolPersona.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div id="correo" class="form-group">
+                            <label for="correo">Correo</label>
+                            <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo" name="correo" maxlength="255" [(ngModel)]="estudiante.email" #correo="ngModel" required [ngClass]="{'is-invalid': correo.errors?.required && (correo.touched || inscribirEstudianteForm.submitted)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)="inscribirEstudianteForm.resetForm();">Cancelar</button>
+                <button type="submit" class="btn btn-success">Inscribirme</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div> -->
+</div>
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner> -->
+
+
+<h2 class="text-uppercase animated fadeIn text-center mt-4">{{disciplina.nombreDisciplina}}</h2>
+<hr class="animated fadeIn">
+
+<div class="row">
+    <div class="col-lg-6">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div *ngIf="disciplina.galeriaImagenes.length == 0" class="carousel-inner" role="listbox">
+                <div>
+                    <img class="d-block w-100" [src]="disciplina.imagen | donseguro: api" alt="Galeria" width="100%" height="330">
+                </div>
+            </div>
+            <ol  class="carousel-indicators">
+                <li *ngFor="let img of disciplina.galeriaImagenes; let i = index;" data-target="#carouselExampleIndicators" [attr.data-slide-to]="i" ngClass="i == 0 ? 'active' : ''"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div *ngFor="let img of disciplina.galeriaImagenes; let k = index;" [ngClass]="k == 0 ? 'carousel-item active' : 'carousel-item'">
+                    <img class="d-block w-100" [src]="img.urlImagen | donseguro:api" alt="Galeria" width="100%" height="330">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Siguiente</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-12">
+                <label><b>Descripción</b></label>
+                <p>{{disciplina.descripcion}}</p>
+            </div>
+            <div class="col-lg-12">
+                <div class="row fondo-encargado mt-3 pt-3">
+                    <div class="text-center col-lg-12">
+                        <label><b>Encargado</b></label>
+                    </div>
+                    <div class="col-lg-12">
+                        <p><span class="fas fa-user mr-2"></span> <b>Nombre: </b>{{disciplina.encargado.nombre}}</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <p><span class="fas fa-envelope mr-2"></span><b>Correo electrónico: </b>{{disciplina.encargado.email}}</p>
+                    </div>
+                    <div class="col-lg-5">
+                        <p><span class="fas fa-phone mr-2"></span><b>Celular: </b>{{disciplina.encargado.celular}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 *ngIf="listaGrupos.length > 0" class="text-uppercase animated fadeIn mt-4">Grupos</h3>
+<hr *ngIf="listaGrupos.length > 0" class="animated fadeIn">
+
+<div *ngFor="let grupo of listaGrupos;" class="row fondo-grupo pt-3 pb-3 mb-3">
+
+    <div class="text-center col-lg-1 mb-2">
+        <img [src]="grupo.file_imagen | donseguro:api" width="100" height="100" class="rounded-circle" alt="Imagen de grupo">
+    </div>
+
+    <div class="text-center col-lg-6 mb-2">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="ml-3">{{grupo.nombre}}</span>
+            </div>
+            <div class="col-lg-12">
+                <small class="ml-3 text-muted d-block font-style-italic"><abbr >{{grupo.nombreNivelFormativo}}</abbr></small>
+            </div>
+            <div class="col-lg-12">
+                <span class="ml-3">{{grupo.descripcion}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5 mb-2">
+        <div class="text-center">
+            <button (click)="abrirModalInscripcion(grupo)" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Inscribirse">
+            <span class="fas fa-pen"></span> Inscribirse </button>
+            <button (click)="abrirModalHorario(grupo)" type="button" class="btn btn-info mb-3 mr-1 text-uppercase" title="Ver horario">
+            <span class="far fa-calendar-alt"></span> Ver horario </button>
+            <button (click)="abrirModalIntegrantes(grupo)"  type="button" class="btn btn-secondary mb-3 mr-1 text-uppercase" title="Ver integrantes">
+            <span class="fas fa-users"></span> Ver integrantes </button>
+            <button (click)="abrirModalPremios(grupo)" type="button" class="btn btn-warning mb-3 mr-1 text-uppercase" title="Ver premios">
+            <span class="fas fa-trophy"></span> Ver premios </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para realizar inscripcion del estudiante -->
+<div class="modal fade" id="inscribirEstudianteModal" tabindex="-1" role="dialog" aria-labelledby="inscribirEstudianteModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="inscribirEstudianteModalLabel">Inscribirse en grupo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <form (ngSubmit)="guardarInscripcionEstudiante(inscribirEstudianteForm)" #inscribirEstudianteForm="ngForm" novalidate>
+            <div class="modal-body">
+                <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                    <label><b>Corrige los errores:</b></label>
+                    <ul>
+                        <div *ngFor="let error of errores">
+                            <li *ngIf="error.errores.length>0">
+                                <p>{{error.errores[0].ErrorMessage}}</p>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class="mt-2 row">
+                    <div class="col-12 col-md-12 col-lg-5">
+                        <div class="form-group">
+                            <label for="tipoIdentificacion">Tipo de identificación</label>
+                            <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion" [ngClass]="{'is-invalid': ((inscribirEstudianteForm.submitted || tipoIdentificacion.touched) && (tipoIdentificacion.errors?.required))}" [(ngModel)]="estudiante.tipoIdentificacion" #tipoIdentificacion="ngModel" required>
+                                <option value="null" disabled selected>Seleccione el tipo de identificación</option> 
+                                <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">{{tipo.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-lg-5">
+                        <div id="identificacion" class="form-group">
+                            <label for="identificacion">Identificación</label>
+                            <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de identificación" name="identificacion" maxlength="255" [(ngModel)]="estudiante.identificacion" #identificacion="ngModel" required [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || inscribirEstudianteForm.submitted)}">
+                        </div>
+                    </div>
+
+                    <div class="col-2 d-flex align-items-center">
+                        <button (click)="buscarEstudiante($event)" class="btn btn-success mt-3"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="col-12">
+                        <div id="nombreEstudiante" class="form-group">
+                            <label for="nombreEstudiante">Nombre</label>
+                            <input [disabled]="camposDeshabilitados" type="text" class="form-control" id="nombreEstudiante" placeholder="Ingrese su nombre completo" name="nombreEstudiante" maxlength="255" [(ngModel)]="estudiante.nombre" #nombreEstudiante="ngModel" required [ngClass]="{'is-invalid': nombreEstudiante.errors?.required && (nombreEstudiante.touched || inscribirEstudianteForm.submitted)}">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div id="direccion" class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input [disabled]="camposDeshabilitados" type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" name="direccion" maxlength="255" [(ngModel)]="estudiante.direccion" #direccion="ngModel" required [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || inscribirEstudianteForm.submitted)}">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="sexo">Sexo</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" [value]="true" [(ngModel)]="estudiante.sexo" required #sexo="ngModel">
+                                <label class="form-check-label" for="sexoMasculino">Masculino</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input [disabled]="camposDeshabilitados" class="form-check-input" type="radio" name="sexo" id="sexoFemenino" [value]="false" [(ngModel)]="estudiante.sexo" required #sexo="ngModel">
+                                <label class="form-check-label" for="sexoFemenino">Femenino</label>
+                            </div>
+                            <small *ngIf="((inscribirEstudianteForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div id="fecha_nacimiento" class="form-group">
+                            <label>Fecha de nacimiento</label>
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-12 p-0">
+                                    <p-calendar [disabled]="camposDeshabilitados" inputStyleClass="form-control" name="fecha_nacimiento" [(ngModel)]="estudiante.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required 
+                                    [locale]="es" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2019" #fecha_nacimiento="ngModel" [ngClass]="{'is-invalid': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || inscribirEstudianteForm.submitted)}"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="invalid-feedback" [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || inscribirEstudianteForm.submitted)}">Seleccione una fecha</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="rol">Roles</label>
+                            <select id="rol" class="form-control" name="rol" [ngClass]="{'is-invalid': ((inscribirEstudianteForm.submitted || rol.touched) && (rol.errors?.required))}" [(ngModel)]="estudiante.idRol" #rol="ngModel" required>
+                                <option value="null" disabled selected>Seleccione el rol</option> 
+                                <option *ngFor="let rolPersona of grupo.roles" [value]="rolPersona.id">{{rolPersona.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div id="correo" class="form-group">
+                            <label for="correo">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo" name="correo" maxlength="255" [(ngModel)]="estudiante.email" #correo="ngModel" required [ngClass]="{'is-invalid': correo.errors?.required && (correo.touched || inscribirEstudianteForm.submitted)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)="inscribirEstudianteForm.resetForm();">Cancelar</button>
+                <button type="submit" class="btn btn-success">Inscribirme</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- Modal para ver el horario del grupo -->
+<div class="modal fade" id="verHorarioModal" tabindex="-1" role="dialog" aria-labelledby="verHorarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verHorarioModalLabel">Horario del grupo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <div class="col-12">
+                <div class="tab-content">
+                   
+                    <div id="horario">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead> 
+                                    <tr>
+                                        <th style="width: 100px;">Día</th>
+                                        <th style="width: 20px ">Hora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dia of grupo.dias;">
+                                        <td>
+                                            {{dia.nombre}}        
+                                        </td>
+                                        <td>
+                                            {{dia.horaInicio}} - {{dia.horaFin}} 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver los integrantes del grupo -->
+<div class="modal fade" id="verIntegrantesModal" tabindex="-1" role="dialog" aria-labelledby="verIntegrantesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verIntegrantesModalLabel">Integrantes del grupo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="col-12">
+                <div class="tab-content">
+                    <div id="integrantes">
+                    
+                    <div class="table-responsive m-3" *ngIf="grupo.integrantes.length > 0">
+                        <table class="table">
+                            <thead> 
+                                <tr>
+                                    <th style="width: 180px;">Nombre</th>
+                                    <th style="width: 20px ">Rol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let integrante of grupo.integrantes;">
+                                    <td class="text-uppercase">
+                                        {{integrante.nombreIntegrante}}        
+                                    </td>
+                                    <td class="text-uppercase">
+                                        {{integrante.nombreRol}} 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div *ngIf="grupo.integrantes.length == 0" class="m-5 alert alert-info" role="alert">
+                        Aún no hay integrantes en este grupo
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal para ver los premios del grupo -->
+<div class="modal fade" id="verPremiosModal" tabindex="-1" role="dialog" aria-labelledby="verPremiosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verPremiosModalLabel">Premios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="premios">
+                    <div *ngIf="grupo.meritos.length > 0" class="table-responsive mt-1">
+                        <table class="table">
+                            <thead> 
+                                <tr>
+                                    <th style="width: 100px;">Nombre</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let merito of grupo.meritos">
+                                    <td>
+                                        {{merito.nombre}}        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div *ngIf="grupo.meritos.length == 0" class="alert alert-info m-5" role="alert">
+                        Este grupo aún no tiene premios
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

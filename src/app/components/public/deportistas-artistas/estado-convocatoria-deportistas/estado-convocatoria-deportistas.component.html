@@ -1,0 +1,31 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Estado de convocatoria de deportistas y artistas
+    <small *ngIf="inscripcion != null" class="btn-block text-muted"> Bienvenido {{inscripcion.nombre}}</small>
+  </h2>
+  <hr>
+  <div *ngIf="inscripcion != null" class="text-center mb-5 mt-5">
+    <div *ngIf="inscripcion.idEstado == 1" class="mb-5 mt-5 alert alert-info alert text-center">
+        <h5>Usted se encuentra en estado de inscripción</h5>
+    </div>
+    <div *ngIf="inscripcion.idEstado == 3" class="mb-5 mt-5 alert alert-success alert text-center">
+        <h4><span class="text-success">¡Felicitaciones!</span> Usted ha sido seleccionado</h4>
+    </div>
+    <div *ngIf="inscripcion.idEstado == 4" class="mb-5 mt-5 alert alert-warning alert text-center">
+        <h5>Usted ha cancelado la inscripción a la convocatoria</h5>
+    </div>
+    <div *ngIf="inscripcion.idEstado == 5" class="mb-5 mt-5 alert alert-warning alert text-center">
+        <h5>Lo sentimos, usted no fue aceptado en el programa de artistas y deportistas</h5>
+    </div>
+
+    <button *ngIf="inscripcion.idEstado == 1" class="mt-3 mb-3 btn btn-danger" (click)="cancelarInscripcion()">Cancelar inscripción</button>
+  </div>
+
+  <div *ngIf="inscripcion == null">
+      <div class="mb-5 mt-5 alert alert-danger alert text-center">
+          <p>El enlace que ingresó es inválido</p>
+      </div>
+  </div>
+
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

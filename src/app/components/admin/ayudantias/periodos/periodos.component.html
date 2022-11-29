@@ -1,0 +1,339 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="mt-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Periodos - Ayudantías <small class="d-block text-muted">El listado cuenta con {{periodos.length}} registro(s)</small></h2>
+    <hr>
+    <!-- <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast> -->
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <button (click)="crear()" id="btn-crear" class="btn btn-success text-uppercase mb-3 mr-1" type="button" title="Crear nuevo periodo">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Agregar periodo
+        </button>
+            <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+            <a id="btn-ayuda" tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los periodos académicos y módulos administrativos de configuración. En esta vista prodrás crear, editar, activar o desactivar los registros de los periodos relacionados con las ayudantías académicas, además de descargar e imprimir los datos. Haz clic en el que deseas acceder.">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Información de ayuda</span>
+            </a>
+            <!-- <div class="card mb-3">
+          <div class="card-header">Información</div>
+          <div class="card-body text-secundary">
+            <p class="card-text text-left text-muted">A continuación, se muestran los periodos académicos y módulos administrativos de configuración. Haz clic en el que deseas acceder.</p>
+          </div>
+      </div> -->
+
+        </div>
+        <div class="collapse col-lg-12" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-tipoBeneficio" class="form-group">
+                            <label>Filtrar por tipo de beneficio</label>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-estado" class="form-group">
+                            <label>Filtrar por estado</label>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+
+
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table id="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripper">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">Id</th> -->
+
+                            <th scope="col">Periodo</th>
+                            <th scope="col" class="text-center">Tipo beneficio</th>
+                            <th scope="col" class="text-center">Valor</th>
+                            <th scope="col" class="text-center">Promedio mín</th>
+                            <th scope="col" class="text-center">Nota mín</th>
+                            <th scope="col" class="text-center">Estado</th>
+                            <th scope="col" class="text-center" style="width: 100px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr *ngFor="let per of periodos; let i = index">
+                            <!-- <td>{{per.id}}</td> -->
+                            <td>{{per.anio}} - {{per.semestre==1? 'I':'II'}}</td>
+                            <td class="text-center">{{per.tipo_beneficio}}</td>
+                            <td class="text-center">{{per.valor | currency:'COP':'symbol-narrow':'1.2-2'}}</td>
+                            <td class="text-center">{{per.promedio}}</td>
+                            <td class="text-center">{{per.nota_minima}}</td>
+                            <td class="text-center">{{per.estado? 'Activo' : 'Inactivo' }}</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                    <button (click)="editar(per)" class="btn btn-sm btn-outline-dark border-secondary btn-editar" type="button" title="Editar">
+                                        <span class="fa fa-pen" aria-hidden="true"></span>
+                                        <span class="sr-only">Editar</span>
+                                    </button>
+                                    <button [ngClass]="{'btn-desactivar': per.estado, 'btn-activar':!per.estado}" (click)="estadoDato(per)" class="btn btn-sm btn-outline-dark border-secondary" type="button" [title]="per.estado? 'Desactivar' : 'Activar'">
+                                        <span [ngClass]="{'fa-eye-slash': per.estado, 'fa-eye':!per.estado}"  class="far" aria-hidden="true"></span>
+                                        <span *ngIf="!per.estado" class="sr-only">Activar registro</span>
+                                        <span *ngIf="per.estado" class="sr-only">Desactivar registro</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="crearPeriodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear periodo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm();error=[];">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger alert" *ngIf="error.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of error">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-info" role="alert">
+                        Todos los campos son obligatorios.
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="anio">Año</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || anio.touched) && (anio.errors?.required || anio.errors?.min ||anio.errors?.max ) }" type="number" placeholder="Ingrese el año" name="anio" id="anio" [min]="2017" [max]="2100"
+                                    [(ngModel)]="periodo.anio" required #anio="ngModel">
+                                <div class="invalid-feedback" *ngIf="anio.errors?.min">
+                                    Mínimo 2017
+                                </div>
+                                <div class="invalid-feedback" *ngIf="anio.errors?.max">
+                                    Año inválido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="semestre">Semestre</label>
+                                <select [(ngModel)]="periodo.semestre" class="form-control" id="inputCrearSemestre" [ngClass]="{'is-invalid ': (forma.submitted||semestre.touched)  &&  semestre.errors?.required}" name="semestre" id="semestre" #semestre="ngModel" required>
+                                        <option value="null" disabled selected>Seleccione un semestre</option>
+                                        <option value="1">I</option>
+                                        <option value="2">II</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="nota">Nota mínima</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || nota.touched) && (nota.errors?.required || nota.errors?.min || nota.errors?.max) }" type="number" placeholder="Ingrese la nota mínima" name="nota" id="nota" [min]="300" [max]="500"
+                                    [(ngModel)]="periodo.nota_minima" required #nota="ngModel">
+                                <div class="invalid-feedback" *ngIf="nota.errors?.min">
+                                    Mínimo 300
+                                </div>
+                                <div class="invalid-feedback" *ngIf="nota.errors?.max">
+                                    Máximo 500
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="promedio">Promedio mínimo</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || promedio.touched) && (promedio.errors?.required || promedio.errors?.min || promedio.errors?.max) }" type="number" placeholder="Ingrese el promedio mínimo" name="promedio" id="promedio"
+                                    [min]="300" [max]="500" [(ngModel)]="periodo.promedio" required #promedio="ngModel">
+                                <div class="invalid-feedback" *ngIf="promedio.errors?.min">
+                                    Mínimo 300
+                                </div>
+                                <div class="invalid-feedback" *ngIf="promedio.errors?.max">
+                                    Máximo 500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <label for="beneficio">Beneficio</label>
+                            <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || beneficio.touched) && beneficio.errors?.required) }" [(ngModel)]="periodo.id_beneficio" id="beneficio" name="beneficio" required #beneficio="ngModel">
+                                  <option value="null" selected disabled>Seleccione un beneficio</option>
+                                  <option *ngFor="let beneficioSelect of beneficios" value="{{beneficioSelect.id_beneficio}}">{{beneficioSelect.nombre}}</option>
+                                </select>
+                        </div>
+
+
+
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="valor">Valor</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (valor.errors?.required || valor.errors?.min || valor.errors?.max) && (valor.touched ||forma.submitted) }" type="number" placeholder="Ingrese el valor de la hora" name="valor" id="valor" [(ngModel)]="periodo.valor"
+                                    [min]="1" [max]="999999" required #valor="ngModel">
+                                <div class="invalid-feedback" *ngIf="valor.errors?.min">
+                                    Números mayores o iguales a {{valor.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="valor.errors?.max">
+                                    Números menores o iguales a {{valor.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm(); error=[];">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Guardar
+                        </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarPeriodo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar periodo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm(); error=[];">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <form (ngSubmit)="editarGuardar(forma2)" #forma2="ngForm" novalidate class="needs-validation">
+                <div class="modal-body">
+
+                    <div class="alert alert-danger alert" *ngIf="error.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of error">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Todos los campos son obligatorios.
+                    </div>
+                    <div class="form-row">
+
+                        <div class="col-6">
+                            <div clas="form-group">
+                                <label for="anio2">Año</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma2.submitted || anio2.touched) && (anio2.errors?.required || anio2.errors?.min || anio2.errors?.max) }" type="number" placeholder="Ingrese el año" name="anio2" id="anio2" [min]="2017" [max]="2100"
+                                    [(ngModel)]="periodo.anio" required #anio2="ngModel">
+                                <div class="invalid-feedback" *ngIf="anio2.errors?.max">
+                                    Año inválido
+                                </div>
+                                <div class="invalid-feedback" *ngIf="anio2.errors?.min">
+                                    Mínimo 2017
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="semestre2">Semestre</label>
+                                <select [(ngModel)]="periodo.semestre" class="form-control" [ngClass]="{'is-invalid ': semestre2.errors?.required  && (semestre2.touched || forma2.submitted) }" name="semestre2" id="semestre2" #semestre2="ngModel" required>
+                                                    <option value="null" disabled selected>Seleccione un semestre</option>
+                                                    <option value="1">I</option>
+                                                    <option value="2">II</option>
+                                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="nota2">Nota mínima</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || nota2.touched) && (nota2.errors?.required || nota2.errors?.min || nota2.errors?.max) }" type="number" placeholder="Ingrese la nota mínima" name="nota2" id="nota2" [min]="300"
+                                    [max]="500" [(ngModel)]="periodo.nota_minima" required #nota2="ngModel">
+                                <div class="invalid-feedback" *ngIf="nota2.errors?.min">
+                                    Mínimo 300
+                                </div>
+                                <div class="invalid-feedback" *ngIf="nota2.errors?.max">
+                                    Máximo 500
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="promedio2">Promedio mínimo</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || promedio2.touched) && (promedio2.errors?.required || promedio2.errors?.min || promedio2.errors?.max) }" type="number" placeholder="Ingrese el promedio mínimo" name="promedio2"
+                                    id="promedio2" [min]="300" [max]="500" [(ngModel)]="periodo.promedio" required #promedio2="ngModel">
+                                <div class="invalid-feedback" *ngIf="promedio2.errors?.min">
+                                    Mínimo 300
+                                </div>
+                                <div class="invalid-feedback" *ngIf="promedio2.errors?.max">
+                                    Máximo 500
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <label for="beneficio2">Beneficio</label>
+                            <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || beneficio2.touched) && beneficio2.errors?.required) }" [(ngModel)]="periodo.id_beneficio" id="beneficio2" name="beneficio2" required #beneficio2="ngModel">
+                                            <option value="null" selected disabled>Seleccione un beneficio</option>
+                                            <option *ngFor="let beneficioSelect of beneficios" value="{{beneficioSelect.id_beneficio}}">{{beneficioSelect.nombre}}</option>
+                                          </select>
+                        </div>
+
+
+
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="valor2">Valor</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (valor2.errors?.required || valor2.errors?.min || valor2.errors?.max) && (valor2.touched ||forma.submitted) }" type="number" placeholder="Ingrese el valor de la hora" name="valor2" id="valor2" [(ngModel)]="periodo.valor"
+                                    [min]="1" [max]="999999" required #valor2="ngModel">
+                                <div class="invalid-feedback" *ngIf="valor2.errors?.min">
+                                    Números mayores o iguales a {{valor2.errors?.requiredValue}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="valor2.errors?.max">
+                                    Números menores o iguales a {{valor2.errors?.requiredValue}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma2.resetForm(); error=[];">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                    Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

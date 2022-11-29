@@ -1,0 +1,286 @@
+<h2 class="text-uppercase animated fadeIn text-center">Plazas <small class="btn-block text-muted">Formulario de criterios de evaluación</small></h2>
+<hr>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<p-messages [(value)]="errores"></p-messages>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+
+<fieldset>
+    <div class="row summary">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white">
+            <h3 class="h4">
+                <small class="d-block text-white">Convocatoria</small>
+                <b>{{plaza.convocatoriaNombre}}</b>
+            </h3>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row p-1 pt-sm-3">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de ayudantia</label>
+                                <p class="form-control-plaintext p-0">{{plaza.tipo_ayudantia | iDToName:tiposAyudantias}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de plaza</label>
+                                <p class="form-control-plaintext p-0">{{plaza.tipo_plaza_id | iDToName:tiposPlazas}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Cupos disponibles</label>
+                                <p class="form-control-plaintext p-0">{{plaza.cupos_aprobados}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Porcentaje de créditos aprobados</label>
+                                <p class="form-control-plaintext p-0">{{plaza.porcentaja_creditos_requeridos}}%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group mb-2 mr-3 d-inline-block">
+                <label class="m-0">Cupos solicitados</label>
+                <p class="form-control-plaintext p-0">{{plaza.cupos_solicitados}}</p>
+            </div> -->
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="form-group mb-2">
+                        <label class="m-0">Perfil</label>
+                        <p class="form-control-plaintext p-0">{{plaza.perfil}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-3 summary">
+            <div id="facultadesSolicitantes" class="pt-3" *ngIf="plaza.facultades && plaza.facultades.length>0">
+                <label>Facultades a las que debe pertenecer el estudiante (Al menos a una)</label>
+                <ul>
+                    <li *ngFor="let facultad of plaza.facultades; let i=index">{{facultad.nombre}}</li>
+                </ul>
+            </div>
+            <div id="programasSolicitantes" class="pt-3" *ngIf="plaza.programas && plaza.programas.length>0">
+                <label>Programas a los que debe pertenecer el estudiante (Al menos a uno)</label>
+                <ul>
+                    <li *ngFor="let programa of plaza.programas; let i=index">{{programa.nombre}}</li>
+                </ul>
+            </div>
+            <div id="asignaturasSolicitantes" class="pt-3 border-top" *ngIf="plaza.asignaturasAprobadas && plaza.asignaturasAprobadas.length>0">
+                <label>Asignaturas aprobadas</label>
+                <ul>
+                    <li *ngFor="let asignatura of plaza.asignaturasAprobadas; let i=index">{{asignatura.nombre}} <small>({{asignatura.codigo}})</small></li>
+                </ul>
+            </div>
+            <button class="btn btn-light d-block mb-3 shadow-sm" *ngIf="plaza.actividades && plaza.actividades.length > 0" style="white-space: normal;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Clic para ver actividades a realizar por el estudiante
+          </button>
+            <div class="collapse" id="collapseExample" *ngIf="plaza.actividades && plaza.actividades.length > 0">
+                <div class="card card-body bg-transparent border-0 p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item pl-0 pr-0 pt-1 pb-1 bg-transparent" *ngFor="let actividad of plaza.actividades">{{actividad}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-9 pt-3">
+            <h4 class="text-center text-dark">Criterios de evaluación</h4>
+            <div class="text-center mt-3">
+                <button id="btn-addCriterio" class="btn btn-outline-primary mb-3" type="button" data-toggle="modal" data-target="#exampleModalCenter" *ngIf="((plaza.pesoEtapaActual <= 4 || userService.roleMatch(['Admin'])) && tipoConvocatoria == 1) || ((plaza.pesoEtapaActual <= 22 || userService.roleMatch(['AdminMonitorias'])) && tipoConvocatoria == 3)">
+                    <span class="fas fa-plus" aria-hidden="true"></span>
+                    Agregar criterio de evaluación
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table id="table_criterios" class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th style="width: 80px;">Porcentaje</th>
+                            <th style="width: 90px;">Valor máx.</th>
+                            <th *ngIf="((plaza.pesoEtapaActual <= 4 || userService.roleMatch(['Admin'])) && tipoConvocatoria == 1) || ((plaza.pesoEtapaActual <= 22 || userService.roleMatch(['AdminMonitorias'])) && tipoConvocatoria == 3)" style="width: 90px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let requisito of plaza.requisitosEvaluacion; let i=index;">
+                            <td>{{requisito.descripcion}}</td>
+                            <td class="text-center">{{requisito.porcentaje}} %</td>
+                            <td class="text-center">{{requisito.valor_maximo}}</td>
+                            <td *ngIf="((plaza.pesoEtapaActual <= 4 || userService.roleMatch(['Admin'])) && tipoConvocatoria == 1) || ((plaza.pesoEtapaActual <= 22 || userService.roleMatch(['AdminMonitorias'])) && tipoConvocatoria == 3)">
+                                <button type="button" class="btn btn-light btn-sm btn-editar" (click)="editRequisito(i);" title="Editar registro">
+                                    <span class="fas fa-pen"></span>
+                                    <span class="sr-only">Editar registro</span>
+                                </button>
+                                <button type="button" class="btn btn-light btn-sm btn-eliminar" (click)="deleteRequisito(i);" title="Eliminar registro">
+                                    <span class="fas fa-times"></span>
+                                    <span class="sr-only">Eliminar registro</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center">
+                                Porcentaje total: {{100-vlrCriterios}} %
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">
+                    <form (ngSubmit)="guardarObservacion(forma, soporte)" #forma="ngForm" novalidate>
+                        <legend class="text-center">Información para soporte de cambio</legend>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="solicitante" class="form-group">
+                                        <label for="solicitante">Solicitante</label>
+                                        <input class="form-control " [ngClass]="{'is-invalid ': solicitante.errors?.required && (forma.submitted || solicitante.touched) }" type="text" placeholder="Ingrese el solicitante. Máx 255 caracteres" name="solicitante" id="solicitante" [(ngModel)]="registroObservacion.solicitante"
+                                            required #solicitante="ngModel" />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div id="observacion" class="form-group">
+                                        <label for="observacion">Observación</label>
+                                        <textarea class="form-control " [ngClass]="{'is-invalid ': observacion.errors?.required && (forma.submitted || observacion.touched) }" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacion" id="observacion"
+                                            [(ngModel)]="registroObservacion.observacion" required #observacion="ngModel" rows=4 maxlength="455"> </textarea>
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div id="soporte" class="form-group">
+                                        <label for="codigo">Soporte <small class="text-muted">(Solo formato PDF)</small></label>
+                                        <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                            invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                        </p-fileUpload>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-info" role="alert" *ngIf="plaza.requisitosEvaluacion.length == 0">
+                            Para ingresar un requisito de evaluación presione el botón 'Agregar criterio de evaluación'. Se abrirá un formulario en el que debe completar los campos solicitados. Después de agregar la información podrá visualizar el requisito ingresado en la tabla.
+                            Los porcentajes de los requisitos deben sumar 100%. Debe agregar al menos un criterio al momento de guardar. <strong>Para culminar el almacenamiento de los requisitos presione el botón 'Guardar'.</strong>
+                        </div>
+                        <div class="text-center">
+
+                            <button id="volver" type="button" class="btn btn-light mb-3 mr-1" [routerLink]="[ '/plazas/plazasRespondidas', tipoConvocatoria ]">Volver al listado</button>
+                            <button id="guardar" type="submit" class="btn btn-success mr-md-1 mb-3" *ngIf="((plaza.pesoEtapaActual <= 4 || userService.roleMatch(['Admin'])) && tipoConvocatoria == 1) || ((plaza.pesoEtapaActual <= 22 || userService.roleMatch(['AdminMonitorias'])) && tipoConvocatoria == 3)">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="!userService.roleMatch(['Admin']) && !userService.roleMatch(['AdminMonitorias'])">
+                <div class="alert alert-info" role="alert" *ngIf="plaza.requisitosEvaluacion.length == 0">
+                    Para ingresar un requisito de evaluación presione el botón 'Agregar criterio de evaluación'. Se abrirá un formulario en el que debe completar los campos solicitados. Después de agregar la información podrá visualizar el requisito ingresado en la tabla.
+                    Los porcentajes de los requisitos deben sumar 100%. Debe agregar al menos un criterio al momento de guardar. <strong>Para culminar el almacenamiento de los requisitos presione el botón 'Guardar'.</strong>
+                </div>
+                <div class="text-center">
+
+                    <button id="volver" type="button" class="btn btn-light mb-3 mr-1" [routerLink]="[ '/plazas/plazasRespondidas', tipoConvocatoria ]">Volver al listado</button>
+                    <button id="guardar" type="button" class="btn btn-success mr-md-1 mb-3" (click)="save()" *ngIf="((plaza.pesoEtapaActual <= 4 || userService.roleMatch(['Admin'])) && tipoConvocatoria == 1) || ((plaza.pesoEtapaActual <= 22 || userService.roleMatch(['AdminMonitorias'])) && tipoConvocatoria == 3)">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<!-- Ventana modal para agregar requisitos de evaluación -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Requisito de evaluación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="clearModal(requisitosForm)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form novalidate #requisitosForm="ngForm" (ngSubmit)="saveRequisitos(requisitosForm)">
+                <div class="modal-body">
+
+                    <div class="alert alert-info">
+                        Todos los campos en este formulario son obligatorios
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Descripción</label>
+                        <textarea [ngClass]="{'is-invalid': desc.errors?.required && (desc.touched || requisitosForm.submitted)}" class="form-control" id="desc" name="desc" [(ngModel)]="requisitosEvaluacion.descripcion" placeholder="Escriba una descripción de este requisito. Máx. 455 caracteres"
+                            #desc="ngModel" maxlength="455" required></textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="porcentaje">Porcentaje</label>
+
+                        <input [ngClass]="{'is-invalid': (porcentaje.errors?.required || porcentaje.errors?.min || porcentaje.errors?.max) && (porcentaje.touched || requisitosForm.submitted)}" type="number" class="form-control" id="porcentaje" name="porcentaje" [(ngModel)]="requisitosEvaluacion.porcentaje"
+                            #porcentaje="ngModel" placeholder="Escriba el porcentaje de este requisito (%)" required [min]="1" [max]="vlrCriterios">
+                        <div class="invalid-feedback">
+                            <span *ngIf="porcentaje.errors?.min">El valor mínimo de este campo es <strong>0</strong></span><br *ngIf="porcentaje.errors?.min">
+                            <span *ngIf="porcentaje.errors?.max">La suma de todos los criterios no puede ser mayor a <strong>100</strong></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vlrmax">Valor máximo</label>
+                        <input [ngClass]="{'is-invalid': (vlrmax.errors?.required || vlrmax.errors?.min ) && (vlrmax.touched || requisitosForm.submitted)}" type="number" class="form-control" id="vlrmax" name="vlrmax" placeholder="Escriba el puntaje máximo de calificación" required
+                            [(ngModel)]="requisitosEvaluacion.valor_maximo" #vlrmax="ngModel" [min]="0">
+                        <div class="invalid-feedback">
+                            <span *ngIf="vlrmax.errors?.min">El valor mínimo de este campo es <strong>0</strong></span><br *ngIf="porcentaje.errors?.min">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light m-1" (click)="clearModal(requisitosForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success m-1">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Requisito de evaluación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="clearModalEdit(requisitosFormEdit)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form novalidate #requisitosFormEdit="ngForm" (ngSubmit)="editarRequisitos(requisitosFormEdit)">
+                <div class="modal-body">
+
+                    <div class="alert alert-info">
+                        Todos los campos en este formulario son obligatorios
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Descripción</label>
+                        <textarea [ngClass]="{'is-invalid': desc.errors?.required && (desc.touched || requisitosForm.submitted)}" class="form-control" id="desc1" name="desc" [(ngModel)]="requisitosEvaluacion.descripcion" placeholder="Escriba una descripción de este requisito"
+                            #desc="ngModel" required></textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="porcentaje">Porcentaje</label>
+                        <input [ngClass]="{'is-invalid': (porcentaje.errors?.required || porcentaje.errors?.min || porcentaje.errors?.max) && (porcentaje.touched || requisitosForm.submitted)}" type="number" class="form-control" id="porcentaje1" name="porcentaje" [(ngModel)]="requisitosEvaluacion.porcentaje"
+                            #porcentaje="ngModel" placeholder="Escriba el porcentaje de este requisito" required min="0" max="{{vlrCriterios}}">
+                        <div class="invalid-feedback">
+                            <span *ngIf="porcentaje.errors?.min">El valor mínimo de este campo es <strong>0</strong></span><br *ngIf="porcentaje.errors?.min">
+                            <span *ngIf="porcentaje.errors?.max">La suma de todos los criterios no puede ser mayor a <strong>100</strong></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vlrmax">Valor Máximo</label>
+                        <input [ngClass]="{'is-invalid': (vlrmax.errors?.required || vlrmax.errors?.min ) && (vlrmax.touched || requisitosForm.submitted)}" type="number" class="form-control" id="vlrmax1" name="vlrmax" placeholder="Escriba el valor máximo que tendrá  este requisito"
+                            required [(ngModel)]="requisitosEvaluacion.valor_maximo" #vlrmax="ngModel" [min]="0">
+                        <div class="invalid-feedback">
+                            <span *ngIf="vlrmax.errors?.min">El valor mínimo de este campo es <strong>0</strong></span><br *ngIf="porcentaje.errors?.min">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light m-1" (click)="clearModalEdit(requisitosFormEdit)">Cancelar</button>
+                    <button type="submit" class="btn btn-success m-1">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

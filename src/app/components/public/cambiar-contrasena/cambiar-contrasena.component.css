@@ -1,0 +1,8 @@
+body, html{
+    background-color: #eee!important;
+}
+#contentFormChangePassword{
+    border: 1px solid #eee;
+    padding: 1rem;
+    background-color: white;
+}

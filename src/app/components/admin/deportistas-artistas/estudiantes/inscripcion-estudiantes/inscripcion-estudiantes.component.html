@@ -1,0 +1,198 @@
+<h2 class="text-uppercase animated fadeIn text-center">Inscripción a convocatoria<small class="btn-block">{{convocatoria.nombre}}</small></h2>
+<hr class="animated fadeIn">
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<div *ngIf="errores.length > 0">
+    <div class="alert alert-danger alert text-center">
+        <ul>
+            <div *ngFor="let error of errores">
+                <p>{{error}}</p>
+            </div>
+        </ul>
+    </div>
+</div>
+
+<div *ngIf="error != null">
+    <div class="alert alert-danger alert text-center">
+        <p>{{error}}</p>
+    </div>
+</div>
+
+<div *ngIf="error == null">
+    {{error}}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="animated fadeIn">
+                <div *ngIf="etapaActual != null">
+                    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span>                            <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-3 animated fadeIn">
+                <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mr-2" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+                    <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+                </button>
+            </div>
+
+            <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+                <label class="labels-sm">Etapas de la convocatoria</label>
+                <div class="d-flex flex-wrap flex-md-wrap mb-3">
+                    <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                        <span class="mb-2">{{etapa.nombre}}</span>
+                        <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+                          <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+                          <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+                          
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+        <div class="row labels-sm border shadow-sm mb-3 convocatoriaInfo" *ngFor="let disciplina of convocatoria.disciplinas; let i = index">
+            <div class="col-lg-5 p-3 bg-info text-white d-flex flex-wrap align-items-start flex-column justify-content-between">
+                <h3 class="h4 border-bottom mb-3 pb-3 w-100">
+                    <strong>{{disciplina.nombreDisciplina}}</strong>
+                    <small class="d-block text-white mt-1">{{disciplina.nombreModalidad}} </small>
+                </h3>
+                <div class="w-100">
+                    <button type="button" class="btn btn-warning btn-block mb-1 shadow font-weight-bold text-uppercase" (click)="guardarInscripcion(disciplina)">Postularme <span class="sr-only">a la plaza </span></button>
+                    <a class="btn btn-light d-block mb-1 shadow font-weight-bold text-uppercase" role="button" *ngIf="etapaActual.peso >= 5">Ver resultados <span class="sr-only">de la plaza </span></a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="form-group">
+                    <label class="m-0">Criterios de evaluación</label>
+                    
+                    <div class="table-responsive">
+                            <table class="table">
+                                <thead> 
+                                    <tr>
+                                        <th style="width: 180px;">Nombre</th>
+                                        <th style="width: 20px ">Porcentaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of disciplina.items">
+                                        <td>
+                                            {{item.nombre}}        
+                                        </td>
+                                        <td>
+                                            {{item.porcentaje}}%
+                                        </td>
+                                    </tr>
+                                </tbody>
+                              
+                            </table>
+                
+                        </div>
+
+                    <!-- <p *ngFor="let item of disciplina.items" class="form-control-plaintext" class="p-0">{{item.nombre}} - {{item.porcentaje}}%</p> -->
+                </div>
+            </div>
+        </div>
+  
+    <div class="text-center">
+        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
+    
+    <div class="text-center">
+        <!-- <button class="btn btn-light" [routerLink]="[ '/convocatoria' ]" type="button">Volver a convocatorias</button> -->
+    </div>
+
+</div>
+
+<div class="col-12 text-center" *ngIf="error != null">
+    <button type="button" class="btn btn-default mr-md-1 mb-3" (click)="goBack()">Volver al perfil</button>
+</div>
+
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="inscripcionModal" tabindex="-1" role="dialog" aria-labelledby="inscripcionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inscripcionModalLabel">Disposiciones generales para postulación a plazas</h5>
+                <button type="button" (click)="postularForm.resetForm();" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <form (ngSubmit)="postularse(postularForm)" #postularForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <p>
+                        De conformidad con lo previsto en el <b>Articulo 8, Capítulo II (Título I - Disposiciones Generales) de la Resolución Rectoral N° 869 de 2018</b> <i>Por medio de la cual se establece el Reglamento General del Programa de Becas de la Universidad del Magdalena"</i>,
+                        todo aspirante que tenga la intención de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas, deberán cumplir con la siguiente responsabilidad:
+                    </p>
+                    <ul>
+                        <li>
+                            <i>
+                Verificar e informar a la Dirección de Bienestar Universitario antes de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas;
+                sí se encuentra como beneficiario de alguna de estas u otros beneficios ofrecidos por parte de la Universidad, como también, sí es beneficiario de estímulos o cualquier apoyo económico otorgado por instituciones o entidades del orden nacional,
+                toda vez que, al inscribirse siendo beneficiario según lo enunciado, quedará excluido del proceso.
+              </i>
+                        </li>
+                    </ul>
+                    <p>
+                        En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el aspirante deberá diligenciar en el presente formulario de inscripción lo siguiente:
+                    </p>
+                    <ul style="list-style: none;">
+                        <li>
+                            <p>¿Es usted beneficiario de algún tipo de beca y otro beneficio ofrecido por parte de la Universidad mediante el Programa de Becas, o es beneficiario de estímulos y/o apoyos económicos otorgados por instituciones o entidades
+                                del orden nacional?</p>
+                            <div class="form-group text-center">
+                                <label for="respuesta_si" class="sr-only">Respuesta</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="respuesta" id="respuesta_si" [(ngModel)]="respuestaAceptar" #respuestaBool="ngModel" value="true" required>
+                                    <label class="form-check-label" for="respuesta_si">Sí</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="respuesta" id="respuesta_no" [(ngModel)]="respuestaAceptar" #respuestaBool="ngModel" value="false" required>
+                                    <label class="form-check-label" for="respuesta_no">No</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-4" *ngIf="respuestaAceptar">
+                                    <div class="form-group">
+                                        <label for="tiposBeneficios">Tipos de beneficios</label>
+                                        <select class="form-control" [ngClass]="{'is-invalid': ((postularForm.submitted || tiposBeneficios?.touched) && tiposBeneficios.errors?.required) }" [(ngModel)]="tipo_beneficio_id" id="tiposBeneficios" name="tiposBeneficios" [required]="respuestaAceptar"
+                                            #tiposBeneficios="ngModel">
+                      <option value="null" selected disabled>Seleccione el tipo de beneficio</option>
+                      <option *ngFor="let tipoBeneficio of tiposBeneficiosSelect" value="{{tipoBeneficio.id}}">{{tipoBeneficio.nombre}}</option>
+                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-8" *ngIf="respuestaAceptar">
+                                    <div class="form-group">
+                                        <label for="benefic">Nombre de beneficio</label>
+                                        <input class="form-control" [ngClass]="{'is-invalid ': benefic.errors?.required && (benefic?.touched || postularForm.submitted) }" type="text" placeholder="Ingrese el nombre del beneficio. Máx. 255 caracteres." name="benefic" id="benefic" [(ngModel)]="beneficio"
+                                            maxlength="255" [required]="respuestaAceptar" #benefic="ngModel">
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                <strong>Nota: </strong>Para respaldo de lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Dirección de Bienestar Universitario el <strong>Formato de Declaración Juramentada</strong>                                formulado para el Programa de Becas.
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="alert alert-secondary" role="alert">
+                        <p class="text-center text-muted font-weight-bold font-italic mb-0">
+                            Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la <a href="https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf"
+                                target="_blank" download="resolución 056 del 31 de enero del 2019.pdf">resolución 056 del 31 de enero del 2019</a>.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="postularForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

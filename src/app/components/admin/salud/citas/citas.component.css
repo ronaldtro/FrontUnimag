@@ -1,0 +1,13 @@
+.ui-state-disabled{
+    color: grey!important;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+.asterisk {
+    color: red;
+    margin-right: 0.4rem;
+    font-weight: bold;
+}

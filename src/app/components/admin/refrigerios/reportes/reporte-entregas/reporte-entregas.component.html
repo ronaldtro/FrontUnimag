@@ -1,0 +1,82 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn mb-3">
+  <h2 class="text-uppercase text-center">Reportes de entregas
+      <small class="d-block text-muted">El listado cuenta con {{reportes.length}} registros</small>
+  </h2>
+
+        <div class="row">
+                <div class="col-lg-12 text-center">
+   
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1 center" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+
+        <div class="collapse col-lg-12" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div id="filter-tipoBeneficio" class="form-group">
+                                <label>Filtrar por tipo de fecha</label>
+    
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div id="filter-fecha" class="form-group">
+                                <label>Filtrar por benefico</label>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+
+    </div>
+        </div>
+  
+  <div class="col-lg-12">
+    <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+    <div class="table-responsive">
+
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+            <thead>
+                <tr>
+                    <th scope="col" >Fecha de entrega</th>
+                    <th scope="col" >Convocatoria</th>  
+                    <th scope="col" >Beneficio</th>                   
+                    <th scope="col" >Entregas excusadas</th>
+                    <th scope="col" >Entregas por sistema</th>
+                    <th scope="col" >Entregas extemporaneas</th>
+                    <th scope="col" >Entregas totales</th>
+                    <th scope="col" >Fallas</th>
+                    <th scope="col" >Fallas por sistema</th>                 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of reportes">
+                    <td class="text-center" attr.data-order="{{item.fecha_entrega}}">{{item.fecha_entrega | date: 'dd/MM/yyyy'}}</td>
+                    <td class="text-center">{{item.convocatoria}}</td>  
+                    <td class="text-center">{{item.beneficio}}</td>                  
+                    <td class="text-center">{{item.entregas_excusadas}}</td>
+                    <td class="text-center">{{item.entregas_por_sistema}}</td>
+                    <td class="text-center">{{item.entregas_extemporaneas}}</td>
+                    <td class="text-center">{{item.entregas_totales}}</td>
+                    <td class="text-center">{{item.fallas}}</td>
+                    <td class="text-center">{{item.fallas_por_sistema}}</td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-12" >   
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <button type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver al listado</button>
+        </div>
+    </div>
+</div>
+
+
+
+</div>

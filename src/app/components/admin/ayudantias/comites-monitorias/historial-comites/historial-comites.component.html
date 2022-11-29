@@ -1,0 +1,83 @@
+<h2 class="text-uppercase animated fadeIn text-center" text-center>Historial de Cambios de Comités de Monitorías Académicas<small
+    class="btn-block text-muted">El listado cuenta con {{historialComites?.length}} registros</small></h2>
+<hr>
+
+<div class="row animated fadeIn">
+  <div class="col-12 text-center">
+    <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse"
+      data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+      <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+    </button>
+    <a tabindex="0" id="btn-ayuda"
+      *ngIf="userService.roleMatch(['ComiteMonitorias']) || userService.roleMatch(['AdminMonitorias'])" role="button"
+      class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom"
+      title="Información de ayuda"
+      data-content="A continuación, se muestra el historial de cambios de miembros de los comités registrados en el sistema.">
+      <span class="fa fa-question-circle" aria-hidden="true"></span>
+      <span class="sr-only">Información de ayuda</span>
+    </a>
+  </div>
+  <div class="collapse col-lg-12" id="collapseFilter">
+    <div class="card card-body px-3 pt-3">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4">
+          <div id="filter-fecha_modificacion" class="form-group">
+            <label>Filtrar por fecha de modificación</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <div id="filter-comite" class="form-group">
+            <label>Filtrar por Comité</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <div id="filter-rol" class="form-group">
+            <label>Filtrar por rol</label>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <div id="filter-estado" class="form-group">
+            <label>Filtrar por estado</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button
+      *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1"
+      (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times"
+        aria-hidden="true"></span></button> </div>
+
+  <div class="col-12">
+    <div class="table-responsive">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table-comites">
+        <thead>
+          <tr>
+            <th>Fecha de modificación</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Comité</th>
+            <th>Rol</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hisCom of historialComites ; let i=index">
+            <td attr.data-order="{{ hisCom.fecha_modificacion | obtenerFecha | date: 'dd/MM/yyyy, h:mm:ss a' }}">{{ hisCom.fecha_modificacion | obtenerFecha | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ hisCom.nombreMiembro }}</td>
+            <td>{{ hisCom.emailMiembro }}</td>
+            <td>{{ hisCom.nombreComite }}</td>
+            <td>{{ hisCom.nombreRolMiembro }}</td>
+            <td>{{ hisCom.estado ? 'Activo' : 'Inactivo' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-3 mb-3">
+      <button type="button" class="btn btn-light" (click)="backClicked()">Volver</button>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<!-- <button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button> -->

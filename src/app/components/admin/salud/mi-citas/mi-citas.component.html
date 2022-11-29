@@ -1,0 +1,160 @@
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Mis citas
+        <small class="d-block text-muted">Listado general del historial de citas registradas en sistema.</small>
+    </h2>
+    <hr>
+
+    <app-perfil-salud [id]="null" [tipoBusqueda]="profile_by" ></app-perfil-salud>
+
+    
+    <div class="row animated fadeIn">
+        <div class="col-lg-12 text-center">
+            <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+        <button id="cita" class="btn btn-outline-dark mb-3 mr-1" type="button" [routerLink]="[ '/citasAgenda']"  >
+             Reservar nueva cita
+        </button>
+        <!-- <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/miCitas']" >Reservar nueva cita</button> -->
+        </div>
+    </div>
+
+    <div class="collapse col-lg-12" id="collapseFilter">
+        <div class="card card-body px-3 pt-3">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6">
+                    <div id="filter-servicio" class="form-group">
+                        <label>Filtrar por servicios</label>
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6">
+                    <div id="filter-estado" class="form-group">
+                        <label>Filtrar por estado</label>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-lg-12">
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+        <h4 class="text-center">Citas registradas</h4>
+        <div class="table-responsive">
+
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col">Profesional</th>
+                        <th scope="col" class="text-center">Servicios</th>
+                        <th scope="col" class="text-center">Fecha de atención</th>
+                        <th scope="col" class="text-center">Horario de atención</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center" style="width: 100px;">Acciones</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let h of misCitas.citas; let i = index">
+
+                        <td>{{h.medico}}</td>
+                        <td class="text-center">{{h.especialidad}}</td>
+                        <td class="text-center">{{h.fecha_atencion | obtenerFecha | date: 'dd/MM/yyyy'}}</td>
+                        <td class="text-center">{{h.hora_atencion | obtenerHora}}</td>
+                        <td class="text-center">{{h.estadoAtencion}}</td>
+
+
+                        <td class="text-center">
+                            <button (click)="detalleCita(h)" type="button" class="btn btn-sm  btn-outline-dark border-secondary" title="Detalle total de la cita"><span class="fas fa-info-circle"></span></button>
+                            <button *ngIf="h.estadoAtencion_id == 1" (click)="citaCancelar(h)" type="button" class="btn btn-sm  btn-outline-dark border-secondary" title="Cancelar la cita"><span  class="far fa-calendar-times"></span>
+                            
+                            </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<!-- modal de detalle horario -->
+<div class="modal fade" id="detalleCita" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content  ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalle de la cita</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form>
+                <div class="modal-body">
+                    <!-- {{citas|json}} -->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12 p-3 bg-info text-white mb-4">
+                                <h3 class="h4">
+                                    <b class="d-block ">{{citas.medico}}</b>
+                                    <small class="d-block text-white mb-3">Profesional<b></b></small>
+                                    <small class="d-block text-white">Servicio: {{citas.especialidad}}</small>
+                                </h3>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label><b>Estado de la cita:</b></label>
+                                    <p class="form-control-plaintext det">{{citas.estadoAtencion}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label><b>Consultorio:</b></label>
+                                    <p class="form-control-plaintext det">{{citas.nombre_consultorio}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label><b>Lugar:</b></label>
+                                    <p class="form-control-plaintext det">{{citas.lugar_consultorio}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label><b>Fecha:</b></label>
+                                    <p class="form-control-plaintext det">{{citas.fecha_atencion | obtenerFecha | date: 'dd/MM/yyyy'}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label><b>Hora:</b></label>
+                                    <p class="form-control-plaintext det">{{citas.hora_atencion | obtenerHora}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--  fin modal de detalle horario -->

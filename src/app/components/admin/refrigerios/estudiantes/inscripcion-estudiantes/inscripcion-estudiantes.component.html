@@ -1,0 +1,101 @@
+<h2 class="text-uppercase animated fadeIn text-center">Inscripción a beneficio<small class="btn-block">{{convocatoria.nombre}}</small></h2>
+<hr class="animated fadeIn">
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<div *ngIf="errores.length > 0">
+    <div class="alert alert-danger alert text-center">
+        <ul>
+            <div *ngFor="let error of errores">
+                <p>{{error}}</p>
+            </div>
+        </ul>
+    </div>
+</div>
+
+<div *ngIf="error != null">
+    <div class="alert alert-danger alert text-center">
+        <p>{{error}}</p>
+    </div>
+</div>
+
+<div *ngIf="error == null">
+    {{error}}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="animated fadeIn">
+                <div *ngIf="etapaActual != null">
+                    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span>                            <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-3 animated fadeIn">
+
+                <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mr-2" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+                                        <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+                                    </button>
+
+            </div>
+
+            <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+                <label class="labels-sm">Etapas de la convocatoria</label>
+                <div class="d-flex flex-wrap flex-md-wrap mb-3">
+                    <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                        <span class="mb-2">{{etapa.nombre}}</span>
+                        <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+                                          <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+                                          <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+                                          
+                                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form #inscripcionForm="ngForm" novalidate (ngSubmit)="save(inscripcionForm)" class="animated fadeIn">
+        <fieldset>
+            <legend class="text-center">Información general</legend>
+            <p class="text-center">Seleccione el beneficio al que desea inscribirse</p>
+            <div class="row justify-content-center">
+
+                <div class="col-md-4 col-xl-3 text-center">
+                    <div class="form-group">
+                        <label for="benefi" class="sr-only">Beneficio</label>
+                        <select [ngClass]="{'is-invalid': benefi.errors?.required && (benefi.touched || inscripcionForm.submitted)}" id="benefi" class="form-control" name="benefi" [(ngModel)]="beneficio" #benefi="ngModel" (change)="selectBene()" required>
+                      <option [value]="null" disabled selected>Elegir beneficio</option>
+                      <option *ngFor="let bene of convocatoria.beneficios" [ngValue]="bene">{{bene.nombre}} </option>
+            
+                    </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+                <div class="col-12 text-center" *ngIf="beneficio">
+                    <p class="text-center">Seleccione los días que desea recibir el beneficio</p>
+                    <div class="form-check form-check-inline" *ngFor="let dia of beneficio.dias; let i=index">
+                        <input type="checkbox" class="form-check-input" name="evaluado.id" id="radio-{{dia.id}}" [(checklist)]="dias" [checklistValue]="dia.id" [disabled]="dia.estado == false" />
+                        <label class="form-check-label" for="radio-{{dia.id}}">{{dia.dia}}</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <app-informacion-complementaria-estudiante></app-informacion-complementaria-estudiante>
+        <div class="alert alert-info">
+            Recuerde que por cinco {{fallas}} ausencias es causal de pérdida del beneficio alimentario.
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-default mr-md-1 mb-3" (click)="goBack()">Volver</button>
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+
+        </div>
+
+    </form>
+</div>
+
+<div class="col-12 text-center" *ngIf="error != null">
+    <button type="button" class="btn btn-default mr-md-1 mb-3" [routerLink]="['/estudiantes', 'dashboard']">Volver al perfil</button>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

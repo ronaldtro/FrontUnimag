@@ -1,0 +1,196 @@
+<!-- Modal -->
+<div class="modal fade" id="detallesModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Detalle de estudiante</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="container-fluid" *ngIf="estudianteSeleccionado">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Código</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.codigo}}</p>
+                          </div>
+                      </div>
+                      <div class="col-4 col-md-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Tipo Doc</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.tipo_identificacion}}</p>
+                          </div>
+                      </div>
+                      <div class="col-8 col-md-5">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Num Doc</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.identificacion}}</p>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Nombre completo</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.nombre}}</p>
+                          </div>
+                      </div>
+                      <div class="col-3 col-md-4">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Sexo</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.sexo}}</p>
+                          </div>
+                      </div>
+                      <div class="col-3 col-md-4">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Estrato</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.estrato}}</p>
+                          </div>
+                      </div>
+                      <div class="col-6 col-md-4">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Colegio</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.colegio}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Facultad</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.facultad}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Programa</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.programa}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-5 col-lg-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Departamento</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.departamento}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-7 col-lg-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Municipio</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.municipio}}</p>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-6">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Dirección</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.direccion}}</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Teléfono</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.telefono}}</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Celular</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.celular}}</p>
+                          </div>
+                      </div>
+                      <div class="col-12">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Correo electrónico</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.email}}</p>
+                          </div>
+                      </div>
+                      <div class="col-12" *ngIf="estudianteSeleccionado.condiciones_especiales.length > 0">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Condiciones especiales</label>
+                              <p class="form-control form-control-sm">
+                                  <span *ngFor="let condicion of estudianteSeleccionado.condiciones_especiales; let last = last">{{condicion.nombre}} <span *ngIf="!last">, </span></span>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Programa de inclusión y permanencia</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.es_inclusion}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Programa de jovenes en acción</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.es_joven_en_accion}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Convocatoria almuerzos/refrigerios</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.tiene_beneficio_alimenticio}}</p>
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Ayudantias académicas, extensión y administrativas</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.tiene_ayudantia}}</p>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-9">
+                          <div class="form-group">
+                              <label class="mb-0 font-weight-bold small">Rapimercar más cercano</label>
+                              <p class="form-control form-control-sm">{{estudianteSeleccionado.almacen_mas_cercano}}</p>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-3">
+                        <div class="form-group">
+                            <label class="mb-0 font-weight-bold small">Sisben <small>(Editable)</small></label>
+                            <input type="number" class="form-control form-control-sm" min="0" max="100" (blur)="actualizarSisben()" placeholder="Puntaje sisben" step="0.1" name="sisben" [(ngModel)]="estudianteSeleccionado.sisben">
+                            
+                        </div>
+                    </div>
+                      <div class="col-12" *ngIf="estudianteSeleccionado.solicitante">
+                        <div class="form-group">
+                            <label class="mb-0 font-weight-bold small">Solicitante</label>
+                            <p class="form-control form-control-sm">{{estudianteSeleccionado.solicitante}}</p>
+                        </div>
+                      </div>
+                      <div class="col-12" *ngIf="estudianteSeleccionado.observacion">
+                        <div class="form-group">
+                            <label class="mb-0 font-weight-bold small">Observación</label>
+                            <p class="form-control form-control-sm">{{estudianteSeleccionado.observacion}}</p>
+                        </div>
+                      </div>
+                      <div class="col-12" *ngIf="estudianteSeleccionado.envios">
+                        <table class="table table-sm" *ngIf="estudianteSeleccionado.envios.length">
+                          <thead>
+                            <tr>
+                              <th>Fecha de envío</th>
+                              <th>Fecha de entrega</th>
+                              <th>Observación</th>
+                              <th>Registrado por</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let entrega of estudianteSeleccionado.envios">
+                              <td>{{entrega.fecha_envio | date: 'dd/MM/yyyy'}}</td>
+                              <td>{{entrega.fecha | date: 'dd/MM/yyyy'}}</td>
+                              <td>{{entrega.observacion}}</td>
+                              <td>{{entrega.created_user.split('@')[0]}}</td>
+                              <td>
+                                  <button type="button" class="btn btn-sm btn-outline-dark" (click)="eliminarEnvio(entrega)" title="Eliminar registro">
+                                      <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                                      <span class="sr-only">Eliminar registro</span>
+                                  </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,2726 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CrearPlazaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-crear-plaza</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./crear-plaza.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./crear-plaza.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#asignaturas">asignaturas</a>
+                            </li>
+                            <li>
+                                <a href="#convocatorias">convocatorias</a>
+                            </li>
+                            <li>
+                                <a href="#convocatoriaSeleccionada">convocatoriaSeleccionada</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#facultades">facultades</a>
+                            </li>
+                            <li>
+                                <a href="#id">id</a>
+                            </li>
+                            <li>
+                                <a href="#indexEditar">indexEditar</a>
+                            </li>
+                            <li>
+                                <a href="#messageService">messageService</a>
+                            </li>
+                            <li>
+                                <a href="#plaza">plaza</a>
+                            </li>
+                            <li>
+                                <a href="#plazaTipo">plazaTipo</a>
+                            </li>
+                            <li>
+                                <a href="#programas">programas</a>
+                            </li>
+                            <li>
+                                <a href="#requisito">requisito</a>
+                            </li>
+                            <li>
+                                <a href="#tipoConvocatoria">tipoConvocatoria</a>
+                            </li>
+                            <li>
+                                <a href="#tiposAyudantias">tiposAyudantias</a>
+                            </li>
+                            <li>
+                                <a href="#tiposAyudantias_aux">tiposAyudantias_aux</a>
+                            </li>
+                            <li>
+                                <a href="#tiposPlazas">tiposPlazas</a>
+                            </li>
+                            <li>
+                                <a href="#tiposRequisitos">tiposRequisitos</a>
+                            </li>
+                            <li>
+                                <a href="#tutorial">tutorial</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#abrirModalCrearNombrePlaza">abrirModalCrearNombrePlaza</a>
+                            </li>
+                            <li>
+                                <a href="#agregarActividad">agregarActividad</a>
+                            </li>
+                            <li>
+                                <a href="#agregarAsignatura">agregarAsignatura</a>
+                            </li>
+                            <li>
+                                <a href="#canjearObjeto">canjearObjeto</a>
+                            </li>
+                            <li>
+                                <a href="#completarPerfil">completarPerfil</a>
+                            </li>
+                            <li>
+                                <a href="#consultarPlaza">consultarPlaza</a>
+                            </li>
+                            <li>
+                                <a href="#goBack">goBack</a>
+                            </li>
+                            <li>
+                                <a href="#guardar">guardar</a>
+                            </li>
+                            <li>
+                                <a href="#guardarNombrePlaza">guardarNombrePlaza</a>
+                            </li>
+                            <li>
+                                <a href="#initTutorial">initTutorial</a>
+                            </li>
+                            <li>
+                                <a href="#limpiarPlaza">limpiarPlaza</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewChecked">ngAfterViewChecked</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#quitarElemento">quitarElemento</a>
+                            </li>
+                            <li>
+                                <a href="#trackByIndex">trackByIndex</a>
+                            </li>
+                            <li>
+                                <a href="#validarAsignaturas">validarAsignaturas</a>
+                            </li>
+                            <li>
+                                <a href="#verificarAsignaturas">verificarAsignaturas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_plazaService: <a href="../injectables/PlazaService.html">PlazaService</a>, tipoPlazaService: <a href="../injectables/TipoPlazaService.html">TipoPlazaService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, _location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, cdRef: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, spinner: NgxSpinnerService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_plazaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PlazaService.html" target="_self" >PlazaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>tipoPlazaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TipoPlazaService.html" target="_self" >TipoPlazaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="abrirModalCrearNombrePlaza"></a>
+                    <span class="name">
+                        <b>
+                            abrirModalCrearNombrePlaza
+                        </b>
+                        <a href="#abrirModalCrearNombrePlaza"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>abrirModalCrearNombrePlaza()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="330"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:330</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarActividad"></a>
+                    <span class="name">
+                        <b>
+                            agregarActividad
+                        </b>
+                        <a href="#agregarActividad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregarActividad()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:306</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarAsignatura"></a>
+                    <span class="name">
+                        <b>
+                            agregarAsignatura
+                        </b>
+                        <a href="#agregarAsignatura"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregarAsignatura()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:216</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canjearObjeto"></a>
+                    <span class="name">
+                        <b>
+                            canjearObjeto
+                        </b>
+                        <a href="#canjearObjeto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>canjearObjeto()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="completarPerfil"></a>
+                    <span class="name">
+                        <b>
+                            completarPerfil
+                        </b>
+                        <a href="#completarPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>completarPerfil()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="269"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:269</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="consultarPlaza"></a>
+                    <span class="name">
+                        <b>
+                            consultarPlaza
+                        </b>
+                        <a href="#consultarPlaza"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>consultarPlaza()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="388"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:388</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <b>
+                            goBack
+                        </b>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="442"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:442</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardar"></a>
+                    <span class="name">
+                        <b>
+                            guardar
+                        </b>
+                        <a href="#guardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardar(forma: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forma</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarNombrePlaza"></a>
+                    <span class="name">
+                        <b>
+                            guardarNombrePlaza
+                        </b>
+                        <a href="#guardarNombrePlaza"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardarNombrePlaza(forma: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="341"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:341</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forma</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTutorial"></a>
+                    <span class="name">
+                        <b>
+                            initTutorial
+                        </b>
+                        <a href="#initTutorial"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTutorial()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="418"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:418</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limpiarPlaza"></a>
+                    <span class="name">
+                        <b>
+                            limpiarPlaza
+                        </b>
+                        <a href="#limpiarPlaza"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>limpiarPlaza()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:158</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewChecked"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterViewChecked
+                        </b>
+                        <a href="#ngAfterViewChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewChecked()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:153</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="quitarElemento"></a>
+                    <span class="name">
+                        <b>
+                            quitarElemento
+                        </b>
+                        <a href="#quitarElemento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>quitarElemento(index, arreglo)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="252"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:252</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>arreglo</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackByIndex"></a>
+                    <span class="name">
+                        <b>
+                            trackByIndex
+                        </b>
+                        <a href="#trackByIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackByIndex(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, obj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="326"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:326</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>obj</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validarAsignaturas"></a>
+                    <span class="name">
+                        <b>
+                            validarAsignaturas
+                        </b>
+                        <a href="#validarAsignaturas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validarAsignaturas()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="234"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:234</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="verificarAsignaturas"></a>
+                    <span class="name">
+                        <b>
+                            verificarAsignaturas
+                        </b>
+                        <a href="#verificarAsignaturas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>verificarAsignaturas(item: <a href="../interfaces/Asignaturas.html">Asignaturas</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:256</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>item</td>
+                                    <td>
+                                                <code><a href="../interfaces/Asignaturas.html" target="_self" >Asignaturas</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="asignaturas"></a>
+                        <span class="name">
+                            <b>
+                            asignaturas</b>
+                            <a href="#asignaturas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatorias"></a>
+                        <span class="name">
+                            <b>
+                            convocatorias</b>
+                            <a href="#convocatorias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatoriaSeleccionada"></a>
+                        <span class="name">
+                            <b>
+                            convocatoriaSeleccionada</b>
+                            <a href="#convocatoriaSeleccionada"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="facultades"></a>
+                        <span class="name">
+                            <b>
+                            facultades</b>
+                            <a href="#facultades"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <span class="name">
+                            <b>
+                            id</b>
+                            <a href="#id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="indexEditar"></a>
+                        <span class="name">
+                            <b>
+                            indexEditar</b>
+                            <a href="#indexEditar"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="messageService"></a>
+                        <span class="name">
+                            <b>
+                            messageService</b>
+                            <a href="#messageService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="plaza"></a>
+                        <span class="name">
+                            <b>
+                            plaza</b>
+                            <a href="#plaza"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/PlazaCrear.html" target="_self" >PlazaCrear</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    tipo_ayudantia: null,
+    tipo_plaza_id: null,
+    cupos_solicitados: null,
+    convocatoria_id: null,
+    perfil: null,
+    competencias_requeridas: null,
+    porcentaja_creditos_requeridos: null,
+    promedio_minimo: null,
+    asignaturas: [],
+    facultades: [],
+    programas: [],
+    actividades: []
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="plazaTipo"></a>
+                        <span class="name">
+                            <b>
+                            plazaTipo</b>
+                            <a href="#plazaTipo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    id: null,
+    nombre: null,
+    tipoAyudantia: null,
+    codigo: null,
+    programa: null
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="programas"></a>
+                        <span class="name">
+                            <b>
+                            programas</b>
+                            <a href="#programas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requisito"></a>
+                        <span class="name">
+                            <b>
+                            requisito</b>
+                            <a href="#requisito"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/requisitoInscripcion.html" target="_self" >requisitoInscripcion</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    tipo_requisito_id: null,
+    descripcion: null,
+    valor: null
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tipoConvocatoria"></a>
+                        <span class="name">
+                            <b>
+                            tipoConvocatoria</b>
+                            <a href="#tipoConvocatoria"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposAyudantias"></a>
+                        <span class="name">
+                            <b>
+                            tiposAyudantias</b>
+                            <a href="#tiposAyudantias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposAyudantias_aux"></a>
+                        <span class="name">
+                            <b>
+                            tiposAyudantias_aux</b>
+                            <a href="#tiposAyudantias_aux"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/tipoAyudantia.html" target="_self" >tipoAyudantia[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposPlazas"></a>
+                        <span class="name">
+                            <b>
+                            tiposPlazas</b>
+                            <a href="#tiposPlazas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tiposRequisitos"></a>
+                        <span class="name">
+                            <b>
+                            tiposRequisitos</b>
+                            <a href="#tiposRequisitos"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>object[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tutorial"></a>
+                        <span class="name">
+                            <b>
+                            tutorial</b>
+                            <a href="#tutorial"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">app/components/admin/ayudantias/plazas/crear-plaza/crear-plaza.component.ts:65</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef, OnDestroy } from &#x27;@angular/core&#x27;;
+import { PlazaService } from &#x27;src/app/services/plaza.service&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { PlazaCrear, requisitoInscripcion, Asignaturas, Actividad, tipoAyudantia } from &#x27;src/app/interfaces/plaza.interface&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import &#x27;rxjs/Rx&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import { TipoPlazaService } from &#x27;src/app/services/tipo-plaza.service&#x27;;
+import {Location} from &#x27;@angular/common&#x27;;
+
+declare var jquery: any;
+declare var $: any;
+declare var Tutorial:any;
+
+@Component({
+  selector: &#x27;app-crear-plaza&#x27;,
+  templateUrl: &#x27;./crear-plaza.component.html&#x27;,
+  styleUrls: [&#x27;./crear-plaza.component.css&#x27;]
+})
+export class CrearPlazaComponent implements OnInit, OnDestroy {
+  errores: any[] &#x3D; [];
+  tiposAyudantias: object[] &#x3D; [];
+  tiposAyudantias_aux: tipoAyudantia[] &#x3D; [];
+  tiposPlazas: object[] &#x3D; [];
+  // supervisores: object[] &#x3D; [];
+  tiposRequisitos: object[] &#x3D; [];
+  convocatorias: object[] &#x3D; [];
+  facultades: object[] &#x3D; [];
+  programas: object[] &#x3D; [];
+  asignaturas: object[] &#x3D; [];
+  convocatoriaSeleccionada: any &#x3D; null;
+
+  requisito: requisitoInscripcion &#x3D; {
+    tipo_requisito_id: null,
+    descripcion: null,
+    valor: null
+  };
+  indexEditar: number;
+  id: number;
+
+  plaza: PlazaCrear &#x3D; {
+    tipo_ayudantia: null,
+    tipo_plaza_id: null,
+    cupos_solicitados: null,
+    convocatoria_id: null,
+    perfil: null,
+    competencias_requeridas: null,
+    porcentaja_creditos_requeridos: null,
+    promedio_minimo: null,
+    asignaturas: [],
+    facultades: [],
+    programas: [],
+    actividades: []
+  };
+  plazaTipo &#x3D; {
+    id: null,
+    nombre: null,
+    tipoAyudantia: null,
+    codigo: null,
+    programa: null
+  }
+  messageService: any;
+  tutorial:any &#x3D; null;
+  tipoConvocatoria: number;
+
+  constructor(private _plazaService: PlazaService,private tipoPlazaService: TipoPlazaService ,private route: ActivatedRoute, private _location: Location, private router: Router, private cdRef: ChangeDetectorRef, private spinner: NgxSpinnerService) {
+    route.params.subscribe(parametros &#x3D;&gt; {
+      
+      this.plaza.convocatoria_id &#x3D; parametros[&#x27;id&#x27;];
+      
+      if (parametros[&#x27;tipoConvocatoria&#x27;] !&#x3D;&#x3D; undefined) {
+        this.tipoConvocatoria &#x3D; parametros[&#x27;tipoConvocatoria&#x27;];
+        
+      }
+    });
+  }
+
+  ngAfterViewChecked() { this.cdRef.detectChanges(); }
+
+  ngOnInit() {
+    this.plaza.tipo_convocatoria_id &#x3D; this.tipoConvocatoria;
+    
+    $(&#x27;[data-toggle&#x3D;&quot;tooltip&quot;]&#x27;).tooltip();
+    this.spinner.show();
+    this._plazaService.getDatosSolicitar(this.tipoConvocatoria).subscribe(data &#x3D;&gt; {
+      this.tiposAyudantias &#x3D; data[&#x27;tiposAyudantias&#x27;];  
+      this.tiposAyudantias_aux &#x3D; Object.assign([],this.tiposAyudantias);
+
+      for (let index &#x3D; 0; index &lt; this.tiposAyudantias_aux.length; index++) {
+          if (this.tiposAyudantias_aux[index].id &#x3D;&#x3D; 1) {
+            this.tiposAyudantias_aux.splice(index,1);
+          }
+        }
+      
+      this.tiposPlazas &#x3D; data[&#x27;tiposPlazas&#x27;];
+      if(this.tipoConvocatoria &#x3D;&#x3D; 3){
+        this.plaza.tipo_ayudantia &#x3D; 1;
+      }else{
+        if(this.tipoConvocatoria &#x3D;&#x3D; 1){
+          this.tiposAyudantias &#x3D; this.tiposAyudantias.filter((item:any) &#x3D;&gt; {return item.id !&#x3D; 1});
+          this.tiposPlazas &#x3D; this.tiposPlazas.filter((item:any) &#x3D;&gt; {return item.tipo_ayudantia_id !&#x3D; 1});
+        }
+      }
+      // this.supervisores &#x3D; data[&#x27;supervisores&#x27;];
+      this.tiposRequisitos &#x3D; data[&#x27;tiposRequisitos&#x27;];
+      this.convocatorias &#x3D; data[&#x27;convocatorias&#x27;];
+      if(this.convocatorias.length &#x3D;&#x3D; 1) this.plaza.convocatoria_id &#x3D; this.convocatorias[0][&#x27;id&#x27;];
+      this.facultades &#x3D; data[&#x27;facultades&#x27;];
+      this.programas &#x3D; data[&#x27;programas&#x27;];
+      this.plaza.unidad_id &#x3D; data[&#x27;unidad_id&#x27;];
+      this.spinner.hide();
+    }, err &#x3D;&gt; {
+      let respuesta: RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });
+      this.spinner.hide()
+    });
+
+    // this.spinner.show();
+    //this.asignaturas &#x3D; this._plazaService.getCargarAsignaturas();
+    // this.spinner.hide();
+
+    this._plazaService.getCargarAsignaturas().subscribe(data &#x3D;&gt; {     
+      this.asignaturas &#x3D; data[&quot;asignaturas&quot;]
+      console.log(this.asignaturas);
+    }, err &#x3D;&gt; {
+      let respuesta: RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });
+      this.spinner.hide()
+    });
+
+
+  // for (let index &#x3D; 0; index &lt; this.tiposAyudantias_aux.length; index++) {
+  //   if (this.tiposAyudantias_aux[index].id &#x3D;&#x3D; 1) {
+  //     let aux &#x3D; Object.assign({},this.tiposAyudantias_aux[index])
+  //     let pos &#x3D; this.tiposAyudantias_aux.indexOf(aux);
+  //     this.tiposAyudantias_aux.splice(pos,index);
+  //   }
+  // }
+    
+
+  }
+
+  ngOnDestroy() {
+    //remueve el tutorial si se cambia de página
+    if(this.tutorial) this.tutorial.close();
+  }
+
+  limpiarPlaza() {
+    this.plaza.tipo_plaza_id &#x3D; null;
+  }
+
+  canjearObjeto() {
+    if (this.plaza.convocatoria_id) {
+      let busqueda &#x3D; this.convocatorias.filter(x &#x3D;&gt; x[&#x27;id&#x27;] &#x3D;&#x3D; this.plaza.convocatoria_id)[0];
+      if (busqueda) {
+        this.convocatoriaSeleccionada &#x3D; busqueda;
+      }
+    }
+  }
+
+  guardar(forma: NgForm) {
+    this.errores &#x3D; [];
+    if (!forma.valid) {
+
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: &#x27;Verifique la información ingresada e intente nuevamente&#x27;
+      });
+      return;
+    }
+    this.spinner.show();
+    this._plazaService.postSolicitar(this.plaza).subscribe(resp &#x3D;&gt; {
+      this.spinner.hide();
+      if (resp[&#x27;success&#x27;]) {
+        swal({
+          type: &#x27;success&#x27;,
+          title: &#x27;Realizado&#x27;,
+          text: &#x27;Se ha registrado satisfactoriamente la solicitud.&#x27;,
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.spinner.hide();
+        this.goBack();
+        // this.router.navigate([&#x27;/plazas/listarPlazasSolicitadas&#x27;]);
+      } else {
+        swal({
+          type: &#x27;error&#x27;,
+          title: &#x27;Error&#x27;,
+          text: &#x27;Verifique la información.&#x27;
+        });
+        this.spinner.hide();
+        this.errores &#x3D; resp[&#x27;errores&#x27;];
+      }
+    }, err &#x3D;&gt; {
+      let respuesta: RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });
+      this.spinner.hide()
+    });
+  }
+
+  agregarAsignatura() {
+
+    if (this.validarAsignaturas()) {
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: &#x27;Verifique que en la tabla de asignaturas cumpla con los siguientes requisitos: seleccionar asignatura, puntaje en un rango mayor que 0 y menor que 500 y que una asignatura no este duplicada.&#x27;
+      });
+      return;
+    }
+
+    this.plaza.asignaturas.push({
+      nombre: null,
+      codigo: null,
+      puntaje: null
+    });
+  }
+
+  validarAsignaturas() {
+    if (this.plaza.asignaturas.length &gt; 0) {
+      if (this.plaza.asignaturas.filter(x &#x3D;&gt; x.nombre &#x3D;&#x3D; null).length &gt; 0) {
+        return true;
+      }
+      if (this.plaza.asignaturas.filter(x &#x3D;&gt; x.puntaje &#x3D;&#x3D; null || x.puntaje &#x3D;&#x3D; 0 || x.puntaje &gt; 500).length &gt; 0) {
+        return true;
+      }
+      for (let i &#x3D; 0; i &lt; this.plaza.asignaturas.length; i++) {
+        if (this.plaza.asignaturas.filter(x &#x3D;&gt; x.nombre &#x3D;&#x3D; this.plaza.asignaturas[i].nombre).length &gt; 1) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  quitarElemento(index, arreglo) {
+    arreglo.splice(index, 1);
+  }
+
+  verificarAsignaturas(item: Asignaturas) {
+    if (this.plaza.asignaturas.filter(x &#x3D;&gt; x.nombre &#x3D;&#x3D; item.nombre).length &gt; 1) {
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: &#x27;Tenga en cuenta que no puede ingresar más de una vez la misma asignatura.&#x27;
+      });
+    } else {
+      let codigo &#x3D; this.asignaturas.filter(x &#x3D;&gt; x[&#x27;nombre&#x27;] &#x3D;&#x3D; item.nombre).map(x &#x3D;&gt; x[&#x27;codigo&#x27;])[0];
+      item.codigo &#x3D; codigo;
+    }
+  }
+
+  completarPerfil() {
+    let creditos &#x3D; this.plaza.porcentaja_creditos_requeridos;
+    let promedio_minimo &#x3D; this.plaza.promedio_minimo;
+    let factultadesSeleccionas &#x3D; this.facultades.filter(x &#x3D;&gt; this.plaza.facultades.indexOf(x[&#x27;id&#x27;]) &gt; -1).map(x &#x3D;&gt; x[&#x27;nombre&#x27;]).join(&quot;, &quot;);
+    let programasSeleccionados &#x3D; this.programas.filter(x &#x3D;&gt; this.plaza.programas.indexOf(x[&#x27;id&#x27;]) &gt; -1).map(x &#x3D;&gt; x[&#x27;nombre&#x27;]).join(&quot;, &quot;);
+    let asignaturasSeleccionadas &#x3D; this.plaza.asignaturas.filter(x &#x3D;&gt; x.nombre !&#x3D; null &amp;&amp; x.puntaje !&#x3D; null).map(x &#x3D;&gt; &#x60;${x.nombre} aprobada con un puntaje de ${x.puntaje}&#x60;).join(&quot;, &quot;);
+
+    let mensaje: string &#x3D; &quot;Estudiante que cumpla con los siguientes requisitos:&quot;;
+
+    if (creditos) {
+      if (mensaje.length &gt; 0) { mensaje +&#x3D; &quot; &quot;; }
+      mensaje +&#x3D; &#x60;Porcentaje de créditos aprobados del ${creditos}%.&#x60;;
+    }
+    if (promedio_minimo) {
+      if (mensaje.length &gt; 0) { mensaje +&#x3D; &quot; &quot;; }
+      mensaje +&#x3D; &#x60;Promedio mínimo de ${promedio_minimo} puntos.&#x60;;
+    }
+    if (factultadesSeleccionas) {
+      if (mensaje.length &gt; 0) { mensaje +&#x3D; &quot; &quot;; }
+      mensaje +&#x3D; &#x60;Pertenciente a la facultad de ${factultadesSeleccionas}.&#x60;;
+    }
+    if (programasSeleccionados) {
+      if (mensaje.length &gt; 0) { mensaje +&#x3D; &quot; &quot;; }
+      mensaje +&#x3D; &#x60;Pertenciente al programa de ${programasSeleccionados}.&#x60;;
+    }
+    if (asignaturasSeleccionadas) {
+      if (mensaje.length &gt; 0) { mensaje +&#x3D; &quot; &quot;; }
+      mensaje +&#x3D; &#x60;Que haya cursado la(s) asignatura(s) ${asignaturasSeleccionadas}.&#x60;;
+    }
+
+    if (mensaje.length &gt; 0) {
+      this.plaza.perfil &#x3D; mensaje;
+    }
+
+    return mensaje;
+  }
+
+  agregarActividad() {
+    if (this.plaza.actividades.length &gt; 0) {
+      if (this.plaza.actividades.filter(x &#x3D;&gt; x.descripcion.length &#x3D;&#x3D; 0).length &gt; 0) {
+        swal({
+          type: &#x27;error&#x27;,
+          title: &#x27;Error&#x27;,
+          text: &#x27;Tenga en cuenta que no puede ingresar una actividad con una descripción vacia.&#x27;
+        });
+        return;
+      }
+    }
+
+    let act: Actividad &#x3D; {
+      id: null,
+      descripcion: &quot;&quot;
+    };
+
+    this.plaza.actividades.push(act);
+  }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
+  abrirModalCrearNombrePlaza() {
+    this.plazaTipo &#x3D; {
+      id: null,
+      nombre: null,
+      tipoAyudantia: null,
+      codigo: null,
+      programa: null
+    }
+    $(&#x27;#crearTipoPlaza&#x27;).modal(&#x27;show&#x27;);
+  }
+
+  guardarNombrePlaza(forma: NgForm) {
+    if (!forma.valid) {
+      swal({
+        type: &quot;error&quot;,
+        title: &quot;Error&quot;,
+        text: &quot;Complete los campos del formulario.&quot;,
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } else {
+      this.spinner.show();
+      this.tipoPlazaService.nuevoDato(this.plazaTipo)
+        .subscribe(data &#x3D;&gt; {
+          this.spinner.hide();
+          if (data[&#x27;success&#x27;]) {
+            this.tiposPlazas.push({
+              id:data[&#x27;objRetornado&#x27;][&#x27;id&#x27;],
+              nombre:data[&#x27;objRetornado&#x27;][&#x27;nombre&#x27;],
+              programa:data[&#x27;objRetornado&#x27;][&#x27;programa&#x27;],
+              tipo_ayudantia_id:data[&#x27;objRetornado&#x27;][&#x27;tipoAyudantia&#x27;]
+            });
+            this.plaza.tipo_ayudantia &#x3D; null;
+            this.tiposPlazas &#x3D; this.tiposPlazas;
+            swal({
+              type: &quot;success&quot;,
+              title: &quot;Realizado&quot;,
+              text: &quot;Se ha guardado satisfactoriamente el item.&quot;,
+              timer: 2000,
+              showConfirmButton: false
+            });
+            $(&#x27;#crearTipoPlaza&#x27;).modal(&#x27;hide&#x27;);
+          } else {
+            this.messageService.add({ severity: &#x27;warn&#x27;, summary: &#x27;Alerta&#x27;, detail: data[&#x27;objRetornado&#x27;] });
+          }
+        }, err &#x3D;&gt; {
+          this.spinner.hide();
+          let respuesta: RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+          swal({
+            type: &#x27;error&#x27;,
+            title: &#x27;Error&#x27;,
+            text: respuesta.msg,
+          });
+          // this.spinner.hide()
+        });
+    }
+  }
+
+  consultarPlaza(){
+    let id_plaza &#x3D; this.plaza.tipo_plaza_id;
+    console.log(id_plaza);
+    this._plazaService.consultarPlaza(id_plaza).subscribe((data:any) &#x3D;&gt; {
+      console.log(data);
+      if(data){
+        swal({
+          title: &quot;Plaza encontrada&quot;,
+          text: &quot;Se ha encontrado una plaza registrada en un periodo anterior con el mismo nombre, ¿Desea cargar la información de la plaza almacenada? Los datos ingresados actualmente serán descartados.&quot;,
+          type: &quot;warning&quot;,
+          showCancelButton: true,
+          cancelButtonText :&quot;Cancelar&quot;,
+          reverseButtons: true
+        })
+        .then((willDelete) &#x3D;&gt; {
+          if (willDelete.value) {
+            let convocatoria_id &#x3D; this.plaza.convocatoria_id;
+            this.plaza &#x3D; data;
+            this.plaza.convocatoria_id &#x3D; convocatoria_id;
+            
+            this.completarPerfil();
+          } 
+          
+        });
+        
+      }
+      
+    });
+  }
+
+  initTutorial(){
+    this.tutorial &#x3D; new Tutorial(
+      {
+        intro:{text:&#x27;&lt;p class&#x3D;&quot;h2 text-white text-uppercase font-weight-bold container&quot;&gt;Módulo de administración de solicitud de plazas&lt;/p&gt;&lt;p class&#x3D;&quot;container&quot;&gt;El sistema permite llenar el formulario de solicitud de plazas para alguna de las convocatorias que actualmente se encuentren en la etapa de solicitud de plazas. A continuación, podrá conocer los elementos que contiene esta ventana que le permitirán administrar la solicitud de plazas en el sistema.&lt;/p&gt;&#x27;},
+        elements:[
+          {id: &#x27;#convocatoria_id&#x27;, text: &#x27;El campo &quot;Convocatoria&quot; permite seleccionar una convocatoria que actualmente se encuentre en estado de solicitud de plazas en el sistema, en caso de no haber ninguna el sistema no le permitirá seleccionar. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#tipo_ayudantia&#x27;, text: &#x27;El campo &quot;Tipo de ayudantía&quot; permite seleccionar el tipo de ayudantía que se requiere en la solicitud de la plaza. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#tipo_plaza&#x27;, text: &#x27;El campo &quot;Nombre de plaza &lt;span class&#x3D;&quot;fas fa-question-circle&quot;&gt;&lt;/span&gt;&quot; permite seleccionar el nombre de la plaza de la cual se quiere hacer la solicitud, si no es capaz de encontrar el nombre de la plaza deberá ingresar al módulo de nombres de plazas y crearla primero. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#cupos_solicitados&#x27;, text: &#x27;El campo &quot;Cupos solicitados&quot; permite ingresar el número de cupos que se quieren solicitar para la plaza, tenga en cuenta que solamente podrá ingresar numeros mayores o iguales a 1. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#porcentaja_creditos_requeridos&#x27;, text: &#x27;El campo &quot;Porcentaje de créditos aprobados&quot; permite ingresar el porcentaje de créditos que debe tener aprobado el estudiante que quiera postularse a la plaza, tenga en cuenta que solo podrá ingresar números entre el 0 y 100, incluidos ambos. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#promedio_minimo&#x27;, text: &#x27;El campo &quot;Promedio mínimo del estudiante &lt;span class&#x3D;&quot;fas fa-question-circle&quot;&gt;&lt;/span&gt;&quot; permite ingresar el promedio ponderado mínimo que debe tener el estudiante que quiera postularse a la plaza, tenga en cuenta que sólo podrá ingresar números entre el 0 y 500, incluidos ambos. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#perfil&#x27;, text: &#x27;El campo &quot;Perfil&quot; permite generar y visualizar el perfil que deberá tener el estudiante que quiera postularse a la plaza, basándose para su construcción en la información ingresada en los demás campos del formulario. Este campo es autocompletado de forma automática por el sistema.&#x27;},
+          {id: &#x27;#competencias_requeridas&#x27;, text: &#x27;El campo &quot;Competencias requeridas&quot; permite ingresar las competencias que deberá que deberá tener el estudiante que quiera postularse a la plaza, tenga en cuenta que solamente podrá ingresar hasta un máximo de 1000 caracteres. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#facultad&#x27;, text: &#x27;El campo &quot;Facultad&quot; permite seleccionar la o las facultades a las cuales deben pertenecer los estudiantes que quieran postularse a la plaza, tenga en cuenta que solamente podrá seleccionar aquellas facultades que se encuentren activas en el sistema. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#programa&#x27;, text: &#x27;El campo &quot;Programa&quot; permite seleccionar el o los programas a los cuales deben pertenecer los estudiantes que quieran postularse a la plaza, tenga en cuenta que solamente podrá seleccionar aquellos programas que se encuentren activos en el sistema. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#agregarActividad&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/span&gt; Agregar actividad&quot; permite agregar las actividades que deberán realizar los estudiantes durante el periodo de la ayudantía. Al hacer clic en el botón se añadirá un campo para escribir el nombre de la actividad, tenga en cuenta que solamente podrá ingresar hasta un máximo de 500 caracteres. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#agregarAsignatura&#x27;, text: &#x27;El botón &quot;&lt;span class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/span&gt; Agregar asignatura&quot; permite agregar las asignaturas con su respectivos puntajes, estas deberán estar aprobadas por los estudiantes que quieran postularse a la plaza con un puntaje igual o mayor al indicado. Al hacer clic en el botón se añadirá un campo para seleccionar el nombre de la asignatura e indicar el puntaje mínimo que debe tener en la misma el estudiante, tenga en cuenta que solo podrá ingresar números entre 1 y 500, incluidos ambos. Este campo es obligatorio.&#x27;},
+          {id: &#x27;#volver&#x27;, text: &#x27;El botón &quot;Volver al listado&quot; permite regresar a la lista de plazas solicitadas.&#x27;},
+          {id: &#x27;#guardar&#x27;, text: &#x27;El botón &quot;Guardar&quot; permite guardar toda la información suministrada en cada uno de los campos anteriomente mencionados si esta es válida, después de un breve periodo de tiempo será redirigido a la lista de plazas solicitadas.&#x27;},
+        ]
+      });
+      this.tutorial.start();
+  }
+
+  goBack():void{
+    this._location.back();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner bdColor&#x3D;&quot;rgba(0, 0, 0, 0.65)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;div class&#x3D;&quot;mb-3 animated fadeIn&quot;&gt;
+    &lt;h2 class&#x3D;&quot;text-uppercase text-center&quot;&gt;Plazas &lt;small class&#x3D;&quot;d-block text-muted&quot;&gt;Formulario de solicitud de plazas&lt;/small&gt;&lt;/h2&gt;
+    &lt;hr&gt;
+
+    &lt;div class&#x3D;&quot;alert alert-danger alert&quot; *ngIf&#x3D;&quot;errores.length &gt; 0&quot;&gt;
+        &lt;label&gt;&lt;b&gt;Corrige los errores:&lt;/b&gt;&lt;/label&gt;
+        &lt;ul&gt;
+            &lt;div *ngFor&#x3D;&quot;let error of errores&quot;&gt;
+                &lt;li *ngIf&#x3D;&quot;error.errores.length&gt;0&quot;&gt;
+                    &lt;p&gt;{{error.errores[0].ErrorMessage}}&lt;/p&gt;
+                &lt;/li&gt;
+            &lt;/div&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;form (ngSubmit)&#x3D;&quot;guardar(forma)&quot; #forma&#x3D;&quot;ngForm&quot; novalidate&gt;
+
+        &lt;fieldset&gt;
+            &lt;legend&gt;Información general&lt;/legend&gt;
+            &lt;div class&#x3D;&quot;alert alert-info&quot;&gt;
+                Todos los campos de información en este formulario son obligatorios a excepción del campo &#x27;Perfil&#x27; que se completa automáticamente a medida que los demás campos de información son completados.
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;alert alert-warning&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;convocatorias.length &#x3D;&#x3D; 0&quot;&gt;
+                En la fecha actual no hay convocatorias en etapa de solicitud de plazas.
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-md-6 col-xl-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;convocatoria_id&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;convocatoria_id&quot;&gt;Convocatoria&lt;/label&gt;
+                        &lt;select class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || convocatoria_id.touched) &amp;&amp; convocatoria_id.errors?.required) }&quot; id&#x3D;&quot;convocatoria_id&quot; name&#x3D;&quot;convocatoria_id&quot; [(ngModel)]&#x3D;&quot;plaza.convocatoria_id&quot; required #convocatoria_id&#x3D;&quot;ngModel&quot;
+                            (change)&#x3D;&quot;canjearObjeto()&quot;&gt;
+              &lt;option disabled [ngValue]&#x3D;&quot;null&quot; selected&gt;Seleccione una convocatoria&lt;/option&gt;
+              &lt;option *ngFor&#x3D;&quot;let item of convocatorias&quot; [value]&#x3D;&quot;item.id&quot; [selected]&#x3D;&quot;convocatorias.length &#x3D;&#x3D; 1&quot;&gt;{{item.nombre}}&lt;/option&gt;
+            &lt;/select&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6 col-xl-3&quot;&gt;
+                    &lt;div id&#x3D;&quot;tipo_ayudantia&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;tipo_ayudantia&quot;&gt;Tipo de &lt;span *ngIf&#x3D;&quot;tipoConvocatoria &#x3D;&#x3D; 1&quot;&gt;ayudantía&lt;/span&gt;&lt;span *ngIf&#x3D;&quot;tipoConvocatoria &#x3D;&#x3D; 3&quot;&gt;monitoría&lt;/span&gt;&lt;/label&gt;
+                        &lt;select class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || tipo_ayudantia.touched) &amp;&amp; tipo_ayudantia.errors?.required) }&quot; id&#x3D;&quot;tipo_ayudantia&quot; name&#x3D;&quot;tipo_ayudantia&quot; [(ngModel)]&#x3D;&quot;plaza.tipo_ayudantia&quot; required #tipo_ayudantia&#x3D;&quot;ngModel&quot;
+                            (change)&#x3D;&quot;limpiarPlaza()&quot; [disabled]&#x3D;&quot;tipoConvocatoria &#x3D;&#x3D; 3&quot;&gt;
+                            &lt;option disabled [ngValue]&#x3D;&quot;null&quot; selected&gt;Seleccione un tipo de ayudantía&lt;/option&gt;
+                            &lt;option *ngFor&#x3D;&quot;let item of tiposAyudantias&quot; [value]&#x3D;&quot;item.id&quot;&gt;{{item.nombre}}&lt;/option&gt;
+                        &lt;/select&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                
+                &lt;div class&#x3D;&quot;col-md-12 col-xl-6&quot;&gt;
+                    &lt;div id&#x3D;&quot;tipo_plaza&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;tipo_plaza&quot;&gt;Nombre de plaza  &lt;span class&#x3D;&quot;fas fa-question-circle&quot; data-toggle&#x3D;&quot;tooltip&quot; data-placement&#x3D;&quot;bottom&quot; title&#x3D;&quot;Los nombres de plazas de ayudantías académicas son obtenidas del Grupo de Admisiones, Registro y Control Académico. Si en el listado no encuentra el nombre de una plaza de otro tipo de ayudantía puede agregarlo presionando en el enlace ubicado debajo del campo.&quot;&gt;&lt;/span&gt;&lt;/label&gt;
+                        &lt;ng-select [items]&#x3D;&quot;tiposPlazas | selecPlaza: plaza.tipo_ayudantia&quot; id&#x3D;&quot;tipo_plaza&quot; bindLabel&#x3D;&quot;nombre&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || tipo_plaza.touched) &amp;&amp; tipo_plaza.errors?.required) }&quot; bindValue&#x3D;&quot;id&quot; placeholder&#x3D;&quot;Seleccione plaza&quot;
+                            name&#x3D;&quot;tipo_plaza&quot; #tipo_plaza&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.tipo_plaza_id&quot; (change)&#x3D;&quot;consultarPlaza()&quot; required&gt;
+                            &lt;ng-template ng-notfound-tmp let-searchTerm&#x3D;&quot;searchTerm&quot;&gt;
+                                &lt;div class&#x3D;&quot;ng-option disabled&quot;&gt;
+                                    No hay resultados
+                                &lt;/div&gt;
+                            &lt;/ng-template&gt;
+                        &lt;/ng-select&gt;
+                        &lt;small class&#x3D;&quot;form-text text-muted&quot;&gt;
+              &lt;button (click)&#x3D;&quot;abrirModalCrearNombrePlaza()&quot; *ngIf&#x3D;&quot;plaza.tipo_ayudantia !&#x3D; null &amp;&amp; plaza.tipo_ayudantia !&#x3D; 1&quot; class&#x3D;&quot;btn btn-sm btn-link text-left pt-0 pb-0&quot; style&#x3D;&quot;white-space: normal;&quot; type&#x3D;&quot;button&quot; title&#x3D;&quot;Agregar tipo&quot;&gt;
+                  Presione aquí si no encuentra el nombre de la plaza
+              &lt;/button&gt;
+            &lt;/small&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;!-- &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+              &lt;label for&#x3D;&quot;tipo_plaza&quot;&gt;Supervisor&lt;/label&gt;
+              &lt;ng-select [items]&#x3D;&quot;supervisores&quot; id&#x3D;&quot;supervisor&quot; bindLabel&#x3D;&quot;nombre&quot; bindValue&#x3D;&quot;id&quot; placeholder&#x3D;&quot;Seleccione supervisor&quot;  [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || supervisor.touched) &amp;&amp; supervisor.errors?.required) }&quot;
+                name&#x3D;&quot;supervisor&quot; #supervisor&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.supervisor_id&quot; required&gt;
+                &lt;ng-template ng-notfound-tmp let-searchTerm&#x3D;&quot;searchTerm&quot;&gt;
+                  &lt;div class&#x3D;&quot;ng-option disabled&quot;&gt;
+                    No hay resultados
+                  &lt;/div&gt;
+                &lt;/ng-template&gt;
+              &lt;/ng-select&gt;
+            &lt;/div&gt;
+          &lt;/div&gt; --&gt;
+                &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+                    &lt;div id&#x3D;&quot;cupos_solicitados&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;cupos_solicitados&quot;&gt;Cupos solicitados&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ( (forma.submitted || cupos_solicitados.touched) &amp;&amp; (cupos_solicitados.errors?.required || cupos_solicitados.errors?.min) )  }&quot; name&#x3D;&quot;cupos_solicitados&quot; #cupos_solicitados&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.cupos_solicitados&quot;
+                            [min]&#x3D;&quot;1&quot; required placeholder&#x3D;&quot;Ingrese el no. de cupos solicitados. Mín. 1&quot;&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;( (forma.submitted || cupos_solicitados.touched) &amp;&amp; cupos_solicitados.errors?.min )&quot;&gt;
+                            Solo números mayores o iguales que 1.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+                    &lt;div id&#x3D;&quot;porcentaja_creditos_requeridos&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;porcentaja_creditos_requeridos&quot;&gt;Porcentaje de créditos aprobados&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ( (forma.submitted || porcentaja_creditos_requeridos.touched) &amp;&amp; (porcentaja_creditos_requeridos.errors?.required || porcentaja_creditos_requeridos.errors?.min || porcentaja_creditos_requeridos.errors?.max) )  }&quot;
+                            name&#x3D;&quot;porcentaja_creditos_requeridos&quot; #porcentaja_creditos_requeridos&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.porcentaja_creditos_requeridos&quot; [min]&#x3D;&quot;0&quot; [max]&#x3D;&quot;100&quot; required placeholder&#x3D;&quot;Ingrese el porcentaje de créditos aprobados. Mín. 1. Max. 100.&quot;&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;( (forma.submitted || porcentaja_creditos_requeridos.touched) &amp;&amp; porcentaja_creditos_requeridos.errors?.min )&quot;&gt;
+                            Solo números mayores o iguales que 0.
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;( (forma.submitted || porcentaja_creditos_requeridos.touched) &amp;&amp; porcentaja_creditos_requeridos.errors?.max )&quot;&gt;
+                            Solo números menores o iguales que 100.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+                    &lt;div id&#x3D;&quot;promedio_minimo&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;promedio_minimo&quot;&gt;Promedio mínimo del estudiante &lt;span class&#x3D;&quot;fas fa-question-circle&quot; data-toggle&#x3D;&quot;tooltip&quot; data-placement&#x3D;&quot;bottom&quot; title&#x3D;&quot;En este campo debe ingresar el promedio ponderado del estudiante.&quot;&gt;&lt;/span&gt;&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ( (forma.submitted || promedio_minimo.touched) &amp;&amp; (promedio_minimo.errors?.required || promedio_minimo.errors?.min || promedio_minimo.errors?.max) )  }&quot; name&#x3D;&quot;promedio_minimo&quot; #promedio_minimo&#x3D;&quot;ngModel&quot;
+                            [(ngModel)]&#x3D;&quot;plaza.promedio_minimo&quot; [min]&#x3D;&quot;convocatoriaSeleccionada ? convocatoriaSeleccionada[&#x27;promedioMinimo&#x27;] : 0&quot; [max]&#x3D;&quot;500&quot; required placeholder&#x3D;&quot;Ingrese el promedio mínimo. Max. 100.&quot;&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;( (forma.submitted || promedio_minimo.touched) &amp;&amp; promedio_minimo.errors?.min )&quot;&gt;
+                            Solo números mayores o iguales que {{convocatoriaSeleccionada ? convocatoriaSeleccionada[&#x27;promedioMinimo&#x27;] : 0}}.
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;invalid-feedback&quot; *ngIf&#x3D;&quot;( (forma.submitted || promedio_minimo.touched) &amp;&amp; promedio_minimo.errors?.max )&quot;&gt;
+                            Solo números menores o iguales que 500.
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                    &lt;div id&#x3D;&quot;perfil&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;perfil&quot;&gt;Perfil &lt;small class&#x3D;&quot;text-muted&quot;&gt;(Campo autocompletado por el sistema)&lt;/small&gt;&lt;/label&gt;
+                        &lt;textarea class&#x3D;&quot;form-control&quot; [value]&#x3D;&quot;completarPerfil()&quot; name&#x3D;&quot;perfil&quot; rows&#x3D;&quot;4&quot; placeholder&#x3D;&quot;El perfil de la plaza se construirá cuando se seleccionen los requisitos del estudiante.&quot; readonly&gt;&lt;/textarea&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                    &lt;div id&#x3D;&quot;competencias_requeridas&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;competencias_requeridas&quot;&gt;Competencias requeridas&lt;/label&gt;
+                        &lt;textarea class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || competencias_requeridas.touched) &amp;&amp; competencias_requeridas.errors?.required) }&quot; name&#x3D;&quot;competencias_requeridas&quot; #competencias_requeridas&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.competencias_requeridas&quot;
+                            rows&#x3D;&quot;4&quot; placeholder&#x3D;&quot;Ej: Capacidad para resolver problemas, capacidad de trabajo en equipo y liderazgo, etc. Máx. 1000 caracteres.&quot; maxlength&#x3D;&quot;1000&quot; [required]&#x3D;&quot;tipoConvocatoria &#x3D;&#x3D; 1&quot;&gt;&lt;/textarea&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- &lt;/fieldset&gt;
+      
+      &lt;fieldset&gt; --&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                    &lt;div id&#x3D;&quot;facultad&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;facultad&quot;&gt;Facultad&lt;/label&gt;
+                        &lt;ng-select [items]&#x3D;&quot;facultades&quot; id&#x3D;&quot;facultad&quot; bindLabel&#x3D;&quot;nombre&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || facultad.touched) &amp;&amp; facultad.errors?.required) }&quot; bindValue&#x3D;&quot;id&quot; placeholder&#x3D;&quot;Seleccione facultad&quot; name&#x3D;&quot;facultad&quot; #facultad&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.facultades&quot;
+                            [multiple]&#x3D;&quot;true&quot; [closeOnSelect]&#x3D;&quot;false&quot; [hideSelected]&#x3D;&quot;true&quot; [required]&#x3D;&quot;plaza.programas.length &#x3D;&#x3D; 0&quot;&gt;
+                            &lt;ng-template ng-notfound-tmp let-searchTerm&#x3D;&quot;searchTerm&quot;&gt;
+                                &lt;div class&#x3D;&quot;ng-option disabled&quot;&gt;
+                                    No hay resultados
+                                &lt;/div&gt;
+                            &lt;/ng-template&gt;
+                        &lt;/ng-select&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-md-6&quot;&gt;
+                    &lt;div id&#x3D;&quot;programa&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;programa&quot;&gt;Programa&lt;/label&gt;
+                        &lt;ng-select [items]&#x3D;&quot;programas&quot; id&#x3D;&quot;programa&quot; bindLabel&#x3D;&quot;nombre&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || programa.touched) &amp;&amp; programa.errors?.required) }&quot; bindValue&#x3D;&quot;id&quot; placeholder&#x3D;&quot;Seleccione programa&quot; name&#x3D;&quot;programa&quot; #programa&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;plaza.programas&quot;
+                            [multiple]&#x3D;&quot;true&quot; [closeOnSelect]&#x3D;&quot;false&quot; [hideSelected]&#x3D;&quot;true&quot; [required]&#x3D;&quot;plaza.facultades.length &#x3D;&#x3D; 0&quot;&gt;
+                            &lt;ng-template ng-notfound-tmp let-searchTerm&#x3D;&quot;searchTerm&quot;&gt;
+                                &lt;div class&#x3D;&quot;ng-option disabled&quot;&gt;
+                                    No hay resultados
+                                &lt;/div&gt;
+                            &lt;/ng-template&gt;
+                        &lt;/ng-select&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/fieldset&gt;
+
+        &lt;fieldset&gt;
+            &lt;legend&gt;Actividades a realizar &lt;button id&#x3D;&quot;agregarActividad&quot; (click)&#x3D;&quot;agregarActividad()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-primary btn-sm&quot;&gt;&lt;i
+            class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/i&gt;Agregar actividad&lt;/button&gt;&lt;/legend&gt;
+            &lt;small class&#x3D;&quot;text-muted&quot;&gt;Son las actividades que realizara el estudiante durante la ayudantia.&lt;/small&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12 table-responsive&quot;&gt;
+                    &lt;table class&#x3D;&quot;table&quot;&gt;
+                        &lt;thead&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;Descripción&lt;/th&gt;
+                                &lt;th style&#x3D;&quot;width: 100px;&quot; class&#x3D;&quot;text-center&quot;&gt;Acciones&lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                            &lt;tr *ngFor&#x3D;&quot;let item of plaza.actividades; let j &#x3D; index;trackBy:trackByIndex&quot;&gt;
+                                &lt;td&gt;
+                                    &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ( (forma.submitted || actividad_j.touched) &amp;&amp; (actividad_j.errors?.required || actividad_j.errors?.maxlength) )  }&quot; name&#x3D;&quot;actividad_{{j}}&quot; id&#x3D;&quot;actividad_{{j}}&quot; #actividad_j&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;item.descripcion&quot;
+                                        maxlength&#x3D;&quot;500&quot; required placeholder&#x3D;&quot;Ingrese la actividad. Max. 500.&quot;&gt;
+                                &lt;/td&gt;
+                                &lt;td class&#x3D;&quot;text-center&quot;&gt;
+                                    &lt;button (click)&#x3D;&quot;quitarElemento(j, plaza.actividades)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light btn-sm&quot; title&#x3D;&quot;Eliminar registro&quot;&gt;&lt;span class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Eliminar registro&lt;/span&gt;&lt;/button&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr class&#x3D;&quot;table-info&quot;&gt;
+                                &lt;td colspan&#x3D;&quot;4&quot; *ngIf&#x3D;&quot;plaza.actividades.length &#x3D;&#x3D; 0&quot; role&#x3D;&quot;alert&quot;&gt;
+                                    No hay actividades relacionadas con la plaza. Para ingresar debe presionar en el botón &quot;&lt;i class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/i&gt; Agregar actividad&quot;.
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/fieldset&gt;
+
+        &lt;fieldset&gt;
+            &lt;legend&gt;Asignaturas previas &lt;button id&#x3D;&quot;agregarAsignatura&quot; (click)&#x3D;&quot;agregarAsignatura()&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-primary btn-sm&quot;&gt;&lt;i
+            class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/i&gt;Agregar asignatura&lt;/button&gt;&lt;/legend&gt;
+            &lt;small id&#x3D;&quot;emailHelp&quot; class&#x3D;&quot;form-text text-muted&quot; *ngIf&#x3D;&quot;convocatoriaSeleccionada&quot;&gt;El puntaje mínimo según la
+        convocatoria seleccionada es {{convocatoriaSeleccionada[&#x27;puntajeMinimo&#x27;]}}.&lt;/small&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12 table-responsive&quot;&gt;
+                    &lt;table class&#x3D;&quot;table&quot;&gt;
+                        &lt;thead&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;Asignatura&lt;/th&gt;
+                                &lt;th style&#x3D;&quot;width: 200px;&quot;&gt;Puntaje&lt;/th&gt;
+                                &lt;th style&#x3D;&quot;width: 100px;&quot; class&#x3D;&quot;text-center&quot;&gt;Acciones&lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                            &lt;tr *ngFor&#x3D;&quot;let item of plaza.asignaturas; let i &#x3D; index;trackBy:trackByIndex&quot;&gt;
+                                &lt;td&gt;
+                                    &lt;ng-select [items]&#x3D;&quot;asignaturas&quot; id&#x3D;&quot;nombre_{{i}}&quot; bindLabel&#x3D;&quot;titulo&quot; (change)&#x3D;&quot;verificarAsignaturas(item)&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ((forma.submitted || nombre_i.touched) &amp;&amp; nombre_i.errors?.required) }&quot; bindValue&#x3D;&quot;nombre&quot; placeholder&#x3D;&quot;Seleccione asignatura&quot;
+                                        name&#x3D;&quot;nombre_{{i}}&quot; #nombre_i&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;item.nombre&quot; required&gt;
+                                        &lt;ng-template ng-notfound-tmp let-searchTerm&#x3D;&quot;searchTerm&quot;&gt;
+                                            &lt;div class&#x3D;&quot;ng-option disabled&quot;&gt;
+                                                No hay resultados
+                                            &lt;/div&gt;
+                                        &lt;/ng-template&gt;
+                                    &lt;/ng-select&gt;
+                                &lt;/td&gt;
+                                &lt;td&gt;
+                                    &lt;input class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: ( (forma.submitted || puntaje_i.touched) &amp;&amp; (puntaje_i.errors?.required || puntaje_i.errors?.min || puntaje_i.errors?.max) )  }&quot; type&#x3D;&quot;number&quot; [min]&#x3D;&quot;convocatoriaSeleccionada ? convocatoriaSeleccionada[&#x27;puntajeMinimo&#x27;] : 1&quot;
+                                        [max]&#x3D;&quot;500&quot; id&#x3D;&quot;puntaje_{{i}}&quot; name&#x3D;&quot;puntaje_{{i}}&quot; [(ngModel)]&#x3D;&quot;item.puntaje&quot; required #puntaje_i&#x3D;&quot;ngModel&quot; required&gt;
+                                &lt;/td&gt;
+                                &lt;td class&#x3D;&quot;text-center&quot;&gt;
+                                    &lt;button (click)&#x3D;&quot;quitarElemento(i, plaza.asignaturas)&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light btn-sm&quot; title&#x3D;&quot;Eliminar registro&quot;&gt;&lt;span class&#x3D;&quot;fas fa-times&quot;&gt;&lt;/span&gt;&lt;span class&#x3D;&quot;sr-only&quot;&gt;Eliminar registro&lt;/span&gt;&lt;/button&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr class&#x3D;&quot;table-info&quot;&gt;
+                                &lt;td colspan&#x3D;&quot;4&quot; *ngIf&#x3D;&quot;plaza.asignaturas.length &#x3D;&#x3D; 0&quot; role&#x3D;&quot;alert&quot;&gt;
+                                    No hay asignaturas relacionadas con la plaza. Para ingresar debe presionar en el botón &quot;&lt;i class&#x3D;&quot;fas fa-plus&quot;&gt;&lt;/i&gt; Agregar asignatura&quot;.
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/fieldset&gt;
+
+        &lt;div class&#x3D;&quot;row&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 text-center&quot;&gt;
+
+                &lt;button id&#x3D;&quot;volver&quot; type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light mb-3 mr-1&quot; [routerLink]&#x3D;&quot;[ &#x27;/plazas/listarPlazasSolicitadas&#x27; ]&quot;&gt;Volver al listado&lt;/button&gt;
+                &lt;button id&#x3D;&quot;guardar&quot; type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success mb-3&quot;&gt;Guardar&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;crearTipoPlaza&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;exampleModalLabel&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+
+    &lt;div class&#x3D;&quot;modal-dialog&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content&quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                &lt;h5 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;exampleModalLabel&quot;&gt;Crear nombre de plaza&lt;/h5&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Cerrar&quot; (click)&#x3D;&quot;formaPlaza.resetForm();&quot;&gt;
+          &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;form (ngSubmit)&#x3D;&quot;guardarNombrePlaza(formaPlaza)&quot; #formaPlaza&#x3D;&quot;ngForm&quot; novalidate&gt;
+                &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;nombre&quot;&gt;&lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Nombre&lt;/label&gt;
+                        &lt;input class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: nombre.errors?.required &amp;&amp; (nombre.touched || formaPlaza.submitted) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el nombre de la plaza. Máx. 255 caracteres.&quot; name&#x3D;&quot;nombre&quot; id&#x3D;&quot;nombre&quot; [(ngModel)]&#x3D;&quot;plazaTipo.nombre&quot;
+                            maxlength&#x3D;&quot;255&quot; required #nombre&#x3D;&quot;ngModel&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;tipoAyudantia&quot;&gt; &lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Tipo ayudantía&lt;/label&gt;
+                        &lt;select [(ngModel)]&#x3D;&quot;plazaTipo.tipoAyudantia&quot; class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: tipoAyudantia.errors?.required  &amp;&amp; (tipoAyudantia.touched || formaPlaza.submitted)}&quot; name&#x3D;&quot;tipoAyudantia&quot; id&#x3D;&quot;tipoAyudantia&quot; #tipoAyudantia&#x3D;&quot;ngModel&quot; required&gt;
+              &lt;option value&#x3D;&quot;null&quot; disabled&gt;Seleccione un tipo de ayudantia&lt;/option&gt;
+              &lt;option *ngFor&#x3D;&quot;let item of tiposAyudantias_aux&quot; [value]&#x3D;&quot;item?.id&quot;&gt;{{item?.nombre}}&lt;/option&gt;
+            &lt;/select&gt;
+                    &lt;/div&gt;
+                    &lt;div *ngIf&#x3D;&quot;plazaTipo.tipoAyudantia &#x3D;&#x3D; 1&quot; class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;programa_plaza&quot;&gt;&lt;span style&#x3D;&quot;color:red;&quot;&gt;*&lt;/span&gt;Programa&lt;/label&gt;
+                        &lt;input class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: programa_plaza.errors?.required &amp;&amp; (programa_plaza.touched || formaPlaza.submitted) }&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese el programa de la plaza. Máx. 255 caracteres.&quot; name&#x3D;&quot;programa_plaza&quot; id&#x3D;&quot;programa_plaza&quot;
+                            [(ngModel)]&#x3D;&quot;plazaTipo.programa&quot; maxlength&#x3D;&quot;255&quot; [required]&#x3D;&quot;plazaTipo.tipoAyudantia &#x3D;&#x3D; 1&quot; #programa_plaza&#x3D;&quot;ngModel&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                        &lt;label for&#x3D;&quot;codigo&quot;&gt;Código &lt;small class&#x3D;&quot;text-muted&quot;&gt;(Opcional)&lt;/small&gt;&lt;/label&gt;
+                        &lt;input class&#x3D;&quot;form-control &quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Ingrese un código (opcional)&quot; name&#x3D;&quot;codigo&quot; id&#x3D;&quot;codigo&quot; [(ngModel)]&#x3D;&quot;plazaTipo.codigo&quot; #codigo&#x3D;&quot;ngModel&quot; maxlength&#x3D;&quot;255&quot;&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light&quot; data-dismiss&#x3D;&quot;modal&quot; (click)&#x3D;&quot;formaPlaza.resetForm();&quot;&gt;Cancelar&lt;/button&gt;
+                    &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-success&quot;&gt;
+            Guardar
+          &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;button class&#x3D;&quot;btn btn-default shadow-sm&quot; style&#x3D;&quot;position:fixed; bottom: 1rem; right: 1rem;z-index: 10&quot; (click)&#x3D;&quot;initTutorial()&quot;&gt;Ayuda &lt;span aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;fa fa-question-circle&quot;&gt;&lt;/span&gt;&lt;/button&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./crear-plaza.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.ng-select.is-invalid .ng-select-container {
+    border-color: red!important;
+}
+.table-responsive{
+    overflow: visible;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner><div class="mb-3 animated fadeIn">    <h2 class="text-uppercase text-center">Plazas <small class="d-block text-muted">Formulario de solicitud de plazas</small></h2>    <hr>    <div class="alert alert-danger alert" *ngIf="errores.length > 0">        <label><b>Corrige los errores:</b></label>        <ul>            <div *ngFor="let error of errores">                <li *ngIf="error.errores.length>0">                    <p>{{error.errores[0].ErrorMessage}}</p>                </li>            </div>        </ul>    </div>    <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>        <fieldset>            <legend>Información general</legend>            <div class="alert alert-info">                Todos los campos de información en este formulario son obligatorios a excepción del campo \'Perfil\' que se completa automáticamente a medida que los demás campos de información son completados.            </div>            <div class="alert alert-warning" role="alert" *ngIf="convocatorias.length == 0">                En la fecha actual no hay convocatorias en etapa de solicitud de plazas.            </div>            <div class="row">                <div class="col-md-6 col-xl-3">                    <div id="convocatoria_id" class="form-group">                        <label for="convocatoria_id">Convocatoria</label>                        <select class="form-control" [ngClass]="{\'is-invalid\': ((forma.submitted || convocatoria_id.touched) && convocatoria_id.errors?.required) }" id="convocatoria_id" name="convocatoria_id" [(ngModel)]="plaza.convocatoria_id" required #convocatoria_id="ngModel"                            (change)="canjearObjeto()">              <option disabled [ngValue]="null" selected>Seleccione una convocatoria</option>              <option *ngFor="let item of convocatorias" [value]="item.id" [selected]="convocatorias.length == 1">{{item.nombre}}</option>            </select>                    </div>                </div>                <div class="col-md-6 col-xl-3">                    <div id="tipo_ayudantia" class="form-group">                        <label for="tipo_ayudantia">Tipo de <span *ngIf="tipoConvocatoria == 1">ayudantía</span><span *ngIf="tipoConvocatoria == 3">monitoría</span></label>                        <select class="form-control" [ngClass]="{\'is-invalid\': ((forma.submitted || tipo_ayudantia.touched) && tipo_ayudantia.errors?.required) }" id="tipo_ayudantia" name="tipo_ayudantia" [(ngModel)]="plaza.tipo_ayudantia" required #tipo_ayudantia="ngModel"                            (change)="limpiarPlaza()" [disabled]="tipoConvocatoria == 3">                            <option disabled [ngValue]="null" selected>Seleccione un tipo de ayudantía</option>                            <option *ngFor="let item of tiposAyudantias" [value]="item.id">{{item.nombre}}</option>                        </select>                    </div>                </div>                                <div class="col-md-12 col-xl-6">                    <div id="tipo_plaza" class="form-group">                        <label for="tipo_plaza">Nombre de plaza  <span class="fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Los nombres de plazas de ayudantías académicas son obtenidas del Grupo de Admisiones, Registro y Control Académico. Si en el listado no encuentra el nombre de una plaza de otro tipo de ayudantía puede agregarlo presionando en el enlace ubicado debajo del campo."></span></label>                        <ng-select [items]="tiposPlazas | selecPlaza: plaza.tipo_ayudantia" id="tipo_plaza" bindLabel="nombre" [ngClass]="{\'is-invalid\': ((forma.submitted || tipo_plaza.touched) && tipo_plaza.errors?.required) }" bindValue="id" placeholder="Seleccione plaza"                            name="tipo_plaza" #tipo_plaza="ngModel" [(ngModel)]="plaza.tipo_plaza_id" (change)="consultarPlaza()" required>                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">                                <div class="ng-option disabled">                                    No hay resultados                                </div>                            </ng-template>                        </ng-select>                        <small class="form-text text-muted">              <button (click)="abrirModalCrearNombrePlaza()" *ngIf="plaza.tipo_ayudantia != null && plaza.tipo_ayudantia != 1" class="btn btn-sm btn-link text-left pt-0 pb-0" style="white-space: normal;" type="button" title="Agregar tipo">                  Presione aquí si no encuentra el nombre de la plaza              </button>            </small>                    </div>                </div>            </div>            <div class="row">                <!-- <div class="col-md-6">            <div class="form-group">              <label for="tipo_plaza">Supervisor</label>              <ng-select [items]="supervisores" id="supervisor" bindLabel="nombre" bindValue="id" placeholder="Seleccione supervisor"  [ngClass]="{\'is-invalid\': ((forma.submitted || supervisor.touched) && supervisor.errors?.required) }"                name="supervisor" #supervisor="ngModel" [(ngModel)]="plaza.supervisor_id" required>                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">                  <div class="ng-option disabled">                    No hay resultados                  </div>                </ng-template>              </ng-select>            </div>          </div> -->                <div class="col-md-4">                    <div id="cupos_solicitados" class="form-group">                        <label for="cupos_solicitados">Cupos solicitados</label>                        <input type="number" class="form-control" [ngClass]="{\'is-invalid\': ( (forma.submitted || cupos_solicitados.touched) && (cupos_solicitados.errors?.required || cupos_solicitados.errors?.min) )  }" name="cupos_solicitados" #cupos_solicitados="ngModel" [(ngModel)]="plaza.cupos_solicitados"                            [min]="1" required placeholder="Ingrese el no. de cupos solicitados. Mín. 1">                        <div class="invalid-feedback" *ngIf="( (forma.submitted || cupos_solicitados.touched) && cupos_solicitados.errors?.min )">                            Solo números mayores o iguales que 1.                        </div>                    </div>                </div>                <div class="col-md-4">                    <div id="porcentaja_creditos_requeridos" class="form-group">                        <label for="porcentaja_creditos_requeridos">Porcentaje de créditos aprobados</label>                        <input type="number" class="form-control" [ngClass]="{\'is-invalid\': ( (forma.submitted || porcentaja_creditos_requeridos.touched) && (porcentaja_creditos_requeridos.errors?.required || porcentaja_creditos_requeridos.errors?.min || porcentaja_creditos_requeridos.errors?.max) )  }"                            name="porcentaja_creditos_requeridos" #porcentaja_creditos_requeridos="ngModel" [(ngModel)]="plaza.porcentaja_creditos_requeridos" [min]="0" [max]="100" required placeholder="Ingrese el porcentaje de créditos aprobados. Mín. 1. Max. 100.">                        <div class="invalid-feedback" *ngIf="( (forma.submitted || porcentaja_creditos_requeridos.touched) && porcentaja_creditos_requeridos.errors?.min )">                            Solo números mayores o iguales que 0.                        </div>                        <div class="invalid-feedback" *ngIf="( (forma.submitted || porcentaja_creditos_requeridos.touched) && porcentaja_creditos_requeridos.errors?.max )">                            Solo números menores o iguales que 100.                        </div>                    </div>                </div>                <div class="col-md-4">                    <div id="promedio_minimo" class="form-group">                        <label for="promedio_minimo">Promedio mínimo del estudiante <span class="fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="En este campo debe ingresar el promedio ponderado del estudiante."></span></label>                        <input type="number" class="form-control" [ngClass]="{\'is-invalid\': ( (forma.submitted || promedio_minimo.touched) && (promedio_minimo.errors?.required || promedio_minimo.errors?.min || promedio_minimo.errors?.max) )  }" name="promedio_minimo" #promedio_minimo="ngModel"                            [(ngModel)]="plaza.promedio_minimo" [min]="convocatoriaSeleccionada ? convocatoriaSeleccionada[\'promedioMinimo\'] : 0" [max]="500" required placeholder="Ingrese el promedio mínimo. Max. 100.">                        <div class="invalid-feedback" *ngIf="( (forma.submitted || promedio_minimo.touched) && promedio_minimo.errors?.min )">                            Solo números mayores o iguales que {{convocatoriaSeleccionada ? convocatoriaSeleccionada[\'promedioMinimo\'] : 0}}.                        </div>                        <div class="invalid-feedback" *ngIf="( (forma.submitted || promedio_minimo.touched) && promedio_minimo.errors?.max )">                            Solo números menores o iguales que 500.                        </div>                    </div>                </div>            </div>            <div class="row">                <div class="col-12">                    <div id="perfil" class="form-group">                        <label for="perfil">Perfil <small class="text-muted">(Campo autocompletado por el sistema)</small></label>                        <textarea class="form-control" [value]="completarPerfil()" name="perfil" rows="4" placeholder="El perfil de la plaza se construirá cuando se seleccionen los requisitos del estudiante." readonly></textarea>                    </div>                </div>                <div class="col-12">                    <div id="competencias_requeridas" class="form-group">                        <label for="competencias_requeridas">Competencias requeridas</label>                        <textarea class="form-control" [ngClass]="{\'is-invalid\': ((forma.submitted || competencias_requeridas.touched) && competencias_requeridas.errors?.required) }" name="competencias_requeridas" #competencias_requeridas="ngModel" [(ngModel)]="plaza.competencias_requeridas"                            rows="4" placeholder="Ej: Capacidad para resolver problemas, capacidad de trabajo en equipo y liderazgo, etc. Máx. 1000 caracteres." maxlength="1000" [required]="tipoConvocatoria == 1"></textarea>                    </div>                </div>            </div>            <!-- </fieldset>            <fieldset> -->            <div class="row">                <div class="col-md-6">                    <div id="facultad" class="form-group">                        <label for="facultad">Facultad</label>                        <ng-select [items]="facultades" id="facultad" bindLabel="nombre" [ngClass]="{\'is-invalid\': ((forma.submitted || facultad.touched) && facultad.errors?.required) }" bindValue="id" placeholder="Seleccione facultad" name="facultad" #facultad="ngModel" [(ngModel)]="plaza.facultades"                            [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="plaza.programas.length == 0">                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">                                <div class="ng-option disabled">                                    No hay resultados                                </div>                            </ng-template>                        </ng-select>                    </div>                </div>                <div class="col-md-6">                    <div id="programa" class="form-group">                        <label for="programa">Programa</label>                        <ng-select [items]="programas" id="programa" bindLabel="nombre" [ngClass]="{\'is-invalid\': ((forma.submitted || programa.touched) && programa.errors?.required) }" bindValue="id" placeholder="Seleccione programa" name="programa" #programa="ngModel" [(ngModel)]="plaza.programas"                            [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="plaza.facultades.length == 0">                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">                                <div class="ng-option disabled">                                    No hay resultados                                </div>                            </ng-template>                        </ng-select>                    </div>                </div>            </div>        </fieldset>        <fieldset>            <legend>Actividades a realizar <button id="agregarActividad" (click)="agregarActividad()" type="button" class="btn btn-outline-primary btn-sm"><i            class="fas fa-plus"></i>Agregar actividad</button></legend>            <small class="text-muted">Son las actividades que realizara el estudiante durante la ayudantia.</small>            <div class="row">                <div class="col-12 table-responsive">                    <table class="table">                        <thead>                            <tr>                                <th>Descripción</th>                                <th style="width: 100px;" class="text-center">Acciones</th>                            </tr>                        </thead>                        <tbody>                            <tr *ngFor="let item of plaza.actividades; let j = index;trackBy:trackByIndex">                                <td>                                    <input type="text" class="form-control" [ngClass]="{\'is-invalid\': ( (forma.submitted || actividad_j.touched) && (actividad_j.errors?.required || actividad_j.errors?.maxlength) )  }" name="actividad_{{j}}" id="actividad_{{j}}" #actividad_j="ngModel" [(ngModel)]="item.descripcion"                                        maxlength="500" required placeholder="Ingrese la actividad. Max. 500.">                                </td>                                <td class="text-center">                                    <button (click)="quitarElemento(j, plaza.actividades)" type="button" class="btn btn-light btn-sm" title="Eliminar registro"><span class="fas fa-times"></span><span class="sr-only">Eliminar registro</span></button>                                </td>                            </tr>                            <tr class="table-info">                                <td colspan="4" *ngIf="plaza.actividades.length == 0" role="alert">                                    No hay actividades relacionadas con la plaza. Para ingresar debe presionar en el botón "<i class="fas fa-plus"></i> Agregar actividad".                                </td>                            </tr>                        </tbody>                    </table>                </div>            </div>        </fieldset>        <fieldset>            <legend>Asignaturas previas <button id="agregarAsignatura" (click)="agregarAsignatura()" type="button" class="btn btn-outline-primary btn-sm"><i            class="fas fa-plus"></i>Agregar asignatura</button></legend>            <small id="emailHelp" class="form-text text-muted" *ngIf="convocatoriaSeleccionada">El puntaje mínimo según la        convocatoria seleccionada es {{convocatoriaSeleccionada[\'puntajeMinimo\']}}.</small>            <div class="row">                <div class="col-12 table-responsive">                    <table class="table">                        <thead>                            <tr>                                <th>Asignatura</th>                                <th style="width: 200px;">Puntaje</th>                                <th style="width: 100px;" class="text-center">Acciones</th>                            </tr>                        </thead>                        <tbody>                            <tr *ngFor="let item of plaza.asignaturas; let i = index;trackBy:trackByIndex">                                <td>                                    <ng-select [items]="asignaturas" id="nombre_{{i}}" bindLabel="titulo" (change)="verificarAsignaturas(item)" [ngClass]="{\'is-invalid\': ((forma.submitted || nombre_i.touched) && nombre_i.errors?.required) }" bindValue="nombre" placeholder="Seleccione asignatura"                                        name="nombre_{{i}}" #nombre_i="ngModel" [(ngModel)]="item.nombre" required>                                        <ng-template ng-notfound-tmp let-searchTerm="searchTerm">                                            <div class="ng-option disabled">                                                No hay resultados                                            </div>                                        </ng-template>                                    </ng-select>                                </td>                                <td>                                    <input class="form-control" [ngClass]="{\'is-invalid\': ( (forma.submitted || puntaje_i.touched) && (puntaje_i.errors?.required || puntaje_i.errors?.min || puntaje_i.errors?.max) )  }" type="number" [min]="convocatoriaSeleccionada ? convocatoriaSeleccionada[\'puntajeMinimo\'] : 1"                                        [max]="500" id="puntaje_{{i}}" name="puntaje_{{i}}" [(ngModel)]="item.puntaje" required #puntaje_i="ngModel" required>                                </td>                                <td class="text-center">                                    <button (click)="quitarElemento(i, plaza.asignaturas)" type="button" class="btn btn-light btn-sm" title="Eliminar registro"><span class="fas fa-times"></span><span class="sr-only">Eliminar registro</span></button>                                </td>                            </tr>                            <tr class="table-info">                                <td colspan="4" *ngIf="plaza.asignaturas.length == 0" role="alert">                                    No hay asignaturas relacionadas con la plaza. Para ingresar debe presionar en el botón "<i class="fas fa-plus"></i> Agregar asignatura".                                </td>                            </tr>                        </tbody>                    </table>                </div>            </div>        </fieldset>        <div class="row">            <div class="col-12 text-center">                <button id="volver" type="button" class="btn btn-light mb-3 mr-1" [routerLink]="[ \'/plazas/listarPlazasSolicitadas\' ]">Volver al listado</button>                <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>            </div>        </div>    </form></div><div class="modal fade" id="crearTipoPlaza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">    <div class="modal-dialog" role="document">        <div class="modal-content">            <div class="modal-header">                <h5 class="modal-title" id="exampleModalLabel">Crear nombre de plaza</h5>                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="formaPlaza.resetForm();">          <span aria-hidden="true">&times;</span>        </button>            </div>            <form (ngSubmit)="guardarNombrePlaza(formaPlaza)" #formaPlaza="ngForm" novalidate>                <div class="modal-body">                    <div class="form-group">                        <label for="nombre"><span style="color:red;">*</span>Nombre</label>                        <input class="form-control" [ngClass]="{\'is-invalid \': nombre.errors?.required && (nombre.touched || formaPlaza.submitted) }" type="text" placeholder="Ingrese el nombre de la plaza. Máx. 255 caracteres." name="nombre" id="nombre" [(ngModel)]="plazaTipo.nombre"                            maxlength="255" required #nombre="ngModel">                    </div>                    <div class="form-group">                        <label for="tipoAyudantia"> <span style="color:red;">*</span>Tipo ayudantía</label>                        <select [(ngModel)]="plazaTipo.tipoAyudantia" class="form-control" [ngClass]="{\'is-invalid \': tipoAyudantia.errors?.required  && (tipoAyudantia.touched || formaPlaza.submitted)}" name="tipoAyudantia" id="tipoAyudantia" #tipoAyudantia="ngModel" required>              <option value="null" disabled>Seleccione un tipo de ayudantia</option>              <option *ngFor="let item of tiposAyudantias_aux" [value]="item?.id">{{item?.nombre}}</option>            </select>                    </div>                    <div *ngIf="plazaTipo.tipoAyudantia == 1" class="form-group">                        <label for="programa_plaza"><span style="color:red;">*</span>Programa</label>                        <input class="form-control" [ngClass]="{\'is-invalid \': programa_plaza.errors?.required && (programa_plaza.touched || formaPlaza.submitted) }" type="text" placeholder="Ingrese el programa de la plaza. Máx. 255 caracteres." name="programa_plaza" id="programa_plaza"                            [(ngModel)]="plazaTipo.programa" maxlength="255" [required]="plazaTipo.tipoAyudantia == 1" #programa_plaza="ngModel">                    </div>                    <div class="form-group">                        <label for="codigo">Código <small class="text-muted">(Opcional)</small></label>                        <input class="form-control " type="text" placeholder="Ingrese un código (opcional)" name="codigo" id="codigo" [(ngModel)]="plazaTipo.codigo" #codigo="ngModel" maxlength="255">                    </div>                </div>                <div class="modal-footer">                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="formaPlaza.resetForm();">Cancelar</button>                    <button type="submit" class="btn btn-success">            Guardar          </button>                </div>            </form>        </div>    </div></div><button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CrearPlazaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CrearPlazaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

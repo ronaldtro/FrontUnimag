@@ -1,0 +1,186 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+    <h2 class="text-uppercase">{{convocatoria.nombre}}<small class="btn-block">Listado de fallas estudiantiles</small><small class="btn-block text-muted">El listado cuenta con {{fallas.length}} registro(s)</small></h2>
+    <hr>
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div>
+                <div *ngIf="etapaActual != null">
+                    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span>
+                            <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-3">
+
+                <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+                            <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+                </button>
+
+                <button *ngIf="fallas.length > 0" id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                    <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+                </button>
+
+                <a tabindex="0" *ngIf="userService.roleMatch(['AdminRefrigerios'])" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los estudiantes poseen fallas en la convocatoria. Desde la columna de acciones, puede acceder realizar el cambio de estado. Los datos de esta tabla, pueden ser exportados en un archivo o imprimirlos.">
+                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Información de ayuda</span>
+                </a>
+
+            </div>
+
+            <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+                <label class="labels-sm">Etapas de la convocatoria</label>
+                <div class="d-flex flex-wrap flex-md-wrap mb-3">
+                    <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                        <span class="mb-2">{{etapa.nombre}}</span>
+                        <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+                          <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+                          <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse mb-3 mb-3" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row">
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-beneficio" class="form-group">
+                                <label>Filtrar por beneficio</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-dia" class="form-group">
+                                <label>Filtrar por día</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-fecha" class="form-group">
+                                <label>Filtrar por fecha</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Beneficio</th>
+                            <th scope="col">Día</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let falla of fallas; let i=index;">
+                            <th scope="col"></th>
+                            <td>{{falla.codigo}}</td>
+                            <td>{{falla.estudiante | titlecase}}</td>
+                            <td>{{falla.beneficio}}</td>
+                            <td>{{falla.dia}}</td>
+                            <td [attr.data-order]="falla.fecha | date: 'yyyy-MM-dd'">{{falla.fecha | date: 'dd/MM/yyyy'}}</td>
+                            <td class="text-center" attr.data-order="falla.codigo">
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button *ngIf="(userService.roleMatch(['AdminRefrigerios','ProyeccionSocial']))" type="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="cambiarEstadoModal(falla)" title="Cambiar estado">
+                                      <span class="fa fa-eye" aria-hidden="true"></span>
+                                      <span class="sr-only">Cambiar estado</span>
+                                    </button>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/convocatoriasRefrigerio' ]">Volver</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Cambiar estado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="estadoForm.resetForm()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="cambiarEstado(estadoForm,soporte)" #estadoForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select class="form-control" [ngClass]="{'is-invalid': ((estadoForm.submitted || estado.touched) && estado.errors?.required) }" [(ngModel)]="registroCambioEstado.estado_id" id="estado" name="estado" required #estado="ngModel">
+                                    <option value="null" selected disabled>Seleccione un estado</option>
+                                    <option *ngFor="let estadoSelect of estadosEntrega" value="{{estadoSelect.id}}">{{estadoSelect.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="observacionCambioEstado">Observación</label>
+                                <textarea class="form-control" [ngClass]="{'is-invalid': ((estadoForm.submitted || observacionCambioEstado.touched) && observacionCambioEstado.errors?.required) }" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacionCambioEstado"
+                                    id="observacionCambioEstado" [(ngModel)]="registroCambioEstado.observacion" #observacionCambioEstado="ngModel" rows=4 required> </textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="soporte">Soporte</label>
+                                <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>
+                                </p-fileUpload>
+                                <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="estadoForm.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

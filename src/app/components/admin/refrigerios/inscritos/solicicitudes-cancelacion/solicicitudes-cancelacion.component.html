@@ -1,0 +1,154 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+    <h2 class="text-uppercase">{{convocatoria.nombre}}<small class="btn-block">Listado de solicitudes de cancelación</small><small class="btn-block text-muted">El listado cuenta con {{convocatoria.estudiantes.length}} registro(s)</small></h2>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div>
+                <div *ngIf="etapaActual != null">
+                    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+                        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}} </strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)">del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span>                            <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-3">
+
+                <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+                                    <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+                                </button>
+
+                <a tabindex="0" *ngIf="userService.roleMatch(['AdminRefrigerios'])" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los estudiantes que han solicitado la cancelación del beneficio alimenticio. Desde la columna de acciones, puede acceder a las diferentes funcionalidades. Los datos de esta tabla, puede exportarlos en un archivo o imprimirlos.">
+                    <span class="fa fa-question-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Información de ayuda</span>
+                </a>
+
+            </div>
+
+            <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+                <label class="labels-sm">Etapas de la convocatoria</label>
+                <div class="d-flex flex-wrap flex-md-wrap mb-3">
+                    <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                        <span class="mb-2">{{etapa.nombre}}</span>
+                        <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+                                  <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+                                  <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+                                  
+                                </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Programa</th>
+                            <th scope="col">Beneficio</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let estudiante of convocatoria.estudiantes; let i=index;">
+                            <td>{{estudiante.codigo}}</td>
+                            <td>{{estudiante.nombreEstudiante | titlecase}}</td>
+                            <td>{{funciones.sentenceCase(estudiante.programa)}}</td>
+                            <td>{{estudiante.beneficio}}</td>
+                            <td>{{estudiante.estadoInscripcion}}</td>
+                            <td class="text-center" attr.data-order="estudiante.nombreEstudiante">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button *ngIf="(userService.roleMatch(['AdminRefrigerios']))" (click)="verSolicitud(estudiante)" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Ver sollicitud">
+                                              <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                              <span class="sr-only">Ver sollicitud</span>
+                                            </button>
+
+                                    <div class="dropdown d-inline-block">
+                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{estudiante.idEstudiante}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                                    <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                                </button>
+                                        <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{estudiante.idEstudiante}}">
+                                            <button *ngIf="(userService.roleMatch(['AdminRefrigerios']))" (click)="respuesta(1,estudiante)" class="dropdown-item" type="button" title="Cambiar estado">
+                                                        Aprobar
+                                                    </button>
+                                            <button *ngIf="(userService.roleMatch(['AdminRefrigerios']))" (click)="respuesta(0,estudiante)" class="dropdown-item" type="button" title="Cambiar estado por días">
+                                                        Rechazar
+                                                    </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/convocatoriasRefrigerio' ]">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="solicitudModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Detalle de la solicitud</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeSoporte()">
+              <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="observacion">Observación</label>
+                        <textarea class="form-control" type="text" name="observacion" id="observacion" [(ngModel)]="solicitud.observacion" #observacion="ngModel"> </textarea>
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="soporte">Soporte <button type="button" class="btn btn-link btn-sm"
+                          (click)="viewDoc(0)">Ver documento cargado</button></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="respuesta(0)">Rechazar</button>
+                <button type="button" class="btn btn-success" (click)="respuesta(1)">Aprobar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pdfSoporte" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeSoporte()">
+              <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="rutaPdf  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>

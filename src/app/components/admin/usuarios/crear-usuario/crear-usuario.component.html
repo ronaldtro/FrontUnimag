@@ -1,0 +1,106 @@
+<!-- Modal -->
+<div class="modal fade" id="crearUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        
+        <h4 *ngIf="usuario.id == null" class="modal-title" id="modelTitleId">Crear usuario</h4>
+        <h4 *ngIf="usuario.id != null" class="modal-title" id="modelTitleId">Editar usuario</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="usuarioForm.resetForm();" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <form (ngSubmit)="guardarUsuario(usuarioForm)" #usuarioForm="ngForm" novalidate>
+      <div class="modal-body">
+          <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+            <label><b>Corrige los errores:</b></label>
+            <ul>
+              <div *ngFor="let error of errores">
+                <li *ngIf="error.errores.length>0">
+                  <p>{{error.errores[0].ErrorMessage}}</p>
+                </li>
+              </div>
+            </ul>
+          </div> 
+          
+
+            <fieldset>
+              <div class="alert alert-info">
+                Todos los campos son obligatorios
+              </div>
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="identificacion">Identificación</label>
+                      <input type="number" name="identificacion" id="identificacion" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || identificacion.touched) && (identificacion.errors?.required) )}"
+                        [(ngModel)]="usuario.identificacion" required #identificacion="ngModel" placeholder="No. de identificación" maxlength="50" />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="nombres">Nombres</label>
+                      <input type="text" name="nombres" id="nombres" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || nombres.touched) && (nombres.errors?.required) )}"
+                        [(ngModel)]="usuario.nombres" required #nombres="ngModel" placeholder="Nombres completos" maxlength="255"/>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                      <div class="form-group">
+                          <label for="sexo">Sexo</label>
+                          <br>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sexo" id="sexo" value="true" checked
+                            [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+                            <label class="form-check-label" for="sexo">M</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="false"
+                            [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+                            <label class="form-check-label" for="sexo2">F</label>
+                          </div>
+                          <small *ngIf="((usuarioForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                      </div>
+                      
+                      
+                  </div>
+                  
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="text" name="email" id="email" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || email.touched) && (email.errors?.required) )}"
+                      [(ngModel)]="usuario.email" required #email="ngModel" placeholder="Ej: usuario@unimagdalena.edu.co" maxlength="255"/>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="roles">Roles</label>
+                    <ng-select [items]="rolesSelect" id="roles" bindLabel="nombre"
+                      [ngClass]="{'is-invalid': ((usuarioForm.submitted || roles.touched) && roles.errors?.required) }"
+                      bindValue="nombre" placeholder="Seleccione rol(es)" name="roles" #roles="ngModel" [(ngModel)]="usuario.roles"
+                      [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="true" >
+                      <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                        <div class="ng-option disabled">
+                          No hay resultados
+                        </div>
+                      </ng-template>
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <p class="text-primary"><strong>Las credenciales para el inicio de sesión son las mismas con la que accede al directorio activo</strong></p>
+              </div>
+            </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="usuarioForm.resetForm();">Cancelar</button>
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

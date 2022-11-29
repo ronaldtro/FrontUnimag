@@ -1,0 +1,114 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+  <h2 class="text-uppercase text-center">Atención de psicología
+      <small class="d-block text-muted">Formulario de atención del paciente.</small>
+  </h2>
+  <hr>
+  
+  <app-perfil-salud [id]="id" [tipoBusqueda]="profile_by" ></app-perfil-salud>
+
+  <div class="card mb-4">
+    <div class="card-body"> 
+          <form #atencionPsicologiaForm="ngForm"    (ngSubmit)="AtencionPsicologia(atencionPsicologiaForm)" novalidate  >
+                <fieldset>                  
+            <div class="card border-info  mb-3">
+                <div class="card-body">
+                    <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>generalidades</strong></div> 
+                    
+                    <div class="form-row mb-3">     
+                        <div class="col-12 col-md-12">
+                                <label for="tipos_pacientes"><span class="asterisk">*</span>Tipo de paciente</label>
+                                <select class="form-control" 
+                                [ngClass]="{'is-invalid': ((atencionPsicologiaForm.submitted || tipos_pacientes.touched) && tipos_pacientes.errors?.required) }" 
+                                [(ngModel)]="formulario.tipo_paciente" 
+                                id="tipos_pacientes" 
+                                name="tipos_pacientes" 
+                                required 
+                                #tipos_pacientes="ngModel">
+                                <option value="null" selected disabled>Seleccione un tipo de paciente</option>
+                                <option *ngFor="let tipoPaciente of tiposPacientes" value="{{tipoPaciente.id}}">{{tipoPaciente.nombre}}</option>
+                                </select>
+                                <div class="invalid-feedback">complete el campo. </div>
+                        </div>    
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="antecedentes" class="form-group">
+                                    <label for="antecedentes">Antecedentes</label>
+                                    <textarea class="form-control " [ngClass]="{'is-invalid ': antecedentes.errors?.required && (atencionPsicologiaForm.submitted || antecedentes.touched) }" type="text" placeholder="Ingrese los antecedentes la consulta. Máx 1000 caracteres" name="antecedentes"
+                                    id="antecedentes" [(ngModel)]="formulario.antecedentes_psicologicos" #antecedentes="ngModel" rows=6 maxlength="1000"></textarea>
+                                    <div class="invalid-feedback">Ingrese los antecedentes de la consulta. </div>
+                            </div>                      
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="motivo_consulta" class="form-group">
+                                    <label for="motivo_consulta"><span class="asterisk">*</span>Motivo de consulta</label>
+                                    <textarea class="form-control " [ngClass]="{'is-invalid ': motivo_consulta.errors?.required && (atencionPsicologiaForm.submitted || motivo_consulta.touched) }" type="text" placeholder="Ingrese el Motivo de la consulta. Máx 1000 caracteres" name="motivo_consulta"
+                                    id="motivo_consulta" [(ngModel)]="formulario.motivo_consulta" required #motivo_consulta="ngModel" rows=6 maxlength="1000"> </textarea>
+                                    <div class="invalid-feedback">Ingrese el motivo de la consulta. </div>
+                            </div>                      
+                        </div>
+                    </div>
+
+                    <div class="form-row" *ngIf="atencion.consentimiento_informado == null">
+                        <div class="col-12 ">
+                            <div id="consentimiento_informado2" class="form-group">
+                                <label for="consentimiento_informado2"><span class="asterisk">*</span>Consentimiento informado</label>
+                                <p-fileUpload id="consentimiento_informado" name="consentimiento_informado" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" styleClass="is-invalid" (onRemove)="onClearFile()" #consentimiento_informado>
+                                </p-fileUpload>
+                                <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                            </div>                      
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="datos_familia" class="form-group">
+                                    <label for="datos_familia">Datos de la familia</label>
+                                    <textarea class="form-control " [ngClass]="{'is-invalid ': datos_familia.errors?.required && (atencionPsicologiaForm.submitted || datos_familia.touched) }" type="text" placeholder="Ingrese los datos de la familia. Máx 1000 caracteres" name="datos_familia"
+                                    id="datos_familia" [(ngModel)]="formulario.datos_familiares" #datos_familia="ngModel" rows=6 maxlength="1000"> </textarea>
+                                    <div class="invalid-feedback">Ingrese los datos de familia. </div>
+                            </div>                      
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="observacion" class="form-group">
+                                    <label for="observacion">Observación</label>
+                                    <textarea class="form-control " [ngClass]="{'is-invalid ': observacion.errors?.required && (atencionPsicologiaForm.submitted || observacion.touched) }" type="text" placeholder="Ingrese la observacion de la consulta. Máx 1000 caracteres" name="observacion"
+                                    id="observacion" [(ngModel)]="formulario.observacion" #observacion="ngModel" rows=6 maxlength="1000"> </textarea>
+                                    <div class="invalid-feedback">Ingrese la observación.</div>
+                            </div>                      
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                </fieldset> 
+            
+                <hr>
+
+                <div class="text-center">
+                            <!-- <button id="volver" type="button" class="btn btn-default mr-md-1 mb-3" [routerLink]="[ '/perfil']">Volver</button> -->
+                            <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+                </div>
+
+            </form> 
+
+            <!-- {{formulario|json}} -->
+          </div>
+    </div>
+
+
+</div>
+
+ 

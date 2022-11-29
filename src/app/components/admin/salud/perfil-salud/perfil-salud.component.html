@@ -1,0 +1,59 @@
+<div id="supervisor" class="row summary mb-3">
+    <div class="col-sm-12 col-lg-3 p-3 bg-info text-white text-center text-lg-left">
+        <h3 class="h4">
+            
+            <b class="d-block mb-3">{{atencion.paciente}}</b>
+            <b target="_blank" class="d-inline-block w-100 text-white" ><small class="d-inline-block w-100 text-truncate">  {{atencion.identificacion}} </small></b>
+            <b target="_blank" class="d-inline-block w-100 text-white" ><small class="d-inline-block w-100 text-truncate">Tipo de sangre: {{atencion.tipo_sangre}}</small></b>
+        </h3>
+    </div>
+    <div class="col-sm-12 col-lg-9">
+        <div class="row pt-3">
+            
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label class="m-0">Fecha de nacimiento</label>
+                    <p class="form-control-plaintext p-0">{{atencion.fecha_nacimiento | obtenerFecha | date: 'yyyy/MM/dd'}}</p>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="m-0">Edad</label>
+                    <p class="form-control-plaintext p-0">{{atencion.fecha_nacimiento | obtenerFecha | date: 'yyyy/MM/dd' | calcularEdad}} años</p>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label class="m-0">Sexo</label>
+                    <p class="form-control-plaintext p-0">{{atencion.sexo ? 'Masculino' : 'Femenino' }}</p>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form-group">
+                    <label class="m-0">Ocupación</label>
+                    <p class="form-control-plaintext p-0">{{atencion.ocupacion}}</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="m-0">Dirección</label>
+                    <p class="form-control-plaintext p-0">{{atencion.residencia}}</p>
+                    
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="m-0">EPS</label>
+                <p class="form-control-plaintext p-0">{{atencion.eps}}</p>
+            </div>    
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="m-0">Email</label>
+                    <p class="form-control-plaintext p-0">{{atencion.email}}</p>
+                   
+                </div>
+                    
+            </div>     
+        </div> 
+        
+    </div>
+</div> 

@@ -1,0 +1,76 @@
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Historial de la agenda 
+        <small class="d-block text-muted">El listado cuenta con {{Horario.length}} registros.</small>
+    </h2>
+    <hr>
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="btn form-control" 
+            [ngClass]="{'btn-primary text-white': estadoTab == 0, 'btn-light': estadoTab != 0}" role="button" (click)="mostrarAtencionesCitas()">Citas</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn form-control" [ngClass]="{'btn-primary text-white': estadoTab == 1, 'btn-light': estadoTab != 1}"  (click)="mostrarAtencionesNoProgramadas()">Atenciones no programdas</a>
+        </li>
+    </ul>
+    <!-- table uno  -->
+    <div [ngClass]="{ 'fadeInLeft': estadoTab == 0 ,'fadeInRight': estadoTab == 1 }" class="animated">
+        <div class="row animated fadeIn mb-3 mt-3">
+            <div class="col-lg-12 text-center">
+                <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                    <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+                </button>
+            <!-- <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/miCitas']" >Reservar nueva cita</button> -->
+            </div>
+            <div class="collapse col-lg-12" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row">
+                        <div  class="col-12 col-sm-4 col-md-4">
+                            <div id="filter-fecha" class="form-group">
+                                <label>Filtrar por fecha</label>
+        
+                            </div>
+                        </div>
+                        <div *ngIf=" estadoTab == 0 " class="col-12 col-sm-4 col-md-4">
+                            <div id="filter-estado" class="form-group">
+                                <label>Filtrar por estado</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="col-lg-12">
+            <!-- <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div> -->
+            <h4 *ngIf=" estadoTab == 0 " class="text-center">Atenciones registradas</h4>
+            <h4 *ngIf=" estadoTab == 1 "class="text-center">Atenciones no programadas registradas</h4>
+            <div class="table-responsive">
+                <table id="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripper">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">Id</th> -->
+                            <th scope="col" class="text-center">Paciente</th>
+                            <th scope="col" class="text-center">Fecha</th>
+                            <th scope="col" class="text-center">Hora de atencion</th>
+                            <th *ngIf=" estadoTab == 0 " scope="col" class="text-center">Estado</th> 
+                            <!-- <th scope="col" class="text-center" style="width: 100px;">Acciones</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of Horario ; let i = index; ">
+                            <td class="text-center">{{item.paciente}}</td>
+                            <td class="text-center">{{item.fecha}}</td>
+                            <td class="text-center">{{item.hora_atencion}}</td>                       
+                            <td *ngIf=" estadoTab == 0 " class="text-center">{{ item.estado }}</td>
+                        </tr> 
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+        <div class="text-center">
+            <a id="volver" role="button" class="btn btn-light  mr-md-1 mb-3" (click)="backClicked()" >Volver</a>
+        </div>
+    </div>
+    <!-- table uno  -->
+
+</div>

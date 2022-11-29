@@ -1,0 +1,181 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.65)" size = "medium" color = "#fff" type = "ball-clip-rotate"></ngx-spinner>
+<div class="mt-3 pb-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Actualizar información<small class="d-block text-muted">formulario de actualización de información</small>
+    </h2>
+    <hr>
+
+    <div *ngIf="!formulario.paciente && userService.tipoMatch(['Estudiante'])" class="alert alert-info alert-dismissible fade show" role="alert">
+        Para poder reservar una cita, debe actualizar su información <strong>(Esto se realizará por única vez)</strong>.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- (ngSubmit)="save(convocatoriaForm)" -->
+    <form #actualizarForm="ngForm" novalidate (ngSubmit)="ActualizarInformacion(actualizarForm)">
+        <fieldset>
+            <legend>Información general</legend>
+            <div class="alert alert-info">
+                Todos los campos en este formulario son obligatorios
+            </div>
+            <div class="form-row">
+
+
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-6">
+                    <div id="nombres" class="form-group">
+                        <label for="nombres">Nombres y apellidos</label>
+                        <input type="text" class="form-control" id="nombres" placeholder="Ingrese sus nombres y apellidos completos. Máx. 255 caracteres" name="nombres" maxlength="255" [(ngModel)]="formulario.nombre" #nombres="ngModel" required [disabled]="userService.tipoMatch(['Estudiante'])" [ngClass]="{'is-invalid': nombres.errors?.required && (nombres.touched || actualizarForm.submitted)}">
+
+                        <div class="invalid-feedback">Ingrese sus nombres y apellidos completos. </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-2">
+                    <div id="tipo_id" class="form-group">
+                        <label for="tipo_id">Tipo identificación</label>
+                        <select [ngClass]="{'is-invalid': tipo_id.errors?.required && (tipo_id.touched || actualizarForm.submitted)}" id="tipo_id" class="form-control" name="tipo_id" [(ngModel)]="formulario.tipo_id" #tipo_id="ngModel" [disabled]="userService.tipoMatch(['Estudiante'])" required>
+                      <option [value]="null" disabled selected>Elegir tipo de identificación</option>
+                      <option *ngFor="let item of tipos_doc" [value]="item.id">{{item.abreviatura}} - {{item.nombre}}</option>
+                      
+                    </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-4">
+                    <div id="identificacion" class="form-group">
+                        <label for="identificacion">Identificación</label>
+                        <input type="text" class="form-control" id="identificacion" placeholder="Ingrese número de indentificación" name="identificacion" maxlength="255" [(ngModel)]="formulario.identificacion" #identificacion="ngModel" required [disabled]="userService.tipoMatch(['Estudiante'])" [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || actualizarForm.submitted)}">
+
+                        <div class="invalid-feedback">Ingrese su número de identificación. </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-4">
+                    <div id="fecha_nacimiento" class="form-group">
+                        <label>Fecha de nacimiento</label>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <p-calendar name="fecha_nacimiento" monthNavigator="true" yearNavigator="true" yearRange="1950:2030" inputStyleClass="form-control" [(ngModel)]="formulario.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required #fecha_nacimiento="ngModel"></p-calendar>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback " [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || actualizarForm.submitted)}">Seleccione una fecha</div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-4">
+                    <div id="sexo" class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select [ngClass]="{'is-invalid': sexo.errors?.required && (sexo.touched || actualizarForm.submitted)}" id="sexo" class="form-control" name="sexo" [(ngModel)]="formulario.sexo" #sexo="ngModel" required [disabled]="userService.tipoMatch(['Estudiante'])" >
+                        <option [value]="null" disabled selected>Elegir sexo</option>
+                        <option [value]="true"> Masculino </option>
+                        <option [value]="false"> Femenino </option>
+                      </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-4">
+                    <div id="tipoSangre" class="form-group">
+                        <label for="tipoSangre">Tipo sangre</label>
+                        <select [ngClass]="{'is-invalid': tipoSangre.errors?.required && (tipoSangre.touched || actualizarForm.submitted)}" id="tipoSangre" class="form-control" name="tipoSangre" [(ngModel)]="formulario.tipo_sangre" #tipoSangre="ngModel" required>
+                        <option [value]="null" disabled selected>Elegir tipo de sangre</option>
+                        <option *ngFor="let item of tipos_sangre" [value]= "item.id" > {{item.nombre}} </option>
+                        </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                    <!-- aa - {{formulario.tipo_sangre | json}} - {{tipoSangre.errors?.required && (tipoSangre.touched || actualizarForm.submitted)}} -->
+                </div>
+
+
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-3">
+                    <div class="form-group">
+                        <label for="estadoCivil">Estado civil</label>
+
+                     <select  [ngClass]="{'is-invalid': estadoCivil.errors?.required && (estadoCivil.touched || actualizarForm.submitted)}"
+                            id="estadoCivil" class="form-control" name="estadoCivil" [(ngModel)]="formulario.estado_civil" #estadoCivil="ngModel" required>
+                            <option [value]="null" disabled selected>Elegir estado civil</option>
+                            <option *ngFor="let item of estados_civil" [value]= "item.id" > {{item.nombre}} </option>
+                      </select>
+                    
+                      <!-- <label for="tipoPaciente"> Tipo paciente </label>
+                      <select [ngClass]="{'is-invalid': tipoPaciente.errors?.required && (tipoPaciente.touched || citasForm.submitted)}" id="tipoPaciente" class="form-control " name="tipoPaciente" [(ngModel)]="busqueda.tipo_paciente" #tipoPaciente="ngModel" required  >
+                          <option [value]="null" disabled selected>Elegir tipo de paciente</option>
+                          <option [value]="1"> Estudiante </option>
+                          <option [value]="2"> Funcionario / Docente / Contratista  </option>
+                          <option [value]="3"> Invitado </option>
+                      </select> -->
+
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-xl-3">
+                    <div id="ocupacion" class="form-group">
+                        <label for="ocupacion"> Ocupación </label>
+                        <input type="text" class="form-control" id="ocupacion" placeholder="Ingrese su ocupación. Máx. 255 caracteres" name="ocupacion" maxlength="255" [(ngModel)]="formulario.ocupacion" #ocupacion="ngModel" required [ngClass]="{'is-invalid': ocupacion.errors?.required && (ocupacion.touched || actualizarForm.submitted)}">
+
+                        <div class="invalid-feedback">Ingrese su ocupación </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-xl-6">
+                        <div id="direccion" class="form-group">
+                            <label for="direccion">Dirección de residencia </label>
+                            <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección de residencia . Máx. 255 caracteres" name="direccion" maxlength="255" [(ngModel)]="formulario.direccion" #direccion="ngModel" required  [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || actualizarForm.submitted)}">
+    
+                            <div class="invalid-feedback">Ingrese su dirección de residencia. </div>
+    
+                        </div>
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="form-row">
+                <div class="col-12 col-sm-12 col-md-9 col-xl-8">
+                    <div id="eps" class="form-group">
+                            <label for="eps">EPS</label>
+                            <ng-select [items]="salud" inputStyleClass="form-control" required id="eps" bindLabel="nombre" bindValue="nombre" placeholder="Seleccione EPS." name="eps" #eps="ngModel" [(ngModel)]="formulario.eps">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        No hay resultados
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                            <div class="invalid-feedback">Seleccione una de las opciones</div>
+                        </div>
+                    </div>
+            </div>
+
+
+
+        </fieldset>
+        <hr>
+
+        <div class="text-center">
+            <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" *ngIf="userService.tipoMatch(['Estudiante'])"  [routerLink]="[ '/estudiantes/dashboard' ]">Volver</button>
+            <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" *ngIf="!userService.tipoMatch(['Estudiante'])" (click)="goBack()">Volver</button>
+            <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+
+    </form>
+</div>

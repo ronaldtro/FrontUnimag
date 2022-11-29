@@ -1,0 +1,241 @@
+<div class="mt-3 animated fadeIn">
+    <h2 class="text-uppercase text-center">Unidades <small class="btn-block text-muted">El listado cuenta con {{unidades.length}} registro(s)</small></h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button (click)="modalCrearUnidad()" type="button" class="btn btn-success mr-1 mb-3 text-uppercase" title="Crear unidad">
+          <span class="fas fa-plus"></span> Crear unidad</button>
+            <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las unidades registradas en el sistema. Usted puede editar, activar o desactivar el registro almacenado.">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Información de ayuda</span>
+            </a>
+            <!-- <div class="card border-light mb-3">
+          <div class="card-header">Información</div>
+          <div class="card-body text-secondary">          
+            <p class="card-text text-left">A continuación, se muestran las unidades registradas en el sistema. Usted puede editar, activar o desactivar el registro almacenado.</p>
+          </div>
+      </div> -->
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Código</th>
+                            <th style="width: 100x;">Estado</th>
+                            <th style="width: 110x;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let unidad of unidades; let i = index">
+                            <td>{{unidad.nombre}}</td>
+                            <td>{{unidad.email}}</td>
+                            <td>{{unidad.codigo == null ? 'No posee' : unidad.codigo}}</td>
+                            <td>{{unidad.estado == true ? 'Activa' : 'Inactiva'}}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                    <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="modalEditarUnidad(unidad)" title="Editar registro"><span class="fas fa-pen"></span><span class="sr-only">Editar registro</span></a>
+                                    <button (click)="cambiarEstado(unidad)" *ngIf="!unidad.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Activar registro"><span class="far fa-eye"></span><span class="sr-only">Activar registro</span></button>
+                                    <button (click)="cambiarEstado(unidad)" *ngIf="unidad.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Desactivar registro"><span class="far fa-eye-slash"></span><span class="sr-only">Desactivar registro</span></button>
+                                    <button (click)="agregarRolModal(unidad)" type="button" class="btn btn-sm btn-outline-dark border-secondary" type="button" title="Agregar rol">
+                          <span class="fas fa-users-cog"></span>
+                        </button>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="crearUnidadModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Crear unidad</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="unidadForm.resetForm();" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form (ngSubmit)="guardarUnidad(unidadForm)" #unidadForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="unidad">Unidad</label>
+
+
+                                    <ng-select [items]="unidadesSelect" id="unidad" bindLabel="nombre" [ngClass]="{'is-invalid': ((unidadForm.submitted || unidad.touched) && unidad.errors?.required) }" placeholder="Seleccione unidad" name="unidad" #unidad="ngModel" [(ngModel)]="unidadSelect"
+                                        required>
+                                        <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                            <div class="ng-option disabled">
+                                                No hay resultados
+                                            </div>
+                                        </ng-template>
+                                    </ng-select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="codigo">Código</label>
+                                    <input type="text" value="{{unidadSelect != undefined ? unidadSelect['codigo']  : ''}}" name="codigo" class="form-control" placeholder="Código de la unidad" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Correo</label>
+                                    <input type="text" value="{{unidadSelect != undefined ? unidadSelect['email']  : ''}}" name="email" class="form-control" placeholder="Correo de la unidad" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="unidadForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal editar-->
+<div class="modal fade" id="editarUnidadModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Editar unidad</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form (ngSubmit)="editarUnidad(unidadEditarForm)" #unidadEditarForm="ngForm">
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="nombreEditar">Nombre</label>
+                                    <input type="text" name="nombreEditar" class="form-control" placeholder="Nombre de la unidad" [(ngModel)]="unidadEditar.nombre" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="codigoEditar">Código</label>
+                                    <input type="text" name="codigoEditar" class="form-control" placeholder="Código de la unidad" [(ngModel)]="unidadEditar.codigo" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="emailEditar">Correo</label>
+                                    <input type="text" name="emailEditar" class="form-control" placeholder="Correo electrónico de la unidad" [(ngModel)]="unidadEditar.email" required />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Agregar Rol-->
+<div class="modal fade" id="agregarRolModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rolTitle">Agregar rol</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="rolForm.resetForm()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <form (ngSubmit)="agregarRol(rolForm)" #rolForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="rol">Rol</label>
+                                <ng-select [items]="rolesSelect" id="roles" bindLabel="nombre" [ngClass]="{'is-invalid': ((rolForm.submitted || roles.touched) && roles.errors?.required) }" bindValue="nombre" placeholder="Seleccione rol(es)" name="roles" #roles="ngModel" [(ngModel)]="unidadRol.roles"
+                                    [multiple]="true" [closeOnSelect]="false" [hideSelected]="true" [required]="true">
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="rolForm.resetForm()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

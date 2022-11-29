@@ -1,0 +1,71 @@
+<div class="mt-3 animated fadeIn container">
+
+  <h2 class="text-uppercase text-center mb-3">
+      Convocatorias vigentes de monitorías
+      <small class="d-block text-muted">El listado cuenta con {{convocatorias.length}} registro(s)</small></h2>
+  <br>
+  <div class="alert alert-info mb-3 text-center" role="alert" *ngIf="convocatorias.length == 0">
+      <strong>No hay convocatorias activas para este periodo</strong>
+  </div>
+  <div class="grid">
+      <div class="card" *ngFor="let c of convocatorias">
+          <div class="card-header bg-info">
+              <h3 class="h5 text-center mt-3 mb-3 font-weight-bold text-white">{{c.titulo}}</h3>
+          </div>
+          <div class="card-body">
+              <small class="card-title text-muted text-center d-block font-style-italic"><abbr title="{{c.fechaExpedicion | date: 'dd/MM/yyyy'}}">{{getHowLongWasPublished(c.fechaExpedicion)}}</abbr></small>
+              <!-- <p class="card-text text-muted">Estado de la convocatoria: {{c.proceso}}</p> -->
+              <p class="card-text text-center" *ngIf="c.estadoActual != null">
+                  La convocatoria se encuentra en etapa de <b>{{c.estadoActual}}</b> <span *ngIf="!esIgual(c.fechaInicio, c.fechaFin)"> desde {{c.fechaInicio | date: 'dd/MM/yyyy'}} hasta {{c.fechaFin | date: 'dd/MM/yyyy'}}</span><span *ngIf="esIgual(c.fechaInicio, c.fechaFin)"> el {{c.fechaInicio | date: 'dd/MM/yyyy'}}</span>.
+              </p>
+              <!-- <a  [href]="api+c.soporte" target="_blank" rel="noopener noreferrer" class="card-link">Ver resolución</a> -->
+
+          </div>
+          <div class="card-footer border-0 pt-1">
+              <a [routerLink]="[ '/plazasConvocatorias', c.id ]" class="btn d-block mt-1 mb-1" [ngClass]="{'btn-success': c.estadoActualId == 3, 'btn-outline-success': c.estadoActualId != 3}">Ver plazas</a>
+              <button type="button" class="btn btn-sm btn-link btn-block" (click)="viewDoc(c.soporte)" title="Ver soporte">    
+          Ver soporte
+        </button>
+          </div>
+      </div>
+  </div>
+
+
+
+  <!-- <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div> -->
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content ">
+          <div class="modal-header">
+
+              <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+              <iframe [src]="urlDoc  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+          </div>
+
+      </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

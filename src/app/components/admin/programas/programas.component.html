@@ -1,0 +1,159 @@
+<div class="mt-3">
+    <div class="row animated fadeIn">
+        <h2 class="text-uppercase">Programas <small class="d-block text-muted">El listado cuenta con {{programas.length}}
+        registro(s)</small></h2>
+        <hr>
+    </div>
+    <div class="row animated fadeIn  ">
+        <div class="col-md-3">
+            <button (click)="crear()" class="btn btn-block btn-success text-uppercase mb-3" type="button" title="Crear nuevo programa">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Nuevo programa
+      </button>
+            <div class="card border-secondary mb-3">
+                <div class="card-header">Información</div>
+                <div class="card-body text-secundary">
+                    <p class="card-text text-left">A continuación, se muestran las facultades y módulos administrativos de configuración. Haz clic en el que deseas acceder.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="table-responsive animated fadeIn">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-stripper">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Facultad</th>
+                            <th scope="col">Estado </th>
+                            <th scope="col" class="text-center w-25">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of programas">
+                            <td>{{p.nombre}} </td>
+                            <td>{{p.codigo}}</td>
+                            <td>{{p.facultad}}</td>
+                            <td>{{p.estado? 'Activo' : 'Inactivo' }}</td>
+                            <td class="text-center">
+                                <button (click)="editar(p)" class="btn btn-sm btn-light mb-1" type="button" title="Editar">
+                  <i class="fa fa-pen" aria-hidden="true"></i><span class="sr-only">Editar</span>
+                </button>
+                                <button (click)="estadoDato(p)" class="btn btn-sm btn-light mb-1" type="button" [title]="p.estado? 'Desactivar' : 'Activar'">
+                  <i [ngClass]="{'fa-eye-slash': p.estado, 'fa-eye':!p.estado}" class="far" aria-hidden="true"></i>
+                  <span *ngIf="!p.estado" class="sr-only">Activar registro</span>
+                  <span *ngIf="p.estado" class="sr-only">Desactivar registro</span>
+                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="crearPrograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear programa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        Todos los campos son obligatorios.
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': nombre.errors?.required && (forma.submitted || nombre.touched) }" type="text" placeholder="Ingrese el nombre del programa" name="nombre" id="nombre" [(ngModel)]="programa.nombre" required #nombre="ngModel">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="codigo">Código</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': codigo.errors?.required && (forma.submitted || codigo.touched) }" type="text" placeholder="Ingrese el código del programa" name="codigo" id="codigo" [(ngModel)]="programa.codigo" required #codigo="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="facultad">Facultad</label>
+                                <select [(ngModel)]="programa.facultadId" class="form-control" id="inputCrearfacultad" [ngClass]="{'is-invalid ': (forma.submitted||facultad.touched)  &&  facultad.errors?.required}" name="facultad" id="facultad" #facultad="ngModel" required>
+                  <option [value]="null" disabled selected>Seleccione una facultad</option>
+                  <option *ngFor="let item of facultades" [value]="item.id">{{item.nombre}}</option>
+                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+            Guardar
+          </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarPrograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar programa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="formaEditar.resetForm();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="editarGuardar(formaEditar)" #formaEditar="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        Todos los campos son obligatorios.
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="nombre2">Nombre</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': nombre2.errors?.required && (formaEditar.submitted || nombre2.touched) }" type="text" placeholder="Ingrese el nombre del programa" name="nombre2" id="nombre2" [(ngModel)]="programa.nombre" required
+                                    #nombre2="ngModel">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="codigo">Código</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': codigoEditar.errors?.required && (formaEditar.submitted || codigoEditar.touched) }" type="text" placeholder="Ingrese el código del programa" name="codigo" id="codigo" [(ngModel)]="programa.codigo"
+                                    required #codigoEditar="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="facultad2">Facultad</label>
+                                <select [(ngModel)]="programa.facultadId" class="form-control" id="facultad2" [ngClass]="{'is-invalid ': (formaEditar.submitted||facultad2.touched)  &&  facultad2.errors?.required}" name="facultad2" id="facultad2" #facultad2="ngModel" required>
+                  <option [value]="null" disabled selected>Seleccione una facultad</option>
+                  <option *ngFor="let item of facultades" [value]="item.id">{{item.nombre}}</option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="formaEditar.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+            Guardar
+          </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

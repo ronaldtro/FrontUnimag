@@ -1,0 +1,256 @@
+<div>
+
+  <h2 class="text-center text-uppercase mb-3">Solicitud de asignación de ayudas a estudiantes</h2>
+  <div class="card mb-3 shadow">
+    <div class="card-body">
+      <form #form="ngForm" novalidate (ngSubmit)="consultarCodigos(form)">
+        <div class="form-group text-center">
+          <label>Ingrese uno o hasta 100 códigos (seperados por coma) de estudiantes a los cuales desea solicitar la asignación un beneficio</label>
+          <textarea class="form-control" rows="2" name="codigos" [(ngModel)]="codigos_input" #codigos="ngModel" required placeholder="Ingrese uno o más códigos separados por coma (,). Máx. 100 códigos por vez"></textarea>
+          <small class="font-weight-bold" *ngIf="codigosValidos.length > 0">Ha ingresado {{codigosValidos.length}} códigos válidos</small>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success shadow">Consultar códigos</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="card mb-3 shadow-sm" *ngFor="let estudiante of codigosValidos">
+
+    <div class="card-header">
+
+      <div class="row" *ngIf="estudiante.cargando"> 
+
+        <div class="col-12 col-md-auto">
+          <div class="form-group mb-3 mb-md-0">
+            <label class="mb-0 small font-weight-bold">Código</label>
+            <p class="mb-0 form-control-plaintext">{{estudiante.codigo}}</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md">
+          <div class="form-group mb-3 mb-md-0">
+            <label class="mb-0 small font-weight-bold">Estado</label>
+            <p class="mb-0 form-control-plaintext">Buscando información. Por favor espere... <span class="fas fa-spin fa-spinner" aria-hidden="true"></span></p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" *ngIf="!estudiante.cargando">
+
+        <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+          <div class="form-group mb-2 mb-md-0">
+            <label class="mb-0 small font-weight-bold sr-only">Código</label>
+            <p class="mb-0 form-control-plaintext">CÓD. {{estudiante.codigo}}</p>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-8 col-md-9 col-lg">
+          <div class="form-group mb-2 mb-md-0">
+            <label class="mb-0 small font-weight-bold sr-only">Nombre</label>
+            <p class="mb-0 form-control-plaintext">
+              <span class="fas fa-female" aria-hidden="true" *ngIf="estudiante.sexo == 'F'"></span>
+              <span class="fas fa-male" aria-hidden="true" *ngIf="estudiante.sexo == 'M'"></span> 
+              {{estudiante.nombre}}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-3 col-sm-3 col-lg-auto" *ngIf="estudiante.estrato">
+          <div class="form-group mb-2 mb-md-0">
+            <label class="mb-0 small font-weight-bold sr-only">Estrato</label>
+            <p class="mb-0 form-control-plaintext">Estrato {{estudiante.estrato}}</p>
+          </div>
+        </div>
+
+        <div class="col-5 col-sm-6 col-lg-2" *ngIf="estudiante.identificacion">
+          <div class="form-group mb-2 mb-md-0">
+            <label class="mb-0 small font-weight-bold sr-only">Identificación</label>
+            <p class="mb-0 form-control-plaintext">{{estudiante.tipo_identificacion}} {{estudiante.identificacion}}</p>
+          </div>
+        </div>
+
+        <div class="col-4 col-sm-3 col-lg-2 col-xl-1">
+          <div class="form-group mb-2 mb-md-0">
+            <label class="mb-0 small font-weight-bold sr-only">Estado</label>
+            <p class="mb-0 form-control-plaintext text-success font-weight-bold" *ngIf="estudiante.activo">  ACTIVO</p>
+            <p class="mb-0 form-control-plaintext text-danger font-weight-bold text-nowrap" *ngIf="!estudiante.activo">INACTIVO</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body p-0" *ngIf="!estudiante.cargando">
+
+      <div class="row no-gutters">
+        <div class="col-12">
+          <div class="bg-warning text-center px-2 py-1" *ngIf="tieneBeneficio(estudiante)">
+            <details>
+              <summary>El estudiante tiene registrado solicitudes de ayuda para el beneficio seleccionado en el sistema.</summary>
+              <p class="pt-1 mb-1" *ngFor="let beneficio of estudiante.beneficios"> - {{beneficio.nombre}} (registrado el {{beneficio.created_at | date : 'dd/MM/yyyy hh:mm a'}}).</p>
+            </details>
+            
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <button type="button" class="btn btn-block rounded-0 btn-link border" data-toggle="collapse" [attr.data-target]="'#collapseDatos-' + estudiante.id" aria-expanded="false" [attr.aria-controls]="'collapseDatos-' + estudiante.id">Consultar datos del estudiante</button>
+        </div>
+        <div class="col-12 col-md-6">
+          <button type="button" class="btn btn-block rounded-0 btn-link border" data-toggle="collapse" [attr.data-target]="'#collapseBeneficios-' + estudiante.id" aria-expanded="false" [attr.aria-controls]="'collapseBeneficios-' + estudiante.id">Consultar apoyos o estímulos actuales ({{estudiante.condiciones_estudiantes.length + estudiante.tiene_beneficio_alimenticio.length + estudiante.tiene_ayudantia.length}})</button>
+        </div>
+      </div>
+      <div id="collapseDatos-{{estudiante.id}}" class="p-3 collapse">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Facultad</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.facultad}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Programa</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.programa}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Departamento de origen</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.departamento}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Municipio</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.municipio}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Dirección</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.direccion}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Teléfono</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.telefono}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Celular</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.celular}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Colegio</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.colegio}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Correo electrónico</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.email}}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group mb-3 mb-md-2">
+              <label class="small font-weight-bold mb-1">Sexo</label>
+              <p class="form-control mb-0 form-control-sm">{{estudiante.sexo}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <small><i><strong>Información suministrada por el Grupo de Admisiones, Control y Registro Académico</strong></i></small>
+        </div>
+      </div>
+      <div id="collapseBeneficios-{{estudiante.id}}" class="text-center p-3 collapse" *ngIf="estudiante.condiciones_estudiantes.length > 0 || estudiante.tiene_beneficio_alimenticio.length > 0 || estudiante.tiene_ayudantia.length > 0">
+        <div *ngIf="(estudiante.condiciones_estudiantes.length + estudiante.tiene_beneficio_alimenticio.length + estudiante.tiene_ayudantia.length) == 0">
+          <p class="mb-0">El estudiante no posee apoyos, estímulos o condiciones especiales actualmente.</p>
+        </div>
+        <div *ngIf="(estudiante.condiciones_estudiantes.length + estudiante.tiene_beneficio_alimenticio.length + estudiante.tiene_ayudantia.length) > 0">
+          <span class="d-block font-weight-bold">Apoyos, estímulos o condiciones especiales con los que cuenta el estudiante actualmente</span>
+          <div class="d-flex flex-wrap justify-content-center">
+            <span class="d-inline-block bg-info text-white px-2 py-1 mx-1 mb-2 rounded" *ngFor="let condicion of estudiante.condiciones_estudiantes"><i class="fas fa-hands-helping" aria-hidden="true"></i> {{condicion.nombre}}</span>
+            <span class="d-inline-block bg-warning px-2 py-1 mx-1 mb-2 rounded" *ngFor="let beneficio of estudiante.tiene_beneficio_alimenticio" title="{{beneficio.convocatoria}}"><i class="fas fa-utensils" aria-hidden="true"></i> {{beneficio.nombre_beneficio}}</span>
+            <span class="d-inline-block bg-success text-white s px-2 py-1 mx-1 mb-2 rounded" *ngFor="let ayuda of estudiante.tiene_ayudantia" title="{{ayuda.convocatoria}}"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> {{ayuda.nombre}} ({{ayuda.tipo}})</span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="card-footer" *ngIf="!estudiante.cargando && estudiante.activo == true">
+      <form #registrarAyudaForm="ngForm" (ngSubmit)="registrarAyuda(registrarAyudaForm, estudiante)">
+        <div class="row justify-content-center justify-content-md-end">
+          <div class="col-12 col-sm-4 col-md-2 col-lg-auto" *ngIf="!estudiante.registrado">
+            <div class="form-group mb-3 mb-md-0">
+              <label class="sr-only" for="sisben-{{estudiante.id}}">Puntaje de sisben</label>
+              <input type="number" step="0.1" placeholder="Puntaje del sisben" id="sisben-{{estudiante.id}}" name="sisben" [ngClass]="{'is-invalid': sisben.errors?.required && (sisben.touched || registrarAyudaForm.submitted)}" [(ngModel)]="estudiante.sisben" #sisben="ngModel" class="form-control" max="1000">
+            </div>
+          </div>
+          <div class="col-12 col-sm-8 col-md-3 col-lg" *ngIf="!estudiante.registrado">
+            <div class="form-group mb-3 mb-md-0">
+              <label class="sr-only" for="beneficio-{{estudiante.id}}">Beneficio a entregar</label>
+              <select class="form-control" id="beneficio-{{estudiante.id}}" name="beneficio" [ngClass]="{'is-invalid': beneficio.errors?.required && (beneficio.touched || registrarAyudaForm.submitted)}"[(ngModel)]="estudiante.estudianteBeneficio.beneficio_id" #beneficio="ngModel" required>
+                <option disabled [value]="undefined">- Beneficio a entregar -</option>
+                <option *ngFor="let beneficio of beneficios" [ngValue]="beneficio.id" [selected]="beneficios.length == 1">{{beneficio.nombre}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md" *ngIf="!estudiante.registrado || estudiante.estudianteBeneficio.beneficio_id != 4">
+            <div class="form-group mb-3 mb-md-0">
+              <label class="sr-only" for="almacenEntrega-{{estudiante.id}}">Rapimercar más cercano</label>
+              <select class="form-control" id="almacenEntrega-{{estudiante.id}}" name="almacenEntrega" [ngClass]="{'is-invalid': almacenEntrega.errors?.required && (almacenEntrega.touched || registrarAyudaForm.submitted)}" [(ngModel)]="estudiante.estudianteBeneficio.almacen_id" #almacenEntrega="ngModel" [required]="estudiante.estudianteBeneficio.beneficio_id == 4">
+                <option disabled selected [value]="undefined">- Rapimercar más cercano -</option>
+                <option *ngFor="let almacen of almacenesEntrega" [ngValue]="almacen.id">{{almacen.nombre}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md-auto d-flex flex-nowrap">
+            <button type="button" class="btn btn-block btn-outline-success" disabled *ngIf="estudiante.registrado"><span class="fas fa-check" aria-hidden="true"></span> Registrado</button>
+            <button type="button" class="btn btn-outline-dark mr-1" title="Agregar observación" *ngIf="!estudiante.registrado">
+              <span class="far fa-comment" aria-hidden="true" data-toggle="modal" [attr.data-target]="'#observacionModal-' + estudiante.id" *ngIf="estudiante.estudianteBeneficio.observacion == undefined"></span>
+              <span class="fas fa-comment-dots" aria-hidden="true" data-toggle="modal" [attr.data-target]="'#observacionModal-' + estudiante.id" *ngIf="estudiante.estudianteBeneficio.observacion != undefined"></span>
+              <span class="sr-only">Agregar observación</span>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="observacionModal-{{estudiante.id}}" tabindex="-1" role="dialog" [attr.aria-labelledby]="'observacionModalLabel' + estudiante.id" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="observacionModalLabel-{{estudiante.id}}">Agregar observación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="observacion-{{estudiante.id}}">Observación</label>
+                      <textarea class="form-control" rows="5" maxlength="1000" placeholder="Max. 1.000 caracteres" id="observacion-{{estudiante.id}}" name="observacion" [(ngModel)]="estudiante.estudianteBeneficio.observacion"></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-block btn-success" [disabled]="!estudiante.activo" *ngIf="!estudiante.registrado">Registrar</button>
+            <button type="button" class="ml-1 btn btn-outline-dark" title="Deshacer cambios" (click)="undo(estudiante)" *ngIf="estudiante.estudianteBeneficio.id != null && estudiante.registrado">
+              <span class="fas fa-undo" aria-hidden="true"></span>
+              <span class="sr-only">Deshacer cambios</span>
+            </button>
+          </div>
+        </div>
+      </form>
+      
+      
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

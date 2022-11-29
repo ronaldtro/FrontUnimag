@@ -1,0 +1,15 @@
+#imagenGrandeModal img, #imagenGrandeModal .close {
+    position:absolute;
+    top:0;
+    right:0;
+}
+#imagenGrandeModal .close {
+    top:2px;
+    right:5px;
+    z-index:100;
+    font-size: 41px;
+    background: #fff;
+}
+#imagenGrandeModal .modal-body {
+    padding:5px;
+}

@@ -1,0 +1,954 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>HistorialPlazasComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewChecked" target="_blank" >AfterViewChecked</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>MessageService</code>
+                                <code><a href="../injectables/FuncionesJSService.html" target="_self" >FuncionesJSService</a></code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-historial-plazas</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./historial-plazas.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./historial-plazas.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dtElement">dtElement</a>
+                            </li>
+                            <li>
+                                <a href="#dtOptions">dtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#dtTrigger">dtTrigger</a>
+                            </li>
+                            <li>
+                                <a href="#errores">errores</a>
+                            </li>
+                            <li>
+                                <a href="#plazas">plazas</a>
+                            </li>
+                            <li>
+                                <a href="#userService">userService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#initDtOptions">initDtOptions</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewChecked">ngAfterViewChecked</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_plazaService: <a href="../injectables/PlazaService.html">PlazaService</a>, messageService: MessageService, _userService: <a href="../injectables/UserService.html">UserService</a>, spinner: NgxSpinnerService, funciones: <a href="../injectables/FuncionesJSService.html">FuncionesJSService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_plazaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PlazaService.html" target="_self" >PlazaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>funciones</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FuncionesJSService.html" target="_self" >FuncionesJSService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initDtOptions"></a>
+                    <span class="name">
+                        <b>
+                            initDtOptions
+                        </b>
+                        <a href="#initDtOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initDtOptions()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewChecked"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterViewChecked
+                        </b>
+                        <a href="#ngAfterViewChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewChecked()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtElement"></a>
+                        <span class="name">
+                            <b>
+                            dtElement</b>
+                            <a href="#dtElement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>DataTableDirective</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(DataTableDirective)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:22</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtOptions"></a>
+                        <span class="name">
+                            <b>
+                            dtOptions</b>
+                            <a href="#dtOptions"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>Object.assign({}, DTConfig.dtConf)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dtTrigger"></a>
+                        <span class="name">
+                            <b>
+                            dtTrigger</b>
+                            <a href="#dtTrigger"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;any&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errores"></a>
+                        <span class="name">
+                            <b>
+                            errores</b>
+                            <a href="#errores"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Message[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="plazas"></a>
+                        <span class="name">
+                            <b>
+                            plazas</b>
+                            <a href="#plazas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userService"></a>
+                        <span class="name">
+                            <b>
+                            userService</b>
+                            <a href="#userService"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">app/components/admin/ayudantias/plazas/historial-plazas/historial-plazas.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ViewChild, AfterViewChecked } from &#x27;@angular/core&#x27;;
+import { DataTableDirective } from &#x27;angular-datatables&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import { PlazaService } from &#x27;src/app/services/plaza.service&#x27;;
+import { MessageService, Message } from &#x27;primeng/api&#x27;;
+import { UserService } from &#x27;src/app/services/user.service&#x27;;
+import { Subject } from &#x27;rxjs&#x27;;
+import { DTConfig } from &#x27;src/app/class/dtconfig&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { FuncionesJSService } from &#x27;src/app/services/funciones-js.service&#x27;;
+
+@Component({
+  selector: &#x27;app-historial-plazas&#x27;,
+  templateUrl: &#x27;./historial-plazas.component.html&#x27;,
+  styleUrls: [&#x27;./historial-plazas.component.css&#x27;],
+  providers :[MessageService, FuncionesJSService]
+})
+export class HistorialPlazasComponent implements OnInit, AfterViewChecked {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+  plazas:any[] &#x3D; [];
+  dtTrigger: Subject&lt;any&gt; &#x3D; new Subject();
+  dtOptions: any &#x3D; Object.assign({}, DTConfig.dtConf);
+  errores:Message[]&#x3D;[];
+
+  userService:UserService;
+  constructor(private _plazaService:PlazaService, private messageService: MessageService, private _userService:UserService, private spinner: NgxSpinnerService, private funciones: FuncionesJSService) { this.userService &#x3D; _userService; }
+
+  ngOnInit() {
+    this.spinner.show();
+    this._plazaService.getHistorialPlazas().subscribe(data &#x3D;&gt; {
+      this.plazas &#x3D; data[&#x27;plazas&#x27;];
+      
+      this.initDtOptions();
+
+      this.dtTrigger.next();
+
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) &#x3D;&gt; {
+        if(this._userService.roleMatch([&#x27;Admin&#x27;])){
+          dtInstance.column(1).visible(false);
+        }
+        if(this._userService.roleMatch([&#x27;Unidad&#x27;])){
+          dtInstance.column(1).visible(false);
+          dtInstance.column(3).visible(false);
+        }
+        
+        
+        dtInstance.column(6).visible(false);
+        dtInstance.column(7).visible(false);
+      }); 
+
+
+      this.spinner.hide();
+    }, err &#x3D;&gt; {
+      let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });
+      this.spinner.hide();
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+  initDtOptions(){
+    if( this._userService.roleMatch([&#x27;Admin&#x27;])){
+      this.dtOptions.order &#x3D; [[5, &quot;desc&quot;]];
+    }else{
+      this.dtOptions.order &#x3D; [[5, &quot;desc&quot;]];
+    }
+    this.dtOptions.dom &#x3D; &quot;Bfrtip&quot;;
+    this.dtOptions.buttons &#x3D; [
+      {
+        extend: &#x27;copy&#x27;,
+        text: &#x27;Copiar&#x27;,
+        exportOptions: {
+          columns: [0, 1, 2, 3, 4, 5, 6]
+        }
+      },
+      {
+        extend: &#x27;print&#x27;,
+        text: &#x27;Imprimir&#x27;,
+        exportOptions: {
+          columns: [0, 1, 2, 3, 4, 5, 6]
+        }
+      },
+      {
+        extend: &#x27;excel&#x27;,
+        text: &#x27;Excel&#x27;,
+        exportOptions: {
+          columns: [ 0, 1, 2, 3, 4, 5, 6]
+        }
+      }
+    ];
+    
+  }
+
+  ngAfterViewChecked(): void {
+    this.funciones.reemplazarBotonesDatatable();
+  }
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner bdColor &#x3D; &quot;rgba(0, 0, 0, 0.65)&quot; size &#x3D; &quot;medium&quot; color &#x3D; &quot;#fff&quot; type &#x3D; &quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;p-toast [style]&#x3D;&quot;{marginTop: &#x27;80px&#x27;}&quot; [baseZIndex]&#x3D;&quot;5000&quot;&gt;&lt;/p-toast&gt;
+
+&lt;h2 class&#x3D;&quot;animated fadeIn text-uppercase text-center&quot;&gt;Historial de plazas &lt;small class&#x3D;&quot;btn-block text-muted&quot;&gt;El listado cuenta con {{plazas.length}} registro(s)&lt;/small&gt;&lt;/h2&gt;
+
+&lt;hr&gt;
+
+
+&lt;div class&#x3D;&quot;row animated fadeIn&quot;&gt;
+    &lt;p-toast [style]&#x3D;&quot;{marginTop: &#x27;80px&#x27;}&quot; [baseZIndex]&#x3D;&quot;5000&quot;&gt;&lt;/p-toast&gt;
+ 
+
+  &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+    &lt;div class&#x3D;&quot;table-responsive animated fadeIn&quot;&gt;
+      &lt;table datatable [dtOptions]&#x3D;&quot;dtOptions&quot; [dtTrigger]&#x3D;&quot;dtTrigger&quot; class&#x3D;&quot;table&quot; id&#x3D;&quot;table&quot;&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th scope&#x3D;&quot;col&quot;&gt;Convocatoria&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot;&gt;Solicitante&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot;&gt;Plaza&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot;&gt;Cupos solicitados&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot; &gt;Cupos aprobados&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot; style&#x3D;&quot;width: 80px;&quot;&gt;Fecha de solicitud&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot;&gt;Estado&lt;/th&gt;
+            &lt;th scope&#x3D;&quot;col&quot; style&#x3D;&quot;width: 120px;&quot;&gt;Acciones&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let solicitud of plazas&quot;&gt;
+            &lt;td&gt;{{ solicitud.convocatoria }}&lt;/td&gt;
+            &lt;td&gt;{{ solicitud.solicitanteNombre }} &lt;/td&gt;
+            &lt;td&gt;{{ solicitud.tipoPlazaNombre }} &lt;/td&gt;
+            &lt;td class&#x3D;&quot;text-center&quot;&gt;{{ solicitud.cuposSolicitados }}&lt;/td&gt;
+            &lt;td class&#x3D;&quot;text-center&quot;&gt;{{ solicitud.cuposAprobados }}&lt;/td&gt;
+            &lt;td attr.data-order&#x3D;&quot;{{solicitud.fechaSolicitud | date: &#x27;yyyy-MM-dd&#x27;}}&quot;&gt;{{solicitud.fechaSolicitud | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/td&gt;
+            &lt;td&gt;{{solicitud.estadoNombre}}&lt;/td&gt;
+            &lt;td&gt;
+              &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Acciones&quot;&gt;
+                &lt;a title&#x3D;&quot;Detalle de la plaza&quot; [routerLink]&#x3D;&quot;[ &#x27;/plazas/verPlaza&#x27;, solicitud.id]&quot;
+                  class&#x3D;&quot;btn btn-sm btn-outline-dark border-secondary&quot; role&#x3D;&quot;button&quot;&gt;
+                  &lt;span class&#x3D;&quot;fas fa-info-circle&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                  &lt;span class&#x3D;&quot;sr-only&quot;&gt;Detalle de la plaza&lt;/span&gt; 
+                &lt;/a&gt;
+
+                
+
+                &lt;a *ngIf&#x3D;&quot;(userService.roleMatch([&#x27;Unidad&#x27;]) &amp;&amp; solicitud.etapa_id &lt;&#x3D; 3 &amp;&amp; solicitud.estadoId &#x3D;&#x3D; 2 )&quot; title&#x3D;&quot;Asignar criterios de evaluación&quot; [routerLink]&#x3D;&quot;[ &#x27;/plazas&#x27;,&#x27;criteriosEvaluacion&#x27;, solicitud.id]&quot;
+                  class&#x3D;&quot;btn btn-sm btn-outline-dark border-secondary&quot; role&#x3D;&quot;button&quot;&gt;
+                  &lt;span class&#x3D;&quot;fas fa-clipboard-list&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                  &lt;span class&#x3D;&quot;sr-only&quot;&gt;Asignar criterios de evaluación&lt;/span&gt;  
+              &lt;/a&gt;
+                
+
+                &lt;button title&#x3D;&quot;Agregar estudiante&quot; *ngIf&#x3D;&quot;(userService.roleMatch([&#x27;Admin&#x27;]) &amp;&amp; solicitud.etapa_id &#x3D;&#x3D; 3 &amp;&amp; solicitud.estadoId &#x3D;&#x3D; 2 )&quot; class&#x3D;&quot;btn btn-sm btn-outline-dark border-secondary&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;openModal(solicitud.id)&quot;&gt;
+                    &lt;span class&#x3D;&quot;fas fa-user-plus&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                    &lt;span class&#x3D;&quot;sr-only&quot;&gt;Agregar estudiante&lt;/span&gt; 
+                &lt;/button&gt;
+                &lt;a *ngIf&#x3D;&quot;userService.roleMatch([&#x27;Unidad&#x27;, &#x27;Admin&#x27;]) &amp;&amp; solicitud.estadoId &#x3D;&#x3D; 2&quot;
+                  [routerLink]&#x3D;&quot;[ &#x27;/plazas&#x27;, solicitud.id, &#x27;estudiantes&#x27;]&quot; 
+                  class&#x3D;&quot;btn btn-sm btn-outline-dark border-secondary&quot;
+                  title&#x3D;&quot;Ver estudiantes postulados&quot;
+                  role&#x3D;&quot;button&quot;
+                  &gt;
+                  &lt;span class&#x3D;&quot;fas fa-user&quot; aria-hidden&#x3D;&quot;true&quot; [ngClass]&#x3D;&quot;{&#x27;text-muted&#x27;: solicitud.cantidadPostulados &#x3D;&#x3D; 0}&quot;&gt;&lt;/span&gt; &lt;span class&#x3D;&quot;badge badge-light&quot; *ngIf&#x3D;&quot;solicitud.cantidadPostulados &gt; 0&quot;&gt;{{solicitud.cantidadPostulados}}&lt;/span&gt;
+                  &lt;span class&#x3D;&quot;sr-only&quot;&gt;Ver estudiantes postulados&lt;/span&gt;            
+              &lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/td&gt;
+         &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./historial-plazas.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ngx-spinner bdColor = "rgba(0, 0, 0, 0.65)" size = "medium" color = "#fff" type = "ball-clip-rotate"></ngx-spinner><p-toast [style]="{marginTop: \'80px\'}" [baseZIndex]="5000"></p-toast><h2 class="animated fadeIn text-uppercase text-center">Historial de plazas <small class="btn-block text-muted">El listado cuenta con {{plazas.length}} registro(s)</small></h2><hr><div class="row animated fadeIn">    <p-toast [style]="{marginTop: \'80px\'}" [baseZIndex]="5000"></p-toast>   <div class="col-md-12">    <div class="table-responsive animated fadeIn">      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">        <thead>          <tr>            <th scope="col">Convocatoria</th>            <th scope="col">Solicitante</th>            <th scope="col">Plaza</th>            <th scope="col">Cupos solicitados</th>            <th scope="col" >Cupos aprobados</th>            <th scope="col" style="width: 80px;">Fecha de solicitud</th>            <th scope="col">Estado</th>            <th scope="col" style="width: 120px;">Acciones</th>          </tr>        </thead>        <tbody>          <tr *ngFor="let solicitud of plazas">            <td>{{ solicitud.convocatoria }}</td>            <td>{{ solicitud.solicitanteNombre }} </td>            <td>{{ solicitud.tipoPlazaNombre }} </td>            <td class="text-center">{{ solicitud.cuposSolicitados }}</td>            <td class="text-center">{{ solicitud.cuposAprobados }}</td>            <td attr.data-order="{{solicitud.fechaSolicitud | date: \'yyyy-MM-dd\'}}">{{solicitud.fechaSolicitud | date: \'dd/MM/yyyy\'}}</td>            <td>{{solicitud.estadoNombre}}</td>            <td>              <div class="btn-group" role="group" aria-label="Acciones">                <a title="Detalle de la plaza" [routerLink]="[ \'/plazas/verPlaza\', solicitud.id]"                  class="btn btn-sm btn-outline-dark border-secondary" role="button">                  <span class="fas fa-info-circle" aria-hidden="true"></span>                  <span class="sr-only">Detalle de la plaza</span>                 </a>                                <a *ngIf="(userService.roleMatch([\'Unidad\']) && solicitud.etapa_id <= 3 && solicitud.estadoId == 2 )" title="Asignar criterios de evaluación" [routerLink]="[ \'/plazas\',\'criteriosEvaluacion\', solicitud.id]"                  class="btn btn-sm btn-outline-dark border-secondary" role="button">                  <span class="fas fa-clipboard-list" aria-hidden="true"></span>                  <span class="sr-only">Asignar criterios de evaluación</span>                </a>                                <button title="Agregar estudiante" *ngIf="(userService.roleMatch([\'Admin\']) && solicitud.etapa_id == 3 && solicitud.estadoId == 2 )" class="btn btn-sm btn-outline-dark border-secondary" type="button" (click)="openModal(solicitud.id)">                    <span class="fas fa-user-plus" aria-hidden="true"></span>                    <span class="sr-only">Agregar estudiante</span>                 </button>                <a *ngIf="userService.roleMatch([\'Unidad\', \'Admin\']) && solicitud.estadoId == 2"                  [routerLink]="[ \'/plazas\', solicitud.id, \'estudiantes\']"                   class="btn btn-sm btn-outline-dark border-secondary"                  title="Ver estudiantes postulados"                  role="button"                  >                  <span class="fas fa-user" aria-hidden="true" [ngClass]="{\'text-muted\': solicitud.cantidadPostulados == 0}"></span> <span class="badge badge-light" *ngIf="solicitud.cantidadPostulados > 0">{{solicitud.cantidadPostulados}}</span>                  <span class="sr-only">Ver estudiantes postulados</span>                          </a>              </div>            </td>         </tr>        </tbody>      </table>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HistorialPlazasComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HistorialPlazasComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,179 @@
+<app-perfil-salud [id]="id" [tipoBusqueda]="profile_by" ></app-perfil-salud>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form #atencionForm="ngForm" (ngSubmit)="AtencionPaciente(atencionForm)" novalidate  >
+
+
+<fieldset>
+    <legend>Episodio asistencial</legend>
+
+    <div class="alert alert-danger alert" *ngIf="error.length > 0">
+        <label><b>Corrige los errores:</b></label>
+        <ul>
+            <div *ngFor="let error of error">
+                <li *ngIf="error.errores.length>0">
+                    <p>{{error.errores[0].ErrorMessage}}</p>
+                </li>
+            </div>
+        </ul>
+    </div>
+   
+        
+
+    <div class="card border-info  mb-3">
+        <div class="card-body">
+
+            <div class="form-row mb-2">
+                    <div class="col-12 col-md-12">
+                            <label for="tipos_pacientes"><span class="asterisk">*</span>Tipo de paciente</label>
+                            <select class="form-control" [ngClass]="{'is-invalid': ((atencionForm.submitted || tipos_pacientes.touched) && tipos_pacientes.errors?.required) }" [(ngModel)]="formulario.tipo_paciente" id="tipos_pacientes" name="tipos_pacientes" required #tipos_pacientes="ngModel">
+                                  <option value="null" selected disabled>Seleccione un tipo de paciente</option>
+                                  <option *ngFor="let tipoPaciente of tiposPacientes" value="{{tipoPaciente.id}}">{{tipoPaciente.nombre}}</option>
+                                </select>
+                    </div>
+            </div>
+          
+                <div class="form-row">
+                    <div class="col-12 ">
+                            <div id="motivo_consulta" class="form-group">
+                                    <label for="motivo_consulta"><span class="asterisk">*</span>Motivo de consulta</label>
+                                    <textarea class="form-control " [ngClass]="{'is-invalid ': motivo_consulta.errors?.required && (atencionForm.submitted || motivo_consulta.touched) }" type="text" placeholder="Ingrese el Motivo de la consulta. Máx 1000 caracteres" name="motivo_consulta"
+                                    id="motivo_consulta" [(ngModel)]="formulario.motivo_consulta" required #motivo_consulta="ngModel" rows=4 maxlength="1000"> </textarea>
+                                    <div class="invalid-feedback">Ingrese el motivo de la consulta. </div>
+                    </div>
+                </div>
+              </div>
+                <div class="form-row "> 
+                    <div class="col-4 col-md-4">
+                            <label for="contigencia"><span class="asterisk">*</span>Contingencia</label>
+                            <select class="form-control" [ngClass]="{'is-invalid': ((atencionForm.submitted || contigencia.touched) && contigencia.errors?.required) }" [(ngModel)]="formulario.contingencia" id="contigencia" name="contigencia" required #contigencia="ngModel">
+                                  <option value="null" selected disabled>Seleccione contingencia</option>
+                                  <option *ngFor="let tipoContingencia of contingencias" value="{{tipoContingencia.id}}">{{tipoContingencia.nombre}}</option>
+                                </select>
+                    </div>
+
+                   
+
+                    <div class="col-4 col-md-4">
+                        <label for="tipos_entidad"><span class="asterisk">*</span>Tipo entidad remitente</label>
+                        <select class="form-control" [ngClass]="{'is-invalid': ((atencionForm.submitted || tipos_entidad.touched) && tipos_entidad.errors?.required) }" [(ngModel)]="formulario.tipo_entidad" id="tipos_entidad" name="tipos_entidad" required #tipos_entidad="ngModel">
+                              <option value="null" selected disabled>Seleccione tipo de entidad</option>
+                              <option *ngFor="let tipoEntidad of tipos_entidades" value="{{tipoEntidad.id}}">{{tipoEntidad.nombre}}</option>
+                            </select>
+                    </div>
+
+                    <div class="col-4 col-md-4">
+                        <div class="form-group">
+                            <label for="entidad"><span class="asterisk">*</span> Entidad remitente</label>
+                            <input type="text" name="entidad" id="entidad" class="form-control" required placeholder="Ingrese la entidad remitente. Máx 150 caracteres"
+                            [(ngModel)]="formulario.entidad_remitente" [ngClass]="{'is-invalid': ((atencionForm.submitted || entidad.touched) && entidad.errors?.required) }" 
+                                #entidad="ngModel"  maxlength="150" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <label for="profesional"><span class="asterisk">*</span> Nombre del profesional que expide incapacidad</label>
+                            <input type="text" name="profesional" id="profesional" class="form-control" required placeholder="Ingrese el nombre del profesional que expide incapacidad. Máx 150 caracteres"
+                            [(ngModel)]="formulario.profesional_incapacidad" [ngClass]="{'is-invalid': ((atencionForm.submitted || profesional.touched) && profesional.errors?.required) }" 
+                                #profesional="ngModel"  maxlength="150" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row "> 
+                    <div class="col-4 col-md-4">
+                        <div class="form-group" [ngClass]="{'is-invalid': ((atencionForm.submitted || fecha_inicio.touched) && fecha_inicio.errors?.required)}">
+                            <label for="fecha_inicio"><span class="asterisk">*</span>Fecha inicio incapacidad </label>
+                            <p-calendar showButtonBar="true" dateFormat="dd/mm/yy" [(ngModel)]="formulario.fecha_inicio"  #fecha_inicio="ngModel" [readonlyInput]="true" [defaultDate]="DateNow"  name="fecha_inicio"  styleClass="d-block" required
+                                inputId="fecha_inicio" inputStyleClass="form-control" [locale]="es">
+                            </p-calendar>
+                            <!-- <div class="text-danger" *ngIf="((atencionForm.submitted || fecha_inicio.touched) && )" ><small>Complete esta opción.</small>  </div> -->
+                        </div>   
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fecha_fin"><span class="asterisk">*</span>Fecha fin incapacidad</label>
+                            <p-calendar showButtonBar="true" dateFormat="dd/mm/yy" [(ngModel)]="formulario.fecha_fin"  #fecha_fin="ngModel" [readonlyInput]="true" [minDate]="formulario.fecha_inicio" [defaultDate]="DateNow" name="fecha_fin" styleClass="d-block" required
+                                inputId="fecha_fin" inputStyleClass="form-control" [locale]="es">
+                            </p-calendar>
+                            <!-- <div class="text-danger" *ngIf="((atencionForm.submitted || fecha_fin.touched) && requiredGineco())" ><small>Complete esta opción.</small>  </div> -->
+                        </div>  
+                    </div>
+
+                    <div class="col-1 col-md-1">
+                        <div class="form-group">
+                          <!-- {{formulario.dias | letras | lowercase}} -->
+                            <label for="dias"> Días </label>
+                            <input type="number" name="dias" id="dias" class="form-control" required disabled
+                            [ngModel]="calcularDias(formulario.fecha_inicio, formulario.fecha_fin)" [ngClass]="{'is-invalid': ((atencionForm.submitted || dias.touched) && dias.errors?.required) }" 
+                                #dias="ngModel"  maxlength="50" min="0"/>
+                        </div>
+                    </div>
+
+                    <div class="col-3 col-md-3">
+                        <div class="form-group">
+                            <label for="letras"> Días en letras</label>
+                            <input type="text" name="letras" id="letras" class="form-control" disabled
+                            [(ngModel)]=" formulario.letras" [ngClass]="{'is-invalid': ((atencionForm.submitted || letras.touched) && letras.errors?.required) }" 
+                                #letras="ngModel"  maxlength="50" min="0"/>
+                        </div>
+                    </div>
+
+                </div>
+
+               <div class="form-row">
+                    <div class="col-12 ">
+                      <div id="resumen_clinico" class="form-group">
+                                      <label for="resumen_clinico"><span class="asterisk">*</span>Resumen clínico</label>
+                                      <textarea class="form-control " [ngClass]="{'is-invalid ': resumen_clinico.errors?.required && (atencionForm.submitted || resumen_clinico.touched) }" type="text" placeholder="Ingrese el resumen clínico y diagnóstico. Máx 1000 caracteres" name="resumen_clinico"
+                                      id="resumen_clinico" [(ngModel)]="formulario.resumen_clinico" required #resumen_clinico="ngModel" rows=6 maxlength="1000"> </textarea>
+                                      <div class="invalid-feedback">Ingrese el resumen clínico. </div>
+                              </div>
+                      </div>
+                </div>
+      
+
+                
+                
+
+                 <!-- <div class="form-row mb-3"> 
+
+                    <div class="col-12 col-md-12">
+                            <label for="tipos_pacientes"><span class="asterisk">*</span>Tipo de paciente</label>
+                            <select class="form-control" [ngClass]="{'is-invalid': ((atencionForm.submitted || tipos_pacientes.touched) && tipos_pacientes.errors?.required) }" [(ngModel)]="formulario.tipo_paciente" id="tipos_pacientes" name="tipos_pacientes" required #tipos_pacientes="ngModel">
+                                  <option value="null" selected disabled>Seleccione un tipo de paciente</option>
+                                  <option *ngFor="let tipoPaciente of tiposPacientes" value="{{tipoPaciente.id}}">{{tipoPaciente.nombre}}</option>
+                                </select>
+                        </div>
+
+                          <div class="form-group">
+                                            <label for="FUM"><span *ngIf="requiredGineco()" class="asterisk">*</span>FUM</label>
+                                            <p-calendar showButtonBar="true" dateFormat="dd/mm/yy" [(ngModel)]="formulario.examen_gineco.fum"  #FUM="ngModel" [readonlyInput]="true"  name="Sexarquia" [defaultDate]="dateNow" styleClass="d-block"
+                                                inputId="Sexarquia" inputStyleClass="form-control form-control-sm" [locale]="es">
+                                            </p-calendar>
+                                            <div class="text-danger" *ngIf="((atencionForm.submitted || FUM.touched) && requiredGineco())" ><small>Complete esta opción.</small>  </div>
+                                        </div>
+
+                </div> -->
+    </div>
+    </div>
+
+   
+    
+</fieldset>
+<hr>
+
+<div class="text-center">
+    <button id="volver" type="button" class="btn btn-default mr-md-1 mb-3" [routerLink]="[ '/estudiantes/dashboard' ]">Volver</button>
+    <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+</div>
+
+</form>
+</div>
+</div>

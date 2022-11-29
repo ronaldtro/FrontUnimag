@@ -1,0 +1,252 @@
+<h2 class="text-uppercase animated fadeIn text-center">Disciplinas <small class="btn-block text-muted">Formulario de
+    creación de disciplinas</small></h2>
+  <hr class="animated fadeIn">
+  <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+  
+  <form #disciplinaForm="ngForm" novalidate (ngSubmit)="guardarDisciplina(disciplinaForm)" class="animated fadeIn">
+    <fieldset>
+        <legend>Información general</legend>
+       
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label for="imagenDisciplina">Imagen</label>
+                    <p-fileUpload id="imagenDisciplina"  name="imagenDisciplina[]" (onSelect)="onUploadFile($event)" maxFileSize="3500000" [showUploadButton]="false" [showCancelButton]="false" accept="image/*" invalidFileSizeMessageDetail="El tamaño máximo de la imagen es {0}" invalidFileSizeMessageSummary="{0}: Tamaño de la imagen excedido,"
+                        invalidFileTypeMessageSummary="{0}: Tipo de imagen inválido," invalidFileTypeMessageDetail="Solo puedes cargar imagenes de tipo {0}" chooseLabel="Cargar imagen" (onRemove)="onClearFile()" #imagenDisciplina>
+                    </p-fileUpload>
+                    <div class="invalid-feedback " [ngClass]="{'d-block': !disciplina.file_imagen  && disciplinaForm.submitted }">Debe cargar una imagen</div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+                <div id="nombre" class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre de la disciplina. Máx. 255 caracteres" name="nombre" maxlength="255" [(ngModel)]="disciplina.nombre" #nombre="ngModel" required [ngClass]="{'is-invalid': nombre.errors?.required && (nombre.touched || disciplinaForm.submitted)}">
+                    <div class="invalid-feedback">Escriba el nombre de la disciplina</div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+              <div id="modalidad" class="form-group">
+                  <label for="modalidad">Modalidad</label>
+                  <select id="modalidad" class="form-control" name="modalidad" [ngClass]="{'is-invalid': ((disciplinaForm.submitted || modalidad.touched) && (modalidad.errors?.required))}" [(ngModel)]="disciplina.modalidad_id" #modalidad="ngModel" required>
+                      <option value="null" disabled selected>Seleccione la modalidad</option> 
+                      <option *ngFor="let modalidad of listaModalidades;" [value]="modalidad.id">{{modalidad.nombre}}</option> 
+                  </select>    
+              </div>
+            </div>
+        
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea type="text" name="descripcion" id="descripcion" rows="5" class="form-control" [ngClass]="{'is-invalid': ((disciplinaForm.submitted || descripcion.touched) && (descripcion.errors?.required) )}" [(ngModel)]="disciplina.descripcion" required #descripcion="ngModel" placeholder="Descripción de la disciplina"
+                    ></textarea>    
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Datos del encargado <small><button *ngIf="disciplina.encargado == null" id="agregarEncargado" type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+        data-target="#agregarEncargadoModal">Agregar encargado</button></small></legend>
+    
+        <div class="table-responsive mt-3">
+            <table id="table_encargado" class="table">
+                <thead>
+                    <tr>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Correo electrónico</th>
+                        <th style="width: 80px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="disciplina.encargado != null">
+                        <td>{{disciplina.encargado.identificacion}}</td>
+                        <td>{{disciplina.encargado.nombre}}</td>
+                        <td>{{disciplina.encargado.email}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-eliminar ml-1" data-toggle="modal" (click)="eliminarEncargado();" title="Eliminar encargado">
+                                <span class="fa fa-times"></span>
+                                <span class="sr-only">Eliminar encargado</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Galeria de imagenes<small><button id="agregarImagenGaleria" type="button" class="btn btn-sm btn-outline-primary ml-2" data-toggle="modal"
+          data-target="#agregarImagenGaleriaModal">
+            Agregar imagenes</button></small></legend>
+            
+            <div class="row">
+                <div *ngFor="let imagen of disciplina.galeriaImagenes | paginate: { itemsPerPage: 6, currentPage: p };  let i = index;" class="col-sm-6 col-md-4 card mt-2 p-0 text-center">
+                  <img (click)="verImagenGrande(imagen)" style="cursor: pointer;" width="10" height="120" [src]="getImagePath(imagen)" class="card-img-top" alt="Imagen de galeria">
+                  <div class="card-body">
+                    <button (click)="quitarImagen(imagen,i)" class="btn btn-danger"><span class="fas fa-times"></span> Eliminar</button>
+                  </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            </div>
+    </fieldset>
+
+    <div class="text-center">
+        <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver al listado</button>
+        <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+    </div>
+  </form>
+  
+  <!-- Modal para agregar imagenes -->
+  <div class="modal fade" id="agregarImagenGaleriaModal" tabindex="-1" role="dialog" aria-labelledby="agregarImagenGaleriaModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="agregarImagenGaleriaModalLabel">Agregar imagen</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+  
+              <form (ngSubmit)="agregarImagen(agregarImagenForm)" #agregarImagenForm="ngForm" novalidate>
+                  <div class="modal-body">
+                      <div class="mt-2 row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="imagen">Imagen</label>
+                                <p-fileUpload id="imagen" multiple="multiple" name="imagen[]" (onSelect)="onUploadImagenGaleria($event)" (uploadHandler)="uploadFile($event,fileUpload)" maxFileSize="3500000" [showUploadButton]="false" [showCancelButton]="false" accept="image/*" invalidFileSizeMessageDetail="El tamaño máximo de la imagen es {0}" invalidFileSizeMessageSummary="{0}: Tamaño de la imagen excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de imagen inválido," invalidFileTypeMessageDetail="Solo puedes cargar imagenes de tipo {0}" chooseLabel="Cargar imagen" (onRemove)="onClearImagenGaleria($event)" #imagen>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-dismiss="modal" (click)="agregarImagenForm.resetForm();">Cancelar</button>
+                          <button type="submit" class="btn btn-success">Guardar</button>
+                      </div>
+                    </div>
+              </form>
+          </div>
+      </div>
+    </div>
+
+  <!-- Modal para agregar encargado -->
+  <div class="modal fade" id="agregarEncargadoModal" tabindex="-1" role="dialog" aria-labelledby="agregarEncargadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarEncargadoModalLabel">Agregar encargado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form (ngSubmit)="agregarEncargado(agregarEncargadoForm)" #agregarEncargadoForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="mt-2 row">
+                        <div class="col-12 col-lg-5">
+                            <div class="form-group">
+                                <label for="tipoIdentificacion">Tipo de identificación</label>
+                                <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion" [ngClass]="{'is-invalid': ((agregarEncargadoForm.submitted || tipoIdentificacion.touched) && (tipoIdentificacion.errors?.required))}" [(ngModel)]="encargado.tipoIdentificacion" #tipoIdentificacion="ngModel" required>
+                                    <option value="null" disabled selected>Seleccione el tipo de identificación</option> 
+                                    <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">{{tipo.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-10 col-lg-5">
+                            <div class="form-group">
+                                <label for="identificacion">Identificación</label>
+                                <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de identificacion" name="identificacion" maxlength="255" [(ngModel)]="encargado.identificacion" #identificacion="ngModel" required [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || agregarEncargadoForm.submitted)}">
+                            </div>
+                        </div>
+
+                        <div class="col-2 d-flex align-items-center">
+                            <button (click)="buscarEncargado($event)" class="btn btn-success mt-3"><i class="fas fa-search"></i></button>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="nombreEncargado">Nombre completo</label>
+                                <input [disabled]="camposPersonaDeshabilitados" type="text" class="form-control" id="nombreEncargado" placeholder="Ingrese su nombre completo" name="nombreEncargado" maxlength="255" [(ngModel)]="encargado.nombre" #nombreEncargado="ngModel" required [ngClass]="{'is-invalid': nombreEncargado.errors?.required && (nombreEncargado.touched || agregarEncargadoForm.submitted)}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="direccion">Dirección</label>
+                                <input [disabled]="camposPersonaDeshabilitados" type="text" class="form-control" id="direccion" placeholder="Ingrese su direccion" name="direccion" maxlength="255" [(ngModel)]="encargado.direccion" #direccion="ngModel" required [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || agregarEncargadoForm.submitted)}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="sexo">Sexo</label>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" [value]="true" [(ngModel)]="encargado.sexo" required #sexo="ngModel">
+                                    <label class="form-check-label" for="sexoMasculino">Masculino</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input [disabled]="camposPersonaDeshabilitados" class="form-check-input" type="radio" name="sexo" id="sexoFemenino" [value]="false" [(ngModel)]="encargado.sexo" required #sexo="ngModel">
+                                    <label class="form-check-label" for="sexoFemenino">Femenino</label>
+                                </div>
+                                <small *ngIf="((agregarEncargadoForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6">
+                            <div id="fecha_nacimiento" class="form-group">
+                                <label>Fecha de nacimiento</label>
+                                <div class="ui-g ui-fluid">
+                                    <div class="ui-g-12 ui-md-12 p-0">
+                                        <p-calendar [disabled]="camposPersonaDeshabilitados" inputStyleClass="form-control" name="fecha_nacimiento" [(ngModel)]="encargado.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required 
+                                        [locale]="es" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2019" #fecha_nacimiento="ngModel" [ngClass]="{'is-invalid': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || agregarEncargadoForm.submitted)}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || agregarEncargadoForm.submitted)}">Seleccione una fecha</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="correo">Correo electrónico</label>
+                                <input [disabled]="camposEncargadoDeshabilitados" type="email" class="form-control" id="correo" placeholder="Ingrese el correo electrónico" name="correo" maxlength="255" [(ngModel)]="encargado.email" #correo="ngModel" required [ngClass]="{'is-invalid': correo.errors?.required && (correo.touched || agregarEncargadoForm.submitted)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="celular">Celular</label>
+                                <input [disabled]="camposEncargadoDeshabilitados" type="number" class="form-control" id="celular" placeholder="Ingrese el número de celular" name="celular" maxlength="255" [(ngModel)]="encargado.celular" #celular="ngModel" required [ngClass]="{'is-invalid': celular.errors?.required && (celular.touched || agregarEncargadoForm.submitted)}">
+                            </div>
+                        </div> 
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="agregarEncargadoForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+ </div>
+
+<!-- Modal para mostrar una imagen grande -->
+<div class="modal fade" tabindex="-1" role="dialog" id="imagenGrandeModal" aria-labelledby="imagenGrandeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+            <div class="modal-body" >
+                <button type="button" class="close" style="width: 50px;" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <img [src]="srcImagenGrande" class="img-fluid" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

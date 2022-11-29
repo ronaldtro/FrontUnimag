@@ -1,0 +1,161 @@
+<h2 class="text-uppercase animated fadeIn text-center">Convocatorias <small class="btn-block text-muted">Formulario de
+  creación de convocatoria</small></h2>
+<hr class="animated fadeIn">
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<p-messages [(value)]="errores"></p-messages>
+
+
+<form #convocatoriaForm="ngForm" novalidate (ngSubmit)="save(convocatoriaForm)" class="animated fadeIn">
+  <fieldset>
+      <legend>Información general</legend>
+     
+      <div class="row">
+          <div class="col-12 col-sm-12 col-md-6">
+              <div id="titulo" class="form-group">
+                  <label for="titulo">Título</label>
+                  <input type="text" class="form-control" id="titulo" placeholder="Título de la convocatoria. Máx. 255 caracteres" name="titulo" maxlength="255" [(ngModel)]="convocatoria.titulo" #titulo="ngModel" required [ngClass]="{'is-invalid': titulo.errors?.required && (titulo.touched || convocatoriaForm.submitted)}">
+
+                  <div class="invalid-feedback">Escriba el título de la convocatoria</div>
+
+              </div>
+          </div>
+
+        <div class="col-12 col-sm-12 col-md-6">
+            <div id="fecha_expedicion" class="form-group">
+                <label>Fecha de expedición</label>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-12 p-0">
+                        <p-calendar inputStyleClass="form-control {{isValid}}" name="fecha_expedicion" [(ngModel)]="convocatoria.fecha_expedicion" dateFormat="dd/mm/yy" [readonlyInput]="true" required (onBlur)='validation(fecha_expedicion)' (onSelect)='validation(fecha_expedicion)'
+                        [locale]="es" #fecha_expedicion="ngModel" [maxDate]="dateNow"></p-calendar>
+                    </div>
+                </div>
+                <div class="invalid-feedback " [ngClass]="{'d-block': fecha_expedicion.errors?.required && (fecha_expedicion.touched || convocatoriaForm.submitted)}">Seleccione una fecha</div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6">
+            <div id="soporte" class="form-group">
+                <label for="soporte">Soporte</label>
+                <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                </p-fileUpload>
+                <div class="invalid-feedback " [ngClass]="{'d-block': !convocatoria.file_soporte  && convocatoriaForm.submitted }">Debe cargar un archivo de soporte</div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div id="resolucion" class="form-group">
+                <label for="resolucion">Resolución<small class="text-muted"> (Opcional)</small>  <button *ngIf="convocatoria.resolucion"
+                    type="button" class="btn btn-link btn-sm" (click)="viewDoc(1)">Ver documento cargado</button>
+                </label>
+                <p-fileUpload id="resolucion" name="resolucion[]" (onSelect)="onUploadFileR($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}"
+                    invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido," invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento"
+                    (onRemove)="onClearFileR()" #resolucion>
+                </p-fileUpload>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea type="text" class="form-control" id="descripcion" name="descripcion"></textarea>
+            </div>
+        </div>
+        
+      </div>
+  </fieldset>
+  <hr>
+  <fieldset>
+      <legend>Etapas de la convocatoria </legend>
+
+      <div class="table-responsive mt-3">
+          <table id="table_etapas" class="table">
+              <thead>
+                  <tr>
+                      <th>Estado</th>
+                      <th>Fecha</th>
+                      <th style="width: 80px;">Acciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let etapa of convocatoria.etapas; let i=index">
+                      
+                      <td>{{etapa.estado_nombre}}</td>
+                      <td>{{etapa.fecha_inicio | date: "medium"}} - {{etapa.fecha_fin | date: "medium"}}</td>
+                      <td class="text-center">
+                          <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-editar" data-toggle="modal" data-target="#exampleModal" (click)="idx=i; editar=true; guardar=false; mostrar=true; editEtapa(i);" title="Editar registro">
+                              <span class="fas fa-pen"></span>
+                              <span class="sr-only">Editar registro</span>
+                          </button>
+
+                          <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-eliminar ml-1" data-toggle="modal" (click)="deleteEtapas(i);" title="Eliminar registro">
+                            <span class="fa fa-times"></span>
+                            <span class="sr-only">Eliminar registro</span>
+                          </button>
+
+                      </td>
+                  </tr>
+                  
+              </tbody>
+          </table>
+      </div>
+  </fieldset>
+  <div class="text-center">
+      <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" [routerLink]="[ '/convocatorias-artistas-deportistas' ]">Volver al listado</button>
+      <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+  </div>
+</form>
+
+
+<!-- Modal para asignar fechas a las etapas-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form #fechasEtapasForm="ngForm" novalidate (ngSubmit)="saveEdit(fechasEtapasForm, idx, etapa.fecha_inicio, etapa.fecha_fin, etapa.estado_id, etapa.peso_etapa, etapa.estado_nombre)">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Datos de la etapa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fechasEtapasForm.resetForm(); clearModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          
+          <div class="modal-body">
+              <div class="mt-2 row" >
+                  <div class="col-12">
+                    <p><b>Etapa</b> {{etapa.estado_nombre}}</p>      
+                  </div>
+                  <div class="col-12 col-sm-12 col-md-12 mt-3">
+                      <div class="ui-g ui-fluid">
+                          <div class="ui-g-12 ui-md-12 p-0">
+                              <label>Fecha de inicio</label>
+                              <p-calendar inputStyleClass="form-control {{isFechaValid(etapa.fecha_inicio, fecha_inicio.touched)}}" showTime="true" hourFormat="12" name="fecha_inicio" [(ngModel)]="etapa.fecha_inicio" dateFormat="dd/mm/yy" [readonlyInput]="true" #fecha_inicio="ngModel"
+                               [minDate]="dateNow" [locale]="es" (ngModelChange)="etapa.fecha_fin = etapa.fecha_inicio"></p-calendar>
+                              <div class="invalid-feedback" [ngClass]="{'d-block': !etapa.fecha_inicio && (send || fecha_inicio.touched)}">Seleccione una de las opciones</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12 col-sm-12 col-md-12 mt-3">
+                      <div class="ui-g ui-fluid">
+                          <div class="ui-g-12 ui-md-12 p-0">
+                              <label>Fecha de fin</label>
+                              <p-calendar inputStyleClass="form-control {{isFechaValid(etapa.fecha_fin, fecha_fin.touched)}}" name="fecha_fin" showTime="true" hourFormat="12" [(ngModel)]="etapa.fecha_fin" dateFormat="dd/mm/yy" [readonlyInput]="true" #fecha_fin="ngModel" [minDate]="dateNow"
+                                  [locale]="es"></p-calendar>
+                              <div class="invalid-feedback" [ngClass]="{'d-block': !etapa.fecha_fin && (send || fecha_fin.touched)}">Seleccione una de las opciones</div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+            
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-dismiss="modal" (click)="fechasEtapasForm.resetForm(); clearModal()">Cancelar</button>
+              <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

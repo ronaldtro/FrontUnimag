@@ -1,0 +1,195 @@
+<div class="animated fadeIn pt-3 container">
+    <h2 class="text-uppercase text-center">
+        {{convocatoria.nombre}}
+        <span *ngIf="convocatoria.tipo_convocatoria.id == tiposConvocatorias.AYUDANTIA"></span>
+    </h2>
+    <p class="text-center text-secondary">
+        Esta convocatoria de {{convocatoria.tipo_convocatoria.nombre}} cuenta con {{plazas.length}} plazas disponibles
+    </p>
+    <hr>
+
+    <p *ngIf="tieneCodigo != null" class="text-center">En el siguiente listado se muestran las plazas en las que puede postularse el estudiante con código <strong>{{tieneCodigo}}</strong> según su información académica.</p>
+    <div class="alert alert-info text-center mb-3" role="alert" *ngIf="etapaActual.id != 0">
+        <p class="m-0">La convocatoria se encuentra en etapa de <strong>{{etapaActual.nombre}}</strong> <span *ngIf="!esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> del {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}} al {{etapaActual.fechaFin | date : 'dd/MM/yyyy'}}</span>            <span *ngIf="esIgual(etapaActual.fechaInicio, etapaActual.fechaFin)"> el {{etapaActual.fechaInicio | date : 'dd/MM/yyyy'}}</span>.</p>
+
+    </div>
+    <div class="text-center mb-3">
+        <button class="btn btn-outline-success rounded-pill shadow-sm collapsed mr-2" type="button" data-toggle="collapse" data-target="#collapseEtapas" aria-expanded="false" aria-controls="collapseEtapas">
+          <span class="fas fa-list-ul" aria-hidden="true"></span> Ver etapas de la convocatoria
+      </button>
+        <button class="btn btn-outline-secondary rounded-pill shadow-sm collapsed" *ngIf="plazas.length > 0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <span class="fas fa-filter" aria-hidden="true"></span> Filtrar plazas 
+          </button>
+    </div>
+    <div class="jumbotron jumbotron-fluid py-3 px-3 rounded collapse" id="collapseEtapas">
+        <label class="labels-sm">Etapas de la convocatoria</label>
+        <div class="d-flex flex-wrap flex-md-wrap mb-3">
+            <div class="w-16 p-2 border d-flex flex-column justify-content-between" *ngFor="let etapa of etapas; let first = first; let last = last;" [ngClass]="{'border-0 bg-success text-white shadow': etapa.estado_id == etapaActual.id, 'text-dark bg-white': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin), 'rounded-left': first, 'rounded-right': last}">
+                <span class="mb-2">{{etapa.nombre}}</span>
+                <small class="d-block" [ngClass]="{'text-white': etapa.estado_id == etapaActual.id, 'text-dark': etapa.estado_id != etapaActual.id && !esMenorAEtapaActual(etapa.fechaFin), 'text-muted font-italic': esMenorAEtapaActual(etapa.fechaFin)}">
+              <span *ngIf="esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}}</span>
+              <span *ngIf="!esIgual(etapa.fechaInicio, etapa.fechaFin)">{{etapa.fechaInicio | date: 'dd/MM/yyyy'}} - {{etapa.fechaFin | date: 'dd/MM/yyyy'}}</span>
+              
+            </small>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid py-3 rounded collapse" id="collapseExample">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-4" *ngIf="convocatoria.tipo_convocatoria.id == tiposConvocatorias.AYUDANTIA">
+                    <div class="form-group">
+                        <label for="tipo_ayudantia">Tipo de ayudantía</label>
+                        <select class="form-control" id="tipo_ayudantia" name="tipo_ayudantia" [(ngModel)]="tipo_ayudantia" #tipo_ayudantiaTxt="ngModel" (change)="limpiarPlaza()">
+                      <option [ngValue]="null" selected>Todos</option>
+                      <option *ngFor="let item of tiposAyudantias" [value]="item.id">{{item.nombre}}</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'col-md-8': convocatoria.tipo_convocatoria.id != tiposConvocatorias.AYUDANTIA}">
+                    <div class="form-group">
+                        <label for="tipo_plaza">Nombre de plaza</label>
+                        <ng-select [items]="tiposPlazas | selecPlaza: tipo_ayudantia" id="tipo_plaza" bindLabel="nombre" bindValue="id" placeholder="Seleccione plaza" name="tipo_plaza" #tipo_plazaTxt="ngModel" [(ngModel)]="tipo_plaza_id" required>
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="unidad">Unidad solicitante</label>
+                        <ng-select [items]="unidades" id="unidad" bindLabel="nombre" bindValue="id" placeholder="Seleccione la unidad" name="unidad" #unidadID="ngModel" [(ngModel)]="unidad_id" required>
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                <div class="ng-option disabled">
+                                    No hay resultados
+                                </div>
+                            </ng-template>
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="porcentaja_creditos_requeridos">Porcentaje de créditos aprobados</label>
+                        <input type="number" class="form-control" name="porcentaja_creditos_requeridos" [(ngModel)]="porcentaja_creditos" #porcentaja_creditos_requeridos="ngModel" [min]="1" [max]="100" placeholder="Ingrese el porcentaje de créditos aprobados. Mín. 1. Máx. 100.">
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="promedio_minimo">Promedio mínimo del estudiante</label>
+                        <input type="number" class="form-control" name="promedio_minimo" #promedio_minimoVlr="ngModel" [(ngModel)]="promedio_minimo" [max]="500" placeholder="Ingrese el promedio mínimo. Máx. 100.">
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="alert alert-info mb-3 text-center" role="alert" *ngIf="plazas.length == 0">
+        <strong>No hay plazas publicadas en este momento.</strong>
+    </div>
+    <div class="row labels-sm border shadow-sm mb-3" *ngFor="let c of plazas | search:'tipoAyudantiaId': tipo_ayudantia | search:'tipoPlazaId': tipo_plaza_id | search:'unidadId': unidad_id | search: 'creditos':porcentaja_creditos:'<=' | search: 'promedio':promedio_minimo:'<=' | paginate: { itemsPerPage: 10, currentPage: p }">
+        <div class="col-lg-3 p-3 bg-info text-white d-flex flex-wrap align-items-start flex-column justify-content-between">
+            <h3 class="h4 border-bottom mb-3 pb-3 w-100">
+                <strong>{{c.nombrePlaza}}</strong>
+                <small class="d-block text-white mt-1">
+                    <span *ngIf="convocatoria.tipo_convocatoria.id == tiposConvocatorias.AYUDANTIA">Ayudantía</span><span *ngIf="convocatoria.tipo_convocatoria.id == tiposConvocatorias.MONITORIA">Monitoría</span> {{c.nombreTipo}}
+                </small>
+            </h3>
+            <div class="w-100">
+                <button type="button" class="btn btn-warning btn-block mb-1 shadow font-weight-bold text-uppercase" (click)="postularseModal(c)" *ngIf="(convocatoria.tipo_convocatoria.id == 3 && etapaActual.peso == 4) || (convocatoria.tipo_convocatoria.id == 1 && etapaActual.peso == 3)">Postularme <span class="sr-only">a la plaza {{c.nombreTipo}}</span></button>
+                <a class="btn btn-light d-block mb-1 shadow font-weight-bold text-uppercase" [routerLink]="['/plaza/aprobados/',c.idPlaza]" role="button" *ngIf="(convocatoria.tipo_convocatoria.id == 1 && etapaActual.peso >= 5) || (convocatoria.tipo_convocatoria.id == 3 && etapaActual.peso >= 7)">Ver resultados <span class="sr-only">de la plaza {{c.nombreTipo}}</span></a>
+                <a class="btn d-block" [ngClass]="{'btn-link text-white': ((convocatoria.tipo_convocatoria.id == 1 && (etapaActual.peso == 3 || etapaActual.peso >= 5)) || (convocatoria.tipo_convocatoria.id == 3 && (etapaActual.peso == 4 || etapaActual.peso >= 7))), 'btn-light shadow': ((convocatoria.tipo_convocatoria.id == 1 && ((etapaActual.peso != 3 && etapaActual.peso < 5) || etapaActual.peso == 0)) || (convocatoria.tipo_convocatoria.id == 3 && (etapaActual.peso != 4 && etapaActual.peso < 7)))}" [routerLink]="['/plaza/informacion/',c.idPlaza]"
+                    role="button">Mas información <span class="sr-only">acerca de la plaza {{c.nombreTipo}}</span></a>
+            </div>
+
+        </div>
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-5 p-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="m-0">Unidad solicitante</label>
+                                <p class="form-control-plaintext" class="p-0">{{c.unidad}}</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-lg-6" [ngClass]="{'col-xl-4': c.creditos}">
+                            <div class="form-group">
+                                <label class="m-0">Promedio ponderado</label>
+                                <p class="form-control-plaintext" class="p-0">{{c.promedio}}</p>
+                            </div>
+
+                        </div>
+                        <div class="col-6 col-sm-4 col-lg-6" [ngClass]="{'col-xl-4': c.creditos}">
+                            <div class="form-group">
+                                <label class="m-0">Cupos disponibles</label>
+                                <p class="form-control-plaintext" class="p-0">{{c.cupos}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-lg-12 col-xl-4" *ngIf="c.creditos">
+                            <div class="form-group">
+                                <label class="m-0">Créditos aprobados</label>
+                                <p class="form-control-plaintext" class="p-0">{{c.creditos}} %</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 p-3">
+                    <div class="form-group">
+                        <label class="m-0">Perfil</label>
+                        <p class="form-control-plaintext" class="p-0">{{c.perfil | sentenceCase}} <a [routerLink]="['/plaza/informacion/',c.idPlaza]">Para ver más información acerca de esta plaza haga clic sobre este enlace.</a></p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
+    <!-- <div class="card mb-2"  *ngFor="let c of plazas | search:'tipoAyudantiaId': tipo_ayudantia | search:'tipoPlazaId': tipo_plaza_id | search:'unidadId': unidad_id | search: 'creditos':porcentaja_creditos | search: 'promedio':promedio_minimo " >
+      <div class="card-header">
+        Ayudantía  {{c.nombreTipo}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"> {{c.nombrePlaza}}</h5>
+        <p class="card-text">Cupos: {{c.cupos}} <br> Estado : {{c.estadoPlaza}} <br> Unidad Solicitante: {{c.unidad}} </p>
+        <button class="btn btn-primary float-right ml-1" [routerLink]="['/plaza/aprobados/',c.idPlaza]"  type="button">Ver resultados</button>
+        <button class="btn btn-primary float-right" [routerLink]="['/plaza/informacion/',c.idPlaza]" type="button">Mas información</button>
+      </div>
+    </div> -->
+    <div class="text-center">
+        <a *ngIf="tieneCodigo != null" class="btn btn-outline-primary" [routerLink]="[ '/plazasConvocatorias', convocatoriaId ]">Ver todas las plazas de esta convocatoria</a>
+        <br *ngIf="tieneCodigo != null">
+        <button class="btn btn-light" [routerLink]="[ '/convocatoria', convocatoria.tipo_convocatoria.id ]" type="button">Volver a convocatorias</button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Disposiciones generales para postulación a plazas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <app-postulacion-plaza></app-postulacion-plaza>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

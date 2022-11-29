@@ -1,0 +1,206 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+    <h2 class="text-uppercase text-center">Resultado de las encuestas de evaluación de monitorías académicas<small class="btn-block text-muted">Listado de los
+            estudiantes seleccionados como monitores académicos con sus respectivas calificaciones.<br>El listado cuenta con {{monitores?.length}} registro(s)</small></h2>
+    <hr>
+
+    <ul class="nav nav-pills justify-content-center mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <button type="button" class="nav-link border-0 active" id="pills-estudiantes-tab" data-toggle="pill" role="tab" aria-controls="pills-estudiantes" aria-selected="true" (click)="cargarEncuestasEstudiantes()">Resultados encuestas realizadas por estudiantes</button>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="nav-link border-0" id="pills-tutores-tab" data-toggle="pill" role="tab" aria-controls="pills-tutores" aria-selected="false" (click)="cargarEncuestasTutores()">Resultados encuestas realizadas por tutores</button>
+        </li>
+    </ul>
+    <!-- <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-estudiantes-tab" data-toggle="pill" href="#pills-estudiantes" role="tab" aria-controls="pills-estudiantes" aria-selected="true">Resultados encuestas realizadas por estudiantes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="pills-tutores-tab" data-toggle="pill" href="#pills-tutores" role="tab" aria-controls="pills-tutores" aria-selected="false">Resultados encuestas realizadas por docentes tutores</a>
+        </li>
+    </ul> -->
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-estudiantes" role="tabpanel" aria-labelledby="pills-estudiantes-tab">
+            <div class="col-12">
+                <div class="alert alert-info mb-3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul class="pl-3">
+                        <li *ngIf="idConvocatoria == null; else elseTemplate">
+                            A continuación, se muestra el listado de todos los estudiantes que han sido seleccionados como monitores académicos con su respectivo porcentaje de calificaciones.
+                        </li>
+                        <ng-template #elseTemplate>
+                        <li>
+                            A continuación, se muestra el listado de todos los estudiantes que han sido seleccionados como monitores académicos con su respectivo porcentaje de calificaciones para la "{{monitores[0].tituloConvocatoria}}".
+                        </li>
+                        </ng-template>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                    <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+                </button>
+            </div>
+            <div class="collapse col-lg-12" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-monitor" class="form-group">
+                                <label>Filtrar por monitor</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-plaza" class="form-group">
+                                <label>Filtrar por plaza</label>
+                            </div>
+                        </div>
+                        <div *ngIf="idConvocatoria == null" class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-convocatoria" class="form-group">
+                                <label>Filtrar por convocatoria</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-solicitante" class="form-group">
+                                <label>Filtrar por unidad solicitante</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <div class="table-responsive animated fadeIn">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_estudiantesAtendidos">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Identificación</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Plaza</th>
+                                    <th scope="col">Convocatoria</th>
+                                    <th scope="col">Unidad solicitante</th>
+                                    <th scope="col">No. de encuestas calificadas</th>
+                                    <th scope="col">Encuestas pendientes</th>
+                                    <th scope="col">Porcentaje de calificaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let monitor of monitores; let i = index">
+                                    <td class="text-center">{{ monitor.identificacion }}</td>
+                                    <td class="text-center">{{ monitor.codigo }}</td>
+                                    <td class="text-center">{{ monitor.nombre }}</td>
+                                    <td class="text-center">{{ monitor.nombrePlaza }}</td>
+                                    <td class="text-center">{{ monitor.tituloConvocatoria}}</td>
+                                    <td class="text-center">{{ monitor.unidadSolicitante}}</td>
+                                    <td class="text-center">{{ monitor.nro_encuestas }}</td>
+                                    <td class="text-center">{{ monitor.nro_maximo_encuestas }}</td>
+                                    <td class="text-center">
+                                        <span *ngIf="monitor.calificacion != null">{{ monitor.calificacion | number : '1.2-2' }}%</span>
+                                        <span *ngIf="monitor.calificacion == null">0%</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mb-3">
+                        <button id="volver" type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="tab-pane fade" id="pills-tutores" role="tabpanel" aria-labelledby="pills-tutores-tab">
+            <div class="col-12">
+                <div class="alert alert-info mb-3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul class="pl-3">
+                        <li *ngIf="idConvocatoria == null; else elseTemplate">
+                            A continuación, se muestra el listado de todos los estudiantes que han sido seleccionados como monitores académicos con su respectivo porcentaje de calificaciones.
+                        </li>
+                        <ng-template #elseTemplate>
+                        <li>
+                            A continuación, se muestra el listado de todos los estudiantes que han sido seleccionados como monitores académicos con su respectivo porcentaje de calificaciones para la "{{monitores[0].tituloConvocatoria}}".
+                        </li>
+                        </ng-template>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                    <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+                </button>
+            </div>
+            <div class="collapse col-lg-12" id="collapseFilter">
+                <div class="card card-body px-3 pt-3">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-plaza" class="form-group">
+                                <label>Filtrar por plaza</label>
+                            </div>
+                        </div>
+                        <div *ngIf="idConvocatoria == null" class="col-12 col-sm-6 col-md-4">
+                            <div id="filter-convocatoria" class="form-group">
+                                <label>Filtrar por convocatoria</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-noEncuestas" class="form-group">
+                                <label>Filtrar por no. de encuestas calificadas</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4" >
+                            <div id="filter-porcentajeCalificacion" class="form-group">
+                                <label>Filtrar por porcentaje de calificaciones</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <div class="table-responsive animated fadeIn">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_estudiantesAtendidos2">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Identificación</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Plaza</th>
+                                    <th scope="col">Convocatoria</th>
+                                    <th scope="col">Unidad solicitante</th>
+                                    <th scope="col">No. de encuestas calificadas</th>
+                                    <th scope="col">Porcentaje de calificaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let monitor of monitores; let i = index">
+                                    <td class="text-center">{{ monitor.identificacion }}</td>
+                                    <td class="text-center">{{ monitor.codigo }}</td>
+                                    <td class="text-center">{{ monitor.nombre }}</td>
+                                    <td class="text-center">{{ monitor.nombrePlaza }}</td>
+                                    <td class="text-center">{{ monitor.tituloConvocatoria}}</td>
+                                    <td class="text-center">{{ monitor.unidadSolicitante}}</td>
+                                    <td class="text-center">{{ monitor.nro_encuestas }}</td>
+                                    <td *ngIf="monitor.totalCalificaciones != 0" class="text-center">{{ (monitor.calificacion/monitor.totalCalificaciones)*100 | number : '1.2-2' }}%</td>
+                                    <td *ngIf="monitor.totalCalificaciones == 0" class="text-center">0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mb-3">
+                        <button id="volver" type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<!-- <button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button> -->

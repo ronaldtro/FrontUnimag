@@ -1,0 +1,379 @@
+<h2 class="text-uppercase animated fadeIn text-center">Grupos <small class="btn-block text-muted">Formulario de
+    edición de grupos</small></h2>
+  <hr class="animated fadeIn">
+  <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+  
+  <form #grupoForm="ngForm" novalidate (ngSubmit)="guardarGrupo(grupoForm)" class="animated fadeIn">
+    <fieldset>
+        <legend>Información general</legend>
+       
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-6">
+                <div id="imagen" class="form-group">
+             
+                    <label for="imagen">Imagen<small class="text-muted"></small> <button *ngIf="grupo.file_imagen"
+                        type="button" class="btn btn-link btn-sm" (click)="verImagen()">Ver imagen cargada</button>
+                    </label>
+                    <p-fileUpload id="imagen" name="imagen[]" (onSelect)="onUploadFile($event)" maxFileSize="3500000" [showUploadButton]="false" [showCancelButton]="false" accept="image/*" invalidFileSizeMessageDetail="El tamaño máximo de la imagen es {0}" invalidFileSizeMessageSummary="{0}: Tamaño de la imagen excedido,"
+                        invalidFileTypeMessageSummary="{0}: Tipo de imagen inválido," invalidFileTypeMessageDetail="Solo puedes cargar imagenes de tipo {0}" chooseLabel="Cargar imagen" (onRemove)="onClearFile()" #imagen>
+                    </p-fileUpload>
+                    <div class="invalid-feedback " [ngClass]="{'d-block': !grupo.file_imagen  && grupoForm.submitted }">Debe cargar una imagen</div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+                <div id="nombre" class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del grupo. Máx. 255 caracteres" name="nombre" maxlength="255" [(ngModel)]="grupo.nombre" #nombre="ngModel" required [ngClass]="{'is-invalid': nombre.errors?.required && (nombre.touched || grupoForm.submitted)}">
+                    <div class="invalid-feedback">Escriba el nombre del grupo</div>
+                </div>
+            </div>
+  
+            <div class="col-12 col-sm-12 col-md-6">
+                <div id="nivel_formativo" class="form-group">
+                    <label for="nivelFormativo">Nivel formativo</label>
+                    <select id="nivelFormativo" class="form-control" name="nivelFormativo" [ngClass]="{'is-invalid': ((grupoForm.submitted || nivelFormativo.touched) && (nivelFormativo.errors?.required))}" [(ngModel)]="grupo.idNivelFormativo" #nivelFormativo="ngModel" required>
+                        <option value="null" disabled selected>Seleccione el nivel formativo</option> 
+                        <option *ngFor="let nivelFormativo of listaNivelesFormativos" [ngValue]="nivelFormativo.idNivelFormativo">{{nivelFormativo.nombre}}</option>
+                    </select>    
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+              <div id="disciplina" class="form-group">
+                  <label for="disciplina">Disciplina</label>
+                  <select id="disciplina" class="form-control" name="disciplina" [ngClass]="{'is-invalid': ((grupoForm.submitted || disciplina.touched) && (disciplina.errors?.required))}" [(ngModel)]="grupo.idDisciplina" #disciplina="ngModel" required>
+                      <option value="null" disabled selected>Seleccione la disciplina</option> 
+                      <option *ngFor="let disciplina of listaDisciplinas" [ngValue]="disciplina.idDisciplina">{{disciplina.nombre}}</option>
+                  </select>    
+              </div>
+            </div>
+        
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea type="text" name="descripcion" id="descripcion" rows="5" class="form-control" [ngClass]="{'is-invalid': ((grupoForm.submitted || descripcion.touched) && (descripcion.errors?.required) )}" [(ngModel)]="grupo.descripcion" required #descripcion="ngModel" placeholder="Descripción del grupo"
+                    ></textarea>    
+                </div>
+            </div>
+          
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Datos del encargado <small><button *ngIf="grupo.encargado == null" id="agregarEncargado" type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+        data-target="#agregarEncargadoModal">Agregar encargado</button></small></legend>
+    
+        <div class="table-responsive mt-3">
+            <table id="table_encargado" class="table">
+                <thead>
+                    <tr>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th style="width: 80px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="grupo.encargado != null">
+                        <td>{{grupo.encargado.identificacion}}</td>
+                        <td>{{grupo.encargado.nombre}}</td>
+                        <td>{{grupo.encargado.email}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-eliminar ml-1" data-toggle="modal" (click)="eliminarEncargado();" title="Eliminar encargado">
+                                <span class="fa fa-times"></span>
+                                <span class="sr-only">Eliminar encargado</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Horario del grupo <small><button id="agregarDias" type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+        data-target="#agregarDiasModal">Agregar días</button></small></legend>
+  
+        <div class="table-responsive mt-3">
+            <table id="table_dias" class="table">
+                <thead>
+                    <tr>
+                        <th>Día</th>
+                        <th>Hora</th>
+                        <th style="width: 80px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dia of grupo.dias; let i=index">
+                        <td>{{dia.nombre}}</td>
+                        <td>{{dia.horaInicio }} - {{dia.horaFin }}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-editar" (click)="abrirModalEditarDia(dia)" title="Editar día">
+                                <span class="fas fa-pen"></span>
+                                <span class="sr-only">Editar día</span>
+                            </button>
+  
+                            <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-eliminar ml-1" data-toggle="modal" (click)="eliminarDia(i);" title="Eliminar día">
+                              <span class="fa fa-times"></span>
+                              <span class="sr-only">Eliminar día</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Roles <small><button id="agregarRoles" type="button" class="btn btn-sm btn-outline-primary" (click)="abrirModalCrearRol()">
+            Agregar rol</button></small></legend>
+  
+        <div class="table-responsive mt-3">
+            <table id="table_roles" class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th style="width: 80px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rol of grupo.listaRoles; let i=index">
+                        <td>{{rol.nombre}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-dark border-secondary btn-sm btn-eliminar ml-1" data-toggle="modal" (click)="eliminarRol(i);" title="Eliminar rol">
+                              <span class="fa fa-times"></span>
+                              <span class="sr-only">Eliminar rol</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver al listado</button>
+        <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+    </div>
+  </form>
+  
+  <!-- Modal para agregar dias -->
+  <div class="modal fade" id="agregarDiasModal" tabindex="-1" role="dialog" aria-labelledby="agregarDiasModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="agregarDiasModalLabel">Agregar día</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mostrar=false; clearModal()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+  
+              <form (ngSubmit)="agregarDia(agregarDiaForm)" #agregarDiaForm="ngForm" novalidate>
+                  <div class="modal-body">
+                      <div class="mt-2 row">
+                      
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="dia">Día</label>
+                                <select id="dia" class="form-control" name="dia" [ngClass]="{'is-invalid': ((grupoForm.submitted || dia.touched) && (dia.errors?.required))}" [(ngModel)]="diaHorario.idDia" #dia="ngModel" required>
+                                    <option value="null" disabled selected>Seleccione el día</option> 
+                                    <option *ngFor="let dia of listaDias" [ngValue]="dia.idDia">{{dia.nombre}}</option>
+                                </select> 
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="horaInicio">Hora inicio</label>
+                                <p-calendar [readonlyInput]="true" required inputStyleClass="form-control" showTime="true" hourFormat="12" name="horaInicio" [(ngModel)]="diaHorario.horaInicio" #horaInicio="ngModel"
+                                timeOnly="true"></p-calendar>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': horaInicio.errors?.required && (horaInicio.touched || agregarDiaForm.submitted)}">Seleccione una hora</div>
+                            </div>
+                        </div>
+    
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="horaFin">Hora fin</label>
+                                <p-calendar [readonlyInput]="true" required inputStyleClass="form-control" showTime="true" hourFormat="12" name="horaFin" [(ngModel)]="diaHorario.horaFin" #horaFin="ngModel"
+                                timeOnly="true"></p-calendar> 
+                                <div class="invalid-feedback" [ngClass]="{'d-block': horaFin.errors?.required && (horaFin.touched || agregarDiaForm.submitted)}">Seleccione una hora</div>
+                            </div>
+                        </div>
+
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-light" data-dismiss="modal" (click)="agregarDiaForm.resetForm();">Cancelar</button>
+                      <button type="submit" class="btn btn-success">Guardar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
+
+  <!-- Modal para agregar encargado -->
+  <div class="modal fade" id="agregarEncargadoModal" tabindex="-1" role="dialog" aria-labelledby="agregarEncargadoModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="agregarEncargadoModalLabel">Agregar encargado</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mostrar=false; clearModal()">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+  
+              <form (ngSubmit)="agregarEncargado(agregarEncargadoForm)" #agregarEncargadoForm="ngForm" novalidate>
+                  <div class="modal-body">
+                      <div class="mt-2 row">
+                          <div class="col-12 col-lg-5">
+                              <div class="form-group">
+                                  <label for="tipoIdentificacion">Tipo de identificación</label>
+                                  <select id="tipoIdentificacion" class="form-control" name="tipoIdentificacion" [ngClass]="{'is-invalid': ((agregarEncargadoForm.submitted || tipoIdentificacion.touched) && (tipoIdentificacion.errors?.required))}" [(ngModel)]="encargado.tipoIdentificacion" #tipoIdentificacion="ngModel" required>
+                                      <option value="null" disabled selected>Seleccione el tipo de identificación</option> 
+                                      <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo.id">{{tipo.nombre}}</option>
+                                  </select>
+                              </div>
+                          </div>
+  
+                          <div class="col-10 col-lg-5">
+                              <div id="identificacion" class="form-group">
+                                  <label for="identificacion">Identificación</label>
+                                  <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de identificación" name="identificacion" maxlength="255" [(ngModel)]="encargado.identificacion" #identificacion="ngModel" required [ngClass]="{'is-invalid': identificacion.errors?.required && (identificacion.touched || agregarEncargadoForm.submitted)}">
+                              </div>
+                          </div>
+  
+                          <div class="col-2 d-flex align-items-center">
+                              <button (click)="buscarEncargado($event)" class="btn btn-success mt-3"><i class="fas fa-search"></i></button>
+                          </div>
+  
+                          <div class="col-sm-12">
+                              <div id="nombreEncargado" class="form-group">
+                                  <label for="nombreEncargado">Nombre</label>
+                                  <input [disabled]="camposPersonaDeshabilitados" type="text" class="form-control" id="nombreEncargado" placeholder="Ingrese su nombre completo" name="nombreEncargado" maxlength="255" [(ngModel)]="encargado.nombre" #nombreEncargado="ngModel" required [ngClass]="{'is-invalid': nombreEncargado.errors?.required && (nombreEncargado.touched || agregarEncargadoForm.submitted)}">
+                              </div>
+                          </div>
+  
+                          <div class="col-sm-12">
+                              <div id="direccion" class="form-group">
+                                  <label for="direccion">Dirección</label>
+                                  <input [disabled]="camposPersonaDeshabilitados" type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" name="direccion" maxlength="255" [(ngModel)]="encargado.direccion" #direccion="ngModel" required [ngClass]="{'is-invalid': direccion.errors?.required && (direccion.touched || agregarEncargadoForm.submitted)}">
+                              </div>
+                          </div>
+  
+                          <div class="col-sm-12 col-md-6">
+                              <div class="form-group">
+                                  <label for="sexo">Sexo</label>
+                                  <br>
+                                  <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="sexo" id="sexoMasculino" [value]="true" [(ngModel)]="encargado.sexo" required #sexo="ngModel">
+                                      <label class="form-check-label" for="sexoMasculino">Masculino</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                      <input [disabled]="camposPersonaDeshabilitados" class="form-check-input" type="radio" name="sexo" id="sexoFemenino" [value]="false" [(ngModel)]="encargado.sexo" required #sexo="ngModel">
+                                      <label class="form-check-label" for="sexoFemenino">Femenino</label>
+                                  </div>
+                                  <small *ngIf="((agregarEncargadoForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                              </div>
+                          </div>
+  
+                          <div class="col-12 col-sm-12 col-md-6">
+                              <div id="fecha_nacimiento" class="form-group">
+                                  <label>Fecha de nacimiento</label>
+                                  <div class="ui-g ui-fluid">
+                                      <div class="ui-g-12 ui-md-12 p-0">
+                                          <p-calendar [disabled]="camposPersonaDeshabilitados" inputStyleClass="form-control" name="fecha_nacimiento" [(ngModel)]="encargado.fecha_nacimiento" dateFormat="dd/mm/yy" [readonlyInput]="true" required 
+                                          [locale]="es" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2019" #fecha_nacimiento="ngModel" [ngClass]="{'is-invalid': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || agregarEncargadoForm.submitted)}"></p-calendar>
+                                      </div>
+                                  </div>
+                                  <div class="invalid-feedback" [ngClass]="{'d-block': fecha_nacimiento.errors?.required && (fecha_nacimiento.touched || agregarEncargadoForm.submitted)}">Seleccione una fecha</div>
+                              </div>
+                          </div>
+                          
+                          <div class="col-sm-12">
+                              <div id="correo" class="form-group">
+                                  <label for="correo">Correo electrónico</label>
+                                  <input [disabled]="camposEncargadoDeshabilitados" type="email" class="form-control" id="correo" placeholder="Ingrese el correo electrónico" name="correo" maxlength="255" [(ngModel)]="encargado.email" #correo="ngModel" required [ngClass]="{'is-invalid': correo.errors?.required && (correo.touched || agregarEncargadoForm.submitted)}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                              </div>
+                          </div>  
+
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="celular">Celular</label>
+                                <input [disabled]="camposEncargadoDeshabilitados" type="number" class="form-control" id="celular" placeholder="Ingrese el número de celular" name="celular" maxlength="255" [(ngModel)]="encargado.celular" #celular="ngModel" required [ngClass]="{'is-invalid': celular.errors?.required && (celular.touched || agregarEncargadoForm.submitted)}">
+                            </div>
+                          </div> 
+                            
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-light" data-dismiss="modal" (click)="agregarEncargadoForm.resetForm();">Cancelar</button>
+                      <button type="submit" class="btn btn-success">Guardar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
+
+     <!-- Modal para crear o editar roles-->
+  <div class="modal fade" id="agregarRolModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 *ngIf="rol.id == null" class="modal-title" id="modelTitleId">Crear rol</h5>
+                <h5 *ngIf="rol.id != null" class="modal-title" id="modelTitleId">Editar rol</h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="rolForm.resetForm();" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="agregarRol(rolForm)" #rolForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <!-- <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div> -->
+  
+                    <fieldset>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="nombreRol">Nombre</label>
+                                <input type="text" name="nombreRol" id="nombreRol" class="form-control" [ngClass]="{'is-invalid': ((rolForm.submitted || nombreRol.touched) && (nombreRol.errors?.required))}" [(ngModel)]="rol.nombre" required #nombreRol="ngModel" placeholder="Nombre del rol"
+                                    maxlength="455" />
+                            </div>
+                        </div>
+                    </fieldset>
+  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="rolForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+<!-- Modal para mostrar imagen-->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId">Imagen de grupo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="img-responsive" style="max-width: 100%; max-height: 100%; margin:0 auto;" [src]="grupo.file_imagen | donseguro: api" alt="Imagen de grupo">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

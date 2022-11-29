@@ -1,0 +1,1050 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ConvocatoriaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/public/convocatoria/convocatoria.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-convocatoria</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./convocatoria.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./convocatoria.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#api">api</a>
+                            </li>
+                            <li>
+                                <a href="#convocatorias">convocatorias</a>
+                            </li>
+                            <li>
+                                <a href="#etapaActual">etapaActual</a>
+                            </li>
+                            <li>
+                                <a href="#urlDoc">urlDoc</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#esIgual">esIgual</a>
+                            </li>
+                            <li>
+                                <a href="#esMayorAHoy">esMayorAHoy</a>
+                            </li>
+                            <li>
+                                <a href="#getHowLongWasPublished">getHowLongWasPublished</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#viewDoc">viewDoc</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_convocatoriaP: <a href="../injectables/ConvocatoriaPService.html">ConvocatoriaPService</a>, spinner: NgxSpinnerService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_convocatoriaP</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConvocatoriaPService.html" target="_self" >ConvocatoriaPService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esIgual"></a>
+                    <span class="name">
+                        <b>
+                            esIgual
+                        </b>
+                        <a href="#esIgual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>esIgual(fechaInicio: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fechaFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fechaInicio</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>fechaFin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esMayorAHoy"></a>
+                    <span class="name">
+                        <b>
+                            esMayorAHoy
+                        </b>
+                        <a href="#esMayorAHoy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>esMayorAHoy(fechaFin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:119</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>fechaFin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getHowLongWasPublished"></a>
+                    <span class="name">
+                        <b>
+                            getHowLongWasPublished
+                        </b>
+                        <a href="#getHowLongWasPublished"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getHowLongWasPublished(dateStr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dateStr</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewDoc"></a>
+                    <span class="name">
+                        <b>
+                            viewDoc
+                        </b>
+                        <a href="#viewDoc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewDoc(doc: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:88</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>doc</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="api"></a>
+                        <span class="name">
+                            <b>
+                            api</b>
+                            <a href="#api"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>Api.dev</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="convocatorias"></a>
+                        <span class="name">
+                            <b>
+                            convocatorias</b>
+                            <a href="#convocatorias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="etapaActual"></a>
+                        <span class="name">
+                            <b>
+                            etapaActual</b>
+                            <a href="#etapaActual"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{}</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="urlDoc"></a>
+                        <span class="name">
+                            <b>
+                            urlDoc</b>
+                            <a href="#urlDoc"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">app/components/public/convocatoria/convocatoria.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ConvocatoriaPService } from &#x27;src/app/services/convocatoria-p.service&#x27;;
+import { Api } from &#x27;src/app/class/api&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+
+declare var jQuery:any;
+declare var $:any;
+
+@Component({
+  selector: &#x27;app-convocatoria&#x27;,
+  templateUrl: &#x27;./convocatoria.component.html&#x27;,
+  styleUrls: [&#x27;./convocatoria.component.css&#x27;]
+})
+export class ConvocatoriaComponent implements OnInit {
+
+  convocatorias:any&#x3D;[];
+  etapaActual:any &#x3D; {};
+  api&#x3D;Api.dev;
+  urlDoc: string;
+  
+  constructor( private _convocatoriaP :ConvocatoriaPService, private spinner: NgxSpinnerService) { }
+
+  ngOnInit() {
+    this.spinner.show();
+
+    this._convocatoriaP.getDatos().subscribe(data &#x3D;&gt; {
+      this.convocatorias &#x3D; data[&#x27;datosConvocatoria&#x27;];
+      this.etapaActual &#x3D; data[&#x27;etapaActual&#x27;];
+      let today &#x3D; Date.now();
+
+      for(let j &#x3D; 0; j &lt; this.convocatorias.length; j++){
+        let convocatoria &#x3D; this.convocatorias[j];
+        let etapaConvocatoria:any &#x3D; {};
+
+          if(convocatoria.estadoActual &#x3D;&#x3D; null || convocatoria.estadoActual &#x3D;&#x3D; &quot;&quot;){
+  
+            convocatoria.etapas &#x3D; convocatoria.etapas.filter(function(a) {
+              return a.id &gt; 3;
+            });
+            // let testDates &#x3D; [{fechaFin:&quot;2019-02-07&quot;}, {fechaFin:&quot;2019-02-13&quot;}, {fechaFin:&quot;2019-02-14&quot;},{fechaFin:&quot;2019-02-18&quot;},{fechaFin:&quot;2019-02-19&quot;}, {fechaFin:&quot;2019-06-07&quot;}, {fechaFin:&quot;2019-06-10&quot;}, {fechaFin:&quot;2019-06-17&quot;}]
+  
+            convocatoria.etapas.sort(function(a, b) {
+              return new Date(b.fechaFin + &quot;T00:00:00Z&quot;).getTime() - new Date(a.fechaFin + &quot;T00:00:00Z&quot;).getTime();
+            });
+            
+            etapaConvocatoria &#x3D; convocatoria.etapas.filter(function(a) {
+              return (today - new Date(a.fechaFin + &quot;T00:00:00Z&quot;).getTime()) &gt; 0;
+            })[0];
+            if(etapaConvocatoria &#x3D;&#x3D; undefined){
+              etapaConvocatoria &#x3D; convocatoria.etapas.filter(function(a) {
+                return a.id &#x3D;&#x3D; 4;
+              })[0];
+            } else {
+              convocatoria.estadoActual &#x3D; etapaConvocatoria.nombre;
+              convocatoria.fechaInicio &#x3D; etapaConvocatoria.fechaInicio;
+              convocatoria.fechaFin &#x3D; etapaConvocatoria.fechaFin;
+            }
+          }
+
+        // for(let i &#x3D; 0; i&lt;convocatoria.etapas.length; i++){
+        //   if((convocatoria.estadoActual &#x3D;&#x3D; null || convocatoria.estadoActual &#x3D;&#x3D; &quot;&quot;) &amp;&amp; convocatoria.etapas[i].id &#x3D;&#x3D; 4){
+            
+        //       convocatoria.estadoActual &#x3D; convocatoria.etapas[i].nombre;
+        //       convocatoria.fechaInicio &#x3D; convocatoria.etapas[i].fechaInicio;
+        //       convocatoria.fechaFin &#x3D; convocatoria.etapas[i].fechaFin;
+            
+          
+        //   }
+          
+          
+        // }
+      }
+      this.spinner.hide();
+
+    }, err &#x3D;&gt;{
+      this.spinner.hide();
+      let respuesta: RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });
+    });
+  }
+
+  viewDoc( doc:string ){
+    this.urlDoc &#x3D; doc;
+    $(&#x27;#modelId&#x27;).modal(&#x27;show&#x27;);
+  }
+
+  getHowLongWasPublished(dateStr:string){
+    let today &#x3D; new Date().getTime();
+    let publishedDate &#x3D; new Date(dateStr).getTime();
+    let diference &#x3D; today - publishedDate;
+    if(diference &#x3D;&#x3D;&#x3D; 0){
+      return &#x60;Se publicó hoy&#x60;;
+    }
+    let mins &#x3D; Math.floor(diference / 60000);
+    let hrs &#x3D; Math.floor(mins / 60);
+    let days &#x3D; Math.floor(hrs / 24);
+    let months &#x3D; Math.floor(days / 30);
+    let yrs &#x3D; Math.floor(days / 365);
+    
+    if(mins &lt; 60){
+      return &#x60;Publicado hace ${mins} minuto(s)&#x60;;
+    }else if(hrs &lt; 24){
+      return &#x60;Publicado hace ${hrs} hora(s)&#x60;;
+    }else if(days &lt; 31){
+      return &#x60;Publicado hace ${days} día(s)&#x60;;
+    }else if(months &lt; 13){
+      return &#x60;Publicado hace ${months} mes(es)&#x60;;
+    }else{
+      return &#x60;Publicado hace ${yrs} año(s)&#x60;;
+    }
+  }
+
+  esMayorAHoy(fechaFin:string){
+    return new Date(fechaFin + &#x27;T23:59:59Z&#x27;) &gt;&#x3D; new Date();
+  }
+
+  esIgual(fechaInicio:string, fechaFin:string){
+    return new Date(fechaInicio + &#x27;T23:59:59Z&#x27;).getTime() &#x3D;&#x3D;&#x3D; new Date(fechaFin + &#x27;T23:59:59Z&#x27;).getTime();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;mt-3 animated fadeIn&quot;&gt;
+
+    &lt;h2 class&#x3D;&quot;text-uppercase text-center mb-3&quot;&gt;
+        Convocatorias vigentes de ayudantías
+        &lt;small class&#x3D;&quot;d-block text-muted&quot;&gt;El listado cuenta con {{convocatorias.length}} registro(s)&lt;/small&gt;&lt;/h2&gt;
+    &lt;br&gt;
+    &lt;div class&#x3D;&quot;alert alert-info mb-3 text-center&quot; role&#x3D;&quot;alert&quot; *ngIf&#x3D;&quot;convocatorias.length &#x3D;&#x3D; 0&quot;&gt;
+        &lt;strong&gt;No hay convocatorias activas para este periodo&lt;/strong&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;grid&quot;&gt;
+        &lt;div class&#x3D;&quot;card&quot; *ngFor&#x3D;&quot;let c of convocatorias&quot;&gt;
+            &lt;div class&#x3D;&quot;card-header bg-info&quot;&gt;
+                &lt;h3 class&#x3D;&quot;h5 text-center mt-3 mb-3 font-weight-bold text-white&quot;&gt;{{c.titulo}}&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                &lt;small class&#x3D;&quot;card-title text-muted text-center d-block font-style-italic&quot;&gt;&lt;abbr title&#x3D;&quot;{{c.fechaExpedicion | date: &#x27;dd/MM/yyyy&#x27;}}&quot;&gt;{{getHowLongWasPublished(c.fechaExpedicion)}}&lt;/abbr&gt;&lt;/small&gt;
+                &lt;!-- &lt;p class&#x3D;&quot;card-text text-muted&quot;&gt;Estado de la convocatoria: {{c.proceso}}&lt;/p&gt; --&gt;
+                &lt;p class&#x3D;&quot;card-text text-center&quot; *ngIf&#x3D;&quot;c.estadoActual !&#x3D; null&quot;&gt;
+                    La convocatoria se encuentra en etapa de &lt;b&gt;{{c.estadoActual}}&lt;/b&gt; &lt;span *ngIf&#x3D;&quot;!esIgual(c.fechaInicio, c.fechaFin)&quot;&gt; desde {{c.fechaInicio | date: &#x27;dd/MM/yyyy&#x27;}} hasta {{c.fechaFin | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;&lt;span *ngIf&#x3D;&quot;esIgual(c.fechaInicio, c.fechaFin)&quot;&gt; el {{c.fechaInicio | date: &#x27;dd/MM/yyyy&#x27;}}&lt;/span&gt;.
+                &lt;/p&gt;
+                &lt;!-- &lt;a  [href]&#x3D;&quot;api+c.soporte&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; class&#x3D;&quot;card-link&quot;&gt;Ver resolución&lt;/a&gt; --&gt;
+
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-footer border-0 pt-1&quot;&gt;
+                &lt;a [routerLink]&#x3D;&quot;[ &#x27;/plazasConvocatorias&#x27;, c.id ]&quot; class&#x3D;&quot;btn d-block mt-1 mb-1&quot; [ngClass]&#x3D;&quot;{&#x27;btn-success&#x27;: c.estadoActualId &#x3D;&#x3D; 3, &#x27;btn-outline-success&#x27;: c.estadoActualId !&#x3D; 3}&quot;&gt;Ver plazas&lt;/a&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-link btn-block&quot; (click)&#x3D;&quot;viewDoc(c.soporte)&quot; title&#x3D;&quot;Ver soporte&quot;&gt;    
+            Ver soporte
+          &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+
+
+    &lt;!-- &lt;div class&#x3D;&quot;card&quot; style&#x3D;&quot;width: 18rem;&quot;&gt;
+    &lt;img class&#x3D;&quot;card-img-top&quot; src&#x3D;&quot;.../100px180/?text&#x3D;Image cap&quot; alt&#x3D;&quot;Card image cap&quot;&gt;
+    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+      &lt;h5 class&#x3D;&quot;card-title&quot;&gt;Card title&lt;/h5&gt;
+      &lt;p class&#x3D;&quot;card-text&quot;&gt;Some quick example text to build on the card title and make up the bulk of the card&#x27;s content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;ul class&#x3D;&quot;list-group list-group-flush&quot;&gt;
+      &lt;li class&#x3D;&quot;list-group-item&quot;&gt;Dapibus ac facilisis in&lt;/li&gt;
+      &lt;li class&#x3D;&quot;list-group-item&quot;&gt;Vestibulum at eros&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+      &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;card-link&quot;&gt;Card link&lt;/a&gt;
+      &lt;a href&#x3D;&quot;#&quot; class&#x3D;&quot;card-link&quot;&gt;Another link&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt; --&gt;
+
+
+&lt;/div&gt;
+&lt;!-- Modal --&gt;
+&lt;div class&#x3D;&quot;modal fade&quot; id&#x3D;&quot;modelId&quot; tabindex&#x3D;&quot;-1&quot; role&#x3D;&quot;dialog&quot; aria-labelledby&#x3D;&quot;modelTitleId&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-dialog modal-lg modal-dialog-centered&quot; role&#x3D;&quot;document&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-content &quot;&gt;
+            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+
+                &lt;h4 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;modelTitleId&quot;&gt;Documento de soporte&lt;/h4&gt;
+                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;modal&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+              &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                &lt;iframe [src]&#x3D;&quot;urlDoc  | donseguro: api&quot; width&#x3D;&quot;100%&quot; height&#x3D;&quot;700px&quot; frameborder&#x3D;&quot;0&quot;&gt;&lt;/iframe&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;ngx-spinner bdColor&#x3D;&quot;rgba(51, 51, 51, 0.8)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./convocatoria.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.grid{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-column-gap: .875rem;
+    grid-row-gap: .875rem;
+}
+/* .grid .card{
+    display: inline-block;
+} */
+.card{
+    box-shadow: rgba(60, 64, 67, .3) 0 1px 2px 0, rgba(60, 64, 67, .15) 0 1px 3px 1px;
+}
+.card-header{
+    background-color: #eee;
+}
+
+@media only screen and (min-width: 768px) {
+    .grid{
+        grid-template-columns: repeat(2, 50%);
+    }
+}
+@media only screen and (min-width: 992px) {
+    .grid{
+        grid-template-columns: repeat(3, 33.33%);
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .grid{
+        grid-template-columns: repeat(4, 25%);
+    }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="mt-3 animated fadeIn">    <h2 class="text-uppercase text-center mb-3">        Convocatorias vigentes de ayudantías        <small class="d-block text-muted">El listado cuenta con {{convocatorias.length}} registro(s)</small></h2>    <br>    <div class="alert alert-info mb-3 text-center" role="alert" *ngIf="convocatorias.length == 0">        <strong>No hay convocatorias activas para este periodo</strong>    </div>    <div class="grid">        <div class="card" *ngFor="let c of convocatorias">            <div class="card-header bg-info">                <h3 class="h5 text-center mt-3 mb-3 font-weight-bold text-white">{{c.titulo}}</h3>            </div>            <div class="card-body">                <small class="card-title text-muted text-center d-block font-style-italic"><abbr title="{{c.fechaExpedicion | date: \'dd/MM/yyyy\'}}">{{getHowLongWasPublished(c.fechaExpedicion)}}</abbr></small>                <!-- <p class="card-text text-muted">Estado de la convocatoria: {{c.proceso}}</p> -->                <p class="card-text text-center" *ngIf="c.estadoActual != null">                    La convocatoria se encuentra en etapa de <b>{{c.estadoActual}}</b> <span *ngIf="!esIgual(c.fechaInicio, c.fechaFin)"> desde {{c.fechaInicio | date: \'dd/MM/yyyy\'}} hasta {{c.fechaFin | date: \'dd/MM/yyyy\'}}</span><span *ngIf="esIgual(c.fechaInicio, c.fechaFin)"> el {{c.fechaInicio | date: \'dd/MM/yyyy\'}}</span>.                </p>                <!-- <a  [href]="api+c.soporte" target="_blank" rel="noopener noreferrer" class="card-link">Ver resolución</a> -->            </div>            <div class="card-footer border-0 pt-1">                <a [routerLink]="[ \'/plazasConvocatorias\', c.id ]" class="btn d-block mt-1 mb-1" [ngClass]="{\'btn-success\': c.estadoActualId == 3, \'btn-outline-success\': c.estadoActualId != 3}">Ver plazas</a>                <button type="button" class="btn btn-sm btn-link btn-block" (click)="viewDoc(c.soporte)" title="Ver soporte">                Ver soporte          </button>            </div>        </div>    </div>    <!-- <div class="card" style="width: 18rem;">    <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">    <div class="card-body">      <h5 class="card-title">Card title</h5>      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>    </div>    <ul class="list-group list-group-flush">      <li class="list-group-item">Dapibus ac facilisis in</li>      <li class="list-group-item">Vestibulum at eros</li>    </ul>    <div class="card-body">      <a href="#" class="card-link">Card link</a>      <a href="#" class="card-link">Another link</a>    </div>  </div> --></div><!-- Modal --><div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">        <div class="modal-content ">            <div class="modal-header">                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>                <button type="button" class="close" data-dismiss="modal" aria-label="Close">              <span aria-hidden="true">&times;</span>            </button>            </div>            <div class="modal-body">                <iframe [src]="urlDoc  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>            </div>        </div>    </div></div><ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ConvocatoriaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConvocatoriaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

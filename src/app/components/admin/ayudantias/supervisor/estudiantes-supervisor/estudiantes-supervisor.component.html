@@ -1,0 +1,52 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<h2 class="text-uppercase  animated fadeIn text-center"> Estudiantes a cargo <small class="btn-block text-muted">Listado de estudiantes a cargo. El listado cuenta con {{estudiantes.length}} registro(s)</small></h2>
+<hr>
+
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Información: </strong> A continuación, se muestran los estudiantes a cargo de su supervisión y las acciones a realizar. <strong>Recuerde que debe realizar la evaluación del estudiante solo en la etapa de la convocatoria definida para tal fin.</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="table-responsive animated fadeIn">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre del estudiante</th>
+                        <th scope="col" style="width: 90px;">Código</th>
+                        <th>Convocatoria</th>
+                        <th scope="col">Plaza</th>
+                        <th scope="col" style="width: 120px;">Tipo de plaza</th>
+                        <th scope="col" class="text-center" style="width: 90px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudiante of estudiantes">
+                        <td>{{ estudiante.nombre }} </td>
+                        <td>{{ estudiante.codigo }} </td>
+                        <td>{{ estudiante.convocatoria}}</td>
+                        <td>{{ estudiante.ayudantia }}</td>
+                        <td class="text-center">{{estudiante.tipo_ayudantia}}</td>
+                        <td class="text-center">
+                            <!-- <a [routerLink]="[ '/supervisor/estudiante', estudiante.id, 'actividades' ]">ok</a> -->
+                            <button [routerLink]="[ '/supervisor/estudiante', estudiante.id, 'actividades' ]" class="btn btn-light btn-sm" type="button" title="Ver actividades del estudiante"> 
+                                <span class="fa fa-clipboard-list" aria-hidden="true" [ngClass]="{'text-muted': estudiante.actividades == 0}"></span>
+                                <span class="badge badge-light" *ngIf="estudiante.actividades > 0">{{estudiante.actividades}}</span>
+                                <span class="sr-only">Ver actividades del estudiante</span>
+                            </button>
+                            <button *ngIf="(estudiante.estado_convocatoria_encuesta != null && estudiante.estado_convocatoria_encuesta != 0) && !estudiante.calificado" 
+                                [routerLink]="[ '/encuestaMonitorias', estudiante.id]" class="btn btn-light btn-sm" type="button" title="Evaluar monitoría"> 
+                                <span class="fas fa-user-check" aria-hidden="true"></span>
+                                <span class="sr-only">Evaluar monitoría</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

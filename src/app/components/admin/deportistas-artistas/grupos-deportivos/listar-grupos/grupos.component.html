@@ -1,0 +1,133 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Grupos deportivos y culturales <small class="btn-block text-muted">El listado cuenta con {{listaGrupos.length}} grupos</small></h2>
+  <hr>
+  <div class="row">
+      <div class="col-12 text-center">
+          <button routerLink="/crear-grupo" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear grupo">
+          <span class="fas fa-plus"></span> Crear grupo</button>
+          <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+          </button>
+          <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran los grupos registrados en el sistema. Usted puede editar, activar o desactivar los grupos.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+      </div>
+
+        <div class="collapse col-lg-12" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-nivel-formativo" class="form-group">
+                            <label>Filtrar por nivel formativo</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-disciplina" class="form-group">
+                            <label>Filtrar por disciplina</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-estado" class="form-group">
+                            <label>Filtrar por estado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button></div>
+          <div class="table-responsive">
+              <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                      <tr>
+                          <th>Nombre</th>
+                          <th>Nivel formativo</th>
+                          <th>Disciplina</th>
+                          <th style="width: 80px;">Estado</th>
+                          <th style="width: 100px;">Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let grupo of listaGrupos; let i = index">
+                          <td>{{grupo.nombre}}</td>
+                          <td >{{grupo.nombreNivelFormativo}}</td>
+                          <td >{{grupo.nombreDisciplina}}</td>
+                          <td>
+                            {{grupo.estado ? 'Activo':'Inactivo'}}
+                          </td>
+                          <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                            <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" [routerLink]="['/detalles-grupo', grupo.id]" title="Ver detalles completos">
+                                <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                <span class="sr-only">Ver detalles completos</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" [routerLink]="['/editar-grupo', grupo.id]" title="Editar grupo">
+                                <span class="fas fa-pen" aria-hidden="true"></span>
+                                <span class="sr-only">Editar grupo</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-activar" *ngIf="!grupo.estado" (click)="cambiarEstado(grupo) " title="Cambiar estado">
+                                <span class="far fa-eye" aria-hidden="true"></span>    
+                                <span class="sr-only">Cambiar estado</span>        
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-desactivar" *ngIf="grupo.estado" (click)="cambiarEstado(grupo)" title="Cambiar estado">
+                                <span class="far fa-eye-slash" aria-hidden="true"></span>
+                                <span class="sr-only">Cambiar estado</span>         
+                            </button>
+                              
+                              <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{grupo.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{grupo.id}}">
+                                        <button class="dropdown-item" type="button" title="Ver estudiantes inscritos" (click)="modalSeleccionarPeriodo(grupo)">
+                                          Ver estudiantes inscritos
+                                        </button>
+                                        <button class="dropdown-item" type="button" title="Listar roles" [routerLink]="[ '/listar-roles', grupo.id ]">
+                                            Listar roles
+                                        </button>
+                                        <button class="dropdown-item" type="button" title="Listar premios" [routerLink]="[ '/meritos-grupos', grupo.id, 0 ]">
+                                            Listar méritos
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal para elegir periodo de grupos-->
+<div class="modal fade" id="modalPeriodosGrupos" tabindex="-1" role="dialog" aria-labelledby="modalLabelPeriodosGrupos" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelPeriodosGrupos">Periodos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+
+                <div class="form-group">
+                    <label>Selecccione el periodo para ver los estudiantes que se postularon</label>
+                    <select class="form-control" name="idPeriodo" (change)="verEstudiantesPostulados()" [(ngModel)]="grupo.idPeriodo">
+                        <option disabled selected [value]="null">Seleccione un periodo</option>
+                        <option *ngFor="let periodo of listaPeriodosGrupos" [ngValue]="periodo.idPeriodo">{{periodo.anio}} - {{periodo.numero_periodo}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

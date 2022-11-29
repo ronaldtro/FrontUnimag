@@ -1,0 +1,102 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Perfil del profesional
+        <small class="d-block text-muted">El profesional {{prof.nombres}} cuenta con {{horarios.length}} horarios asignados.</small>
+    </h2>
+    <hr>
+
+    <div id="supervisor" class="row summary mb-3">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white text-center text-lg-left">
+            <h3 class="h4">
+                <small class="d-block text-white">Profesional</small>
+                <b class="d-block">{{prof.nombres}}</b>
+                <a href="blank" target="_blank" class="d-inline-block w-100 text-white"><small class="d-inline-block w-100 text-truncate">Cédula: {{prof.identificacion}}</small></a>
+            </h3>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row p-1 pt-sm-3">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="m-0">Servicios</label>
+                                <p class="form-control-plaintext p-0">{{prof.tipoProfesional}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Email</label>
+                                <p class="form-control-plaintext p-0">{{prof.email}}</p>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="m-0">Sexo</label>
+                                <p class="form-control-plaintext p-0">{{prof.sexo? 'Masculino' : 'Femenino' }}</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+      
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button [routerLink]="[ '/agendaDiaria', prof.id ]" type="button" class="btn btn-outline-dark mb-3 mr-1">Ir a la agenda del día</button>
+                <button [routerLink]="[ '/atenciones/noProgramada' ]" type="button" class="btn btn-outline-dark mb-3 mr-1">Atención no programada</button>
+                <button [routerLink]="[ '/agenda', prof.id ]" type="button" class="btn btn-outline-dark mb-3 mr-1">Ir a la agenda</button>
+            </div>
+        </div>
+        <!-- <div class="table-responsive">
+    
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+          <thead>
+              <tr>
+               
+                  <th scope="col">Consultorio</th>
+                  <th scope="col" class="text-center">Lugar</th>
+                  <th scope="col">Día</th>
+                  <th scope="col" class="text-center">Horario</th>                 
+               
+              </tr>
+          </thead>
+          <tbody>
+           
+              <tr *ngFor="let h of horarios; let i = index" >               
+           
+                  <td>{{h.nombre_consultorio}}</td>
+                  <td class="text-center">{{h.lugar_consultorio}}</td>
+                  <td>{{h.dia_atencion}}</td>
+                  <td class="text-center">{{h.hora_inicio | obtenerHora}} - {{h.hora_fin | obtenerHora| obtenerHora}}</td>
+           
+                
+              </tr>
+          </tbody>
+      </table>
+  </div> -->
+  <h4 class="text-center"> Horarios asignados </h4>
+
+        <div class="mb-3" style="min-width: 380px; overflow:auto;">
+            <full-calendar #fullcalendar id="myCalendar" [defaultView]="calendarOptions.defaultView" [editable]="calendarOptions.editable" [locale]="calendarOptions.locale" [slotLabelFormat]="calendarOptions.slotLabelFormat" [firstDay]="calendarOptions.firstDay"
+                [columnHeaderFormat]="calendarOptions.columnHeaderFormat" [header]="calendarOptions.header" [allDaySlot]="calendarOptions.allDaySlot" [minTime]="calendarOptions.minTime" [maxTime]="calendarOptions.maxTime" [plugins]="calendarOptions.plugins"
+                [events]="horarios" [height]="calendarOptions.height" [hiddenDays]="calendarOptions.hiddenDays"></full-calendar>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+</div>

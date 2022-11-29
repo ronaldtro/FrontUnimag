@@ -1,0 +1,402 @@
+<!-- {{arrayCodigos | json}} -->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.65)" size = "medium" color = "#fff" type = "ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+    <h2 class="text-uppercase animated fadeIn text-center">estudiantes con condiciones especiales<small class="btn-block text-muted">El listado cuenta con {{condEstudiante.length}} estudiantes registrados en el sistema</small></h2>
+    <hr>
+    <div class="row animated fadeIn">     
+
+          <div class="col-lg-12 text-center">
+            <button
+              (click)="crear()"
+              class="btn btn-success text-uppercase mb-3 mr-1"
+              type="button"
+              title="agregar nuevo estudiante">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              Agregar estudiante
+          </button>
+          <!-- (click)="funcionFiltro(condiciones)" -->
+          <button id="btn-filtros"  class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+              <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+          </button>
+          <!-- (click)="crear()"sa -->
+          <button 
+          (click)="crear2()"        
+          class="btn btn-outline-dark mb-3 mr-1"
+          type="button"
+          title="agregar nuevo estudiante">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Agregar condiciones múltiples  <span *ngIf="arrayCodigos.length > 0  " class="badge badge-info"> {{arrayCodigos.length}} </span>
+        </button>
+          <a id="btn-ayuda" tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestra el listado de estudiantes donde se pueden ver en la columna del campo condiciones, los beneficios a los que el estudiante esta adscrito en el momento.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+          </div>  
+  </div>
+
+ 
+
+  <div *ngIf="codigoInvalidos.length > 0" >
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" (click)="codigoInvalidos = [];" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>     
+          <div class="col-12 ">
+              <div class="form-group">                
+                  <span>{{codigoInvalidos.length}} codigos invalidos</span>
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-12 text-center">
+          <button  
+            (click)="Invalidos()"         
+            class="btn btn-success text-uppercase mb-3 mr-1"
+            type="button"
+            title="Ver codigo invalios">
+            <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+            Codigos invalidos
+        </button>
+      </div>
+     
+
+  </div>
+
+  <div class="collapse col-lg-12 pt-3 mb-3" id="collapseFilter">
+      <div class="card card-body px-3 pt-3">
+          <div class="row">
+             
+              <div class="col-12 ">
+                  <div class="form-group">
+                      <label>Filtrar por condición</label>
+                      <select class="form-control input-sm" id="filter-condicion" >
+                          <option value="">- Mostrar todos -</option>
+                          <option value="Sin condición">Sin condición</option>
+                          <option *ngFor="let c of condiciones" [value]="c.nombre">{{c.nombre}}</option>                                               
+                      </select>
+                  </div>
+              </div>
+          </div>
+      </div>
+ </div>
+    <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div> 
+        <div class="table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Condiciones</th>                        
+                        <th style="width: 90px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let condEstudiante of condEstudiante; let i=index">  
+                        <td>
+                          <input type="checkbox" class="form-control"
+                          name="radio-{{condEstudiante.id}}" 
+                          id="radio-{{condEstudiante.id}}" 
+                          [(checklist)]="arrayCodigos" 
+                          [checklistValue]="condEstudiante.codigo"/>
+                        </td>
+
+                        <td>{{condEstudiante.codigo}}</td>                
+                        <td>{{condEstudiante.nombre}}</td>
+                        <td>  
+                              <span *ngIf="condEstudiante.sinCondicion == 0 ">Sin condición</span>
+                                <span *ngFor="let condiciones of condEstudiante.historialCondiciones ; let i=index">
+                                    <span *ngIf="condiciones.estado">{{condiciones.nombre_condicion}}  
+                                        <span *ngIf="i+1 != condEstudiante.sinCondicion ">, </span> 
+                                    </span>                                 
+                                </span> 
+                        </td> 
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <button (click)="asignarCondicionEstudiante(condEstudiante)" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Asignar condición"><span class="far fa-check-square"></span><span class="sr-only">Asignar Condición</span></button>
+                                <button (click)="verEstados(condEstudiante)" type="button" class="btn bg-light btn-outline-secondary btn-sm" title="Historial de las condiciones"><span class="fa fa-history"></span></button>
+                            </div>
+                        </td>                      
+                    </tr>                  
+                </tbody>
+            </table>
+        </div>
+        <!-- <p class="text-center"><a [routerLink]="['/convocatorias', 'historial']">Ver el historial completo de convocatorias</a></p> -->
+    </div>
+</div>
+
+
+
+<!-- modal de historial de asignaciones -->
+<div class="modal fade bd-example-modal-lg" id="estadosCondicionModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+      <div class="modal-content ">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Historial de asignaciones de condición(es)</h5>
+       
+          <button type="button" class="close" data-dismiss="modal"  aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+            <!-- {{asignarCondicion | json}} -->
+                <div class="col-12" *ngIf="asignarCondicion.historialCondiciones.length == 0">
+                    <div class="alert alert-info mb-3" role="alert">
+                        <p> El estudiante no ha tenido asignaciones de condiciones.</p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="table-responsive" *ngIf="asignarCondicion.historialCondiciones.length > 0">
+                        <table  class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Condiciones</th>
+                                    <th>Estado</th>
+                                    <th>fecha de modificación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let estados of asignarCondicion.historialCondiciones  ; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{estados.nombre_condicion }} </td>
+                                    <td>{{estados.estado? 'Activo':'Inactivo'}}</td>
+                                    <td>{{estados.fecha | obtenerFecha | date: 'dd/MM/yyyy, h:mm:ss a' }}</td>
+                                    <!-- <td>{{estados.fecha | date: 'medium'}}</td> -->
+                                </tr>   
+                                            
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+            </div> 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal" >Cerrar</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<!-- modal de asignación y edicion  -->
+<div class="modal fade" id="asignarCondicionModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content ">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Asignación de condición(es)</h5>
+          <!-- {{asignarCondicion | json}} -->
+          <button type="button" class="close" data-dismiss="modal" (click)="asignarCondicionForm.resetForm();" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form (ngSubmit)="asignarCondicionGuardar(asignarCondicionForm)" #asignarCondicionForm="ngForm" novalidate>
+         <div class="modal-body">
+         
+            <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+              <label><b>Corrige los errores:</b></label>
+              <ul>
+                <div *ngFor="let error of errores">
+                  <li *ngIf="error.errores.length>0">
+                    <p>{{error.errores[0].ErrorMessage}}</p>
+                  </li>
+                </div>
+              </ul>
+            </div> 
+              <fieldset>
+                <div class="col-sm-12 col-lg-12 p-3 bg-info text-white mb-1">
+                    <h3 class="h4">
+                      <small class="d-block text-white">Estudiante</small>
+                      <b>{{asignarCondicion.nombre}}</b>
+                      <small class="d-block text-white">Cód: {{asignarCondicion.codigo}}</small>
+                    </h3>
+                   
+                  </div>
+                <div class="row mt-3">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="Condiciones">Condiciones</label>
+                          <ng-select 
+                            [items]="condiciones"   
+                            id="Condiciones" 
+                            bindLabel="nombre"
+                            bindValue="id"
+                            placeholder="Seleccione Condicion(es)" 
+                            name="Condiciones" #Condiciones="ngModel"
+                            [(ngModel)]="asignarCondicion.historialCondiciones"
+                            [multiple]="true" 
+                            [closeOnSelect]="false" 
+                            [hideSelected]="true" 
+                            [required]="false" >
+                            <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                              <div class="ng-option disabled">
+                                No hay resultados
+                              </div>
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                    </div> 
+                 
+                    
+                </div>
+              </fieldset>
+              
+            
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal" (click)="asignarCondicionForm.resetForm();">Cancelar</button>
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+<!-- modal de insertar estudiante -->
+  <div class="modal fade" id="insertarEstudiante" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content ">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ingresar estudiantes al sistema</h5>
+            <!-- {{asignarCondicion | json}} -->
+            <button type="button" class="close" data-dismiss="modal" (click)="insertarEstudianteForm.resetForm();" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <form (ngSubmit)="estudienteGuardar(insertarEstudianteForm)" #insertarEstudianteForm="ngForm" novalidate>
+           <div class="modal-body">
+                <fieldset>
+                    <div class="col-12">
+                        
+                        <div class="form-group">
+                                <label for="valor">Código estudiantil</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (insertarEstudianteForm.submitted || codigo.touched) && codigo.errors?.required }"
+                                type="text"
+                                placeholder="Ingrese el Código estudiantil"
+                                name="codigo"
+                                id="codigo"
+                                [(ngModel)]="estudiante.codigo"                              
+                                required
+                                #codigo="ngModel">                              
+                        </div>
+                </div>    
+                </fieldset> 
+          </div> 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal" (click)="insertarEstudianteForm.resetForm();">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+     
+  <!-- modal de asignación a muchos estudiantes -->
+    <div class="modal fade" id="asignarCondicionModal2" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content ">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Asignación de condición(es)</h5>
+            <!-- {{asignarCondicion | json}} -->
+            <button type="button" class="close" data-dismiss="modal" (click)="asignarCondicion2Form.resetForm(); arrayCodigos = [];" aria-label="Cerrar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <form (ngSubmit)="asignarCondicion2Guardar(asignarCondicion2Form)" #asignarCondicion2Form="ngForm" novalidate>
+          <div class="modal-body">
+          
+              <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                <label><b>Corrige los errores:</b></label>
+                <ul>
+                  <div *ngFor="let error of errores">
+                    <li *ngIf="error.errores.length>0">
+                      <p>{{error.errores[0].ErrorMessage}}</p>
+                    </li>
+                  </div>
+                </ul>
+              </div> 
+              
+              <!-- [ngClass]="{'is-invalid': codigo.errors?.required && (codigo.touched || estadoFormMultiple.submitted)}" -->
+                <fieldset>
+                <div class="col-md-12">
+                    <!-- <div *ngIf="arrayCodigos.length > 0" class="form-group">
+                        <label for="codigo">Códigos estudiantiles</label>
+                        <textarea class="form-control" type="text" 
+                        name="codigo" id="codigo" 
+                        [(ngModel)]="arrayCodigos" #codigo="ngModel" rows=4  disabled
+                        ></textarea>
+                        <div class="invalid-feedback">Digite los códigos de los estudiantes</div>
+                    </div> -->
+
+                    <div class="form-group">
+                        <label for="codigo">Códigos estudiantiles</label>
+                        <textarea class="form-control" type="text" placeholder="Ingrese los códigos de los estudiantes separados por coma ( , )" 
+                        name="codigo" id="codigo" 
+                        [(ngModel)]="codigos" #codigo="ngModel" rows=4  
+                        ></textarea>
+                        <div class="invalid-feedback">Digite los códigos de los estudiantes</div>
+                    </div>
+                </div>
+                <!-- [ngClass]="{'is-invalid': ((estadoFormMultiple.submitted || estadoMultiple.touched) && estadoMultiple.errors?.required) }" -->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Condición">Condición</label>
+                        <select class="form-control" [(ngModel)]="asignarCondicion2.condicion_id" id="Condición" name="Condición"  #Condición="ngModel">
+                            <option value="null" selected disabled>Seleccione un estado</option>
+                            <option *ngFor="let item of condiciones" value="{{item.id}}">{{item.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                </fieldset>
+                
+              
+          </div> 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal" (click)="asignarCondicion2Form.resetForm(); arrayCodigos = [];">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div> 
+
+  <!-- codigo invalidios -->
+  <div class="modal fade" id="codigosInvalidos" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Codigos invalidos</h5>
+              <!-- {{asignarCondicion | json}} -->
+              <button type="button" class="close" data-dismiss="modal" (click)="codigoInvalidos = [];" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>            
+             <div class="modal-body">
+                <div class="form-row">
+                  <div *ngFor="let item of codigoInvalidos; let i ">
+                      <b target="_blank" class="d-inline-block w-100 " ><small class="d-inline-block w-100 text-truncate">Código: {{item.codigo}} </small></b>
+                      <b target="_blank" class="d-inline-block w-100 " ><small class="d-inline-block w-100 text-truncate">Observación: {{item.observacion}}</small></b>
+                      <br>
+                    </div>
+                    <!-- <table class="table table-light" *ngIf="codigoInvalidos.length > 0">
+                        <thead>
+                                <tr>
+                                    <th scope="col">Código </th>
+                                    <th scope="col" class="text-center">Observaciones</th>                                    
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let item of codigoInvalidos; let i ">
+                                    <td>{{item.codigo}}</td>
+                                    <td>{{item.observacion}}</td>                                   
+                                </tr>
+                        </tbody>
+                    </table> -->
+                 </div>
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" data-dismiss="modal" (click)="codigoInvalidos = [];" >Cerrar</button>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    

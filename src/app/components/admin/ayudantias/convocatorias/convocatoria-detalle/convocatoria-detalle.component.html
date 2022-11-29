@@ -1,0 +1,101 @@
+<h2 class="text-uppercase text-center animated fadeIn">Convocatorias <small class="btn-block text-muted">Detalles de la convocatoria</small></h2>
+<hr class="animated fadeIn">
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<fieldset *ngIf="convocatoria" class="animated fadeIn">
+    <legend>Información general</legend>
+    <div class="row ">
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" class="form-control" placeholder="Título de la convocatoría" [(ngModel)]="convocatoria.titulo" readonly disabled>
+
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="presupuesto">Presupuesto</label>
+                <select id="presupuesto" class="form-control" name="presupuesto" [(ngModel)]="convocatoria.bolsa_presupuestal_id" disabled>
+                    <option value="null" disabled selected>Elegir un presupuesto</option>
+                    <option *ngFor="let bolsa of bolsas" [value]="bolsa.id">{{bolsa.periodo}} ({{bolsa.valor | currency:'COP' }})</option>
+                    
+                </select>
+
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                <label>Fecha de expedición</label>
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-12 p-0">
+                        <p-calendar inputStyleClass="form-control" [(ngModel)]="convocatoria.fecha_expedicion" dateFormat="dd/mm/yy" disabled [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <label for="soporte">Soporte <button type="button" class="btn btn-link btn-sm" (click)="viewDoc()">Ver documento cargado</button></label>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12" *ngIf="convocatoria.descripcion">
+            <hr>
+            <div class="form-group">
+                <label for="soporte">Descripción</label>
+                <p>
+                    {{convocatoria.descripcion}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+
+<hr>
+<fieldset *ngIf="convocatoria" class="animated fadeIn">
+    <legend>Etapas de la convocatoria </legend>
+    <div class="table-responsive mt-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let etapa of convocatoria.etapas | orderBy:'peso_etapa' ; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{etapa.estado_id | iDToName:estados}}</td>
+                    <td>{{etapa.fecha_inicio | date : 'medium'}} - {{etapa.fecha_fin | date : 'medium'}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <a role="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver al listado</a>
+    </div>
+</fieldset>
+
+
+
+
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="convocatoria">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="convocatoria.soporte  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,246 @@
+<div class="text-center mb-3">
+    <button type="button" class="btn btn-success mr-1" (click)="abrirModalEnvio()">Registrar envío <span class="badge badge-light" *ngIf="codigosSeleccionados.length > 0">{{codigosSeleccionados.length}}</span></button>
+    <!-- <button type="button" class="btn btn-outline-dark mr-1">Registrar entrega por códigos</button> -->
+    <button id="btn-filtros" class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+    </button>
+</div>
+
+<div class="collapse mb-3" id="collapseFilter">
+    <div class="card card-body px-3 pt-3">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-sexo" class="form-group">
+                    <label>Filtrar por sexo</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-tipoDoc" class="form-group">
+                    <label>Filtrar por tipo doc</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-estrato" class="form-group">
+                    <label>Filtrar por estrato</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-departamento" class="form-group">
+                    <label>Filtrar por departamento</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-municipio" class="form-group">
+                    <label>Filtrar por municipio</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-facultad" class="form-group">
+                    <label>Filtrar por facultad</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-programa" class="form-group">
+                    <label>Filtrar por programa</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-colegio" class="form-group">
+                    <label>Filtrar por colegio</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div id="filter-rapimercar" class="form-group">
+                    <label>Filtrar por rapimercar</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="table-estudiantes" style="width:100%;">
+        <thead>
+            <tr>
+                <th style="width: 40px;"></th>
+                <th>Código</th>
+                <th>Nombre completo</th>
+                <th>Sexo</th>
+                <th>Tipo doc</th>
+                <th>Num doc</th>
+                <th>Estrato</th>
+                <th>Departamento origen</th>
+                <th>Municipio</th>
+                <th>Sisben</th>
+                <th>Dirección de residencia</th>
+                <th>Teléfono</th>
+                <th>Celular</th>
+                <th>Email</th>
+                <th>Facultad</th>
+                <th>Programa</th>
+                <th>Colegio</th>
+                <th>Condiciones especiales</th>
+                <th>Convocatoria almuerzos/refrigerios</th>
+                <th>Programa de inclusión y permanencia</th>
+                <th>Ayudantias académicas, extensión y administrativas</th>
+                <th>Programa jovenes en acción</th>
+                <th>Rapimercar</th>
+                <th>Solicitante</th>
+                <th>Envíos</th>
+                <th>Entregas</th>
+                <th style="width: 110px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let estudiante of estudiantes">
+                <td>
+                    <input type="checkbox" name="codigo-{{estudiante.id}}" [id]="estudiante.id" [(checklist)]="codigosSeleccionados" [checklistValue]="estudiante.codigo" [maxSelectedItems]="100"/>
+                </td>
+                <td>{{estudiante.codigo}}</td>
+                <td>{{estudiante.nombre | titlecase}}</td>
+                <td>{{estudiante.sexo}}</td>
+                <td>{{estudiante.tipo_identificacion}}</td>
+                <td>{{estudiante.identificacion}}</td>
+                <td>{{estudiante.estrato}}</td>
+                <td>{{estudiante.departamento}}</td>
+                <td>{{estudiante.municipio}}</td>
+                <td>{{estudiante.sisben | number: '1.0-2'}}</td>
+                <td>{{estudiante.direccion}}</td>
+                <td>{{estudiante.telefono}}</td>
+                <td>{{estudiante.celular}}</td>
+                <td>{{estudiante.email}}</td>
+                <td>{{estudiante.facultad}}</td>
+                <td>{{estudiante.programa}}</td>
+                <td>{{estudiante.colegio}}</td>
+                <td>
+                    <span *ngFor="let condicion of estudiante.condiciones_especiales; let last = last">{{condicion.nombre}} <span *ngIf="!last">, </span></span>
+                </td>
+                <td>{{estudiante.tiene_beneficio_alimenticio}}</td>
+                <td>{{estudiante.es_inclusion}}</td>
+                <td>{{estudiante.tiene_ayudantia}}</td>
+                <td>{{estudiante.es_joven_en_accion}}</td>
+                <td>{{estudiante.almacen_mas_cercano}}</td>
+                <td title="{{estudiante.solicitante}}">{{estudiante.solicitante.split('@')[0]}}</td>
+                <td>{{estudiante.envios.length}}</td>
+                <td>{{estudiante.entregas.length}}</td>
+                
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline-dark mr-1" (click)="abrirModalDetalles(estudiante)" title="Ver detalles de {{estudiante.nombre}}">
+                        <span class="fas fa-search" aria-hidden="true"></span>
+                        <span class="sr-only">Ver detalles de {{estudiante.nombre}}</span>
+                    </button>
+                    <button type="button" *ngIf="userService.roleMatch(['AdminAyudas']) && (estudiante.envios | enviosSinEntrega).length > 0" class="btn btn-sm btn-outline-dark mr-1" title="Registrar entrega" (click)="abrirModalEntrega(estudiante)">
+                        <span class="fas fa-plus" aria-hidden="true"></span>
+                        <span class="sr-only">Registrar entrega a {{estudiante.nombre}}</span>
+                        
+                    </button>
+                    <button type="button" *ngIf="userService.roleMatch(['AdminAyudas'])" class="btn btn-sm btn-outline-dark" title="Retirar ayuda" (click)="retirarAyuda(estudiante)">
+                        <span class="fas fa-ban" aria-hidden="true"></span>
+                        <span class="sr-only">Retirar ayuda a {{estudiante.nombre}}</span>
+                        
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<app-detalle-solicitud-ayuda #modalDetalle></app-detalle-solicitud-ayuda>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrar entrega</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #entregaForm="ngForm" novalidate (ngSubmit)="registrarEntrega(entregaForm)">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="alert alert-info">Seleccione el envío que desea reportar como entregado y la fecha de entrega. Opcionalmente puede ingresar una observación de la entrega.</div>
+                    <div class="form-group" *ngIf="estudianteSeleccionado">
+                        <label for="fecha-envio-entrega">Fecha de envío</label>
+                        <select class="form-control" name="fecha_envio" id="fecha-envio-entrega" [(ngModel)]="cambioSeleccionado.id_entrega_beneficio">
+                            <option disabled [value]="undefined">- Seleccione un envío -</option>
+                            <option *ngFor="let envio of estudianteSeleccionado.envios | enviosSinEntrega; let index = index;" [value]="envio.id">Envío {{index + 1}} ({{envio.fecha_envio | date: 'dd/MM/yyyy'}})</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-cambio">Fecha de entrega</label>
+                        <input type="date" class="form-control" name="fecha" id="fecha-cambio" placeholder="AAAA-MM-DD" required [ngModel]="cambioSeleccionado.fecha | date:'yyyy-MM-dd'" (ngModelChange)="cambioSeleccionado.fecha = $event">
+                    </div>
+                    <div class="form-group">
+                        <label for="observacion-cambio">Observación</label>
+                        <textarea class="form-control" rows="4" name="observacion" id="observacion-cambio" maxlength="500" placeholder="Máx. 500 caracteres" [(ngModel)]="cambioSeleccionado.observacion"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="envioModal" tabindex="-1" role="dialog" aria-labelledby="envioModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="envioModalLabel">Registrar envío</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #envioForm="ngForm" (ngSubmit)="registrarEnvio(envioForm)">
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <label for="fecha-envio">Fecha de envío</label>
+                        <input type="date" class="form-control" name="fecha" id="fecha-envio" placeholder="AAAA-MM-DD" required [ngModel]="envio.fecha | date:'yyyy-MM-dd'" (ngModelChange)="envio.fecha = $event">
+                    </div>
+                    <div class="form-group">
+                        <label for="observacion-envio">Observación</label>
+                        <textarea class="form-control" rows="4" name="observacion" id="observacion-envio" maxlength="500" placeholder="Máx. 500 caracteres" [(ngModel)]="envio.observacion"></textarea>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" [value]="false" name="seleccion" id="todos-envio" [(ngModel)]="envio.seleccion">
+                        <label class="form-check-label" for="todos-envio">
+                            Registrar envío a todos los estudiantes de las solicitudes aprobadas
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" [value]="true" name="seleccion" id="seleccion-envio" [(ngModel)]="envio.seleccion">
+                        <label class="form-check-label" for="seleccion-envio">
+                            Registrar envío a los estudiantes seleccionados
+                        </label>
+                    </div>
+                    <div class="form-group mt-3" *ngIf="envio.seleccion">
+                        <label for="codigos-envio">Códigos seleccionados</label>
+                        <textarea class="form-control" rows="4" name="codigos" id="codigos-envio" maxlength="1200" placeholder="Máx. 100 códigos" [(ngModel)]="envio.codigo"></textarea>
+                        <details class="mb-3 bg-warning p-1" *ngIf="codigosInvalidos.length > 0">
+                            <summary class="small">Ha ingresado {{codigosInvalidos.length}} códigos de estudiantes que no aparecen en el listado de solicitudes aprobados. Remueva los códigos y vuelva a intentarlo. Clic aquí para ver</summary>
+                            <div class="p-2">
+                                <span class="badge badge-info mr-1 mb-1" *ngFor="let codigo of codigosInvalidos">{{codigo}}</span>
+
+                            </div>
+                            
+                        </details>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>

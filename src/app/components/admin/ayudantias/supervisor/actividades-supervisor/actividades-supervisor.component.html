@@ -1,0 +1,441 @@
+<div class="animated fadeIn">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+    <h2 class="text-uppercase text-center">Actividades del estudiante 
+        <small class="btn-block text-muted">Listado de las actividades del estudiante 
+        <span *ngIf="userService.roleMatch(['SupervisorAyudante'])">a cargo</span>. El listado cuenta
+            con {{actividades.length}} registro(s)</small></h2>
+    <hr>
+
+    <div id="perfil" class="row summary">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white text-center text-lg-left">
+            <h3 class="h4">
+                <small class="d-block text-white">Estudiante</small>
+                <b>{{plaza.estudiante}}</b>
+                <small class="d-block text-white mb-1">Cód: {{plaza.codigo}}</small>
+                <small class="d-block text-white" *ngIf="plaza.estado_estudiante">Estado: {{plaza.estado_estudiante}}</small>
+
+            </h3>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row p-1 pt-sm-3">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Plaza</label>
+                                <p class="form-control-plaintext p-0">{{plaza.Nombre}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de plaza</label>
+                                <p class="form-control-plaintext p-0">{{plaza.tipo.nombre}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Convocatoria</label>
+                                <p class="form-control-plaintext p-0">{{plaza.convocatoria}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Unidad encargada</label>
+                                <p class="form-control-plaintext p-0">{{plaza.unidad}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" *ngIf="plaza.estado_convocatoria">
+                            <div class="form-group">
+                                <label class="m-0">Etapa convocatoría</label>
+                                <p class="form-control-plaintext p-0">{{plaza.estado_convocatoria}}</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- <div class="form-group mb-2 mr-3 d-inline-block">
+                    <label class="m-0">Cupos solicitados</label>
+                    <p class="form-control-plaintext p-0">{{plaza.cupos_solicitados}}</p>
+                </div> -->
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="row h-100">
+                        <div class="col-6 p-3">
+                            <label class="d-block">Total de horas realizadas</label>
+                            <strong class="h1">{{getInteger(horas)}}h <span
+                                    *ngIf="getInteger(getDecimals(horas) * 60) > 0">{{getDecimals(horas) * 60 | number : '1.0-0'}}m
+                                </span></strong>
+                        </div>
+                        <div class="col-6 p-3">
+                            <label class="d-block">Total de horas revisadas</label>
+                            <strong class="h1">{{getInteger(horasRev)}}h <span
+                                    *ngIf="getInteger(getDecimals(horasRev) * 60) > 0">{{getDecimals(horasRev) * 60 | number : '1.0-0'}}m
+                                </span></strong>
+                        </div>
+                        <div class="col-6 p-3" *ngIf="horas_eliminadas > 0.0">
+                            <label class="d-block">Total de horas canceladas por comité</label>
+                            <strong class="h1">{{getInteger(horas_eliminadas)}}h <span
+                                *ngIf="getInteger(getDecimals(horas_eliminadas) * 60) > 0">{{getDecimals(horas_eliminadas) * 60 | number : '1.0-0'}}m
+                            </span></strong>
+                        </div>
+                        <div class="col-6 p-3">
+                            <label class="d-block">Total de horas rechazadas</label>
+                            <strong class="h1">{{getInteger(horas_rechazadas)}}h <span
+                                    *ngIf="getInteger(getDecimals(horas_rechazadas) * 60) > 0">{{getDecimals(horas_rechazadas) * 60 | number : '1.0-0'}}m
+                                </span></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row pt-3">
+
+        <div class="col-12">
+
+
+            <div class="alert alert-info mb-3" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <ul class="pl-3">
+                    <li>
+                        A continuación, se muestran todas las actividades realizadas por el estudiante. Desde la columna de acciones, puede acceder al detalle de la actividad y el listado de estudiantes atendidos.
+                    </li>
+                    <li *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias'])">
+                        En el ícono <span class="fa fa-calendar-times" aria-hidden="true"></span>, puede cancelar la actividad.
+                    </li>
+                    <li *ngIf="userService.roleMatch(['SupervisorAyudante'])">
+                        En las acciones, podrá revisar o rechazar la actividad. Esta acción es irreversible.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="table-responsive animated fadeIn">
+                <!-- datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"            -->
+                <!-- <div class="alert alert-info text-center" role="alert">
+           <p><strong>Total de horas realizadas : </strong> {{horas}} <br> <strong>  Total de horas revisadas : </strong> {{horasRev}}</p> 
+          </div> -->
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table_actividadesEst">
+                    <thead class="text-center">
+                        <tr>
+                            <th style="width:160px;">Fecha Inicio</th>
+                            <th style="width:160px;">Fecha Fin</th>
+                            <th style="width:80px;">Tiempo</th>
+                            <th>Descripción</th>
+                            <th>Estado actividad</th>
+                            <th style="width:140px;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let actividad of actividades " [ngClass]="{'table-success': actividad.estado_id == 3,'table-danger': actividad.estado_id == 4}">
+                            <td attr.data-order="{{actividad.fecha_inicio | date:'yyyy-MM-dd HH:mm' }}">{{ actividad.fecha_inicio | date:'dd/MM/yyyy, hh:mm a' }}</td>
+                            <td attr.data-order="{{actividad.fecha_fin | date:'yyyy-MM-dd HH:mm' }}">{{ actividad.fecha_fin | date:'dd/MM/yyyy, hh:mm a' }}</td>
+                            <td class="text-center">
+                                <span *ngIf="diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin) % 1 > 0.0">
+                                    {{getInteger(diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin))}}h {{getDecimals(diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)) * 60 | number : '1.0-0'}}m
+                                </span>
+                                <span *ngIf="diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin) % 1 == 0.0">
+                                    {{diferenciaHoras(actividad.fecha_inicio, actividad.fecha_fin)}}h
+                                </span>
+                            </td>
+                            <td>{{ funciones.sentenceCase(actividad.descripcion) | limitTo: 255}} <button type="button" (click)="verDetalle(actividad)" class="btn btn-sm btn-link" *ngIf="actividad.descripcion.length > 255">Ver descripción completa</button></td>
+                            <td>{{actividad.estado_nombre}}</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Acciones">
+                                    <button *ngIf="userService.roleMatch(['SupervisorAyudante']) && actividad.estado_id == 1 " (click)="aprobarActividad(actividad)" class="btn btn-sm btn-outline-dark btn-revisar" type="button" [title]="actividad.estado_id == 3 ? 'Revisado' : 'Revisar'">
+                                        <span
+                                            [ngClass]="{'far fa-check-square': actividad.estado_id == 3, 'fas fa-check': actividad.estado_id == 1}"
+                                            aria-hidden="true"></span>
+                                        <span *ngIf="actividad.estado_id == 1" class="sr-only">Aprobar actividad</span>
+                                        <span *ngIf="actividad.estado_id == 3" class="sr-only">Deshacer acción</span>
+                                    </button>
+                                    <button *ngIf="userService.roleMatch(['SupervisorAyudante']) && actividad.estado_id == 1 " (click)="rechazarActividad(actividad)" class="btn btn-sm btn-outline-dark btn-rechazar" type="button" [title]="actividad.estado_id == 3 ? 'Revisado' : 'Rechazar'">
+                                        <span
+                                            [ngClass]="{'far fa-check-square': actividad.estado_id == 4, 'fas fa-times': actividad.estado_id == 1}"
+                                            aria-hidden="true"></span>
+                                        <span *ngIf="actividad.estado_id == 1" class="sr-only">Rechazar actividad</span>
+                                        <span *ngIf="actividad.estado_id == 4" class="sr-only">Deshacer acción</span>
+                                    </button>
+                                    <button (click)="verDetalle(actividad)" class="btn btn-sm btn-outline-dark btn-detalle" type="button" title="Ver detalle">
+                                        <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                        <span class="sr-only">Ver detalles completos de la actividad</span>
+                                    </button>
+                                    <button *ngIf="userService.roleMatch(['Admin']) || userService.roleMatch(['AdminMonitorias'])" (click)="openModalComite(actividad)" class="btn btn-sm btn-outline-dark btn-cancelar" type="button" title="Cancelar actividad">
+                                        <span class="fa fa-calendar-times" aria-hidden="true"></span>
+                                        <span class="sr-only">Cancelar actividad</span>
+                                    </button>
+                                    <button *ngIf="userService.roleMatch(['Revisor']) &&  actividad.estado_id != 2" class="btn btn-sm btn-outline-dark btn-nuevaObservacion" type="button" title="Nueva observación" (click)="openModalObservacion(actividad)">
+                                        <span class="fas fa-folder-plus"></span>
+                                        <span class="sr-only">Agregar observación</span>
+                                    </button>
+                                    <button *ngIf="plaza.tipo.id == 1" (click)="verEstudiantes(actividad)" class="btn btn-outline-dark btn-estudiantesAtendidos" [disabled]="actividad.estudiantes_atendidos.length == 0" type="button" [title]="actividad.estudiantes_atendidos.length == 0 ? 'No hay estudiantes registrados' : 'Ver estudiantes atendidos'">
+                                        <span class="fa fa-users mr-1" aria-hidden="true"></span>
+                                        <span class="badge badge-light ">{{actividad.estudiantes_atendidos.length}}</span>
+                                        <span class="sr-only">Ver estudiantes atendidos</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="text-center mb-3">
+                <button id="volverSupervisor" *ngIf="userService.roleMatch(['SupervisorAyudante']) " type="button" class="btn btn-light mr-1" [routerLink]="['/supervisor/estudiantes']">Volver</button>
+                <button id="volver" *ngIf="userService.roleMatch(['Unidad', 'UnidadMonitorias', 'Admin', 'AdminMonitorias', 'ComiteMonitorias']) " type="button" class="btn btn-light mr-1" [routerLink]="[ '/plazas', plaza.plaza_id , 'estudiantes']">Volver</button>
+                <button id="evaluar" *ngIf="userService.roleMatch(['SupervisorAyudante']) && plaza.peso_convocatoria == 8 " type="button" class="btn btn-success mr-1" (click)="openModalSupervisor()">Evaluar ayudantía</button>
+                <button id="evaluarMonitoria" *ngIf="userService.roleMatch(['SupervisorAyudante']) && (plaza.estado_convocatoria_id >= etapa.Inicio_de_actividades || plaza.estado_convocatoria_id == 0) && (plaza.estado_convocatoria_encuesta != null && plaza.estado_convocatoria_encuesta != 0) && !plaza.e_calificado" type="button" class="btn btn-success mr-1" [routerLink]="['/encuestaMonitorias', plaza.id]">Evaluar monitoría</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="verDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Detalle de la actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-1">Fecha de inicio</label>
+                                <p class="form-control-plaintext">{{detalle.fecha_inicio | date:'dd/MM/yyyy HH:mm'}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-1">Fecha de fin</label>
+                                <p class="form-control-plaintext">{{detalle.fecha_fin | date:'dd/MM/yyyy HH:mm'}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-1">Estado</label>
+                                <p class="form-control-plaintext">{{detalle.estado_nombre}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="detalle.actividad_a_realizar">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-1">Actvidad a realizar</label>
+                                <p class="form-control-plaintext">{{detalle.actividad_a_realizar}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-1">Descripción de la actividad</label>
+                                <p class="form-control-plaintext">{{detalle.descripcion}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12"*ngIf="detalle.soporte_actividad">
+                            <div class="form-group">
+                                <label class="font-weight-bold mb-1">Soporte de la actividad</label>
+                                <p class="form-control-plaintext"><a [href]="api + detalle.soporte_actividad" target="_blank">Clic aquí para ver el soporte de la actividad</a></p>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="detalle.soporte != null">
+                            <div class="form-group">
+                                <label>Soporte</label>
+                                <p class="form-control-plaintext"><a [href]="api + detalle.soporte" target="_blank">Ver detalle</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="verEstAtendidos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Estudiantes atendidos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="detalle.estudiantes_atendidos.length == 0" class="alert alert-info">
+                    <strong>No se encontraron datos de estudiantes atendidos. </strong>
+                </div>
+                <div *ngIf="detalle.estudiantes_atendidos.length > 0">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 40px;">#</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Programa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let estudiante of detalle.estudiantes_atendidos; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{ estudiante.codigo }} </td>
+                                <td>{{ estudiante.nombre }} </td>
+                                <td>{{ estudiante.programa }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-center"><strong>Total de estudiantes atendidos: </strong>{{detalle.estudiantes_atendidos.length}}</p>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="formularioComite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancelar actividad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="estadoComite(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="observacion">Observación</label>
+                                <textarea class="form-control " [ngClass]="{'is-invalid ': observacion.errors?.required && (forma.submitted || observacion.touched) }" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacion" id="observacion"
+                                    [(ngModel)]="registroComite.observacion" required #observacion="ngModel"> </textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="codigo">Soporte</label>
+                                <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="formularioSup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Evaluar ayudantía</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="formaRecomendacion.resetForm();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="evaluarAyudantia(formaRecomendacion)" #formaRecomendacion="ngForm" novalidate>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                Todos los campos son obligatorios.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="form-group">
+                                <label for="recomendacion">¿Desea recomendar al estudiante? </label>
+                                <select [ngClass]="{'is-invalid': recomendacion.errors?.required && (recomendacion.touched || formaRecomendacion.submitted)}" id="recomendacion" class="form-control" name="recomendacion" [(ngModel)]="agregarRecomendacion.estado_id" #recomendacion="ngModel"
+                                    required>
+                                    <option [value]="null" disabled selected>Elegir una opción</option>
+                                    <option *ngFor="let recomendacion of recomendaciones" [value]="recomendacion.id">
+                                        {{recomendacion.nombre}}</option>
+
+                                </select>
+                                <div class="invalid-feedback">Seleccione una de las opciones</div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="observacion">Observación</label>
+                                <textarea class="form-control " [ngClass]="{'is-invalid ': observacion.errors?.required && (formaRecomendacion.submitted || observacion.touched) }" type="text" placeholder="Escriba aquí el desempeño del estudiante en el transcurso de la ayudantía. Máx 455 caracteres"
+                                    name="observacion" id="observacion" [(ngModel)]="agregarRecomendacion.observacion" required #observacion="ngModel"> </textarea>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="formaRecomendacion.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="observacionM" tabindex="-1" role="dialog" aria-labelledby="observacionTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="observacionTitle">Agregar Observación </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="closeFormObserbacion(observacionForm)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="enviarObservacion(observacionForm)" #observacionForm="ngForm" novalidate>
+                <div class="modal-body">
+
+                    <div class="form-row">
+                        <label for="observacion">Observación</label>
+                        <textarea class="form-control" id="observacion" placeholder="Escriba aquí su observación" name="observacion" [(ngModel)]="observacion_plaza" #observacionTxt="ngModel" required [ngClass]="{'is-invalid': observacionTxt.errors?.required  && (observacionTxt.touched || observacionForm.submitted)}"></textarea>
+                        <div class="invalid-feedback">
+                            Este campo es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="closeFormObserbacion(observacionForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

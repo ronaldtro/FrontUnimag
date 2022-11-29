@@ -1,0 +1,182 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate">
+</ngx-spinner>
+<div class="animated fadeIn mb-3">
+    <h2 class="text-uppercase text-center">Plazas<small class="btn-block text-muted">Resultado obtenido por el estudiante</small></h2>
+    <hr>
+
+    <div class="row summary">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white">
+            <h3 class="h4">
+                <small class="d-block text-white">Estudiante</small>
+                <b>{{estudiante.nombre}}</b>
+                <small class="d-block text-white">Cód: {{estudiante.codigo}}</small>
+            </h3>
+            <p class="m-0 border-top pt-2 text-right">
+                <label class="text-white m-0">Puntaje total porcentual: </label>
+                <span class="font-weight-bold h5"> {{puntaje()}} %</span>
+            </p>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row p-1 pt-sm-3">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Plaza</label>
+                                <p class="form-control-plaintext p-0">{{plaza.plaza}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de ayudantía</label>
+                                <p class="form-control-plaintext p-0">{{plaza.tipoPlaza}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="m-0">Unidad solicitante</label>
+                                <p class="form-control-plaintext p-0">{{funciones.sentenceCase(plaza.unidad)}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="form-group mb-2 mr-3 d-inline-block">
+              <label class="m-0">Cupos solicitados</label>
+              <p class="form-control-plaintext p-0">{{plaza.cupos_solicitados}}</p>
+          </div> -->
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="form-group mb-2">
+                        <label class="m-0">Perfil de la plaza</label>
+                        <p class="form-control-plaintext p-0">{{ funciones.sentenceCase(plaza.perfil) }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <form (ngSubmit)="editarEvaluacion(forma)" #forma="ngForm" novalidate>
+        <div class="row">
+
+            <div class="col-sm-12 col-lg-3 pt-3 summary" *ngIf="plaza.competencias_requeridas">
+                <div class="form-group">
+                    <label class="m-0">Competencias requeridas</label>
+                    <p class="form-control-plaintext p-0">{{funciones.sentenceCase(plaza.competencias_requeridas)}}</p>
+
+                </div>
+            </div>
+            <div class="col-sm-12 pt-3" [ngClass]="{' col-lg-9': plaza.competencias_requeridas}">
+                <!-- *ngIf="_userService.roleMatch(['Admin'])" -->
+
+
+
+                <div class="alert alert-info mb-3" role="alert" *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                    <p><strong>Para editar la evaluación tenga en cuenta:</strong> </p>
+                    <ul class="m-0">
+                        <li>
+                            Debe ingresar el solicitante del cambio de evaluación.
+                        </li>
+                        <li>
+                            Debe ingresar el motivo de la modifiacación.
+                        </li>
+                        <li>
+                            Debe anexar un soporte.
+                        </li>
+                    </ul>
+                </div>
+
+
+                <h4 *ngIf="!bandera" class="text-center text-dark">Criterios de evaluación</h4>
+                <h4 *ngIf="bandera" class="text-center text-dark">Editar evaluación del estudiante</h4>
+                <div class="table-responsive">
+
+                    <table id="table_evaluacionEst" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Criterio</th>
+                                <th scope="col" style="width: 80px;" class="text-center">Valor máx.</th>
+                                <th scope="col" style="width: 80px;" class="text-center">Porcentaje</th>
+                                <th scope="col" class="text-center" style="width: 100px;">Puntaje obtenido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of evalEdit.eval; let i = index;">
+                                <td>{{ funciones.sentenceCase(item.descripcion) }} </td>
+                                <td class="text-center">{{ item.valor_maximo }} </td>
+                                <td class="text-center">{{ item.porcentaje }} % </td>
+                                <td *ngIf="_userService.roleMatch(['Unidad', 'UnidadMonitorias', 'EvaluadorMonitoria', 'ComiteMonitorias'])" class="text-center">
+                                    {{item.puntaje}}
+                                </td>
+                                <td *ngIf="_userService.roleMatch(['Admin', 'AdminMonitorias'])" class="text-center">
+                                    <!-- <strong *ngIf="bandera"> {{item.puntaje}} </strong> -->
+
+                                    <input class="form-control form-control-sm" [ngClass]="{'is-invalid ': (puntaje_i.errors?.min || puntaje_i.errors?.max  || puntaje_i.errors?.required) && (puntaje_i.touched || forma.submitted) }" type="number" min="0" max="{{item.valor_maximo}}" id="puntaje_{{i}}"
+                                        name="puntaje_{{i}}" [(ngModel)]="item.puntaje" #puntaje_i="ngModel" [disabled]="!bandera" required>
+
+                                    <div class="invalid-feedback" *ngIf="(puntaje_i.errors?.min)">
+                                        Solo números mayores o iguales que 0.
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="(puntaje_i.errors?.max )">
+                                        Solo números menores o iguales que {{item.valor_maximo}}.
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="(puntaje_i.errors?.required && forma.submitted)">
+                                        Por favor, completa este campo.
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <div *ngIf="bandera" class="row mx-0">
+                        <legend class="text-center">Información para soporte de cambio</legend>
+                        <div class="col-12">
+                            <div id="solicitante" class="form-group">
+                                <label for="solicitante">Solicitante</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': solicitante.errors?.required && (forma.submitted || solicitante.touched) }" type="text" placeholder="Ingrese el solicitante. Máx 255 caracteres" name="solicitante" id="solicitante" [(ngModel)]="evalEdit.solicitante"
+                                    required #solicitante="ngModel" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="observacion" class="form-group">
+                                <label for="observacion">Observación</label>
+                                <textarea class="form-control " rows="4" [ngClass]="{'is-invalid ': observacion.errors?.required && (forma.submitted || observacion.touched) }" type="text" placeholder="Ingrese el motivo del cambio de estado. Máx 455 caracteres" name="observacion" id="observacion"
+                                    [(ngModel)]="evalEdit.observacion" required #observacion="ngModel" maxlength="455"> </textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div id="soporte" class="form-group">
+                                <label for="soporte">Soporte <small class="text-muted">(Solo formato PDF)</small></label>
+                                <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="alert alert-info text-center" role="alert">
+                    El puntaje porcentual total del estudiante es <strong>{{puntaje()}} % </strong>.
+                </div>
+                <div class="text-center">
+                    <button *ngIf="!bandera" type="button" class="btn btn-light mr-1" (click)="backClicked()">Volver al listado</button>
+                    <button *ngIf="!bandera && userService.roleMatch(['Admin', 'AdminMonitorias'])" type="button" class="btn btn-success" (click)="openEdit(true)">Editar evaluación</button>
+                    <button id="cancelar" *ngIf="bandera" type="button" class="btn btn-light mr-1" (click)="openEdit(false);forma.resetForm();">Cancelar</button>
+                    <button id="guardar" *ngIf="bandera " type="submit" class="btn btn-success" (click)="editarEvaluacion(forma)">Guardar</button>
+                    <!-- <button type="button" class="btn btn-default mr-1" [routerLink]="[ '/plazas',convocatoria,'estudiantes' ]">Volver atrás</button> -->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<button *ngIf="bandera" class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

@@ -1,0 +1,1627 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+        <h2 class="text-uppercase text-center">Atención de medicina del deporte
+            <small class="d-block text-muted">Formulario de atención dñel paciente.</small>
+        </h2>
+<hr>
+<app-perfil-salud [id]="id" [tipoBusqueda]="profile_by"></app-perfil-salud>
+<div class="card mb-4">
+  <div class="card-body"> 
+   
+      <form #atencionDeporteForm="ngForm" (ngSubmit)="AtencionDeportiva(atencionDeporteForm)" novalidate  >
+          <fieldset>
+              <!-- <legend>Episodio asistencial</legend>   -->
+              <!-- {{formulario | json}} -->
+              <div id="accordion">
+                  <div class="card mb-1">
+                      <a class="card-link text-white" data-toggle="collapse" href="#collapseOne">
+                    <div class="card-header text-uppercase text-center bg-info">
+                       <span>personal</span>
+                    </div>
+                  </a>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            <!-- <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>generalidades</strong></div>  -->
+                            <div class="form-row mb-3">     
+                                <div class="col-12 col-md-12">
+                                    <label for="tipos_pacientes"><span class="asterisk">*</span>Tipo de paciente</label>
+                                    <select class="form-control" 
+                                    [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || tipos_pacientes.touched) && tipos_pacientes.errors?.required) }" 
+                                    [(ngModel)]="formulario.tipo_paciente" 
+                                    id="tipos_pacientes" 
+                                    name="tipos_pacientes" 
+                                    required 
+                                    #tipos_pacientes="ngModel">
+                                    <option value="null" selected disabled>Seleccione un tipo de paciente</option>
+                                    <option *ngFor="let tipoPaciente of tiposPacientes" value="{{tipoPaciente.id}}">{{tipoPaciente.nombre}}</option>
+                                    </select>
+                                    <div class="invalid-feedback">complete el campo. </div>
+                                </div>    
+                            </div>                     
+                            <div class="form-row">
+                                <div class="col-12 ">
+                                    <div id="motivo_consulta" class="form-group">
+                                        <label for="motivo_consulta"><span class="asterisk">*</span>Motivo de consulta</label>
+                                        <textarea class="form-control " [ngClass]="{'is-invalid ': motivo_consulta.errors?.required && (atencionDeporteForm.submitted || motivo_consulta.touched) }" type="text" placeholder="Ingrese el Motivo de la consulta. Máx 1000 caracteres" name="motivo_consulta"
+                                        id="motivo_consulta" [(ngModel)]="formulario.motivo_consulta" required #motivo_consulta="ngModel" rows=6 maxlength="1000"> </textarea>
+                                        <div class="invalid-feedback">Ingrese el motivo de la consulta. </div>
+                                    </div>   
+                                    <div id="enfermedad_actual" class="form-group">
+                                        <label for="enfermedad_actual"><span class="asterisk">*</span>Enfermedad actual </label>
+                                        <textarea class="form-control " [ngClass]="{'is-invalid ': enfermedad_actual.errors?.required && (atencionDeporteForm.submitted || enfermedad_actual.touched) }" type="text" placeholder="Ingrese la enfermdad actual. Máx 1000 caracteres" name="enfermedad_actual"
+                                        id="enfermedad_actual" [(ngModel)]="formulario.enfermedad_actual" required #enfermedad_actual="ngModel" rows=6 maxlength="1000"> </textarea>
+                                        <div class="invalid-feedback">Ingrese la enfermedad actual. </div>
+                                    </div>                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                
+                  <div class="card mb-1">
+                      <a class="card-link text-white"  data-toggle="collapse" href="#collapseTwo">
+                      <div class="card-header text-uppercase text-center  bg-info">
+                       <span>riesgos cardiovasculares</span>
+                       </div>
+                      </a>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body border-default">
+                       
+                            <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>riesgos cardiovascular a 10 años > 20%</strong></div> 
+                             <div class="form-row">
+                              
+                                <div class="col-md-6" *ngFor="let antecedente of tiposRiesgosCV; let i = index;">                                    
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" [(checklist)]="formulario.tipos_riesgoscv" 
+                                        [checklistValue]="antecedente" 
+                                        [id]="antecedente.id"  
+                                        #antecedent>
+                                        <label class="form-check-label" [for]="antecedente.nombre">
+                                                {{antecedente.nombre}}
+                                        </label>
+                                    </div>
+                                    </div>                              
+                              </div> 
+                              <hr>
+                              <div class="form-row mb-3">   
+                                  <div class="col-12 col-md-6">
+                                      <label for="clasificacionRCV"><span class="asterisk">*</span>Clsificación de riesgo cardiovascular</label>
+                                      <select class="form-control" 
+                                      [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || clasificacionRCV.touched) && clasificacionRCV.errors?.required) }" 
+                                      [(ngModel)]="formulario.clasfRCV" (change)="onSelect($event.target.value)"
+                                      id="clasificacionRCV" 
+                                      name="clasificacionRCV" 
+                                      required 
+                                      #clasificacionRCV="ngModel">
+                                      <option value="null" selected disabled>Seleccione la clasificación CV</option>
+                                      <option *ngFor="let item of clasificacioCV" value="{{item.id}}">{{item.nombre}}</option>
+                                      </select>
+                                      <div class="invalid-feedback">complete el campo. </div>
+                                  </div>                                
+                                  <div class="col-12 col-md-6">
+                                      <label for="ClasesCV"><span class="asterisk">*</span>Clases de riesgo cardiovascular</label>
+                                      <select class="form-control" 
+                                      [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || ClasesCV.touched) && ClasesCV.errors?.required) }" 
+                                      [(ngModel)]="formulario.classfRCV" 
+                                      id="ClasesCV" 
+                                      name="ClasesCV" 
+                                      required 
+                                      #ClasesCV="ngModel">
+                                      <option value="null" selected disabled>Seleccione la calsificación CV</option>
+                                      <option *ngFor="let item of clasificacionEscogidas" value="{{item.id}}">{{item.nombre}}</option>
+                                      </select>
+                                      <div class="invalid-feedback">complete el campo. </div>
+                                  </div>  
+                                  
+                               
+                              </div>  
+                              <br>
+                              <div class="text-center">       
+                                  <button type="button" id="modal"  class="btn btn-link mb-3" (click)="cardiovascular()">Ver tabla de riesgos cardiovasculares</button>                         
+                              </div>                        
+                        </div>
+                    </div>
+                  </div>
+                
+                  <div class="card mb-1">
+                      <a class="card-link text-white"  data-toggle="collapse" href="#collapseThree">
+                      <div class="card-header text-uppercase text-center  bg-info">
+                        <span>antecedentes</span>
+                    </div>
+                  </a>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          <div class="card-header text-uppercase text-center text-red bg-default mb-3"><strong>antecedentes familiares y personales</strong></div> 
+                     
+                        <!-- {{formulario|json}} -->
+                        <div class="form-row" *ngFor="let antecedente of antecedentes; let i = index;">
+                          <div class="col-md-4 col-lg-3 col-xl-2" > 
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" [(checklist)]="formulario.antecedentes" 
+                                      [checklistValue]="antecedente"
+                                      [id]="antecedente.nombre"  
+                                      #antecedent_i>
+                                      <label class="form-check-label" [for]="antecedente.nombre">
+                                              {{antecedente.nombre}}
+                                      </label>
+                                  </div>                            
+                          </div> 
+                          <div class="col-md-8 col-lg-9 col-xl-10">
+                                  <div class="form-group">
+                                      <input type="text" name="text_{{i}}" id="text_{{i}}" class="form-control form-control-sm"  [(ngModel)]="antecedente.observacion" 
+                                          #text_i="ngModel" [ngClass]="{ 'is-invalid': text_i.errors?.required && antecedent_i.checked }"  maxlength="255" [required]="antecedent_i.checked"/>
+                                      <div class="invalid-feedback">
+                                        Por favor escriba una observacion
+                                      </div>
+                                  </div>
+                                  
+                          </div>                                                                      
+                          </div>
+
+                      </div>
+                    </div>
+                  </div>     
+                  
+                  <div class="card mb-1">
+                      <a class="card-link text-white"  data-toggle="collapse" href="#collapseFour">
+                      <div class="card-header text-uppercase text-center  bg-info">
+                      <span>EF</span>
+                      </div>
+                      </a>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                           <!-- {{formulario|json}} -->
+                          <div class="card-header text-uppercase text-center text-red bg-default mb-3"><strong>DATOS ANTROPOMETRICOS</strong></div> 
+                          <div class="form-row" >
+
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="peso"><span class="asterisk">*</span>Peso (Kg)</label>
+                                      <input type="number" name="peso" id="peso" class="form-control form-control-sm" required
+                                      [(ngModel)]="formulario.antropomericos.peso"  (change)="IMC()"
+                                       [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || peso.touched) && peso.errors?.required) }" 
+                                          #peso="ngModel"  maxlength="50" min="0" />
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="talla"><span class="asterisk">*</span>Talla (m)</label>
+                                      <input type="number" name="talla" id="talla" class="form-control form-control-sm" required
+                                      [(ngModel)]="formulario.antropomericos.talla"  (change)="IMC()"
+                                       [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || talla.touched) && talla.errors?.required) }" 
+                                          #talla="ngModel"  maxlength="50" min="0"/>
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <label for="IMC">IMC</label>
+                                  <input type="text" class="form-control form-control-sm" value="{{IMC() | number: '1.0-2'}}" disabled/>  
+                              </div> 
+                              <div class="col-md-3">
+                                  <label for="pesoIMC">Peso ideal por IMC</label>
+                                  <input type="text" class="form-control form-control-sm" value="{{pesoIdealIMC() | number: '1.0-2'}}" disabled/> 
+                              </div>                              
+                                                         
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="cintura"><span class="asterisk">*</span>Perimetro cintura</label>
+                                      <input type="number" name="cintura" id="cintura" class="form-control form-control-sm" required
+                                      [(ngModel)]="formulario.antropomericos.cintura" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || cintura.touched) && cintura.errors?.required) }" 
+                                          #cintura="ngModel"  maxlength="50" min="0"/>
+                                  </div>
+                              </div>                              
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="cadera"><span class="asterisk">*</span> Perimetro cadera</label>
+                                      <input type="number" name="cadera" id="cadera" class="form-control form-control-sm" required
+                                      [(ngModel)]="formulario.antropomericos.cadera" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || cadera.touched) && cadera.errors?.required)}" 
+                                          #cadera="ngModel"  maxlength="50" min="0"/>
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="form-group">
+                                      <label for="carpo"><span class="asterisk">*</span> Perimetro carpo</label>
+                                      <input type="number" name="carpo" id="carpo" class="form-control form-control-sm" required
+                                      [(ngModel)]="formulario.antropomericos.carpo" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || carpo.touched) && carpo.errors?.required) }" 
+                                          #carpo="ngModel"  maxlength="50" min="0"/>
+                                  </div>
+                              </div>
+                              <div class="col-md-3">
+                                  <label for="pesoIdeal">Peso ideal</label>
+                                  <input type="text" class="form-control form-control-sm" value="{{PesoIdeal() | number: '1.0-2'}}" disabled/>      
+                              </div>
+                              <div class="col-md-4">
+                                  <label for="tiposComplexion"><span class="asterisk">*</span>Tipo de complexión</label>
+                                  <select class="form-control form-control-sm" disabled
+                                  [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || tiposComplexion.touched) && tiposComplexion.errors?.required) }" 
+                                  [(ngModel)]="formulario.antropomericos.tipoComplexion"
+                                  id="tiposComplexion" 
+                                  name="tiposComplexion" 
+                                  required 
+                                  #tiposComplexion="ngModel"
+                                  value="{{ TipoDeComplexion() }}">
+                                  <option value="0" disabled>-</option>
+                                  <option *ngFor="let item of tipoComplexion" value="{{item.id}}">{{item.nombre}}</option>
+                                  </select>
+                                  <div class="invalid-feedback">complete el campo. </div>
+                              </div>   
+                              <div class="col-md-4">
+                                  <label for="Relación">Relación C/C</label>
+                                  <input type="text" class="form-control form-control-sm" value="{{perimetroCC() | number: '1.0-2'}}"   disabled />      
+                              </div> 
+                              <div class="col-md-4">
+                                  <label for="pesoIMC">Complexiön</label>
+                                  <input type="text" class="form-control form-control-sm"  value="{{complex() | number: '1.0-2'}}"   disabled/> 
+                              </div>                             
+                          </div>
+                          <hr>
+                                
+  <div class="accordion" id="accordion3Example">
+      <div class="card">
+          <a class="card-link text-white" data-toggle="collapse" href="#collapse1">
+              <div class="card-header text-uppercase text-center  bg-info">
+                <span>Tabla de intervalos de complexión para el peso ideal</span>
+              </div>
+            </a>
+    
+        <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordion3Example">
+          <div class="card-body">
+           <table class="table table-bordered">
+                        <tr>
+                          <th class="text-center">Genero/Complexion</th>
+                          <th class="text-center">PEQUEÑA</th>
+                          <th class="text-center">MEDIANA</th>
+                          <th class="text-center">RECIA</th>
+                        </tr>
+                        <tr>
+                          <td class="text-center">MASCULINO</td>
+                          <td class="text-center">menor que 10.4</td>
+                          <td class="text-center">9.6 - 10.4</td>
+                          <td class="text-center">mayor que 9.6</td>
+                        </tr>
+                        <tr>
+                          <td class="text-center">FEMENINO</td>
+                          <td class="text-center">menor que 11</td>
+                          <td class="text-center">10.1 - 11</td>
+                          <td class="text-center">mayor que 10.1</td>
+                        </tr>
+                      </table>
+          </div>
+        </div>
+      </div> 
+    
+    </div> 
+                          <hr>
+                          <div class="card-header text-uppercase text-center text-red bg-default mb-3"><strong>SIGNOS VITALES</strong></div> 
+                          <div class="form-row" >
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="pas"><span class="asterisk">*</span>Pas</label>
+                                    <input type="number" name="pas" id="pas" class="form-control form-control-sm" required
+                                    [(ngModel)]="formulario.signosVitales.pas" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || pas.touched) && fr.errors?.required) }" 
+                                        #pas="ngModel"  maxlength="50" min="0"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="pad"><span class="asterisk">*</span>Pad</label>
+                                    <input type="number" name="pad" id="pad" class="form-control form-control-sm" required
+                                    [(ngModel)]="formulario.signosVitales.pad" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || pad.touched) && pad.errors?.required) }" 
+                                        #pad="ngModel"  maxlength="50" min="0"/>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                  <div class="form-group">
+                                      <label for="temperatura"><span class="asterisk">*</span>Temperatura (°C)</label>
+                                      <input type="number" name="temperatura" id="temperatura" class="form-control form-control-sm" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || temperatura.touched) && temperatura.errors?.required) }" 
+                                      [(ngModel)]="formulario.signosVitales.temperatura" required
+                                          #temperatura="ngModel"  maxlength="50" min="0" />
+                                  </div>
+                            </div>
+                          <div class="col-md-2">
+                                  <div class="form-group">
+                                      <label for="fr"><span class="asterisk">*</span>FR</label>
+                                      <input type="number" name="fr" id="fr" class="form-control form-control-sm" required
+                                      [(ngModel)]="formulario.signosVitales.fr" [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || fr.touched) && fr.errors?.required) }" 
+                                          #fr="ngModel"  maxlength="50" min="0"/>
+                                  </div>
+                          </div>
+                          <div class="col-md-2">
+                              <div class="form-group">
+                                  <label for="fc"><span class="asterisk">*</span>FC</label>
+                                  <input type="number" name="fc" id="fc" class="form-control form-control-sm" required
+                                  [(ngModel)]="formulario.signosVitales.fc"  [ngClass]="{'is-invalid': ((atencionDeporteForm.submitted || fc.touched) && fc.errors?.required) }" 
+                                      #fc="ngModel"  maxlength="50" min="0"/>
+                              </div>
+                          </div>
+                          
+                          </div>                     
+
+                      </div>
+                    </div>
+                  </div>  
+                  
+
+          <!-- inicio de la seccion de Con EF Flexib -->
+          <div class="card mb-1">
+              <a class="card-link text-white"  data-toggle="collapse" href="#collapseFive">
+                <div class="card-header text-uppercase text-center  bg-info">
+                  <span>Con EF Flexib</span>
+                </div>
+              </a>
+              <div id="collapseFive" class="collapse" data-parent="#accordion">
+  
+                  <!-- Inicio de la seccion de flexibilidad  -->
+                  <div class="card-body border-default">
+                      
+                    <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>FLEXIBILIDAD</strong></div> 
+                      <div class="form-row">
+                           
+                            <div class="col-12 col-md-6" *ngFor="let flexibilidad of formulario.flexibilidades; let i = index;">
+                              <label for="{{ flexibilidad.nombre }}"><span *ngIf="controlador_seccion_con_ef_flexib" class="asterisk">*</span>{{ flexibilidad.nombre }}</label>
+                              <select class="form-control"
+                                      name="{{ flexibilidad.nombre }}" 
+                                      [(ngModel)]="formulario.flexibilidades[i].nivel"
+                                      (change)="cambiarEstado()"
+                                      [ngClass]="{'is-invalid': controlador_seccion_con_ef_flexib && flexibilidad_i.touched && flexibilidad_i.errors?.required}"
+                                      [required]="controlador_seccion_con_ef_flexib"
+                                      #flexibilidad_i="ngModel">
+                                <option [value]="0">-</option>
+                                <option *ngFor="let nivel of niveles_flexibilidades"
+                                        [value]="nivel.id">
+                                        {{ nivel.nombre }}
+                                </option>
+                              </select>
+                              <div class="invalid-feedback" >Este campo es requerido.</div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                              <label for="rot-ext-hombro"><span *ngIf="controlador_seccion_con_ef_flexib" class="asterisk">*</span>Test de Wells</label>
+                              <input type="number" 
+                                     class="form-control"
+                                     name = "test_wells"
+                                     [(ngModel)]="formulario.test_wells"
+                                     (ngModelChange)="cambiarEstado()"
+                                     [ngClass]="{'is-invalid': controlador_seccion_con_ef_flexib && testWells.touched && testWells.errors?.required}"
+                                     [required]="controlador_seccion_con_ef_flexib"
+                                     #testWells="ngModel">
+                                     <div class="invalid-feedback" >Este campo es requerido.</div>
+                            </div>
+                          
+                      </div> 
+  
+                </div> <!-- Fin de la seccion de flexibilidad  -->
+                <hr>
+  
+                <!-- Inicio de la seccion de Estabilidad  -->
+                <div class="card-body border-default">
+                    
+                  <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>ESTABILIDAD</strong></div> 
+                    <div class="form-row">
+                        <div class="col-12 col-md-6" *ngFor="let estabilidad of formulario.estabilidades; let i = index;">
+                          <label for="{{ estabilidad.nombre }}"><span *ngIf="controlador_seccion_con_ef_flexib" class="asterisk">*</span>{{ estabilidad.nombre }}</label>
+                          <select class="form-control"
+                                  name="{{ estabilidad.nombre }}"
+                                  (change)="cambiarEstado()"
+                                  [(ngModel)]="formulario.estabilidades[i].nivel"
+                                  [ngClass]="{'is-invalid': controlador_seccion_con_ef_flexib && estabilidad_i.touched && estabilidad_i.errors?.required}"
+                                  [required]="controlador_seccion_con_ef_flexib"
+                                  #estabilidad_i="ngModel"> 
+                            <option [value]="0">-</option>
+                            <option *ngFor="let nivel of niveles_estabilidades"
+                                    value="{{ nivel.id }}"
+                                    >
+                                    {{ nivel.nombre }}
+                            </option>
+                          </select>
+                          <div class="invalid-feedback" >Este campo es requerido.</div>
+                        </div>
+
+                      </div>
+                      
+                </div> <!-- Fin de la seccion de Estabilidad  -->
+                <hr>
+                <!-- Inicio de la seccion de descripcion del paciente  -->
+                <div class="card-body border-default">
+                    <div class="form-row">
+                        <div class="col-12 col-md-6">
+                            <label for="escala_caida"><span *ngIf="controlador_seccion_con_ef_flexib" class="asterisk">*</span>Escala de caida</label>
+                            <select class="form-control"
+                                    name="escala_caida" 
+                                    (change)="cambiarEstado()"
+                                    [(ngModel)]="formulario.escala_caida"
+                                    [ngClass]="{'is-invalid': controlador_seccion_con_ef_flexib && escalaCaida.touched && escalaCaida.errors?.required}"
+                                    [required]="controlador_seccion_con_ef_flexib"
+                                    #escalaCaida="ngModel">
+                              <option [value]="0">-</option>      
+                              <option *ngFor="let escala of escala_caidas" value="{{ escala.id }}">{{ escala.nombre }}</option>
+                            </select>
+                            <div class="invalid-feedback" >Este campo es requerido.</div>
+                        </div> 
+
+                        <div class="col-12 col-md-6">
+                            <label for="posturaMorfologica"><span *ngIf="controlador_seccion_con_ef_flexib" class="asterisk">*</span>Análisis postura Morfologica</label>
+                            <select class="form-control"
+                                    name="posturaMorfologica"
+                                    (change)="cambiarEstado()" 
+                                    [(ngModel)]="formulario.postura_morfologica"
+                                    [ngClass]="{'is-invalid': controlador_seccion_con_ef_flexib && posturaMorfologica.touched && posturaMorfologica.errors?.required}"
+                                    [required]="controlador_seccion_con_ef_flexib"
+                                    #posturaMorfologica="ngModel">
+                              <option [value]="0">-</option>
+                              <option *ngFor="let postura_mor of postura_morfologica" value="{{ postura_mor.id }}">{{ postura_mor.nombre }}</option>
+                            </select>
+                            <div class="invalid-feedback" >Este campo es requerido.</div>
+                        </div> 
+                    </div>
+                    
+                    <div class="form-row mt-3">
+                        <div class="col-12 col-md-6">
+                            <label for="gemelares"><span *ngIf="controlador_seccion_con_ef_flexib" class="asterisk">*</span>Análisis postura funcional (Mathias)</label>
+                            <select class="form-control"
+                                    name="gemelares" 
+                                    (change)="cambiarEstado()" 
+                                    [(ngModel)]="formulario.postura_funcional"
+                                    [ngClass]="{'is-invalid': controlador_seccion_con_ef_flexib && posturaFuncional.touched && posturaFuncional.errors?.required}"
+                                    [required]="controlador_seccion_con_ef_flexib"
+                                    #posturaFuncional="ngModel">
+                              <option [value]="0">-</option>      
+                              <option *ngFor="let postura_fun of postura_funcionales" value="{{ postura_fun.id }}" >{{ postura_fun.nombre }}</option>
+                            </select>
+                            <div class="invalid-feedback" >Este campo es requerido.</div>
+                        </div> 
+                    </div>
+                </div> <!-- Fin de la seccion de descripcion del paciente  -->
+  
+              </div>
+          </div><!-- Fin de la seccion de Con EF Flexib -->
+
+            <!-- inicio de la seccion de Antropometria -->
+            <div class="card mb-1">
+              <a class="card-link text-white"  data-toggle="collapse" href="#collapsesix">
+                <div class="card-header text-uppercase text-center  bg-info">
+                  <span>Antropometria</span>
+                </div>
+              </a>
+              <div id="collapsesix" class="collapse" data-parent="#accordion">
+  
+                  <!-- Inicio de la seccion de pliegues grasos  -->
+                  <div class="card-body border-default">
+                      
+                    <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>PLIEGUES GRASOS</strong></div> 
+                      <div class="form-row">
+  
+                          <div class="col-12 col-md-3">
+                            <label for="pecho">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Pecho</label>
+                            <input type="number" 
+                                   [ngClass]="{'is-invalid': controlador_seccion_antropometria && plieguePecho.errors?.required && plieguePecho.touched }" 
+                                   [(ngModel)]="formulario.pliegues_grasos.pecho"
+                                   (ngModelChange)="cambiarEstadoAntropometria()" 
+                                   name="pecho" class="form-control form-control-sm" 
+                                   #plieguePecho="ngModel" 
+                                   [required]="controlador_seccion_antropometria"/>
+                            <div class="invalid-feedback" >
+                              Este campo es requerido.
+                            </div>
+                          </div>
+                          
+                          <div class="col-12 col-md-3">
+                            <label for="axilar">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Axilar</label>
+                            <input  type="number" 
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && pliegueAxilar.errors?.required && pliegueAxilar.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.axilar"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="axilar" class="form-control form-control-sm" 
+                                    #pliegueAxilar="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div>  
+
+                          <div class="col-12 col-md-3">
+                            <label for="triceps">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Triceps</label>
+                            <input  type="number" 
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && pliegueTriceps.errors?.required && pliegueTriceps.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.triceps"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="triceps" class="form-control form-control-sm" 
+                                    #pliegueTriceps="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div>  
+      
+                          <div class="col-12 col-md-3">
+                            <label for="subescapular">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Subescapular</label>
+                            <input  type="number"
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && pliegueSubescapular.errors?.required && pliegueSubescapular.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.subescapular"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="subescapular" class="form-control form-control-sm" 
+                                    #pliegueSubescapular="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div>  
+
+                          <div class="col-12 col-md-3">
+                            <label for="suprailiaco">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Suprailiaco</label>
+                            <input  type="number" 
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && pliegueSuprailiaco.errors?.required && pliegueSuprailiaco.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.suprailiaco"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="suprailiaco" class="form-control form-control-sm" 
+                                    #pliegueSuprailiaco="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div>  
+      
+                          <div class="col-12 col-md-3">
+                            <label for="abdominal">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Abdominal</label>
+                            <input  type="number" 
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && pliegueAbdominal.errors?.required && pliegueAbdominal.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.abdominal"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="abdominal" class="form-control form-control-sm" 
+                                    #pliegueAbdominal="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div> 
+    
+                          <div class="col-12 col-md-3">
+                            <label for="muslo">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Muslo</label>
+                            <input  type="number"
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && pliegueMuslo.errors?.required && pliegueMuslo.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.muslo"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="muslo" class="form-control form-control-sm" 
+                                    #pliegueMuslo="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div>  
+      
+                          <div class="col-12 col-md-3">
+                            <label for="pierna">
+                              <span *ngIf="controlador_seccion_antropometria" 
+                              class="asterisk">*</span>Pierna</label>
+                            <input  type="number"
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && plieguePierna.errors?.required && plieguePierna.touched }" 
+                                    [(ngModel)]="formulario.pliegues_grasos.pierna"
+                                    (ngModelChange)="cambiarEstadoAntropometria()" 
+                                    name="pierna" class="form-control form-control-sm" 
+                                    #plieguePierna="ngModel" 
+                                    [required]="controlador_seccion_antropometria"/>
+                                    <div class="invalid-feedback" >
+                                      Este campo es requerido.
+                                    </div>
+                          </div>
+  
+                      </div> 
+  
+                </div> <!-- Fin de la seccion de pliegues grasos  -->
+                <hr>
+                
+                <!-- Inicio de la seccion de diametros oseos  -->
+                <div class="card-body border-default">
+                      
+                  <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>DIAMETROS OSEOS</strong></div> 
+                    <div class="form-row">
+
+                        <div class="col-12 col-md-6">
+                          <label for="muneca">
+                            <span *ngIf="controlador_seccion_antropometria" 
+                            class="asterisk">*</span>Muñeca</label>
+                          <input  type="number"
+                                  [ngClass]="{'is-invalid': controlador_seccion_antropometria && diametroMuneca.errors?.required && diametroMuneca.touched }" 
+                                  [(ngModel)]="formulario.diametros_oseos.muneca"
+                                  (ngModelChange)="cambiarEstadoAntropometria()" 
+                                  name="muneca" class="form-control form-control-sm" 
+                                  #diametroMuneca="ngModel" 
+                                  [required]="controlador_seccion_antropometria"/>
+                                  <div class="invalid-feedback" >
+                                    Este campo es requerido.
+                                  </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6">
+                          <label for="femoral">
+                            <span *ngIf="controlador_seccion_antropometria" 
+                            class="asterisk">*</span>Femoral</label>
+                          <input  type="number" 
+                                  [ngClass]="{'is-invalid': controlador_seccion_antropometria && diametroFemoral.errors?.required && diametroFemoral.touched }" 
+                                  [(ngModel)]="formulario.diametros_oseos.femoral"
+                                  (ngModelChange)="cambiarEstadoAntropometria()" 
+                                  name="femoral" class="form-control form-control-sm" 
+                                  #diametroFemoral="ngModel" 
+                                  [required]="controlador_seccion_antropometria"/>
+                                  <div class="invalid-feedback" >
+                                    Este campo es requerido.
+                                  </div>
+                        </div>  
+
+                    </div> 
+
+                </div> <!-- Fin de la seccion de diametros oseos  -->
+                <hr>
+
+                <!-- Inicio de la seccion de determinacion atropometrica  -->
+                <div class="card-body border-default">
+                      
+                  <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>DETERMINACION ANTROPOMETRICA</strong></div> 
+                    <div class="form-row">
+
+                        <div class="col-12 col-md-6" *ngFor="let determinacion_antropometrica of determinaciones_antropometricas; let i = index;">
+                            <div class="form-check">
+                                <input  class="form-check-input" type="checkbox"
+                                        [(checklist)]="formulario.determinaciones_antropometricas" 
+                                        [checklistValue]="determinacion_antropometrica"
+                                        (change)="calcularPesosYPorcentajes(determinacion_antropometrica['nombre'])"
+                                        #determinacion_antropometrica_i>
+                                <label class="form-check-label" for="">
+                                        {{ determinacion_antropometrica['nombre'] }}
+                                </label>
+                            </div>
+                        </div>
+
+                    </div> 
+
+                </div> <!-- Fin de la seccion de determinacion atropometrica  -->
+                <hr>
+
+                <!-- Inicio de la seccion de pesos y porcentajes  -->
+                <div class="card-body border-default">
+                      
+                  <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>PESOS Y PORCENTAJES</strong></div> 
+                    <div class="form-row">
+
+                        <div class="col-12 col-md-4">
+                          <label for="graso">% Graso</label>
+                          <input type="number" name="graso" 
+                          [(ngModel)]="Graso"
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="pesoGraso">Peso Graso</label>
+                          <input type="number" name="pesoGraso"
+                          [(ngModel)]="Peso_Graso"
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="oseo">%Oseo</label>
+                          <input type="number" name="oseo"
+                          [(ngModel)]="Oseo" 
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                          <label for="pesoOseo">Peso Oseo</label>
+                          <input type="number" name="pesoOseo"
+                          [(ngModel)]="Peso_Oseo" 
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="residual">% Residual</label>
+                          <input type="number" name="residual"
+                          [(ngModel)]="Residual"
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="pesoResidual">Peso Residual</label>
+                          <input type="number" name="pesoResidual"
+                          [(ngModel)]="Peso_Residual"
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                          <label for="muscular">% Muscular</label>
+                          <input type="number" name="muscular"
+                          [(ngModel)]="Muscular"
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="pesoMuscular">Peso Muscular</label>
+                          <input type="number" name="pesoMuscular"
+                          [(ngModel)]="Peso_Muscular"
+                          class="form-control form-control-sm" 
+                          disabled/>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="plg">PLG</label>
+                          <input type="number" name="plg"
+                          [(ngModel)]="PLG"
+                          class="form-control form-control-sm" disabled/>
+                        </div>
+
+                    </div> 
+
+                </div> <!-- Fin de la seccion de pesos y porcentajes  -->
+                <hr>
+
+                <!-- Inicio de la seccion de datos generales  -->
+                <div class="card-body border-default">
+                      
+                   <div class="form-row">
+                        <div class="col-12 col-md-4">
+                          <label for="grasaIdeal"><span *ngIf="controlador_seccion_antropometria" class="asterisk">*</span>% Grasa "Ideal"</label>
+                          <input type="number" name="grasaIdeal"
+                          [(ngModel)]="formulario.grasa_ideal"
+                          [ngClass]="{'is-invalid': controlador_seccion_antropometria && grasaIdeal.touched && grasaIdeal.errors?.required}"
+                          class="form-control form-control-sm"
+                          (change)="cambiarEstadoAntropometria()"
+                          [required]="controlador_seccion_antropometria"
+                          #grasaIdeal="ngModel"/>
+                          <div class="invalid-feedback" >
+                            Este campo es requerido.
+                          </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="excesoGrasa">KGS de Grasa en Exceso</label>
+                          <input type="number" name="excesoGrasa"
+                          [(ngModel)]="exceso_grasa"
+                          class="form-control form-control-sm" disabled/>
+                        </div> 
+
+                        <div class="col-12 col-md-4">
+                            <label for="deficit_muscular"><span *ngIf="controlador_seccion_antropometria" class="asterisk">*</span>Deficit Muscular</label>
+                            <select class="form-control"
+                                    name="deficit_muscular"
+                                    [(ngModel)]="formulario.deficit_muscular"
+                                    [ngClass]="{'is-invalid': controlador_seccion_antropometria && deficit_muscular.touched && deficit_muscular.errors?.required}"
+                                    (change)="cambiarEstadoAntropometria()"
+                                    [required]="controlador_seccion_antropometria"
+                                    #deficit_muscular="ngModel">
+                              <option  [value]="0">-</option>      
+                              <option *ngFor="let deficit_muscular of deficit_musculares" 
+                              [value]="deficit_muscular['id']">{{ deficit_muscular['nombre'] }}</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                                Este campo es requerido.
+                              </div>
+                        </div>   
+
+                    </div> 
+
+                    <div class="form-row justify-content-center">
+                        
+                        <div class="col-md-4">
+                          <button type="button" (click)="calcularExcesoGrasa()" class="btn btn-primary mt-3">Calcular KGS de Grasa en Exceso</button>
+                        </div> 
+
+                    </div> 
+
+                </div> <!-- Fin de la seccion de datos generales  -->
+  
+              </div>
+          </div><!-- Fin de la seccion de Antropometria -->            
+          
+          <!-- inicio de la seccion de examenes -->
+          <div class="card mb-1">
+              <a class="card-link text-white" data-toggle="collapse" href="#collapseSeven">
+            <div class="card-header text-uppercase text-center  bg-info">
+               <span>Examenes</span>
+            </div>
+          </a>
+            <div id="collapseSeven" class="collapse" data-parent="#accordion">
+                <div class="card-body">                
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="" class="form-group">
+                                <label for="Laboratorio">
+                                  <span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>Laboratorios</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese los laboratorios. Máx 1000 caracteres" 
+                                name="laboratorios"
+                                [(ngModel)]="formulario.laboratorios"  
+                                [ngClass]="{'is-invalid': controlador_seccion_examenes && laboratorio.touched && laboratorio.errors?.required}"
+                                (ngModelChange)="cambiarEstadoExamen()"
+                                rows=6 
+                                maxlength="1000"
+                                [required]="controlador_seccion_examenes"
+                                #laboratorio="ngModel"></textarea>
+                                <div class="invalid-feedback">
+                                  Este campo es obligatorio. 
+                                </div>  
+                            </div>   
+                            <div id="" class="form-group">
+                                <label for="imganes">
+                                  <span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>Imagenes Diagnosticas</label>
+                                <textarea class="form-control" 
+                                type="text" 
+                                placeholder="Ingrese las imagenes diagnosticas. Máx 1000 caracteres" 
+                                name="imagenes"
+                                [(ngModel)]="formulario.imagenes_diagnosticas"  
+                                [ngClass]="{'is-invalid': controlador_seccion_examenes && imagenesDiagnosticas.touched && imagenesDiagnosticas.errors?.required}"
+                                (ngModelChange)="cambiarEstadoExamen()"
+                                rows=6 maxlength="1000"
+                                [required]="controlador_seccion_examenes"
+                                #imagenesDiagnosticas="ngModel"></textarea>
+                                <div class="invalid-feedback">Este campo es obligatorio.</div>  
+                            </div>    
+                            <div id="" class="form-group">
+                                <label for="pruebas_especiales">
+                                  <span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>Pruebas Especiales</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese las pruebas especiales. Máx 1000 caracteres" 
+                                name="pruebas_especiales"
+                                [(ngModel)]="formulario.pruebas_especiales"  
+                                [ngClass]="{'is-invalid': controlador_seccion_examenes && pruebasEspeciales.touched && pruebasEspeciales.errors?.required}"
+                                (ngModelChange)="cambiarEstadoExamen()"
+                                rows=6 maxlength="1000"
+                                [required]="controlador_seccion_examenes"
+                                #pruebasEspeciales="ngModel"></textarea>
+                                <div class="invalid-feedback">Este campo es obligatorio. </div>  
+                            </div>               
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-row">
+  
+                        <div class="col-12 col-md-4">
+                          <label for="ct"><span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>CT</label>
+                          <input  type="number" 
+                                  name="ct" 
+                                  class="form-control form-control-sm"
+                                  [(ngModel)]="formulario.ct"  
+                                  [ngClass]="{'is-invalid': controlador_seccion_examenes && ct.touched && ct.errors?.required}"
+                                  (ngModelChange)="cambiarEstadoExamen()"
+                                  [required]="controlador_seccion_examenes"
+                                  #ct="ngModel"/>
+                          <div class="invalid-feedback">Este campo es obligatorio. </div>        
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="hdl"><span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>HDL</label>
+                          <input  type="number" 
+                                  name="hdl"
+                                  class="form-control form-control-sm"
+                                  [(ngModel)]="formulario.hdl"  
+                                  [ngClass]="{'is-invalid': controlador_seccion_examenes && hdl.touched && hdl.errors?.required}"
+                                  (ngModelChange)="cambiarEstadoExamen()"
+                                  [required]="controlador_seccion_examenes"
+                                  #hdl="ngModel"/>
+                          <div class="invalid-feedback">Este campo es obligatorio. </div>
+                        </div>  
+
+                        <div class="col-12 col-md-4">
+                          <label for="tg"><span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>TG</label>
+                          <input  type="number" 
+                                  name="tg"
+                                  class="form-control form-control-sm"
+                                  [(ngModel)]="formulario.tg"  
+                                  [ngClass]="{'is-invalid': controlador_seccion_examenes && tg.touched && tg.errors?.required}"
+                                  (ngModelChange)="cambiarEstadoExamen()"
+                                  [required]="controlador_seccion_examenes"
+                                  #tg="ngModel"/>
+                          <div class="invalid-feedback">Este campo es obligatorio. </div>
+                        </div> 
+
+                        <div class="col-12 col-md-4">
+                          <label for="glicemina"><span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>Glicemina</label>
+                          <input  type="number" 
+                                  name="glicemina"
+                                  class="form-control form-control-sm"
+                                  [(ngModel)]="formulario.glicemina"  
+                                  [ngClass]="{'is-invalid': controlador_seccion_examenes && glicemina.touched && glicemina.errors?.required}"
+                                  (ngModelChange)="cambiarEstadoExamen()"
+                                  [required]="controlador_seccion_examenes"
+                                  #glicemina="ngModel"/>
+                          <div class="invalid-feedback">Este campo es obligatorio. </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-4">
+                          <label for="class_aha_acc"><span *ngIf="controlador_seccion_examenes" class="asterisk">*</span>Clasificacion AHA/ACC</label>
+                          <input  type="number" 
+                                  name="class_aha_acc"
+                                  class="form-control form-control-sm"
+                                  [(ngModel)]="formulario.class_aha_acc"  
+                                  [ngClass]="{'is-invalid': controlador_seccion_examenes && classAhaAcc.touched && classAhaAcc.errors?.required}"
+                                  (ngModelChange)="cambiarEstadoExamen()"
+                                  [required]="controlador_seccion_examenes"
+                                  #classAhaAcc="ngModel"/>
+                          <div class="invalid-feedback">Este campo es obligatorio. </div>     
+                        </div> 
+
+                    </div> 
+
+                </div>
+            </div>
+          </div>
+          <!-- fin de la seccion de examenes -->
+
+
+          <!-- inicio de la Prueb Esfuerzo -->
+          <div class="card mb-1">
+              <a class="card-link text-white" data-toggle="collapse" href="#collapseEight">
+            <div class="card-header text-uppercase text-center  bg-info">
+               <span>Prueba Esfuerzo</span>
+            </div>
+          </a>
+            <div id="collapseEight" class="collapse" data-parent="#accordion">
+                <div class="card-body">                
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="" class="form-group">
+                                <label for="prueba_esfuerzo">
+                                  <span *ngIf="controlador_seccion_prueba_esfuerzo" class="asterisk">*</span>Descripciòn</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese una descripciòn de la prueba. Máx 1000 caracteres" 
+                                name="prueba_esfuerzo"
+                                [(ngModel)]="formulario.prueba_esfuerzo"  
+                                [ngClass]="{'is-invalid': controlador_seccion_prueba_esfuerzo && pruebaEsfuerzo.touched && pruebaEsfuerzo.errors?.required}"
+                                (ngModelChange)="cambiarEstadoPruebaEsfuerzo()"
+                                rows=6 
+                                maxlength="1000"
+                                [required]="controlador_seccion_prueba_esfuerzo"
+                                #pruebaEsfuerzo="ngModel"></textarea>
+                                <div class="invalid-feedback">Ingrese el motivo de la consulta.</div>
+                            </div>           
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- fin de la Prueb Esfuerzo -->
+
+          <!-- inicio de los valores de la prueba de esfuerzo -->
+          <div class="card mb-1">
+            <a class="card-link text-white" data-toggle="collapse" href="#collapseNine">
+          <div class="card-header text-uppercase text-center  bg-info">
+             <span>Valores prueba de esfuerzo</span>
+          </div>
+        </a>
+          <div id="collapseNine" class="collapse container mt-2" data-parent="#accordion">
+                <!-- inicio test en banda -->
+                <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>Test en banda</strong></div> 
+                <div class="form-row">
+                      
+                      <div class="col-12 col-md-4">
+                          <label for="max_v_mill"> <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span> Max Velocidad (mill/h)</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "max_v_mill"
+                                [(ngModel)]="formulario.max_velocidad_mill"  
+                                [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && maxVelocidad.touched && maxVelocidad.errors?.required}"
+                                (ngModelChange)="calcularVelocidadMaxKm()"
+                                [required]="controlador_seccion_valores_prueba_esfuerzo"
+                                #maxVelocidad="ngModel">
+                          <div class="invalid-feedback">Este campo es requerido.</div>
+                      </div>
+                      <div class="col-12 col-md-4">
+                          <label for="max_v_km">Max Velocidad (km/h)</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "max_v_km"
+                                [(ngModel)]="velocidad_max_km"
+                                disabled>
+                      </div>
+                      <div class="col-12 col-md-4">
+                          <label for="pendiente"> 
+                            <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span> pendiente</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "pendiente"
+                                [(ngModel)]="formulario.pendiente"  
+                                [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && pendiente.touched && pendiente.errors?.required}"
+                                (ngModelChange)="cambiarEstadoValoresPruebaEsfuerzo()"
+                                [required]="controlador_seccion_valores_prueba_esfuerzo"
+                                #pendiente="ngModel">
+                          <div class="invalid-feedback">Este campo es requerido.</div>  
+                      </div>
+                </div> 
+                <hr>
+                <!-- fin test en banda -->
+
+                <!-- inicio test en cicla -->
+                <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>Test en cicla</strong></div> 
+                <div class="form-row">
+                      
+                      <div class="col-12 col-md-4">
+                          <label for="max_watts">
+                              <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>Max WATTS</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "max_watts"
+                                [(ngModel)]="formulario.max_watts"  
+                                [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && maxWatts.touched && maxWatts.errors?.required}"
+                                (ngModelChange)="calcularMaxKpm()"
+                                [required]="controlador_seccion_valores_prueba_esfuerzo"
+                                #maxWatts="ngModel">
+                          <div class="invalid-feedback">Este campo es requerido.</div>
+                      </div>
+                      <div class="col-12 col-md-4">
+                          <label for="max_Kpm">Max Kpm</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "max_Kpm"
+                                [(ngModel)]="max_kpm"
+                                disabled>
+                      </div>
+                </div> 
+                <hr>
+                <!-- fin test en cicla -->
+
+                <!-- inicio minutos del test -->
+                <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>Test de 12 min o 6 min </strong></div> 
+                <div class="form-row">
+                      
+                      <div class="col-12 col-md-4">
+                          <label for="max_distancia_recorrida">
+                            <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>Max Distancia Recorrida(km)</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "max_distancia_recorrida"
+                                [(ngModel)]="formulario.max_distancia_recorrida"  
+                                [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && maxDistanciaRecorrida.touched && maxDistanciaRecorrida.errors?.required}"
+                                (ngModelChange)="cambiarEstadoValoresPruebaEsfuerzo()"
+                                [required]="controlador_seccion_valores_prueba_esfuerzo"
+                                #maxDistanciaRecorrida="ngModel">
+                          <div class="invalid-feedback">Este campo es requerido.</div>
+                      </div>
+                </div> 
+                <hr>
+                <!-- fin minutos del test  -->
+                
+                <!-- inicio datos generales valores prueba de esfuerzo -->
+                <div class="form-row">
+                    <div class="col-12 col-md-3">
+                        <label for="fc_max"> 
+                          <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>FC Max</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "fc_max"
+                              [(ngModel)]="formulario.fc_max"  
+                              [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && fcMax.touched && fcMax.errors?.required}"
+                              (ngModelChange)="calcularDobleProducto()"
+                              [required]="controlador_seccion_valores_prueba_esfuerzo"
+                              #fcMax="ngModel">
+                        <div class="invalid-feedback">Este campo es requerido.</div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="pa_sistolica_max">
+                            <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>PA sistólica Max</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "pa_sistolica_max"
+                              [(ngModel)]="formulario.pa_sistolica_max"  
+                              [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && paSistolicaMax.touched && paSistolicaMax.errors?.required}"
+                              (ngModelChange)="calcularDobleProducto()"
+                              [required]="controlador_seccion_valores_prueba_esfuerzo"
+                              #paSistolicaMax="ngModel">
+                        <div class="invalid-feedback">Este campo es requerido.</div>   
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="pa_diastolica_max">
+                            <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>PA diastólica Max</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "pa_diastolica_max"
+                              [(ngModel)]="formulario.pa_diastolica_max"  
+                              [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && paDiastolicaMax.touched && paDiastolicaMax.errors?.required}"
+                              (ngModelChange)="cambiarEstadoValoresPruebaEsfuerzo()"
+                              [required]="controlador_seccion_valores_prueba_esfuerzo"
+                              #paDiastolicaMax="ngModel">
+                        <div class="invalid-feedback">Este campo es requerido.</div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="rot-ext-hombro">Doble Producto</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "valor_test_banca"
+                              [(ngModel)]="doble_producto"
+                              disabled>
+                    </div>
+
+                    <div class="col-12 col-md-3 mt-2">
+                        <label for="mets">METS</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "mets" 
+                              [(ngModel)]="mets"
+                              disabled>
+                    </div>
+                    <div class="col-12 col-md-3 mt-2">
+                        <label for="voMax">VO2 MAX (ml/min)</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "voMax"
+                              [(ngModel)]="vo2_max" 
+                              disabled>
+                    </div>
+                    <div class="col-12 col-md-3 mt-2">
+                        <label for="voMaxKg">VO2 MAX (ml/kg/min)</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "voMaxKg"
+                              [(ngModel)]="vo2_max_kg" 
+                              disabled>
+                    </div>
+                    <div class="col-12 col-md-3 mt-2">
+                        <label for="umbralAnaerobico">
+                            <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>Umbral Anaeróbico</label>
+                        <input type="number" 
+                              class="form-control"
+                              name = "umbralAnaerobico"
+                              [(ngModel)]="formulario.umbral_anaerobico"  
+                              [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && umbralAnaerobico.touched && umbralAnaerobico.errors?.required}"
+                              (ngModelChange)="cambiarEstadoValoresPruebaEsfuerzo()"
+                              [required]="controlador_seccion_valores_prueba_esfuerzo"
+                              #umbralAnaerobico="ngModel">
+                        <div class="invalid-feedback">Este campo es requerido.</div>
+                    </div>
+                </div> 
+                <div class="form-row mt-3 text-center">
+                    <div class="col-12 col-md-3">
+                      <button type="button" class="btn btn-primary" (click)="onTestDeBanda()">Test de Banda</button>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <button type="button" class="btn btn-primary" (click)="onTestEnCicla()">Test en Cicla</button>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <button type="button" class="btn btn-primary" (click)="onTest12Min()">Test de 12 min</button>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <button type="button" class="btn btn-primary" (click)="onTest6Min()">Test de 6 min</button>
+                    </div>
+                </div>
+                <hr>
+                <!-- fin datos generales valores prueba de esfuerzo  -->
+
+
+                <!-- inicio test de banca -->
+                <div class="card-header text-uppercase text-center  bg-default mb-3"><strong>Test de banca</strong></div> 
+                <div class="form-row">
+
+                      <div class="col-12 col-md-4">
+                          <label for="fc_post">
+                              <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>FC Post</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "fc_post"
+                                [(ngModel)]="formulario.fc_post"  
+                                [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && fcPost.touched && fcPost.errors?.required}"
+                                (ngModelChange)="calcularValorTestBanca()"
+                                [required]="controlador_seccion_valores_prueba_esfuerzo"
+                                #fcPost="ngModel">
+                          <div class="invalid-feedback">Este campo es requerido.</div>
+                      </div>
+
+                      <div class="col-12 col-md-4">
+                          <label for="fc_min">
+                              <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>FC Min</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "fc_min"
+                                [(ngModel)]="formulario.fc_min"  
+                                [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && fcMin.touched && fcMin.errors?.required}"
+                                (ngModelChange)="calcularValorTestBanca()"
+                                [required]="controlador_seccion_valores_prueba_esfuerzo"
+                                #fcMin="ngModel">
+                          <div class="invalid-feedback">Este campo es requerido.</div>
+                      </div>
+
+                      <div class="col-12 col-md-4">
+                          <label for="valor_test_banca">Valor</label>
+                          <input type="number" 
+                                class="form-control"
+                                name = "valor_test_banca" 
+                                [(ngModel)]="valor_test_banca"
+                                disabled>
+                      </div>
+                </div> 
+                <hr>
+                <!-- fin test de banca  -->
+
+                <!-- inicio interpretacion -->
+                <div class="form-row">
+                      <div class="col-12 ">
+                          <div id="" class="form-group">
+                              <label for="interpretacion">
+                                  <span *ngIf="controlador_seccion_valores_prueba_esfuerzo" class="asterisk">*</span>Interpretación</label>
+                              <textarea class="form-control " 
+                              type="text" 
+                              placeholder="Ingrese la interpretación del test. Máx 1000 caracteres" 
+                              name="interpretacion"
+                              [(ngModel)]="formulario.interpretacion_test"  
+                              [ngClass]="{'is-invalid': controlador_seccion_valores_prueba_esfuerzo && interpretacionTest.touched && interpretacionTest.errors?.required}"
+                              (ngModelChange)="cambiarEstadoValoresPruebaEsfuerzo()"
+                              rows=6 
+                              maxlength="1000"
+                              [required]="controlador_seccion_valores_prueba_esfuerzo"
+                              #interpretacionTest="ngModel"></textarea>
+                              <div class="invalid-feedback">Este campo es requerido.</div>
+                          </div>        
+                      </div>
+                </div>
+                <!-- fin interpretacion -->
+
+          </div>
+        </div>
+        <!-- fin de los valores de la prueba de esfuerzo -->
+
+          <!-- inicio de DX y TTO -->
+          <div class="card mb-1">
+              <a class="card-link text-white" data-toggle="collapse" href="#collapseTen">
+            <div class="card-header text-uppercase text-center  bg-info">
+               <span>DX y TTO</span>
+            </div>
+          </a>
+            <div id="collapseTen" class="collapse" data-parent="#accordion">
+                <div class="card-body">                
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div class="form-group">
+                                <label for="diagnostico_medico_deportivo">
+                                    <span *ngIf="controlador_seccion_dx_tto" class="asterisk">*</span>Diagnòsticos Medico Deportivo</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese una descripciòn de la prueba. Máx 1000 caracteres"
+                                name="diagnostico_medico_deportivo"
+                                [(ngModel)]="formulario.diagnostico_medico_deportivo"  
+                                [ngClass]="{'is-invalid': controlador_seccion_dx_tto && diagnosticoMedicoDeportista.touched && diagnosticoMedicoDeportista.errors?.required}"
+                                (ngModelChange)="cambiarEstadoDxTto()"
+                                rows=6 
+                                maxlength="1000"
+                                [required]="controlador_seccion_dx_tto"
+                                #diagnosticoMedicoDeportista="ngModel"></textarea>
+                                <div class="invalid-feedback">Este campo es requerido.</div>
+                            </div> 
+                            <div class="form-group">
+                                <label for="tratamiento_medico">
+                                  <span *ngIf="controlador_seccion_dx_tto" class="asterisk">*</span>Tratamiento Mèdico</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese una descripciòn del tratamiento mèdico. Máx 1000 caracteres" 
+                                name="tratamiento_medico"
+                                [(ngModel)]="formulario.tratamiento_medico"  
+                                [ngClass]="{'is-invalid': controlador_seccion_dx_tto && tratamientoMedico.touched && tratamientoMedico.errors?.required}"
+                                (ngModelChange)="cambiarEstadoDxTto()"
+                                rows=6 
+                                maxlength="1000"
+                                [required]="controlador_seccion_dx_tto"
+                                #tratamientoMedico="ngModel"></textarea>
+                                <div class="invalid-feedback">Este campo es requerido.</div>
+                            </div>   
+                            <div class="form-group">
+                                <label for="descripcion">
+                                    <span *ngIf="controlador_seccion_dx_tto" class="asterisk">*</span>SS Exàmenes</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese el SS exàmenes. Máx 1000 caracteres" 
+                                name="ss_examenes"
+                                [(ngModel)]="formulario.ss_examenes"  
+                                [ngClass]="{'is-invalid': controlador_seccion_dx_tto && ssExamenes.touched && ssExamenes.errors?.required}"
+                                (ngModelChange)="cambiarEstadoDxTto()"
+                                rows=6 
+                                maxlength="1000"
+                                [required]="controlador_seccion_dx_tto"
+                                #ssExamenes="ngModel"></textarea>
+                                <div class="invalid-feedback">Este campo es requerido.</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcion">
+                                    <span *ngIf="controlador_seccion_dx_tto" class="asterisk">*</span>Remisiòn Mèdica</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese la remision mèdica. Máx 1000 caracteres" 
+                                name="remision_medica"
+                                [(ngModel)]="formulario.remision_medica"  
+                                [ngClass]="{'is-invalid': controlador_seccion_dx_tto && remisionMedica.touched && remisionMedica.errors?.required}"
+                                (ngModelChange)="cambiarEstadoDxTto()"
+                                rows=6 
+                                maxlength="1000"
+                                [required]="controlador_seccion_dx_tto"
+                                #remisionMedica="ngModel"></textarea>
+                                <div class="invalid-feedback">Este campo es requerido.</div>
+                            </div>           
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- fin de DX y TTO -->
+
+          <!-- inicio de Prescripciòn -->
+          <div class="card mb-1">
+              <a class="card-link text-white" data-toggle="collapse" href="#collapseEleven">
+            <div class="card-header text-uppercase text-center  bg-info">
+               <span>Prescripciòn</span>
+            </div>
+          </a>
+            <div id="collapseEleven" class="collapse" data-parent="#accordion">
+                <div class="card-body">                
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="" class="form-group">
+                                <label for="prescripcion">Descripciòn</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese una descripciòn de la prescripciòn. Máx 1000 caracteres" 
+                                name="prescripcion"
+                                [(ngModel)]="formulario.prescripcion"  
+                                rows=6></textarea>
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- fin de Prescripciòn -->
+          
+          <!-- inicio de Incapacidad -->
+          <div class="card mb-1">
+              <a class="card-link text-white" data-toggle="collapse" href="#collapseTwelve">
+            <div class="card-header text-uppercase text-center  bg-info">
+               <span>Incapacidad</span>
+            </div>
+          </a>
+            <div id="collapseTwelve" class="collapse" data-parent="#accordion">
+                <div class="card-body">                
+                    <div class="form-row">
+                        <div class="col-12 ">
+                            <div id="" class="form-group">
+                                <label for="incapacidad">Incapacidad Mèdica</label>
+                                <textarea class="form-control " 
+                                type="text" 
+                                placeholder="Ingrese la incapacidad mèdica. Máx 1000 caracteres" 
+                                name="incapacidad"
+                                [(ngModel)]="formulario.incapacidad" 
+                                rows=6 maxlength="1000"></textarea>
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- fin de incapacidad -->
+
+          </div>    
+          </fieldset>
+          <hr>
+
+          <div class="text-center">
+                      <!-- <button id="volver" type="button" class="btn btn-default mr-md-1 mb-3" [routerLink]="[ '/perfil']">Volver</button> -->
+                      <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+          </div>
+      </form>  
+
+
+
+  
+
+
+    </div>  
+  </div>  
+</div>  
+
+
+
+<div class="modal fade" id="cardiovascular" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content ">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Riesgos cardiovasculares</h5>         
+        </div>
+        <div class="modal-body">
+            <table class="table table-bordered">
+                <tr>
+                  <th>Clasificación</th>
+                  <th>Clase</th>
+                  <th>Características</th>
+                </tr>
+                <tr>
+                  <th class="text-uppercase">Aparentemente sano</th>
+                  <td>A1</td>
+                  <td>Hombre mayor 45, mujer menor 55, Asintomáticos, Sin factores de riesgo  </td>
+                </tr>
+                <tr>
+                  <th rowspan="2">RIESGO AUMENTADO</th>
+                  <td>A2</td>
+                  <td> Hombre mayor 45, mujer mayor 55, sin factores de riesgo o no más de un factor de riesgo para enfermedad cardiovascular y/o metabólica </td>
+                </tr>
+                <tr>
+                  <td>A3</td>
+                  <td>Hombre mayor 45, mujer mayor 55 y 2 ó mas factores de riesgo para enfermedad cardiovascular y/o metabólica.</td>
+                </tr>
+                <tr>
+                  <th rowspan="3" >ENFERMEDAD C/V  CONOCIDA</th>
+                  <td>B</td>
+                  <td>Enfermedad cardiovascular conocida, NYHA I o II, prueba máxima: >6METS, respuesta presora OK, sin taquicardia ventricular.</td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>2 o mas IAM previos, NYHA mayor III, menor 6 METS, ST mayor 1, Rpta presora anormal, Probl. médico grave, TV en menor 6 METS, Paro cardiaco previo.</td>
+                </tr>
+                <tr>
+                  <td>D</td>
+                  <td>Enf CV Inestable, Contraindica el ejercicio.</td>
+                </tr>
+              </table>
+        </div>       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>          
+        </div>      
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="cardiorespiratoria" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Riesgos Respiratoria</h5>         
+          </div>
+          <div class="modal-body">
+              <table class="table table-bordered">
+                  <tr>
+                    <th></th>
+                    <th>Edad(años)</th>
+                    <th>Escasa</th>
+                    <th>Regular</th>
+                    <th>Buena</th>
+                    <th>Excelente</th>
+                    <th>Superior</th>
+                  </tr>
+                  <tr>
+                    <th class="text-uppercase">Hombres</th>
+                    <td>20-39</td>
+                    <td>≤ 35</td>
+                    <td>36-39</td>
+                    <td>40-43</td>
+                    <td>44-49</td>
+                    <td>50+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>30-39</td>
+                    <td>≤ 33</td>
+                    <td>34-36</td>
+                    <td>37-40</td>
+                    <td>41-45</td>
+                    <td>46+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>40-49</td>
+                    <td>≤ 31</td>
+                    <td>32-34</td>
+                    <td>35-38</td>
+                    <td>39-44</td>
+                    <td>45+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>50-59</td>
+                    <td>≤ 24</td>
+                    <td>25-28</td>
+                    <td>29-30</td>
+                    <td>31-34</td>
+                    <td>35+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>60-69</td>
+                    <td>≤ 25</td>
+                    <td>26-28</td>
+                    <td>29-31</td>
+                    <td>32-35</td>
+                    <td>36+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>70-79</td>
+                    <td>≤ 23</td>
+                    <td>24-28</td>
+                    <td>27-29</td>
+                    <td>30-35</td>
+                    <td>36+</td>
+                  </tr>
+                  <tr>
+                    <th class="text-uppercase">Mujeres</th>
+                    <td>20-39</td>
+                    <td>≤ 41</td>
+                    <td>42-45</td>
+                    <td>46-50</td>
+                    <td>51-55</td>
+                    <td>56+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>30-39</td>
+                    <td>≤ 40</td>
+                    <td>41-43</td>
+                    <td>44-47</td>
+                    <td>48-53</td>
+                    <td>54+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>40-49</td>
+                    <td>≤ 37</td>
+                    <td>38-41</td>
+                    <td>42-45</td>
+                    <td>46-52</td>
+                    <td>53+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>50-59</td>
+                    <td>≤ 34</td>
+                    <td>35-37</td>
+                    <td>38-42</td>
+                    <td>43-49</td>
+                    <td>50+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>60-69</td>
+                    <td>≤ 30</td>
+                    <td>31-34</td>
+                    <td>35-38</td>
+                    <td>39-45</td>
+                    <td>46+</td>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <td>70-79</td>
+                    <td>≤ 27</td>
+                    <td>28-30</td>
+                    <td>31-35</td>
+                    <td>36-41</td>
+                    <td>42+</td>
+                  </tr>
+                  
+                </table>
+          </div>       
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>          
+          </div>      
+        </div>
+      </div>
+    </div>
+
+
+
+
+ 
+

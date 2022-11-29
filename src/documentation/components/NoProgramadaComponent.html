@@ -1,0 +1,943 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Application documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">Application documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>NoProgramadaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>app/components/admin/salud/atenciones/no-programada/no-programada.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-no-programada</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./no-programada.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./no-programada.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#atencion_id">atencion_id</a>
+                            </li>
+                            <li>
+                                <a href="#busqueda">busqueda</a>
+                            </li>
+                            <li>
+                                <a href="#error">error</a>
+                            </li>
+                            <li>
+                                <a href="#es">es</a>
+                            </li>
+                            <li>
+                                <a href="#paciente">paciente</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#crearBusqueda">crearBusqueda</a>
+                            </li>
+                            <li>
+                                <a href="#goBack">goBack</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_atencionService: <a href="../injectables/AtencionService.html">AtencionService</a>, _location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>, spinner: NgxSpinnerService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_atencionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AtencionService.html" target="_self" >AtencionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>spinner</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgxSpinnerService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearBusqueda"></a>
+                    <span class="name">
+                        <b>
+                            crearBusqueda
+                        </b>
+                        <a href="#crearBusqueda"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>crearBusqueda(forma: <a href="https://angular.io/api/forms/NgForm" target="_blank">NgForm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>forma</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/NgForm" target="_blank" >NgForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <b>
+                            goBack
+                        </b>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:92</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="atencion_id"></a>
+                        <span class="name">
+                            <b>
+                            atencion_id</b>
+                            <a href="#atencion_id"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="busqueda"></a>
+                        <span class="name">
+                            <b>
+                            busqueda</b>
+                            <a href="#busqueda"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+     paciente_id:null,
+     tipo_paciente:null
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="error"></a>
+                        <span class="name">
+                            <b>
+                            error</b>
+                            <a href="#error"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>any[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="es"></a>
+                        <span class="name">
+                            <b>
+                            es</b>
+                            <a href="#es"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    firstDayOfWeek: 1,
+    dayNames: [&quot;Domingo&quot;, &quot;Lunes&quot;, &quot;Martes&quot;, &quot;Miercoles&quot;, &quot;Jueves&quot;, &quot;Viernes&quot;, &quot;Sabado&quot;],
+    dayNamesShort: [&quot;D&quot;, &quot;L&quot;, &quot;M&quot;, &quot;Mi&quot;, &quot;J&quot;, &quot;V&quot;, &quot;S&quot;],
+    dayNamesMin: [&quot;D&quot;, &quot;L&quot;, &quot;M&quot;, &quot;Mi&quot;, &quot;J&quot;, &quot;V&quot;, &quot;S&quot;],
+    monthNames: [ &quot;Enero&quot;,&quot;Febrero&quot;,&quot;Marzo&quot;,&quot;Abril&quot;,&quot;Mayo&quot;,&quot;Junio&quot;,&quot;Julio&quot;,&quot;Agosto&quot;,&quot;Septiembre&quot;,&quot;Octubre&quot;,&quot;Noviembre&quot;,&quot;Diciembre&quot; ],
+    monthNamesShort: [ &quot;Ene&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Abr&quot;, &quot;May&quot;, &quot;Jun&quot;,&quot;Jul&quot;, &quot;Ago&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dic&quot; ],
+    today: &#x27;Hoy&#x27;,
+    clear: &#x27;Limpiar&#x27;
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paciente"></a>
+                        <span class="name">
+                            <b>
+                            paciente</b>
+                            <a href="#paciente"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">app/components/admin/salud/atenciones/no-programada/no-programada.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import {Location} from &#x27;@angular/common&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { AtencionService } from &#x27;src/app/services/atencion.service&#x27;;
+import swal from &#x27;sweetalert2&#x27;;
+import { RespuestaServidor } from &#x27;src/app/class/respuesta-servidor&#x27;;
+import { NgxSpinnerService } from &#x27;ngx-spinner&#x27;;
+
+@Component({
+  selector: &#x27;app-no-programada&#x27;,
+  templateUrl: &#x27;./no-programada.component.html&#x27;,
+  styleUrls: [&#x27;./no-programada.component.css&#x27;]
+})
+export class NoProgramadaComponent implements OnInit {
+
+
+  es:any &#x3D; {
+    firstDayOfWeek: 1,
+    dayNames: [&quot;Domingo&quot;, &quot;Lunes&quot;, &quot;Martes&quot;, &quot;Miercoles&quot;, &quot;Jueves&quot;, &quot;Viernes&quot;, &quot;Sabado&quot;],
+    dayNamesShort: [&quot;D&quot;, &quot;L&quot;, &quot;M&quot;, &quot;Mi&quot;, &quot;J&quot;, &quot;V&quot;, &quot;S&quot;],
+    dayNamesMin: [&quot;D&quot;, &quot;L&quot;, &quot;M&quot;, &quot;Mi&quot;, &quot;J&quot;, &quot;V&quot;, &quot;S&quot;],
+    monthNames: [ &quot;Enero&quot;,&quot;Febrero&quot;,&quot;Marzo&quot;,&quot;Abril&quot;,&quot;Mayo&quot;,&quot;Junio&quot;,&quot;Julio&quot;,&quot;Agosto&quot;,&quot;Septiembre&quot;,&quot;Octubre&quot;,&quot;Noviembre&quot;,&quot;Diciembre&quot; ],
+    monthNamesShort: [ &quot;Ene&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Abr&quot;, &quot;May&quot;, &quot;Jun&quot;,&quot;Jul&quot;, &quot;Ago&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dic&quot; ],
+    today: &#x27;Hoy&#x27;,
+    clear: &#x27;Limpiar&#x27;
+  };
+
+  paciente:any;
+  error: any[] &#x3D; [];
+  
+  busqueda:any &#x3D; {
+     paciente_id:null,
+     tipo_paciente:null
+  }
+  atencion_id: any;
+
+
+  constructor( private _atencionService : AtencionService, 
+               private _location: Location,
+               private spinner: NgxSpinnerService, ) { }
+
+  ngOnInit() {
+  }
+
+
+  crearBusqueda(forma:NgForm){
+  this.spinner.show();
+  this.error &#x3D;  [];
+    if (!forma.valid) {
+       swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: &#x27;Complete los campos del formulario&#x27;
+      });   
+      this.spinner.hide();
+      return;
+    }
+    this._atencionService.getDatosPaciente(this.busqueda).subscribe(data&#x3D;&gt;{        
+        if (data[&#x27;success&#x27;]) {
+          this.paciente &#x3D; data[&#x27;objRetornado&#x27;][&#x27;paciente&#x27;];
+
+          this.atencion_id &#x3D; data[&#x27;objRetornado&#x27;][&#x27;atencion&#x27;];
+
+          this.spinner.hide();
+        } else{
+          this.spinner.hide();
+          this.error &#x3D; data[&#x27;errores&#x27;];
+          this.paciente &#x3D; null;
+          swal({
+            type: &quot;error&quot;,
+            title: &quot;Error&quot;,
+            text: &quot;Corrige los errores&quot;,
+            timer: 2000,
+            showConfirmButton: false
+          });
+        }
+    }, err&#x3D;&gt; {
+      let respuesta:RespuestaServidor &#x3D; new RespuestaServidor(err.status);
+       this.spinner.hide();  
+      swal({
+        type: &#x27;error&#x27;,
+        title: &#x27;Error&#x27;,
+        text: respuesta.msg,
+      });    
+    });
+    
+
+  }
+
+
+  goBack():void{
+    this._location.back();
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ngx-spinner bdColor&#x3D;&quot;rgba(0, 0, 0, 0.65)&quot; size&#x3D;&quot;medium&quot; color&#x3D;&quot;#fff&quot; type&#x3D;&quot;ball-clip-rotate&quot;&gt;&lt;/ngx-spinner&gt;
+&lt;div class&#x3D;&quot;animated fadeIn mb-3&quot;&gt;
+  &lt;h2 class&#x3D;&quot;text-uppercase text-center&quot;&gt;Atención no programada
+      &lt;small class&#x3D;&quot;d-block text-muted&quot;&gt;Módulo de atención no programada.&lt;/small&gt;
+  &lt;/h2&gt;
+  &lt;hr&gt;
+
+  &lt;div class&#x3D; &quot;text-center&quot;&gt;
+      &lt;legend&gt;Búsqueda de paciente&lt;/legend&gt;
+  &lt;/div&gt;
+  
+  &lt;hr&gt;
+  &lt;!-- &quot; --&gt;
+  &lt;form  #citasForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;crearBusqueda(citasForm)&quot; novalidate&gt;
+      &lt;fieldset&gt;
+          &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                &lt;div class&#x3D;&quot;alert alert-danger alert-dismissible fade show&quot; *ngIf&#x3D;&quot;error.length &gt; 0&quot;&gt;
+                        &lt;label&gt;&lt;b&gt;Corrige los errores:&lt;/b&gt;&lt;/label&gt;
+                        &lt;ul&gt;
+                            &lt;div *ngFor&#x3D;&quot;let error of error&quot;&gt;
+                                &lt;li *ngIf&#x3D;&quot;error.errores.length&gt;0&quot;&gt;
+                                    &lt;p&gt;{{error.errores[0].ErrorMessage}}&lt;/p&gt;
+                                &lt;/li&gt;
+                            &lt;/div&gt;
+                        &lt;/ul&gt;
+                        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;close&quot; data-dismiss&#x3D;&quot;alert&quot; (click)&#x3D;&quot;error &#x3D; []&quot; aria-label&#x3D;&quot;Close&quot;&gt;
+                                &lt;span aria-hidden&#x3D;&quot;true&quot;&gt;&amp;times;&lt;/span&gt;
+                        &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+              
+              &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-group m-sm-0&quot;&gt;
+                        &lt;label for&#x3D;&quot;tipoPaciente&quot;&gt; Tipo paciente &lt;/label&gt;
+                        &lt;select [ngClass]&#x3D;&quot;{&#x27;is-invalid&#x27;: tipoPaciente.errors?.required &amp;&amp; (tipoPaciente.touched || citasForm.submitted)}&quot; id&#x3D;&quot;tipoPaciente&quot; class&#x3D;&quot;form-control &quot; name&#x3D;&quot;tipoPaciente&quot; [(ngModel)]&#x3D;&quot;busqueda.tipo_paciente&quot; #tipoPaciente&#x3D;&quot;ngModel&quot; required  &gt;
+                            &lt;option [value]&#x3D;&quot;null&quot; disabled selected&gt;Elegir tipo de paciente&lt;/option&gt;
+                            &lt;option [value]&#x3D;&quot;1&quot;&gt; Estudiante &lt;/option&gt;
+                            &lt;option [value]&#x3D;&quot;2&quot;&gt; Funcionario / Docente / Contratista  &lt;/option&gt;
+                            &lt;option [value]&#x3D;&quot;3&quot;&gt; Invitado &lt;/option&gt;
+                        &lt;/select&gt;
+                        &lt;!-- &lt;div class&#x3D;&quot;invalid-feedback&quot;&gt;Seleccione una de las opciones&lt;/div&gt; --&gt;
+                  &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-md-4&quot;&gt;
+                  &lt;div  class&#x3D;&quot;form-group m-sm-0&quot;&gt;
+                        &lt;label  for&#x3D;&quot;paciente_id&quot;&gt; &lt;span *ngIf&#x3D;&quot;busqueda.tipo_paciente !&#x3D; 1&quot; &gt;Identificación&lt;/span&gt; &lt;span *ngIf&#x3D;&quot;busqueda.tipo_paciente &#x3D;&#x3D; 1&quot; &gt;Código estudiantil&lt;/span&gt; &lt;/label&gt;
+                            &lt;input class&#x3D;&quot;form-control&quot; [ngClass]&#x3D;&quot;{&#x27;is-invalid &#x27;: (citasForm.submitted || paciente_id.touched) &amp;&amp; (paciente_id.errors?.required || paciente_id.errors?.min ||paciente_id.errors?.max ) }&quot; type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;Ingrese el número&quot; name&#x3D;&quot;paciente_id&quot; id&#x3D;&quot;paciente_id&quot; 
+                            [(ngModel)]&#x3D;&quot;busqueda.paciente_id&quot; required #paciente_id&#x3D;&quot;ngModel&quot;&gt;
+                            
+                   &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;col-md-2 d-flex align-items-end &quot;&gt;
+                    &lt;button id&#x3D;&quot;guardar&quot; type&#x3D;&quot;submit&quot; *ngIf&#x3D;&quot;busqueda.tipo_paciente !&#x3D; 3 &quot; class&#x3D;&quot;btn btn-success&quot;&gt;Buscar&lt;/button&gt;
+                    &lt;a id&#x3D;&quot;volver&quot; role&#x3D;&quot;button&quot;  *ngIf&#x3D;&quot;busqueda.tipo_paciente &#x3D;&#x3D; 3 &quot; [routerLink]&#x3D;&quot;[ &#x27;/actualizarDatos&#x27;, busqueda.paciente_id]&quot;  class&#x3D;&quot;btn btn-success&quot; [ngClass]&#x3D;&quot;{&#x27;disabled &#x27;: busqueda.paciente_id &#x3D;&#x3D; null }&quot;&gt;Buscar&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/fieldset&gt;
+  &lt;/form&gt;
+  
+
+  &lt;div class&#x3D;&quot;card shadow mb-3&quot; *ngIf&#x3D;&quot;paciente !&#x3D; null&quot;&gt;
+    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+        &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+            &lt;div class&#x3D;&quot;alert alert-warning&quot; *ngIf&#x3D;&quot;!paciente.paciente&quot; role&#x3D;&quot;alert&quot;&gt;
+                Para poder atender al paciente y registrar la atención, es necesario actualizar los datos.
+            &lt;/div&gt;
+        &lt;/div&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center&quot;&gt;
+                    &lt;div class&#x3D;&quot;text-center img-profile  mt-2 mb-2&quot;&gt;
+
+                        &lt;span class&#x3D;&quot;fas fa-user display-1&quot; style&#x3D;&quot;color: rgb(135, 139, 143)&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/span&gt;
+                         &lt;!-- &lt;img src&#x3D;&quot;http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo&#x3D;{{estudiante.codigo}}&quot; alt&#x3D;&quot;Perfil&quot; class&#x3D;&quot;rounded h-100&quot;&gt; 
+                         &lt;img [src]&#x3D;&quot;estudiante.foto&quot; *ngIf&#x3D;&quot;estudiante.foto&quot; class&#x3D;&quot;rounded h-100&quot;&gt;  --&gt;
+                        &lt;!-- &lt;img src&#x3D;&quot;../../../../../assets/img/profile.png&quot; class&#x3D;&quot;rounded h-100&quot;&gt; --&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center&quot;&gt;
+                    &lt;div class&#x3D;&quot;row text-center text-md-left&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;h3 class&#x3D;&quot;h4 mb-3&quot;&gt;
+                                &lt;small class&#x3D;&quot;d-block text-muted&quot;&gt;Nombre&lt;/small&gt;{{paciente.nombres}}
+                            &lt;/h3&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-4 col-xl-3&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label class&#x3D;&quot;m-0 text-muted&quot;&gt;Identificación&lt;/label&gt;
+                                &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{paciente.tipo_identificacion}} - {{paciente.identificacion}}&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-8 col-xl-3&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                &lt;label class&#x3D;&quot;m-0 text-muted&quot;&gt;Sexo&lt;/label&gt;
+                                &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{paciente.sexo}}&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-12 col-xl-3&quot; &gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                    &lt;label class&#x3D;&quot;m-0 text-muted&quot;&gt;Grupo sanguíneo&lt;/label&gt;
+                                    &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;{{paciente.grupo_sanguineo}}&lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-12 col-xl-3&quot; &gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;                               
+                                &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot; *ngIf&#x3D;&quot;paciente.paciente&quot;&gt;
+                                   &lt;button class&#x3D;&quot;btn btn-primary&quot; *ngIf&#x3D;&quot;paciente.id_servicio &#x3D;&#x3D; 4&quot; [routerLink]&#x3D;&quot;[ &#x27;/atenciones/medicinageneral&#x27;, 1 ,paciente.identificacion ]&quot; type&#x3D;&quot;button&quot;&gt;Nueva atención&lt;/button&gt;
+                                   &lt;button class&#x3D;&quot;btn btn-primary&quot; *ngIf&#x3D;&quot;paciente.id_servicio &#x3D;&#x3D; 6&quot; [routerLink]&#x3D;&quot;[ &#x27;/atenciones/enfermeria&#x27;, 1 ,paciente.identificacion ]&quot; type&#x3D;&quot;button&quot;&gt;Nueva atención&lt;/button&gt;
+                                   &lt;button class&#x3D;&quot;btn btn-success mt-2&quot;  *ngIf&#x3D;&quot;busqueda.tipo_paciente &#x3D;&#x3D; 1&quot; [routerLink]&#x3D;&quot;[ &#x27;/atenciones/registroIncapacidad&#x27;, paciente.identificacion]&quot;  type&#x3D;&quot;button&quot;&gt;Registrar Incapacidad&lt;/button&gt;
+                                &lt;/p&gt;
+                                &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot; *ngIf&#x3D;&quot;!paciente.paciente&quot;&gt;
+                                    &lt;button class&#x3D;&quot;btn btn-success&quot; [routerLink]&#x3D;&quot;[ &#x27;/actualizarDatos&#x27;, paciente.identificacion]&quot;  type&#x3D;&quot;button&quot;&gt;Actualizar datos&lt;/button&gt;
+                                 &lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-8 col-xl-9&quot;&gt;
+                            &lt;div class&#x3D;&quot;form-group&quot;&gt;
+                                    &lt;label class&#x3D;&quot;m-0 text-muted&quot;&gt;EPS&lt;/label&gt;
+                                    &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;
+                                        {{paciente.eps}}
+                                    &lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;col-md-4 col-xl-3&quot; *ngIf&#x3D;&quot;atencion_id !&#x3D; 0 &amp;&amp; paciente.id_servicio &#x3D;&#x3D; 4&quot;  &gt;
+                                &lt;div class&#x3D;&quot;form-group&quot;&gt;                               
+                                    &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;
+                                       &lt;button class&#x3D;&quot;btn btn-success&quot;  [routerLink]&#x3D;&quot;[ &#x27;/atenciones/detalle-cita&#x27;, atencion_id]&quot;  type&#x3D;&quot;button&quot; title&#x3D;&quot;Registrar evoloción&quot;&gt;Registrar evolución&lt;/button&gt;                                       
+                                    &lt;/p&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;col-md-4 col-xl-3&quot; *ngIf&#x3D;&quot;atencion_id !&#x3D; 0 &amp;&amp; paciente.id_servicio &#x3D;&#x3D; 6&quot;  &gt;
+                                &lt;div class&#x3D;&quot;form-group&quot;&gt;                               
+                                    &lt;p class&#x3D;&quot;form-control-plaintext p-0&quot;&gt;                                      
+                                       &lt;button class&#x3D;&quot;btn btn-success&quot;  [routerLink]&#x3D;&quot;[ &#x27;/atenciones/detalle-cita-enfermeria&#x27;, atencion_id]&quot;  type&#x3D;&quot;button&quot; title&#x3D;&quot;Detalle atención de enfermería&quot;&gt;Ver detalle&lt;/button&gt;
+                                    &lt;/p&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;text-center&quot;&gt;
+        &lt;a id&#x3D;&quot;volver&quot; role&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-light  mr-md-1 mb-3&quot; (click)&#x3D;&quot;goBack()&quot; &gt;Volver&lt;/a&gt;
+ &lt;/div&gt;
+
+
+
+
+
+
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./no-programada.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner><div class="animated fadeIn mb-3">  <h2 class="text-uppercase text-center">Atención no programada      <small class="d-block text-muted">Módulo de atención no programada.</small>  </h2>  <hr>  <div class= "text-center">      <legend>Búsqueda de paciente</legend>  </div>    <hr>  <!-- " -->  <form  #citasForm="ngForm" (ngSubmit)="crearBusqueda(citasForm)" novalidate>      <fieldset>          <div class="row">              <div class="col-12">                <div class="alert alert-danger alert-dismissible fade show" *ngIf="error.length > 0">                        <label><b>Corrige los errores:</b></label>                        <ul>                            <div *ngFor="let error of error">                                <li *ngIf="error.errores.length>0">                                    <p>{{error.errores[0].ErrorMessage}}</p>                                </li>                            </div>                        </ul>                        <button type="button" class="close" data-dismiss="alert" (click)="error = []" aria-label="Close">                                <span aria-hidden="true">&times;</span>                        </button>                </div>              </div>          </div>          <div class="row justify-content-center">                            <div class="col-md-4">                  <div class="form-group m-sm-0">                        <label for="tipoPaciente"> Tipo paciente </label>                        <select [ngClass]="{\'is-invalid\': tipoPaciente.errors?.required && (tipoPaciente.touched || citasForm.submitted)}" id="tipoPaciente" class="form-control " name="tipoPaciente" [(ngModel)]="busqueda.tipo_paciente" #tipoPaciente="ngModel" required  >                            <option [value]="null" disabled selected>Elegir tipo de paciente</option>                            <option [value]="1"> Estudiante </option>                            <option [value]="2"> Funcionario / Docente / Contratista  </option>                            <option [value]="3"> Invitado </option>                        </select>                        <!-- <div class="invalid-feedback">Seleccione una de las opciones</div> -->                  </div>              </div>              <div class="col-md-4">                  <div  class="form-group m-sm-0">                        <label  for="paciente_id"> <span *ngIf="busqueda.tipo_paciente != 1" >Identificación</span> <span *ngIf="busqueda.tipo_paciente == 1" >Código estudiantil</span> </label>                            <input class="form-control" [ngClass]="{\'is-invalid \': (citasForm.submitted || paciente_id.touched) && (paciente_id.errors?.required || paciente_id.errors?.min ||paciente_id.errors?.max ) }" type="number" placeholder="Ingrese el número" name="paciente_id" id="paciente_id"                             [(ngModel)]="busqueda.paciente_id" required #paciente_id="ngModel">                                               </div>              </div>              <div class="col-md-2 d-flex align-items-end ">                    <button id="guardar" type="submit" *ngIf="busqueda.tipo_paciente != 3 " class="btn btn-success">Buscar</button>                    <a id="volver" role="button"  *ngIf="busqueda.tipo_paciente == 3 " [routerLink]="[ \'/actualizarDatos\', busqueda.paciente_id]"  class="btn btn-success" [ngClass]="{\'disabled \': busqueda.paciente_id == null }">Buscar</a>            </div>          </div>      </fieldset>  </form>    <div class="card shadow mb-3" *ngIf="paciente != null">    <div class="card-body">        <div class="row justify-content-center">            <div class="alert alert-warning" *ngIf="!paciente.paciente" role="alert">                Para poder atender al paciente y registrar la atención, es necesario actualizar los datos.            </div>        </div>            <div class="row">                <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">                    <div class="text-center img-profile  mt-2 mb-2">                        <span class="fas fa-user display-1" style="color: rgb(135, 139, 143)" aria-hidden="true"></span>                         <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{estudiante.codigo}}" alt="Perfil" class="rounded h-100">                          <img [src]="estudiante.foto" *ngIf="estudiante.foto" class="rounded h-100">  -->                        <!-- <img src="../../../../../assets/img/profile.png" class="rounded h-100"> -->                    </div>                </div>                <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">                    <div class="row text-center text-md-left">                        <div class="col-12">                            <h3 class="h4 mb-3">                                <small class="d-block text-muted">Nombre</small>{{paciente.nombres}}                            </h3>                        </div>                        <div class="col-md-4 col-xl-3">                            <div class="form-group">                                <label class="m-0 text-muted">Identificación</label>                                <p class="form-control-plaintext p-0">{{paciente.tipo_identificacion}} - {{paciente.identificacion}}</p>                            </div>                        </div>                        <div class="col-md-8 col-xl-3">                            <div class="form-group">                                <label class="m-0 text-muted">Sexo</label>                                <p class="form-control-plaintext p-0">{{paciente.sexo}}</p>                            </div>                        </div>                        <div class="col-12 col-md-12 col-xl-3" >                            <div class="form-group">                                    <label class="m-0 text-muted">Grupo sanguíneo</label>                                    <p class="form-control-plaintext p-0">{{paciente.grupo_sanguineo}}</p>                            </div>                        </div>                        <div class="col-12 col-md-12 col-xl-3" >                            <div class="form-group">                                                               <p class="form-control-plaintext p-0" *ngIf="paciente.paciente">                                   <button class="btn btn-primary" *ngIf="paciente.id_servicio == 4" [routerLink]="[ \'/atenciones/medicinageneral\', 1 ,paciente.identificacion ]" type="button">Nueva atención</button>                                   <button class="btn btn-primary" *ngIf="paciente.id_servicio == 6" [routerLink]="[ \'/atenciones/enfermeria\', 1 ,paciente.identificacion ]" type="button">Nueva atención</button>                                   <button class="btn btn-success mt-2"  *ngIf="busqueda.tipo_paciente == 1" [routerLink]="[ \'/atenciones/registroIncapacidad\', paciente.identificacion]"  type="button">Registrar Incapacidad</button>                                </p>                                <p class="form-control-plaintext p-0" *ngIf="!paciente.paciente">                                    <button class="btn btn-success" [routerLink]="[ \'/actualizarDatos\', paciente.identificacion]"  type="button">Actualizar datos</button>                                 </p>                            </div>                        </div>                        <div class="col-md-8 col-xl-9">                            <div class="form-group">                                    <label class="m-0 text-muted">EPS</label>                                    <p class="form-control-plaintext p-0">                                        {{paciente.eps}}                                    </p>                            </div>                        </div>                        <div class="col-md-4 col-xl-3" *ngIf="atencion_id != 0 && paciente.id_servicio == 4"  >                                <div class="form-group">                                                                   <p class="form-control-plaintext p-0">                                       <button class="btn btn-success"  [routerLink]="[ \'/atenciones/detalle-cita\', atencion_id]"  type="button" title="Registrar evoloción">Registrar evolución</button>                                                                           </p>                                </div>                            </div>                            <div class="col-md-4 col-xl-3" *ngIf="atencion_id != 0 && paciente.id_servicio == 6"  >                                <div class="form-group">                                                                   <p class="form-control-plaintext p-0">                                                                             <button class="btn btn-success"  [routerLink]="[ \'/atenciones/detalle-cita-enfermeria\', atencion_id]"  type="button" title="Detalle atención de enfermería">Ver detalle</button>                                    </p>                                </div>                            </div>                    </div>                </div>            </div>    </div></div><div class="text-center">        <a id="volver" role="button" class="btn btn-light  mr-md-1 mb-3" (click)="goBack()" >Volver</a> </div></div></div>'
+    var COMPONENTS = [{'name': 'ActividadesComponent', 'selector': 'app-actividades'},{'name': 'ActividadesSupervisorComponent', 'selector': 'app-actividades-supervisor'},{'name': 'ActualizarDatosComponent', 'selector': 'app-actualizar-datos'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AgendaCitasComponent', 'selector': 'app-agenda-citas'},{'name': 'AgendaCitasDiariasComponent', 'selector': 'app-agenda-citas-diarias'},{'name': 'AgendaComponent', 'selector': 'app-agenda'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AsistenteConvocatoriaComponent', 'selector': 'app-asistente-convocatoria'},{'name': 'AsociarDisciplinasComponent', 'selector': 'app-asociar-disciplinas'},{'name': 'AsociarItemsComponent', 'selector': 'app-asociar-items'},{'name': 'AyudaComponent', 'selector': 'app-ayuda'},{'name': 'BeneficiosComponent', 'selector': 'app-beneficios'},{'name': 'CafeteriasComponent', 'selector': 'app-cafeterias'},{'name': 'CambiarContrasenaComponent', 'selector': 'app-cambiar-contrasena'},{'name': 'CitasComponent', 'selector': 'app-citas'},{'name': 'ConfiguracionasignaturasComponent', 'selector': 'app-configuracionasignaturas'},{'name': 'ControlValueAccesorComponent', 'selector': 'app-control-value-accessor'},{'name': 'ConvocatoriaComponent', 'selector': 'app-convocatoria'},{'name': 'ConvocatoriaDetalleArtistasDeportistasComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaDetalleComponent', 'selector': 'app-convocatoria-detalle'},{'name': 'ConvocatoriaRefrigeriosComponent', 'selector': 'app-convocatoria-refrigerios'},{'name': 'CrearComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaArtistasDeportistasComponent', 'selector': 'app-crear'},{'name': 'CrearConvocatoriaComponent', 'selector': 'app-crear-convocatoria'},{'name': 'CrearPlazaComponent', 'selector': 'app-crear-plaza'},{'name': 'CriteriosEvaluacionComponent', 'selector': 'app-criterios-evaluacion'},{'name': 'CriteriosSeleccionComponent', 'selector': 'app-criterios-seleccion'},{'name': 'CuantificacionPlazasComponent', 'selector': 'app-cuantificacion-plazas'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardEstudianteComponent', 'selector': 'app-dashboard-estudiante'},{'name': 'DetalleCitaComponent', 'selector': 'app-detalle-cita'},{'name': 'DetalleCitaEnfermeriaComponent', 'selector': 'app-detalle-cita-enfermeria'},{'name': 'DetalleConvocatoriaRefrigeriosComponent', 'selector': 'app-detalle-convocatoria-refrigerios'},{'name': 'DetalleConvocatoriasRefrigeriosComponent', 'selector': 'app-detalle-convocatorias-refrigerios'},{'name': 'DiasNohabilitadosComponent', 'selector': 'app-dias-nohabilitados'},{'name': 'DiasNoLaborablesComponent', 'selector': 'app-dias-no-laborables'},{'name': 'DisciplinaComponent', 'selector': 'app-disciplina'},{'name': 'EditarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasComponent', 'selector': 'app-editar-convocatorias'},{'name': 'EditarConvocatoriasRefrigeriosComponent', 'selector': 'app-editar-convocatorias-refrigerios'},{'name': 'EditarInscripcionComponent', 'selector': 'app-editar-inscripcion'},{'name': 'EditarPlazaComponent', 'selector': 'app-editar-plaza'},{'name': 'EncuestaComponent', 'selector': 'app-encuesta'},{'name': 'EnfermeriaComponent', 'selector': 'app-enfermeria'},{'name': 'EntregaExtemporaneaComponent', 'selector': 'app-entrega-extemporanea'},{'name': 'EntrevistasEstudiantesComponent', 'selector': 'app-entrevistas-estudiantes'},{'name': 'EstudianteCondicionComponent', 'selector': 'app-estudiante-condicion'},{'name': 'EstudianteEvaluadoComponent', 'selector': 'app-estudiante-evaluado'},{'name': 'EstudiantesEvaluadosComponent', 'selector': 'app-estudiantes-evaluados'},{'name': 'EstudiantesPlazasComponent', 'selector': 'app-estudiantes-plazas'},{'name': 'EstudiantesSupervisorComponent', 'selector': 'app-estudiantes-supervisor'},{'name': 'EvaluacionEstudianteComponent', 'selector': 'app-evaluacion-estudiante'},{'name': 'EvaluarEstudiantesDeportistasComponent', 'selector': 'app-evaluar-estudiantes'},{'name': 'ExcusasComponent', 'selector': 'app-excusas'},{'name': 'FacultadesComponent', 'selector': 'app-facultades'},{'name': 'FooterComponent', 'selector': 'app-public-footer'},{'name': 'FooterPrivateComponent', 'selector': 'app-private-footer'},{'name': 'GeneralesComponent', 'selector': 'app-generales'},{'name': 'GuardarBolsaComponent', 'selector': 'app-guardar-bolsa'},{'name': 'GuardarProfesionalsaludComponent', 'selector': 'app-guardar-profesionalsalud'},{'name': 'GuardarUnidadComponent', 'selector': 'app-guardar-unidad'},{'name': 'HistorialConvocatoriasArtistasDeportistasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialConvocatoriasComponent', 'selector': 'app-historial-convocatorias'},{'name': 'HistorialPlazasComponent', 'selector': 'app-historial-plazas'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorasActividadesComponent', 'selector': 'app-horas-actividades'},{'name': 'InscripcionAdministrativaComponent', 'selector': 'app-inscripcion-administrativa'},{'name': 'InscripcionEstudiantesComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'InscripcionEstudiantesDeportistasComponent', 'selector': 'app-inscripcion-estudiantes'},{'name': 'ListadoEntregasEstadosComponent', 'selector': 'app-listado-entregas-estados'},{'name': 'ListadoEstudiantesAprobadosComponent', 'selector': 'app-listado-estudiantes-aprobados'},{'name': 'ListadoEvaluadosComponent', 'selector': 'app-listado-evaluados'},{'name': 'ListadoFallasComponent', 'selector': 'app-listado-fallas'},{'name': 'ListadoFallasEstudianteComponent', 'selector': 'app-listado-fallas-estudiante'},{'name': 'ListadoInscritosComponent', 'selector': 'app-listado-inscritos'},{'name': 'ListaInscripcionesComponent', 'selector': 'app-lista-inscripciones'},{'name': 'ListaPlazasComponent', 'selector': 'app-lista-plazas'},{'name': 'ListarBolsasComponent', 'selector': 'app-listar-bolsas'},{'name': 'ListarCondicionesComponent', 'selector': 'app-listar-condiciones'},{'name': 'ListarConvocatoriasArtistasDeportistasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasComponent', 'selector': 'app-listar-convocatorias'},{'name': 'ListarConvocatoriasRefrigeriosComponent', 'selector': 'app-listar-convocatorias-refrigerios'},{'name': 'ListarEstudiantesDeportistasComponent', 'selector': 'app-listar-estudiantes'},{'name': 'ListarEstudiosrealizadosComponent', 'selector': 'app-listar-estudiosrealizados'},{'name': 'ListarNivelesprofesionalesComponent', 'selector': 'app-listar-nivelesprofesionales'},{'name': 'ListarPlazasComponent', 'selector': 'app-listar-plazas'},{'name': 'ListarUnidadesComponent', 'selector': 'app-listar-unidades'},{'name': 'ListarUsuariosComponent', 'selector': 'app-listar-usuarios'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogsEstudianteComponent', 'selector': 'app-logs-estudiante'},{'name': 'LugaresComponent', 'selector': 'app-lugares'},{'name': 'MedicinageneralComponent', 'selector': 'app-medicinageneral'},{'name': 'MiCitasComponent', 'selector': 'app-mi-citas'},{'name': 'ModalidadComponent', 'selector': 'app-modalidad'},{'name': 'NavbarComponent', 'selector': 'app-public-navbar'},{'name': 'NavbarPrivateComponent', 'selector': 'app-private-navbar'},{'name': 'NoProgramadaComponent', 'selector': 'app-no-programada'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'PerfilEstudianteComponent', 'selector': 'app-perfil-estudiante'},{'name': 'PerfilRefrigeriosComponent', 'selector': 'app-perfil-refrigerios'},{'name': 'PerfilSaludComponent', 'selector': 'app-perfil-salud'},{'name': 'PeriodosComponent', 'selector': 'app-periodos'},{'name': 'PeriodosRefrigeriosComponent', 'selector': 'app-periodos-refrigerios'},{'name': 'PlazasAprobadasComponent', 'selector': 'app-plazas-aprobadas'},{'name': 'PlazasInformacionComponent', 'selector': 'app-plazas-informacion'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'ProfesionalDiasConsultoriosComponent', 'selector': 'app-profesional-dias-consultorios'},{'name': 'ProfesionalesComponent', 'selector': 'app-profesionales'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProgramasComponent', 'selector': 'app-programas'},{'name': 'PsicologiaComponent', 'selector': 'app-psicologia'},{'name': 'PublicAprobadosComponent', 'selector': 'app-public-aprobados'},{'name': 'PublicComponent', 'selector': 'app-public'},{'name': 'PublicEvaluadoComponent', 'selector': 'app-public-evaluado'},{'name': 'RecepcionComponent', 'selector': 'app-recepcion'},{'name': 'RegistroExtemporaneasComponent', 'selector': 'app-registro-extemporaneas'},{'name': 'RegistroIncapacidadComponent', 'selector': 'app-registro-incapacidad'},{'name': 'ReporteAsignacionDiasComponent', 'selector': 'app-reporte-asignacion-dias'},{'name': 'ReporteEntregasComponent', 'selector': 'app-reporte-entregas'},{'name': 'ReporteEntregasConvocatoriasComponent', 'selector': 'app-reporte-entregas-convocatorias'},{'name': 'ReporteEntregasEstudiantesComponent', 'selector': 'app-reporte-entregas-estudiantes'},{'name': 'ReportesRefrigeriosComponent', 'selector': 'app-reportes-refrigerios'},{'name': 'SolicicitudesCancelacionComponent', 'selector': 'app-solicicitudes-cancelacion'},{'name': 'SupervisorAyudantiaComponent', 'selector': 'app-supervisor-ayudantia'},{'name': 'TiposPlazasComponent', 'selector': 'app-tipos-plazas'},{'name': 'TiposprofesionalessaludComponent', 'selector': 'app-tiposprofesionalessalud'},{'name': 'UsuariosCafeteriaComponent', 'selector': 'app-usuarios-cafeteria'},{'name': 'VerPlazaComponent', 'selector': 'app-ver-plaza'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NoProgramadaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NoProgramadaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

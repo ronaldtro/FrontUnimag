@@ -1,0 +1,170 @@
+
+:host(.container) {
+    max-width: 100%!important;
+}
+.btn-link-circle{
+    display: inline-block;
+    margin: 0 .5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.btn-link-circle img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #eee;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,.4);
+    transition: .35s all ease-in-out;
+    margin-bottom: .5rem;
+}
+.btn-link-circle:hover img{
+    background-color: yellowgreen;
+    box-shadow: 0px 4px 12px 0px rgba(0,0,0,.35);
+}
+.btn-link-circle>span{
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    color: #004a87;
+    font-weight: 700;
+}
+.no-container{
+    max-width: 100% !important;
+    padding: 0;
+}
+.text-overlap{
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(248,80,50,0);
+background: -moz-linear-gradient(top, rgba(248,80,50,0) 0%, rgba(0,0,0,0.15) 69%, rgba(0,0,0,0.4) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(248,80,50,0)), color-stop(69%, rgba(0,0,0,0.15)), color-stop(100%, rgba(0,0,0,0.4)));
+background: -webkit-linear-gradient(top, rgba(248,80,50,0) 0%, rgba(0,0,0,0.45) 69%, rgba(0,0,0,0.4) 100%);
+background: -o-linear-gradient(top, rgba(248,80,50,0) 0%, rgba(0,0,0,0.15) 69%, rgba(0,0,0,0.4) 100%);
+background: -ms-linear-gradient(top, rgba(248,80,50,0) 0%, rgba(0,0,0,0.15) 69%, rgba(0,0,0,0.4) 100%);
+background: linear-gradient(to bottom, rgba(248,80,50,0) 0%, rgba(0,0,0,0.15) 69%, rgba(0,0,0,0.4) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#000000', GradientType=0 );
+}
+.title-overlap{
+    font-family: leelawadee, sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: 1px 3px 3px rgba(0,0,0,.65);
+}
+#buttons-access{
+    display: flex;
+    justify-content: center;
+    flex-wrap:wrap;
+}
+#buttons-access .card{
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    font-family: leelawadee, Arial;
+    font-weight: bold;
+    transition: all .35s ease-in-out;
+}
+
+#buttons-access .card .card-img{
+    width: auto!important;
+    height: 56px;
+    margin:.35rem;
+}
+#buttons-access .card .card-link{
+    display:none;
+    transition: all .75s ease-in-out;
+}
+
+#serviciosMedicos{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#serviciosMedicos .servicio{
+    text-align: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+#serviciosMedicos .servicio img{
+    height: 56px;
+}
+#serviciosMedicos .servicio small{
+    display: block;
+}
+
+#buttons-access .card .card-link{
+    display:block;
+}
+
+span.card-badge {
+    position: absolute;
+    right: .5rem;
+    top: -.875rem;
+    display: inline-block;
+    background: red;
+    border-radius: 50%;
+    color: aliceblue;
+    font-size: 1.25rem;
+    height: 2rem;
+    width: 2rem;
+    animation-name: zoom;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transition: all .5s ease-in-out;
+}
+
+@keyframes zoom {
+    0% {height: 2rem; width: 2rem; font-size: 1.25rem;right: .5rem;top: -.875rem;}
+    50% {height: 2.75rem; width: 2.75rem; font-size: 1.75rem;top: -1.25rem; right:.25rem}
+    100% {height: 2rem; width: 2rem; font-size: 1.25rem;right: .5rem;top: -.875rem;}
+}
+
+@media only screen and (min-width: 576px) {
+    #buttons-access .card{
+        width: calc(50% - 1rem);
+        margin-left:.5rem;
+        margin-right:.5rem;
+        margin-bottom: 1rem;
+    }
+    .title-overlap{
+        font-size: 1.8rem;
+    }
+    
+}
+
+@media only screen and (min-width: 992px) {
+    #buttons-access{
+        margin-top: -3rem;
+        flex-wrap: nowrap;
+    }
+    #buttons-access .card{
+        flex-grow: 1;
+        flex-basis: 0;
+        flex-direction: column;
+        display: inline-block;
+    }
+    #buttons-access .card:hover{
+        margin-top: -2rem;
+    }
+    #buttons-access .card .card-img{
+        height: 72px;
+        margin-bottom: .5rem;
+    }
+    .title-overlap{
+        font-size: 2.325rem;
+    }
+    #buttons-access .card .card-link{
+        display:none;
+    }
+    #buttons-access .card:hover .card-link{
+        display:block;
+    }
+}

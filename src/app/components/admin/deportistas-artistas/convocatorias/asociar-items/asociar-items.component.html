@@ -1,0 +1,83 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Ítems <small class="btn-block text-muted">El listado cuenta con {{listaItemsConvocatorias.length}} ítems</small></h2>
+  <hr>
+ 
+  <div class="row d-flex justify-content-center ">
+
+    <button (click)="incrementarCantidadItems()" class="btn btn-info mb-3 text-uppercase"> <span class="fas fa-plus"></span> Agregar ítem </button>
+
+  </div>
+  <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+    <label><b>Corrige los errores:</b></label>
+    <ul>
+        <div *ngFor="let error of errores">
+            <li *ngIf="error.errores.length>0">
+                <p>{{error.errores[0].ErrorMessage}}</p>
+            </li>
+        </div>
+    </ul>
+</div>
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-12 col-md-10">
+        <div class="table-responsive">
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th style="width: 180px;">Nombre de ítem</th>
+                        <th style="width: 20px ">Porcentaje</th>
+                        <th style="width: 20px ">Valor máximo</th>
+                        <th style="width: 50px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let itemConvocatoria of listaItemsConvocatorias; let i = index;">
+                        <td>
+                            <ng-autocomplete
+                                id="nombre{{i}}"
+                                placeHolder="Nombre del item {{ i+1 }}"
+                                class="autocompleteItem"
+                                name="nombre{{i}}"
+                                [(ngModel)]="itemConvocatoria.nombre"
+                                [data]="listaItems"
+                                searchKeyword="nombre"
+                                [itemTemplate]="itemTemplate"
+                                #auto>                                 
+                            </ng-autocomplete>
+                            
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.nombre"></a>
+                            </ng-template>
+                        </td>
+
+                        <td>
+                            <input type="number" class="form-control" placeholder="Porcentaje del ítem" name="porcentaje{{i}}" [(ngModel)]="itemConvocatoria.porcentaje">
+                        </td>
+
+                        <td>
+                            <input type="number" class="form-control" placeholder="Valor máximo" min="1" name="valorMaximo{{i}}" [(ngModel)]="itemConvocatoria.valorMaximo" [ngClass]="{'is-invalid ': (valorMaximo.errors?.min  || valorMaximo.errors?.required) && (valorMaximo.touched )}" #valorMaximo="ngModel" required>
+                            <div class="invalid-feedback" *ngIf="(valorMaximo.errors?.min)">
+                                Sólo valores mayores o iguales que 1.
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <button class="btn btn-sm btn-outline-dark border-secondary" (click)="quitarItemDisciplina(itemConvocatoria, i)" title="Quitar ítem"><span class="fas fa-times"></span><span class="sr-only">Quitar ítem</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+              
+            </table>
+
+            <div class="text-center">
+                <button *ngIf="listaItemsConvocatorias.length > 0" type="button" class="btn btn-light mr-md-1" (click)="goBack()">Volver</button>
+                <button *ngIf="listaItemsConvocatorias.length > 0" type="submit" (click)="asignarItemsAConvocatoria()" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

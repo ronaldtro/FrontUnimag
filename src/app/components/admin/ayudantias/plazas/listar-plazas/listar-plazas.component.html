@@ -1,0 +1,263 @@
+<h2 *ngIf="!userService.roleMatch(['AdminMonitorias'])" class="text-uppercase text-center animated fadeIn">Plazas solicitadas <small class="btn-block text-muted">El
+    listado cuenta con {{solicitudesPlazas.length}} registro(s)</small></h2>
+<h2 *ngIf="userService.roleMatch(['AdminMonitorias']) && tipoConvocatoria == 3" class="text-uppercase text-center animated fadeIn">Plazas pre-aprobadas <small class="btn-block text-muted">El
+    listado cuenta con {{solicitudesPlazas.length}} registro(s)</small></h2>
+<hr>
+
+
+<div class="row animated fadeIn">
+    <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+    <div class="col-12 text-center">
+        
+        <div class="alert alert-info text-center mb-3" *ngIf="convocatoria.id != null">
+            <strong>{{convocatoria.titulo}}</strong>
+        </div>
+        <div class="alert alert-info mb-3" role="alert" *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button> 
+
+            <p class="small">A continuación, se muestran todas las plazas solicitadas por las unidades registradas en el sistema. Por cada solicitud puede ver el detalle de la plaza o responder dicha solicitud. Las solicitudes de plazas solo podrán ser respondidas en la etapa de Revisión de plazas de la convocatoria correspondiente.</p>
+        </div>
+        
+        <a id="btn-solicitar" *ngIf="userService.roleMatch(['Unidad','UnidadMonitorias'])" role="button" class="btn btn-success text-uppercase mb-3 mr-1" [routerLink]="['/plazas/solicitar', {id: null, tipoConvocatoria: tipoConvocatoria}]">
+            <span class="fa fa-plus" aria-hidden="true"></span> Solicitar plaza
+        </a>
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+        <a id="btn-informacion" tabindex="0" role="button" *ngIf="userService.roleMatch(['Unidad','UnidadMonitorias'])" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran todas las plazas solicitadas por cada convocatoria. Las plazas solo pueden ser editadas en la etapa de Solicitud de plazas de la convocatoria correspondiente.">
+            <span class="fa fa-question-circle" aria-hidden="true"></span>
+            <span class="sr-only">Información de ayuda</span>
+        </a>
+        <!-- <div class="card mb-3">
+      <div class="card-header">Información de ayuda</div>
+      <div class="card-body">
+        <p class="card-text text-left text-secondary">A continuación, se muestran todas las plazas solicitadas por las unidades registradas en el sistema. Por cada solicitud puede ver el detalle de la plaza o responder dicha solicitud.</p>
+      </div>
+    </div> -->
+
+        <div class="text-center mb-3">
+            
+        </div>
+        <div class="collapse mb-3" id="collapseFilter">
+            <div class="card card-body px-3 pt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-convocatoria" class="form-group">
+                            <label>Filtrar por convocatoria</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-solicitante" class="form-group">
+                            <label>Filtrar por solicitante</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div id="filter-plaza" class="form-group">
+                            <label>Filtrar por plaza</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-3" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+    <div class="col-12">
+        <div class="table-responsive animated fadeIn mb-3">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table text-center" id="table-plazas">
+                <thead>
+                    <tr>
+                        <th scope="col">Convocatoria</th>
+                        <th scope="col">Solicitante</th>
+                        <th scope="col">Plaza</th>
+                        <th scope="col">Tipo de plaza</th>
+                        <th scope="col">Cupos {{ (userService.roleMatch(['AdminMonitorias']) && tipoConvocatoria == 3) ? 'pre-aprobados' : 'solicitados' }}</th>
+                        <th scope="col" style="width: 80px;">Fecha de solicitud</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Competencias requeridas</th>
+                        <th scope="col" class="text-center" style="width: 110px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let solicitud of solicitudesPlazas">
+                        <td>{{ solicitud.convocatoria }}</td>
+                        <td>{{ solicitud.solicitanteNombre }} </td>
+                        <td>{{ solicitud.tipoPlazaNombre }} </td>
+                        <td>{{ solicitud.tipoAyudantia }} </td>
+                        <td>{{ (solicitud.estadoId == 4 && tipoConvocatoria == 3) ? solicitud.cuposPreaprobados : solicitud.cuposSolicitados }}</td>
+                        <td attr.data-order="{{solicitud.fechaSolicitud | date: 'yyyy-MM-dd'}}">{{ solicitud.fechaSolicitud | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ solicitud.perfil }} </td>
+                        <td>{{ solicitud.competenciasRequeridas }} </td>
+                        <!-- <td>{{solicitud.fechaSolicitud | date: 'dd/MM/yyyy'}}</td> -->
+                        <td class="text-left" [ngClass]="{'text-left': userService.roleMatch(['Admin','AdminMonitorias']), 'text-center': userService.roleMatch(['Unidad','UnidadMonitorias'])}">
+                            <!-- (click)="editar(per)" -->
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <a title="Ver detalles del registro" [routerLink]="[ '/plazas/verPlaza', solicitud.id]" class="btn btn-sm btn-outline-dark border-secondary btn-detalle" role="button">
+                                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                    <span class="sr-only">Ver detalles del registro</span>
+                                </a>
+                                <a title="Ratificar monitores" [routerLink]="[ '/ratificacionEstudiantes/ratificar', solicitud.id]" class="btn btn-sm btn-outline-dark border-secondary" role="button" *ngIf="userService.roleMatch(['UnidadMonitorias']) && esEtapa(solicitud.etapa_actual, 17, '>=') && esEtapa(solicitud.etapa_actual, 19, '<=')">
+                                    <span class="fas fa-user-check" aria-hidden="true"></span>
+                                    <span class="sr-only">Ratificar monitores</span>
+                                    <span class="ml-1 badge badge-secondary" *ngIf="solicitud.no_ratificados > 0">{{solicitud.no_ratificados}}</span>
+                                </a>
+                                <button (click)="cambiarEstado(solicitud)" *ngIf="userService.roleMatch(['Unidad','UnidadMonitorias']) && esEtapa(solicitud.etapa_actual, 1)" class="btn btn-sm btn-outline-dark border-secondary btn-eliminar" type="button" title="Eliminar solicitud">
+                                    <i class="far fa-trash-alt" aria-hidden="true"></i>
+                                    <span class="sr-only" *ngIf="solicitud.estado">Remover registro</span>
+                                </button>
+                                <a *ngIf="userService.roleMatch(['Unidad','UnidadMonitorias']) && ((esEtapa(solicitud.etapa_actual, 1) && tipoConvocatoria == 1) || (esEtapa(solicitud.etapa_actual, 17) && tipoConvocatoria == 3))" title="Editar solicitud de plaza" [routerLink]="[ '/plazas/editar-solicitud', {id: solicitud.id, tipoConvocatoria: tipoConvocatoria}]" class="btn btn-sm btn-outline-dark border-secondary btn-editar" role="button">
+                                    <span class="fas fa-pen" aria-hidden="true"></span>
+                                    <span class="sr-only">Editar registro</span>
+                                </a>
+                                <button *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias']) && ((esEtapa(solicitud.etapa_actual, 2) && tipoConvocatoria == 1) || (esEtapa(solicitud.etapa_actual, 19) && tipoConvocatoria == 3 && (solicitud.estadoId == 4 || solicitud.solicitanteId == 14) ))" (click)="solicitudP(solicitud)" class="btn btn-sm btn-outline-dark border-secondary btn-responder" type="button" title="Responder solicitud">
+                                    <span class="fas fa-reply" aria-hidden="true"></span>
+                                    <span class="sr-only">Responder solicitud</span>
+                                </button>
+                                <button *ngIf="userService.roleMatch(['ComiteMonitorias']) && (esEtapa(solicitud.etapa_actual, 18) && tipoConvocatoria == 3 && solicitud.estadoId == 1)" (click)="solicitudP(solicitud)" class="btn btn-sm btn-outline-dark border-secondary btn-responder" type="button" title="Pre-aprobar solicitud">
+                                    <span class="fas fa-reply" aria-hidden="true"></span>
+                                    <span class="sr-only">Pre-aprobar solicitud</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="solicitud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Solicitud de plaza</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="forma.resetForm();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="editarSolicitud(forma)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <!-- <p-messages [(value)]="errores" ></p-messages> -->
+                    <div class="alert alert-info table-responsive" role="alert">
+                        <table class="table table-borderless table-sm">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Convocatoria:</th>
+                                    <td>{{solicitudPlaza.convocatoria}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Solicitante:</th>
+                                    <td>{{solicitudPlaza.solicitanteNombre}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Plaza:</th>
+                                    <td>{{solicitudPlaza.tipoPlazaNombre}}</td>
+                                </tr>
+                                <tr *ngIf="solicitudPlaza.estadoId == 1">
+                                    <th scope="row">Cupos solicitados:</th>
+                                    <td>{{solicitudPlaza.cuposSolicitados}}</td>
+                                </tr>
+                                <tr *ngIf="solicitudPlaza.estadoId == 4 && tipoConvocatoria == 3">
+                                    <th scope="row">Cupos pre-aprobados:</th>
+                                    <td>{{solicitudPlaza.cuposPreaprobados}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <div class="form-group" *ngIf="solicitudPlaza.estadoId == 1 && tipoConvocatoria == 3">
+                                <label for="preAprobados">Cupos pre-aprobados:</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || preAprobados.touched) && (preAprobados.errors?.required || preAprobados.errors?.min || preAprobados.errors?.max ) }" type="number" placeholder="Ingrese el número de cupos pre-aprobados" aria-describedby="ayudaInput"
+                                    name="preAprobados" id="preAprobados" [min]="estudiantesSeleccionados.length" [max]="solicitudPlaza.cuposSolicitados" [(ngModel)]="solicitudPlaza.cuposPreaprobados" required #preAprobados="ngModel">
+                                <div class="invalid-feedback" *ngIf="preAprobados.errors?.min">
+                                    Número mín: {{estudiantesSeleccionados.length}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="preAprobados.errors?.max">
+                                    El número de cupos pre-aprobados es mayor a los solicitados que son {{solicitudPlaza.cuposSolicitados}}
+                                </div>
+                                <small id="ayudaInput" class="form-text text-muted">
+                                    Ingrese "0" para rechazar la solicitud, o ingrese el número de cupos pre-aprobados.
+                                </small>
+                            </div>
+                            <div class="form-group" *ngIf="(solicitudPlaza.estadoId == 4 && tipoConvocatoria == 3) || (solicitudPlaza.estadoId == 1 && tipoConvocatoria == 1)">
+                                <label for="aprobados">Cupos aprobados:</label>
+                                <input class="form-control " [ngClass]="{'is-invalid ': (forma.submitted || aprobados.touched) && (aprobados.errors?.required || aprobados.errors?.min || aprobados.errors?.max ) }" type="number" placeholder="Ingrese el número de cupos aprobados" aria-describedby="ayudaInput"
+                                    name="aprobados" id="aprobados" [min]="estudiantesSeleccionados.length" [max]="solicitudPlaza.cuposPreaprobados" [(ngModel)]="solicitudPlaza.cuposAprobados" required #aprobados="ngModel">
+                                <div class="invalid-feedback" *ngIf="aprobados.errors?.min">
+                                    Número mín: {{estudiantesSeleccionados.length}}
+                                </div>
+                                <div class="invalid-feedback" *ngIf="aprobados.errors?.max">
+                                    El número de cupos aprobados es mayor a los pre-aprobados que son {{solicitudPlaza.cuposPreaprobados}}
+                                </div>
+                                <small id="ayudaInputAprobados" class="form-text text-muted">
+                                    Ingrese "0" para rechazar la solicitud, o ingrese el número de cupos aprobados.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="h5">Estudiantes ratificados por la unidad solicitante</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                              <tr>
+                                <th rowspan="2" class="align-middle">Estudiante</th>
+                                <th rowspan="2" class="align-middle">Programa al que pertenece</th>
+                                <th colspan="2" class="align-middle text-center">Evaluación del asistentes</th>
+                                <th rowspan="2" class="align-middle">Evaluación del tutor</th>
+                                <!-- <th rowspan="2" class="align-middle">Seleccionar</th> -->
+                              </tr>
+                              <tr>
+                                <th class="small">No. de evaluaciones</th>
+                                <th class="small">Prom. evaluación</th>
+                              </tr>
+                            </thead>
+                            <tbody *ngFor="let monitor of posiblesRatificados">
+                              <tr [ngClass]="{'table-success': estudiantesSeleccionados.indexOf(monitor) != -1}">
+                                <td>{{monitor.nombre | titlecase}} <span class="d-block small text-secondary">Código: {{monitor.codigo}}</span></td>
+                                <td>{{monitor.programa | titlecase}}  <span class="d-block small text-secondary">{{monitor.facultad | titlecase}}</span></td>
+                                <td>{{monitor.no_calificaciones}}</td>
+                                <td [ngClass]="{'font-weight-bold': monitor.calificaciones >= 80}">{{(monitor.calificaciones || 0) | number : '1.0-2'}}%</td>
+                                <td [ngClass]="{'font-weight-bold': monitor.calificaciones >= 80}">{{monitor.calificacion_tutor | number : '1.0-2'}}%</td>
+                                <!-- <td>
+    
+                                  <div class="custom-control custom-switch text-center">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch-{{monitor.id_estudiante}}" [(checklist)]="estudiantesSeleccionados" [checklistValue]="monitor" [maxSelectedItems]="solicitudPlaza.cuposSolicitados">
+                                    <label class="custom-control-label" for="customSwitch-{{monitor.id_estudiante}}">
+                                        <span class="sr-only">Ratificar</span>
+                                        <span *ngIf="monitor.porcentaje_cred == 100" class="fas fa-exclamation-circle" aria-hidden="true" title="El estudiante tiene un porcentaje de créditos de 100 por lo que puede haber terminado académicamente este semestre."></span>
+                                        <span *ngIf="monitor.porcentaje_cred < solicitudPlaza.porcentaja_creditos_requeridos" class="fas fa-exclamation-circle mr-1" aria-hidden="true" title="El estudiante posee un porcentaje de créditos aprobados ({{monitor.porcentaje_cred}}) menor al indicado en la plaza ({{solicitudPlaza.porcentaja_creditos_requeridos}})."></span>
+                                        <span *ngIf="monitor.promedio_acum < solicitudPlaza.promedio_minimo" class="fas fa-exclamation-circle mr-1" aria-hidden="true" title="El estudiante posee un promedio mínimo acumulado ({{monitor.promedio_acum}}) menor al indicado en la plaza ({{solicitudPlaza.promedio_minimo}})."></span>
+                                    </label>
+                                  </div>
+                      
+                                </td> -->
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                    
+                      <div class="text-center alert alert-warning border-0 py-2" *ngIf="solicitudPlaza.cupos_solicitados == estudiantesSeleccionados.length">
+                          <strong>La plaza no se ofertará publicamente</strong>
+                      </div>
+                      <div class="text-center alert alert-info border-0 py-2" *ngIf="solicitudPlaza.cupos_solicitados > estudiantesSeleccionados.length">
+                          <strong>Cupos solicitados: {{solicitudPlaza.cupos_solicitados}} | cupos a ofertar: {{solicitudPlaza.cupos_solicitados - estudiantesSeleccionados.length}}</strong>
+                      </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

@@ -1,0 +1,321 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+html,
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+h1.light,
+h2.light,
+h3.light,
+h4.light,
+h5.light,
+h6.light {
+    font-weight: 400!important;
+}
+
+h2 small {
+    font-size: 60%;
+    text-transform: initial;
+}
+
+main h2 {
+    color: #004a87;
+}
+
+@font-face {
+    font-family: 'Intro';
+    src: url('assets/fonts/Intro/Intro-Regular.otf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Intro';
+    src: url('assets/fonts/Intro/Intro-Bold.otf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Intro';
+    src: url('assets/fonts/Intro/Intro-Black.otf');
+    font-weight: 900;
+}
+
+.intro{
+    font-family: 'Intro', sans-serif;
+}
+
+/*Styling dataTable plugin*/
+
+#DataTables_Table_0_wrapper input,
+#DataTables_Table_0_wrapper select,
+.dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border: 0!important;
+    border-bottom: 1px solid #ddd!important;
+    border-radius: 2px!important;
+    height: auto!important;
+    padding: .25rem .5rem!important;
+}
+
+#DataTables_Table_0_wrapper input:focus,
+.dataTables_wrapper .dataTables_filter input:focus {
+    outline: 0;
+}
+
+.dataTables_paginate .paginate_button {
+    background: white!important;
+    border: 1px solid #ddd!important;
+    padding: .25rem .5rem!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: #333!important;
+}
+
+.dataTables_paginate .paginate_button:not(.disabled):hover,
+.dataTables_paginate .paginate_button.current,
+#DataTables_Table_0_wrapper input:focus {
+    border-color: #333!important;
+    color: #333!important;
+}
+
+.dataTables_paginate .paginate_button.current {
+    background-color: whitesmoke!important;
+}
+
+table.dataTable.no-footer,
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom-color: #ddd!important;
+    border-bottom-width: 2px!important;
+}
+
+table.dataTable thead,
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    border-top: 0!important;
+}
+
+table.dataTable {
+    margin: 1rem 0;
+}
+
+table.dataTable.no-footer {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: calc(100% - .5rem);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .35);
+    border-bottom: 0!important;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background-color: white;
+}
+
+table.dataTable.no-footer,
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom-width: 1px!important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 1rem;
+}
+
+button.dt-button:hover,
+div.dt-button:hover,
+a.dt-button:hover {
+    background: #eee;
+}
+
+button.dt-button,
+div.dt-button,
+a.dt-button {
+    padding: 4px 12px!important;
+    margin-right: 2px!important;
+    background: white!important;
+    border-radius: 2px!important;
+    font-size: 1.2rem!important;
+}
+
+.ng-select.is-invalid .ng-select-container {
+    border-color: red!important;
+}
+
+fieldset {
+    margin-bottom: 2%;
+}
+
+.w-content {
+    width: fit-content;
+}
+
+.black-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999!important;
+}
+
+
+/*Bootstrap override*/
+
+.card-header {
+    padding: .5rem 1rem;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.form-control.is-invalid.whit-icon {
+    border-color: #dc3545;
+    padding-right: 2.25rem;
+    background-repeat: no-repeat;
+    background-position: center right calc(2.25rem / 4);
+    background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+    background-image: url(assets/img/error.svg);
+}
+
+.form-control.is-valid.whit-icon {
+    border-color: #28a745;
+    padding-right: 2.25rem;
+    background-repeat: no-repeat;
+    background-position: center right calc(2.25rem / 4);
+    background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+    background-image: url(assets/img/valid.svg);
+}
+
+.form-control.is-loading.whit-icon {
+    padding-right: 2.25rem;
+    background-repeat: no-repeat;
+    background-position: center right calc(0.0rem / 4);
+    background-size: calc(6.25rem / 2) calc(6.25rem / 2);
+    background-image: url(assets/img/loading.gif);
+}
+
+body .ui-state-disabled,
+body .ui-widget:disabled {
+    opacity: 1 !important;
+    color: dimgray!important;
+}
+
+.bg-info {
+    background-color: #004a87!important;
+}
+
+
+/*Date time picker*/
+
+.ui-calendar .ui-datepicker {
+    min-width: auto!important;
+}
+
+.ui-calendar:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 0 .5rem 0 .25rem;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    /* border: 1px solid #a6a6a6; */
+    font-family: "Font Awesome 5 Free";
+    content: "\f073";
+    font-size: 1.325rem;
+    line-height: 1.65;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900;
+    z-index: 0;
+    background: #ddd;
+    color: lightgray;
+    background: transparent;
+    border: 0;
+    z-index: 0;
+}
+.ui-inputwrapper-focus > .ui-calendar:before{
+    color:gray!important;
+}
+
+/* Autocomplete */
+
+.autocompleteItem .autocomplete-container .input-container input {
+    height: calc(1.5em + .95rem + 2px) !important ;
+}
+
+.autocomplete-container .input-container input {
+    height: calc(1.5em + .5rem + 2px) !important ;
+    padding: .25rem .5rem !important;
+    font-size: .875rem !important;
+    line-height: 1.5 !important;
+    border-radius: .2rem !important;
+    border: 1px solid #ced4da !important;
+}
+
+.autocomplete-container {
+    box-shadow: none !important;
+}
+
+.autocomplete-container .input-container .x {
+
+    top: 40% !important;
+}
+
+.list-group-flush .list-group-item:first-child{
+    margin-top: 0;
+}
+.list-group-flush .list-group-item:last-child{
+    margin-bottom: 0;
+}
+
+ng-select.ng-invalid.ng-touched .ng-select-container {
+    border-color: #dc3545;
+    /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8; */
+}
+
+.is-invalid p-calendar.ng-invalid .ui-calendar>.ui-inputtext, p-calendar.ng-invalid.ng-touched .ui-calendar>.ui-inputtext , p-calendar.ng-invalid.ng-touched .ui-inputtext:enabled:hover:not(.ui-state-error)  {
+    border-color: #dc3545;
+    
+}
+
+
+p-calendar .ui-calendar>.ui-inputtext {
+    background: #ffffff;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #004A87 !important;
+}
+
+.title-darkblue{
+    color: #003A6B;
+}

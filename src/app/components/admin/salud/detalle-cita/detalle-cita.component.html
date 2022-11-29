@@ -1,0 +1,492 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">  <h2 class="text-uppercase text-center">Detalle de la atención.
+  <small class="d-block text-muted">información detallada de la atención.</small>
+</h2>
+<hr>
+
+
+
+
+
+</div>
+<app-perfil-salud [tipoBusqueda]="profile_by" ></app-perfil-salud>
+<div class="card mb-4">
+  <div class="card-body">
+      <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>Detalles DE LA atención</strong></div>
+      <div class="card border-info  mb-3">
+        <div class="card-body">
+            <div class="form-row">
+                <div class="col-12 ">
+                        <div id="motivo_consulta" class="form-group">
+                                <label for="motivo_consulta">Motivo de consulta</label>
+                               
+                             <div class="card">
+                                <div class="card-body div">
+                                      <p>
+                                        {{atencion.motivo_Coonsulta}}
+                                      </p>
+                                </div>
+                             </div>
+                             
+                        </div>
+                        <div id="enfermedad_actual" class="form-group">
+                                <label for="enfermedad_actual">Enfermedad actual </label>     
+                           <div class="card">
+                              <div class="card-body div">
+                                    <p>
+                                      {{atencion.enfermedad_actual}}
+                                    </p>
+                              </div>
+                           </div>
+          
+                        </div>
+                </div>
+            
+            </div>
+        </div> 
+      </div>  
+         <!-- antecedente -->
+      <div class="card border-info  mb-3">
+          <div class="card-body">          
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>ANTECEDENTES</strong></div>
+              <div class="form-row">
+                 <div class="col-md-3" *ngFor="let item of atencion.antecedente">
+                     <div class="form-group">
+                             <label for="tex{{item.id}}"> {{item.nombre}} </label>
+                           
+                             <!-- <div class="form-group">
+                                 <p class="form-control div "> {{item.estado}} </p>
+                             </div> -->
+                               
+                               <div class="card">
+                                   <div class="card-body div">
+                                         <p>
+                                             {{item.observacion}}
+                                         </p>
+                                   </div>
+                                </div>
+                             </div>
+                     </div>
+               </div>     
+             </div>
+      </div>
+
+        <!-- ginecologicos -->
+      <div class="card border-info  mb-3"  *ngIf="antecedentes_gineco != null">
+          <div class="card-body">          
+              <div class="card-header text-center text-uppercase text-white bg-info mb-3"><strong>GINECO - OBSTÉTRICOS</strong></div>
+              <div class="row"  >
+                <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="Menarquia">Menarquía (Años) </label>
+                          <input type="number" class="form-control form-control-sm"
+                          name="Menarquia" disabled
+                          id="Menarquia"
+                          [(ngModel)]="antecedentes_gineco.menarquia" readonly
+                        />                        
+                      </div>
+                </div>
+    
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Sexarquia">Sexarquía (Años)</label>                                                
+                              <input type="number" class="form-control form-control-sm"
+                              name="Sexarquia" 
+                              id="Sexarquia" disabled
+                              [(ngModel)]="antecedentes_gineco.sexarquia" readonly
+                            />
+                    </div>
+                </div>
+                <!-- obtenerFecha | date: 'dd/MM/yyyy' -->
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <label for="fum">FUM </label>
+                      <div class="form-group">
+                          <p class="form-control  fform-control-sm  div "> {{antecedentes_gineco.fum | obtenerFecha | date: 'dd/MM/yyyy' }} </p>
+                      </div>                      
+                  </div>
+                </div>
+    
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="Sexarquia">CICLOS</label>                                                
+                          <input type="number" class="form-control form-control-sm"
+                          name="ciclos" 
+                          id="ciclos" disabled
+                          [(ngModel)]="antecedentes_gineco.ciclos" readonly
+                        />
+                </div>
+            </div>
+              
+        </div>
+                  <div class="form-row" >
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Gravidez">Gravidez</label>
+                                <input type="number" name="Gravidez" id="Gravidez"  disabled class="form-control form-control-sm"
+                                [(ngModel)]="antecedentes_gineco.gravidez" readonly />
+                            </div>
+                    </div>
+    
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Abortos">Abortos </label>
+                                <input type="number" name="Abortos" id="Abortos"  disabled class="form-control form-control-sm"
+                                [(ngModel)]="antecedentes_gineco.abortos" readonly />
+                            </div>
+                    </div>
+    
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Partos">Partos</label>
+                                <input type="number" name="Partos" id="Partos"  disabled class="form-control form-control-sm"
+                                [(ngModel)]="antecedentes_gineco.partos" readonly/>
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Vaginales">Vaginales</label>
+                                <input type="number" name="Vaginales" id="Vaginales"  disabled class="form-control form-control-sm"
+                                [(ngModel)]="antecedentes_gineco.vaginales" readonly  />
+                            </div>
+                    </div>
+              </div>
+              <div class="form-row" >
+                <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Cesareas">Cesáreas</label>
+                            <input type="number" name="Cesareas" id="Cesareas"  disabled class="form-control form-control-sm"
+                            [(ngModel)]="antecedentes_gineco.cesareas" readonly />
+                        </div>
+                </div>
+    
+                <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Ectopicos">Ectópico</label>
+                            <input type="number" name="Ectopicos" id="Ectopicos"  disabled class="form-control form-control-sm"
+                            [(ngModel)]="antecedentes_gineco.ectopicos" readonly/>
+                        </div>
+                </div>
+    
+                <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="gemelar">Gemelar</label>
+                            <input type="number" name="gemelar" id="gemelar"  disabled class="form-control form-control-sm"
+                            [(ngModel)]="antecedentes_gineco.gemelar" readonly />
+                        </div>
+                </div>
+                <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="muertos">Muertos</label>
+                            <input type="number" name="muertos" id="muertos"  disabled class="form-control form-control-sm"
+                            [(ngModel)]="antecedentes_gineco.muertos" readonly />
+                        </div>
+                </div>
+              </div>
+              <div class="form-row" >
+                <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="vivos">Vivos</label>
+                            <input type="number" name="vivos" id="vivos" disabled class="form-control form-control-sm"
+                            [(ngModel)]="antecedentes_gineco.vivos" readonly />
+                        </div>
+                </div>
+    
+                <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="viven">Viven</label>
+                            <input type="number" name="viven" id="viven" disabled class="form-control form-control-sm"
+                            [(ngModel)]="antecedentes_gineco.viven" readonly />
+                        </div>
+                </div>
+        </div>
+        <div class="form-row">            
+            <div class="col-12 ">
+                <div id="observacion_g" class="form-group">
+                    <label for="observacion_gineco">Observaciones Gineco-Obstétricos: </label>               
+                    <div class="card">
+                        <div class="card-body div">
+                              <p>
+                                {{antecedentes_gineco.observaciones}}
+                              </p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    
+              </div>
+      </div>
+      <!-- examen fisico -->
+      <div class="card border-info  mb-3">
+          <div class="card-body">          
+              <div class="card-header text-center text-uppercase text-white bg-info mb-3"><strong>EXAMEN FÍSICO</strong></div>
+ 
+              <div class="form-row" >
+               <div class="col-md-2">
+                       <div class="form-group">
+                           <label for="ta">TA</label>
+                           <input type="text" name="ta" id="ta"  class="form-control form-control-sm" disabled  [(ngModel)]="atencion.ta"/>
+                       </div>
+               </div>
+ 
+               <div class="col-md-2">
+                       <div class="form-group">
+                           <label for="temperatura">Temperatura (°C)</label>
+                           <input type="text" name="temperatura" id="temperatura" disabled class="form-control form-control-sm"
+                           [(ngModel)]="atencion.temperatura"
+                              />
+                       </div>
+               </div>
+ 
+               <div class="col-md-1">
+                       <div class="form-group">
+                           <label for="fr">FR</label>
+                           <input type="text" name="fr" id="fr" class="form-control form-control-sm" disabled [(ngModel)]="atencion.fr"/>
+                       </div>
+               </div>
+               <div class="col-md-2">
+                       <div class="form-group">
+                           <label for="glasgow"> Glasgow </label>
+                           <input type="text" name="glasgow" id="glasgow" disabled class="form-control form-control-sm"
+                           [(ngModel)]="atencion.glasgow" />
+                       </div>
+               </div>
+               <div class="col-md-1">
+                       <div class="form-group">
+                           <label for="fc">FC</label>
+                           <input type="text" name="fc" id="fc" disabled class="form-control form-control-sm"
+                           [(ngModel)]="atencion.fc"  />
+                       </div>
+               </div>
+               <div class="col-md-2">
+                       <div class="form-group">
+                           <label for="peso">Peso (Kg)</label>
+                           <input type="text" name="peso" id="peso" disabled class="form-control form-control-sm"
+                           [(ngModel)]="atencion.peso"/>
+                       </div>
+               </div>
+               <div class="col-md-2">
+                   <div class="form-group">
+                       <label for="talla">Talla (cm)</label>
+                       <input type="text" name="talla" id="talla" disabled class="form-control form-control-sm"
+                       [(ngModel)]="atencion.talla"/>
+                   </div>
+               </div>
+       </div>
+ 
+       <div class="form-row">
+           <div class="col-md-3" *ngFor="let item of atencion.examenesFisicos ">
+               <div class="form-group">
+                       <label for="tex{{item.id}}"> {{item.nombre}} </label>                    
+                       <div class="form-group">
+                           <p class="form-control div "> {{item.estado}} </p>
+                       </div>  
+                 </div>
+               </div>
+         </div>        
+         
+         <div class="form-row">
+           <div class="col-12" >
+             <div id="observacion" class="form-group">
+               <label for="observacion">Observación de los examenes fisicos </label>             
+               <div class="card">
+                   <div class="card-body div">
+                         <p>
+                           {{atencion.observacion}}
+                         </p>
+                   </div>
+                </div>
+ 
+ 
+           </div>
+         </div> 
+       </div>  
+          </div>
+      </div>
+      <!-- impesión -->
+      <div class="card border-info  mb-3">
+          <div class="card-body">
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>Impresión diagnóstica</strong></div>
+              
+              <div class="form-row">
+                      <div class="col-12 ">
+                              <div id="impresion_diagnostica" class="form-group">
+                                  <label for="impresion_diagnostica">Impresión diagnóstica </label>                                      
+                                  <div class="card">
+                                      <div class="card-body div">
+                                            <p>
+                                              {{atencion.impresion_diagnostica}}
+                                            </p>
+                                      </div>
+                                   </div>
+
+
+                              </div>
+                         </div>
+              </div>
+          </div>
+      </div>
+      <!-- cie 10 -->
+      <div class="card border-info  mb-3">
+          <div class="card-body">
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>CIE 10</strong></div>
+              <table class="table table-striped">
+                  <thead>
+                    <tr>            
+                      <th scope="col">código</th>
+                      <th scope="col">Detalle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of atencion.cie10" >             
+                      <td >{{item.codigo}}</td>
+                      <td>{{item.nombre}}</td>
+                    </tr>    
+                  </tbody>
+                </table>
+          </div>
+      </div>
+      <div class="card border-info  mb-3">
+          <div class="card-body">
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>SOLICITUD DE REPORTE DE PARACLÍNICOS</strong></div>
+           
+              <div class="form-row" >
+                    
+                      <div class="col-md-12" *ngFor="let item of atencion.laborartoios; let i = index;">
+                              <div class="form-group">
+                                  <label for="exam{{i}}">{{item.nombre}}</label>
+                                  <input type="text" name="exam{{i}}" id="exam{{i}}" class="form-control form-control-sm" disabled [(ngModel)]="item.observacion" 
+                                     />
+                              </div>
+                              <div class="form-row" *ngIf="item.id == 2 ">
+                                      <div class="col-md-3">
+                                              <div class="form-group">
+                                                  <label for="pt">PT</label>
+                                                  <input type="text" name="pt" id="pt" class="form-control form-control-sm" disabled [(ngModel)]="atencion.atenciones_clinicas.hemoclasificacion.pt" 
+                                                      />
+                                              </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                              <div class="form-group">
+                                                  <label for="pt">PTT</label>
+                                                  <input type="text" name="ptt" id="ptt" class="form-control form-control-sm" disabled [(ngModel)]="atencion.atenciones_clinicas.hemoclasificacion.ptt" 
+                                                      />
+                                              </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                              <div class="form-group">
+                                                  <label for="glicemia">Glicemia </label>
+                                                  <input type="text" name="glicemia" id="glicemia" class="form-control form-control-sm" disabled [(ngModel)]="atencion.atenciones_clinicas.hemoclasificacion.glicemia" 
+                                                       />
+                                              </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                              <div class="form-group">
+                                                  <label for="gravindex">Gravindex</label>
+                                                  <input type="text" name="gravindex" id="gravindex" class="form-control form-control-sm" disabled  [(ngModel)]="atencion.atenciones_clinicas.hemoclasificacion.gravidex" 
+                                                      />
+                                              </div>
+                                      </div>
+                              </div>
+                              <div class=form-row *ngIf="item.id == 6 ">
+                                  <div class="col-md-12">
+                                      <div class="form-group">
+                                          <label for="amilsa">Amilsa </label>
+                                          <input type="text" name="amilsa" id="amilsa" class="form-control form-control-sm" disabled [(ngModel)]="atencion.atenciones_clinicas.fosfata_alcalina.amilsa" 
+                                               />
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+              </div>
+          </div>
+      </div>
+      <div class="card border-info  mb-3">
+          <div class="card-body">
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>formulario</strong></div>
+              <table class="table table-striped">
+                  <thead>
+                    <tr>            
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Detalle</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of atencion.receta" >             
+                      <td>{{item.medicamento}}</td>
+                      <td>{{item.formula}}</td>
+                    </tr>    
+                  </tbody>
+                </table>
+
+             
+           </div>
+      </div>
+      <div class="card border-info  mb-3">
+          <div class="card-body">
+              <div class="card-header text-uppercase text-center text-white bg-info mb-3"><strong>Conductas - evoluciones</strong></div>
+              
+              <div class="form-row">
+                      <div class="col-12 ">
+                              <div id="conducta" class="form-group" *ngFor="let item of atencion.conducta; let i = index;">
+                                  <label for="conducta"><strong>Evolución medica - {{i+1}} registrada a la {{item.fecha | obtenerFecha | date: 'mediumTime'}}</strong></label>                           
+                                  <div class="card mb-3"  >
+                                      <div class="card-body div" >
+                                            <p>
+                                              {{item.descripcion}}
+                                            </p>
+                                      </div>
+                                    </div>
+
+
+                              </div>
+                          </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-primary mr-md-1 mb-3" (click)="conducta()">Agregar evolución</button>
+            <button type="button" class="btn btn-outline-dark mr-md-1 mb-3" [routerLink]="[ '/perfil']" >Volver al perfil </button>
+        </div>
+  <!-- {{atencion | json}} -->
+    <div class="modal fade" id="conductaModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingresar la evolución</h5>
+    
+        <button type="button" class="close" data-dismiss="modal" (click)="conductaForm.resetForm();" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <form (ngSubmit)="conductaGuardar(conductaForm)" #conductaForm="ngForm" novalidate>
+       <div class="modal-body">
+      
+            <fieldset>
+                <div class="col-12">                    
+                    <div class="form-group">
+                            <label for="valor"><span class="asterisk">*</span>Evolución</label>
+                            <textarea class="form-control " 
+                            [ngClass]="{'is-invalid ': Conducta.errors?.required && (conductaForm.submitted || Conducta.touched) }" 
+                            type="text" 
+                            placeholder="Ingrese la evolución del paciente actual. Máx 1000 caracteres" 
+                            name="Conducta"
+                            id="Conducta" 
+                            [(ngModel)]="evolucion.conducta" 
+                            required #Conducta="ngModel" rows=6 maxlength="1000"> </textarea>
+                            <div class="invalid-feedback">Ingrese evolución del paciente actual. </div>                             
+                    </div>
+            </div>    
+            </fieldset> 
+      </div> 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal" (click)="conductaForm.resetForm();">Cancelar</button>
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

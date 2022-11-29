@@ -1,0 +1,91 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Modalidades <small class="btn-block text-muted">El listado cuenta con {{modalidades.length}} modalidades</small></h2>
+  <hr>
+  <div class="row">
+      <div class="col-12 text-center">
+          <button (click)="modalCrearModalidad()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear modalidad">
+          <span class="fas fa-plus"></span> Crear modalidad</button>
+          <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las modalidades registradas en el sistema. Usted puede editar, activar o desactivar las modalidades.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+         
+      </div>
+      <div class="col-12">
+          <div class="table-responsive">
+              <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                      <tr>
+                          <th>Nombre</th>
+                          <th style="width: 90px;">Estado</th>
+                          <th style="width: 100px;">Acciones</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let modalidad of modalidades; let i = index">
+                          <td>{{modalidad.nombre}}</td>
+                          <td>{{modalidad.estado == true ? 'Activo' : 'Inactivo'}}</td>
+                          <td>
+                              <div class="btn-group" role="group" aria-label="Acciones">
+                                  <a role="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="modalEditarModalidad(modalidad)" title="Editar modalidad"><span class="fas fa-pen"></span><span class="sr-only">Editar modalidad</span></a>
+                                  <button (click)="cambiarEstado(modalidad)" *ngIf="!modalidad.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Activar modalidad"><span class="far fa-eye"></span><span class="sr-only">Activar modalidad</span></button>
+                                  <button (click)="cambiarEstado(modalidad)" *ngIf="modalidad.estado" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Desactivar modalidad"><span class="far fa-eye-slash"></span><span class="sr-only">Desactivar modalidad</span></button>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="crearModalidadModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content ">
+          <div class="modal-header">
+
+              <h5 *ngIf="modalidad.id == null" class="modal-title" id="modelTitleId">Crear modalidad</h5>
+              <h5 *ngIf="modalidad.id != null" class="modal-title" id="modelTitleId">Editar modalidad</h5>
+              <button type="button" class="close" data-dismiss="modal" (click)="modalidadForm.resetForm();" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form (ngSubmit)="guardarModalidad(modalidadForm)" #modalidadForm="ngForm" novalidate>
+              <div class="modal-body">
+                  <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                      <label><b>Corrige los errores:</b></label>
+                      <ul>
+                          <div *ngFor="let error of errores">
+                              <li *ngIf="error.errores.length>0">
+                                  <p>{{error.errores[0].ErrorMessage}}</p>
+                              </li>
+                          </div>
+                      </ul>
+                  </div>
+
+
+                  <fieldset>
+                      <div class="alert alert-info">
+                          Todos los campos son obligatorios
+                      </div>
+                      <div class="col-xs-12">
+                          <div class="form-group">
+                              <label for="nombre">Nombre</label>
+                              <input type="text" name="nombre" id="nombre" class="form-control" [ngClass]="{'is-invalid': ((modalidadForm.submitted || nombre.touched) && (nombre.errors?.required) )}" [(ngModel)]="modalidad.nombre" required #nombre="ngModel" placeholder="Nombre de la modalidad"
+                                  maxlength="455" />
+                          </div>
+                      </div>
+                  </fieldset>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="modalidadForm.resetForm();">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Guardar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

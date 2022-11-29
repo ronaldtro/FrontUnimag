@@ -1,0 +1,215 @@
+<div class="animated fadeIn">
+    <h2 class="text-uppercase animated fadeIn">Módulo de beneficio alimenticio</h2>
+    <hr>
+
+    <div class="row animated fadeIn shadow-sm rounded border" *ngIf="estudiante">
+        <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">
+            <div class="text-center img-profile shadow mt-2 mb-2">
+                <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{estudiante.codigo}}" alt="Perfil" class="rounded h-100"> -->
+                <img [src]="estudiante.foto" *ngIf="estudiante.foto" class="rounded h-100">
+                <img src="../../../../../assets/img/profile.png" *ngIf="!estudiante.foto" class="rounded h-100">
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">
+            <div class="row text-center text-md-left">
+                <div class="col-12">
+                    <h3 class="h4 mb-3">
+                        <small class="d-block text-muted">Nombre</small> {{estudiante.nombre}}
+                    </h3>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <div class="form-group">
+                        <label class="m-0 text-muted">Código</label>
+                        <p class="form-control-plaintext p-0">{{estudiante.codigo}}</p>
+                    </div>
+                </div>
+                <div class="col-md-8 col-xl-9">
+                    <div class="form-group">
+                        <label class="m-0 text-muted">Correo electrónico</label>
+                        <p class="form-control-plaintext p-0">{{estudiante.email}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="text-center">
+        <a href="#modalConvocatoriaRefrigerios" class="btn btn-lg btn-info shadow rounded-pill text-uppercase mb-3" data-toggle="modal" *ngIf="convocatoriasRefrigerio.length > 0">Inscribirme en Almuerzos y Refrigerios</a>
+    </div>
+
+    <fieldset class="animated fadeIn">
+        <legend>Convocatorias inscritas</legend>
+        <div class="alert alert-info" role="alert" *ngIf="estudiante.beneficios.length == 0">
+            <strong>No se ha postulado a algún beneficio alimenticio.</strong>
+        </div>
+        <div class="table-responsive mt-3" *ngIf="estudiante.beneficios.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Convocatoria</th>
+                        <th>Beneficio</th>
+                        <th>Días</th>
+                        <th>Estado postulación</th>
+                        <th>Estado convocatoria</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let beneficio of estudiante.beneficios; let i=index">
+                        <td>{{beneficio.convocatoria}}</td>
+                        <td>{{beneficio.beneficio}}</td>
+                        <td>{{beneficio.dias}}</td>
+                        <td>{{beneficio.estadoPostulacion}}</td>
+                        <td>{{beneficio.etapa != null ? beneficio.etapa : 'Sin etapa' }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="estadosInscripcion(beneficio)" title="Estados de la inscripción">
+                                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                    <span class="sr-only">Estados de la inscripción</span>
+                                </button>
+
+                                <button *ngIf="beneficio.estadoPostulacionId == 1 && beneficio.etapa_id == 11" [routerLink]="[ '/editarInscripcion', beneficio.idConvocatoria,beneficio.idBeneficio ]" type="button" class="btn btn-sm btn-outline-secondary" title="Editar inscripción">
+                                    <span class="fas fa-pen" aria-hidden="true"></span>
+                                    <span class="sr-only">Editar inscripción</span>
+                                </button>
+
+                                <button *ngIf="beneficio.estadoPostulacionId < 4" type="button" class="btn btn-sm btn-outline-secondary" (click)="cancelarInscripcion(beneficio)" title="Cancelar inscripción">
+                                    <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                                    <span class="sr-only">Cancelar inscripción</span>
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div class="col-12 text-center">
+        <button type="button" class="btn btn-default mr-md-1 mb-3" [routerLink]="['/estudiantes', 'dashboard']">Volver al perfil</button>
+    </div>
+
+</div>
+
+<div class="modal fade" id="estadoDiaModal" tabindex="-1" role="dialog" aria-labelledby="supervisorTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="estadoTitle">Estados de inscripción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                    <label><b>Corrige los errores:</b></label>
+                    <ul>
+                        <div *ngFor="let error of errores">
+                            <li *ngIf="error.errores.length>0">
+                                <p>{{error.errores[0].ErrorMessage}}</p>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+
+                <div class="table-responsive animated fadeIn">
+                    <table class="table" id="table">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">Día</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let estudiante of auxInscritoDia.dias; let i=index;">
+                                <td>
+                                    {{estudiante.dia}}
+                                </td>
+                                <td>{{estudiante.estadoSlect | titlecase}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelarSeleccion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancelar beneficio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="forma.resetForm(); onClearFile(soporte);">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <form (ngSubmit)="cancelar(forma,soporte)" #forma="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="observacion">Observación</label>
+                                <textarea class="form-control " [ngClass]="{'is-invalid ': observacion.errors?.required && (forma.submitted || observacion.touched) }" type="text" placeholder="Ingrese el motivo de su solicitud. Máx 455 caracteres" name="observacion" id="observacion"
+                                    [(ngModel)]="auxInscritoDia.observacion" required #observacion="ngModel"> </textarea>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="codigo">Soporte</label>
+                                <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                                    invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="forma.resetForm(); onClearFile(soporte);">Cancelar</button>
+                    <button type="submit" class="btn btn-success">
+                            Guardar
+                        </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal refrigerios-->
+<div class="modal fade" id="modalConvocatoriaRefrigerios" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaRefrigerios" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabelConvocatoriaRefrigerios">Convocatorias de almuerzos y refrigerios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body text-center">
+
+                <div class="form-group">
+                    <label>Selecccione la convocatoria de almuerzos y refrigerios a la cual desea inscribirse</label>
+                    <select class="form-control" name="id" (change)="enviarFormularioRefrigerio()" [(ngModel)]="convocatoria.refrigerio">
+                  <option disabled selected [value]="null">- Seleccione una convocatoria -</option>
+                  <option *ngFor="let convocatoria of convocatoriasRefrigerio" [ngValue]="convocatoria">{{convocatoria.nombre}}</option>
+                </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>

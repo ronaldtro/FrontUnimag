@@ -1,0 +1,27 @@
+<h2 class="mt-3 text-center text-uppercase">Sistema de ayudantías</h2>
+<hr>
+<p class="text-center text-muted">Bienvenido usuario. A continuación, usted podrá visualizar los módulos habilitados en el sistema según su rol. Presione sobre el botón correspondiente al módulo al cual desea ingresar.</p>
+<div class="text-center animated fadeIn">
+    <a role="button" *ngIf="userService.roleMatch(['Admin'])" class="btn btn-link-circle" [routerLink]="[ '/bolsasPresupuestales/listar-bolsas']" data-toggle="tooltip" data-placement="bottom" title="Ingrese a este módulo para agregar y visualizar los periodos y presupuestos.">
+      <img src="assets/img/budget_128.png" alt="" role="presentation"/>
+      <span>Presupuesto</span>
+    </a>
+    <a *ngIf="userService.roleMatch(['Unidad', 'Admin'])" role="button" class="btn btn-link-circle" [routerLink]="[ '/convocatorias']" data-toggle="tooltip" data-placement="bottom" title="Ingrese a este módulo para agregar y visualizar convocatorias de ayudantias en el sistema.">
+      <img src="assets/img/promotion_128.png" alt="" role="presentation"/>
+      <span>Convocatorias</span>
+    </a>
+    <a *ngIf="userService.roleMatch(['Unidad', 'Admin'])" role="button" class="btn btn-link-circle" [routerLink]="[ '/plazas/listarPlazasSolicitadas']">
+      <img src="assets/img/plaza_128.png" alt="" role="presentation"/>
+      <span>Plazas</span>
+    </a>
+    <a *ngIf="userService.roleMatch(['Admin'])" role="button" class="btn btn-link-circle" [routerLink]="[ '/unidades/listar-unidades']">
+      <img src="assets/img/university_128.png" alt="" role="presentation"/>
+      <span>Unidades</span>
+    </a>
+    <a *ngIf="userService.roleMatch(['SupervisorAyudante'])" role="button" class="btn btn-link-circle" [routerLink]="[ '/supervisor/estudiantes']">
+      <img src="assets/img/student_128.png" alt="" role="presentation"/>
+      <span>Estudiantes a cargo</span>
+    </a>
+</div>
+
+<!-- <p class="text-muted text-center"><em>[Página en construcción]</em></p> -->

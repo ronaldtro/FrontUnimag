@@ -1,0 +1,406 @@
+<h2 class="text-uppercase animated fadeIn text-center" text-center>Comités de Monitorías Académicas<small class="btn-block text-muted">El listado cuenta con {{comites?.length}} registros</small></h2>
+<hr>
+
+<div class="row animated fadeIn">
+    <div class="col-12 text-center">
+        <button *ngIf="userService.roleMatch(['AdminMonitorias'])" (click)="modalAgregarComite()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Crear comité"><i class="fa fa-plus" aria-hidden="true"></i> Agregar comité</button>
+        <button id="btn-filtros" class="btn btn-outline-dark mb-3 mr-1" type="button" data-toggle="collapse" data-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtrar registros
+        </button>
+        <a tabindex="0" id="btn-ayuda" *ngIf="userService.roleMatch(['AdminMonitorias'])" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" 
+          title="Información de ayuda" data-content="A continuación, se muestran los comités registrados en el sistema para este periodo vigente. Puede agregar un nuevo comité presionando en el botón 'AGREGAR COMITÉ'. 
+          También puede ver el historial de comités almacenados en el sistema haciendo clic en el enlace ubicado al final de la tabla.">
+            <span class="fa fa-question-circle" aria-hidden="true"></span>
+            <span class="sr-only">Información de ayuda</span>
+        </a>
+        <a tabindex="0" id="btn-ayuda" *ngIf="userService.roleMatch(['ComiteMonitorias'])" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" 
+          title="Información de ayuda" data-content="A continuación, se muestra el comité al que pertenece con el listado de sus miembros. Puede agregar un nuevo miembro al comité presionando en el botón 'Gestionar miembros' y luego en 'AGREGAR MIEMBRO'. 
+          También puede ver el historial de los miembros del comité almacenados en el sistema haciendo clic en el enlace ubicado al final de la tabla.">
+            <span class="fa fa-question-circle" aria-hidden="true"></span>
+            <span class="sr-only">Información de ayuda</span>
+        </a>
+    </div>
+    <div class="collapse col-lg-12" id="collapseFilter">
+        <div class="card card-body px-3 pt-3">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4" >
+                    <div id="filter-fecha_creacion" class="form-group">
+                        <label>Filtrar por fecha de creación</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div id="filter-facultad" class="form-group">
+                        <label>Filtrar por facultad</label>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4" >
+                    <div id="filter-estado" class="form-group">
+                        <label>Filtrar por estado</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center mb-3 w-100" *ngIf="appliedFilters.length > 0"><button *ngFor="let filter of appliedFilters" class="btn btn-default btn-sm mb-1 m-1" (click)="funciones.removeFilter(this, filter)">{{filter.name}} <span class="fa fa-times" aria-hidden="true"></span></button> </div>
+
+    <div class="col-12">
+        <div class="table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table-comites">
+                <thead>
+                    <tr>
+                        <th style="width: 150px;">Fecha de creación</th>
+                        <th>Nombre</th>
+                        <th>Facultad</th>
+                        <th>Estado</th>
+                        <th style="width: 120px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let com of comites ; let i=index">
+                        <!-- <td>{{i+1}}</td> -->
+                        <td attr.data-order="{{com.fecha_creacion}}">{{ com.fecha_creacion | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ com.nombre }}</td>
+                        <td>{{ com.facultad }}</td>
+                        <td>{{ com.estado ? 'Activo' : 'Inactivo' }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <button  type="button" class="btn btn-sm btn-outline-dark border-secondary btn-editar" (click)="modalEditarComite(com)" title="Editar registro">
+                                    <span class="fas fa-pen" aria-hidden="true"></span>
+                                    <span class="sr-only">Editar registro</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-activar" *ngIf="!com.estado && userService.roleMatch(['AdminMonitorias'])" (click)="cambiarEstadoComite(com) " title="Cambiar estado">
+                                    <span class="far fa-eye" aria-hidden="true"></span>    
+                                    <span class="sr-only">Cambiar estado</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary btn-desactivar" *ngIf="com.estado && userService.roleMatch(['AdminMonitorias'])" (click)="cambiarEstadoComite(com)" title="Cambiar estado">
+                                    <span class="far fa-eye-slash" aria-hidden="true"></span>
+                                    <span class="sr-only">Cambiar estado</span>
+                                </button>
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{com.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{com.id}}" *ngIf="userService.roleMatch(['AdminMonitorias'])">
+                                        <button (click)="modalGestionarMiembros(com)" class="dropdown-item" type="button" title="Gestionar miembros">
+                                            <span class="fas fa-users-cog" aria-hidden="true"></span>
+                                            <span> Gestionar miembros</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="historialComites" class="text-center"><a [routerLink]="['/comitesMonitorias/historial']">Ver el historial de cambios de comités</a></p>
+        <div class="text-center mt-3 mb-3">
+            <button type="button" class="btn btn-light" (click)="backClicked()">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Gestionar Miembros -->
+<div class="modal fade" id="gestionarMiembrosModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="modelTitleId">Miembros del {{ comite.nombre }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <button (click)="modalAgregarMiembro()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Agregar miembro">
+                        <span class="fas fa-plus"></span> Agregar miembro
+                    </button>
+                </div>
+                <div *ngIf="comite.miembros?.length <= 0" class="alert alert-info" role="alert">
+                    El {{ comite.nombre }} aún no tiene miembros, presione el botón "<strong class="text-uppercase"><span class="fas fa-plus"></span> Agregar miembro</strong>" 
+                    para añadir uno.
+                </div>
+                <div *ngIf="comite.miembros?.length > 0" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Rol</th>
+                                <th>Email</th>
+                                <th style="width: 50px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let miem of comite.miembros; let i=index">
+                                <!-- <td >{{i+1}}</td> -->
+                                <td>{{ miem.nombre }}</td>
+                                <td>{{ miem.nombreRol }}</td>
+                                <td>{{ miem.email }}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Acciones">
+                                        <button (click)="modalEditarMiembro(miem)" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Editar miembro"><span class="fas fa-pen"></span><span class="sr-only">Editar miembro</span></button>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Acciones">
+                                        <button (click)="eliminarMiembro(miem)" type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Eliminar miembro"><span class="fas fa-trash"></span><span class="sr-only">Eliminar miembro</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Agregar Miembro -->
+<div class="modal fade" id="agregarMiembroModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId">{{ !editarMiembro ? 'Agregar miembro al Comité' : 'Editar miembro del Comité'}}</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="cancelarAgregarMiembro(agregarMiembroComite)" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="agregarMiembro(agregarMiembroComite)" #agregarMiembroComite="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li  >
+                                    <p>{{error?.ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-1">
+                                <label for="rol">Rol del miembro</label>
+                                <ng-select (change)="llenarUsuarios(miembroComite.rol_id)" [items]="rolesComites" id="rol" bindLabel="nombre" [ngClass]="{'is-invalid': ((agregarMiembroComite.submitted || rol.touched) && rol.errors?.required) }" bindValue="id" placeholder="Seleccione el rol para el miembro del comité" name="rol" #rol="ngModel"
+                                    [(ngModel)]="miembroComite.rol_id" [required]="true">
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                            <div class="col-md-12 mb-1" *ngIf="miembroComite.rol_id">
+                                <label for="usuario">Nombre del miembro</label>
+                                <ng-select [items]="usuariosSelect" id="usuario" bindLabel="nombre" [ngClass]="{'is-invalid': ((agregarMiembroComite.submitted || usuario.touched) && usuario.errors?.required) }" bindValue="id" placeholder="Seleccione el nombre para el miembro del comité" name="usuario" #usuario="ngModel"
+                                    [(ngModel)]="miembroComite.persona_id" required>
+                                    <ng-template ng-option-tmp let-item="item" let-search="searchTerm" let-clear="clear">
+                                        <div><b>Nombre:</b><span [ngOptionHighlight]="search"> {{item.nombre}}</span></div>
+                                        <small *ngIf="!item.codEstudiante"><b *ngIf="item.user_id != 0">Email:</b> {{item.email}}</small>
+                                        <small *ngIf="item.codEstudiante"><b>Email:</b> {{item.email}} | <b>Cód:</b> {{item.codEstudiante}}</small>
+                                    </ng-template>
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                                <button (click)="nuevoUsuarioModal(usuarioForm)" class="btn btn-sm btn-link" type="button" title="Agregar nueva persona">
+                                    Agregar nueva persona
+                                </button>
+                            </div>
+                            <div class="col-md-12" *ngIf="miembroComite.rol_id && miembroComite.rol_id != 3">
+                                <div class="form-group">
+                                    <label for="agregarRolComite">¿Asignar el rol 'Comité Monitorías' al miembro en el sistema? <span class="fas fa-question-circle" data-toggle="tooltip" 
+                                        data-placement="bottom" title="El rol 'Comite Monitorias' le permite al miembro seleccionado acceder al sistema como usuario Comité de Monitorías."></span>
+                                    </label>
+                                    <select [(ngModel)]="miembroComite.agregarRolComite" class="form-control" [ngClass]="{'is-invalid': ((agregarMiembroComite.submitted || agregarRolComite.touched) && agregarRolComite.errors?.required) }"
+                                     name="agregarRolComite" id="agregarRolComite" #agregarRolComite="ngModel" required>
+                                        <option [value]="null" selected disabled>Seleccione una opción</option>
+                                        <option [value]="true">Si</option>
+                                        <option [value]="false" selected>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12" *ngIf="miembroComite.agregarRolComite; else ''">
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico <small class="text-muted">(Debe tener el formato 'correo@unimagdalena.edu.co')</small></label>
+                                    <input type="text" name="email" id="email" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || email.touched) && (email.errors?.required) )}" [(ngModel)]="miembroComite.email" required #email="ngModel" placeholder="Escriba el correo electrónico"
+                                        maxlength="255" />
+                                </div>
+                            </div> -->
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="cancelarAgregarMiembro(agregarMiembroComite)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal nueva Persona -->
+<div class="modal fade" id="nuevoUsuarioM" tabindex="-1" role="dialog" aria-labelledby="usuarioTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="usuarioTitle">Agregar nueva persona</h5>
+                <button type="button" class="close" aria-label="Cerrar" (click)="cancelarGuardarUsuario(usuarioForm)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <form (ngSubmit)="guardarUsuario(usuarioForm)" #usuarioForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li  >
+                                    <p>{{error?.ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="identificacion">Identificación</label>
+                                    <input type="number" name="identificacion" id="identificacion" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || identificacion.touched) && (identificacion.errors?.required) )}" [(ngModel)]="persona.identificacion" required #identificacion="ngModel"
+                                        placeholder="Escriba el número de identificación" maxlength="50" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="nombres">Nombre completo</label>
+                                    <input type="text" name="nombres" id="nombres" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || nombres.touched) && (nombres.errors?.required) )}" [(ngModel)]="persona.nombre" required #nombres="ngModel" placeholder="Escriba el nombre completo"
+                                        maxlength="255" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="sexo">Sexo</label>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexo" value="true" checked [(ngModel)]="persona.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexo">M</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexo2" value="false" [(ngModel)]="persona.sexo" required #sexo="ngModel">
+                                        <label class="form-check-label" for="sexo2">F</label>
+                                    </div>
+                                    <small *ngIf="((usuarioForm.submitted || sexo.touched) && sexo.errors?.required)" class="text-danger">Campo requerido</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" *ngIf="miembroComite.rol_id && miembroComite.rol_id != 3">
+                                <div class="form-group">
+                                    <label for="agregarRolComitePersona">¿Asignar el rol 'Comité Monitorías' al miembro en el sistema? <span class="fas fa-question-circle" data-toggle="tooltip" 
+                                        data-placement="bottom" title="El rol 'Comite Monitorias' le permite al miembro seleccionado acceder al sistema como usuario Comité de Monitorías."></span>
+                                    </label>
+                                    <select [(ngModel)]="miembroComite.agregarRolComite" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || agregarRolComitePersona.touched) && (agregarRolComitePersona.errors?.required) )}" name="agregarRolComitePersona" id="agregarRolComitePersona" #agregarRolComitePersona="ngModel" required>
+                                        <option [value]="null" selected disabled>Seleccione una opción</option>
+                                        <option [value]="true">Si</option>
+                                        <option [value]="false">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" *ngIf="miembroComite.agregarRolComite">
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico <small class="text-muted">(Debe tener el formato 'correo@unimagdalena.edu.co')</small></label>
+                                    <input type="text" name="email" id="email" class="form-control" [ngClass]="{'is-invalid': ((usuarioForm.submitted || email.touched) && (email.errors?.required) )}" [(ngModel)]="persona.email" required #email="ngModel" placeholder="Escriba el correo electrónico"
+                                        maxlength="255" />
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p class="text-primary"><strong>Las credenciales para el inicio de sesión son las mismas con la que accede al directorio activo</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="cancelarGuardarUsuario(usuarioForm)">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ModalCrearComite -->
+<div class="modal fade" id="crearComiteModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 *ngIf="comite.id == null" class="modal-title" id="modelTitleId">Agregar comité</h4>
+                <h4 *ngIf="comite.id != null" class="modal-title" id="modelTitleId">Editar comité</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="comiteForm.resetForm();" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="crearComite(comiteForm)" #comiteForm="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of errores">
+                                <li  >
+                                    <p>{{error?.ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <fieldset>
+                        <div class="alert alert-info">
+                            Todos los campos son obligatorios
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" [ngClass]="{'is-invalid': ((comiteForm.submitted || nombre.touched) && (nombre.errors?.required) )}" [(ngModel)]="comite.nombre" required #nombre="ngModel" placeholder="Ingrese el nombre del comité. Máx. 455 caracteres"
+                                        maxlength="455" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="facultad">Facultad</label>
+                                <ng-select [items]="facultades" id="facultad" bindLabel="nombre" [ngClass]="{'is-invalid': ((comiteForm.submitted || facultad.touched) && facultad.errors?.required) }" bindValue="id" placeholder="Seleccione la facultad" name="facultad" #facultad="ngModel"
+                                    [(ngModel)]="comite.facultad_id" required>
+                                    <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                                        <div><b>Nombre: </b><span [ngOptionHighlight]="search">Facultad de {{item.nombre}}</span></div>
+                                        <small><b>Código:</b> {{item.codigo}} | <b>Unidad:</b> {{item.unidad}}</small>
+                                    </ng-template>
+                                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                        <div class="ng-option disabled">
+                                            No hay resultados
+                                        </div>
+                                    </ng-template>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" (click)="comiteForm.resetForm();">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<!-- <button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button> -->

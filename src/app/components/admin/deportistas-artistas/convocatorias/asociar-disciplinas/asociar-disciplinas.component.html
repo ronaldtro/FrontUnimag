@@ -1,0 +1,109 @@
+<div class="mt-3 animated fadeIn">
+  <h2 class="text-uppercase text-center"> Disciplinas asignadas <small class="btn-block text-muted">El listado cuenta con {{listaDisciplinas.length}} disciplinas</small></h2>
+  <hr>
+  <div class="row">
+      <div class="col-12 text-center">
+          <button (click)="abrirModalAsignarDisciplinas()" type="button" class="btn btn-success mb-3 mr-1 text-uppercase" title="Asignar disciplina">
+          <span class="fas fa-plus"></span> Asignar disciplina</button>
+          <a tabindex="0" role="button" class="btn btn-light mb-3" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Información de ayuda" data-content="A continuación, se muestran las disciplinas asignadas a la convocatoria.">
+              <span class="fa fa-question-circle" aria-hidden="true"></span>
+              <span class="sr-only">Información de ayuda</span>
+          </a>
+      </div>
+      <div class="col-12">
+          <div class="table-responsive">
+              <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                  <thead>
+                    <tr>
+                      <th>Disciplina</th>
+                      <th>Modalidad</th>
+                      <th style="width: 120px;">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let disciplina of listaDisciplinas; let i = index">
+                          <td>{{disciplina.nombreDisciplina}}</td>
+                          <td>{{disciplina.nombreModalidad}}</td>
+                          <td>
+                              <div class="btn-group" role="group" aria-label="Acciones">
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary" (click)="abrirModalEditarDisciplina(disciplina)"  title="Editar disciplina">
+                                    <span class="fas fa-pen" aria-hidden="true"></span>
+                                    <span class="sr-only"> Editar disciplina </span>
+                                </button>
+                            
+                                <button type="button" class="btn btn-sm btn-outline-dark border-secondary" title="Eliminar disciplina" (click)="eliminarDisciplina(disciplina, i)">
+                                    <span class="fas fa-times" aria-hidden="true"></span>
+                                    <span class="sr-only"> Eliminar disciplina </span>
+                                </button>
+                            
+                                    <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-dark border-secondary dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{disciplina.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
+                                        <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{disciplina.id}}">
+                                        <button class="dropdown-item" type="button" title="Asignar items" [routerLink]= "[ '../../asignar-items', disciplina.id ]">
+                                            Asignar items a disciplina
+                                        </button>
+                                    </div>
+                                        
+                                    </div>
+                                </div>
+                              
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal para asignar disciplinas a la convocatoria elegida -->
+<div class="modal fade" id="asignarDisciplinaModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content ">
+          <div class="modal-header">
+
+              <h5 *ngIf="disciplina.id == null" class="modal-title" id="modelTitleId">Asignar disciplinas</h5>
+              <h5 *ngIf="disciplina.id != null" class="modal-title" id="modelTitleId">Editar disciplina</h5>
+
+              <button type="button" class="close" data-dismiss="modal" (click)="disciplinaForm.resetForm();" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form (ngSubmit)="asignarDisciplinaAConvocatoria(disciplinaForm)" #disciplinaForm="ngForm" novalidate>
+              <div class="modal-body">
+                 
+                  <fieldset>
+                     
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label for="disciplinaCampo">Disciplina</label>
+                          <select id="disciplinaCampo" class="form-control" name="disciplinaCampo" [ngClass]="{'is-invalid': ((disciplinaForm.submitted || disciplinaCampo.touched) && (disciplinaCampo.errors?.required))}" [(ngModel)]="disciplina.idDisciplina" #disciplinaCampo="ngModel" required>
+                              <option value="null" disabled selected>Seleccione la disciplina</option> 
+                              <option *ngFor="let disciplina of listaDisciplinasParaAsignar" [ngValue]="disciplina.id">{{disciplina.nombre}}</option>
+                          </select>
+                       </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="descripcion">Requerimientos</label>
+                                <textarea type="text" name="requerimientos" id="requerimientos" rows="5" class="form-control" [ngClass]="{'is-invalid': ((disciplinaForm.submitted || requerimientos.touched) && (requerimientos.errors?.required) )}" [(ngModel)]="disciplina.requerimientos" required #requerimientos="ngModel" placeholder="Requerimientos de la disciplina"
+                                ></textarea>
+                            </div>
+                       </div>
+
+                  </fieldset>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal" (click)="disciplinaForm.resetForm();">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Guardar</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>

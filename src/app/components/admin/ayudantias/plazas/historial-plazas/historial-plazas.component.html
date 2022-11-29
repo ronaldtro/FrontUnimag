@@ -1,0 +1,80 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.65)" size = "medium" color = "#fff" type = "ball-clip-rotate"></ngx-spinner>
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<h2 class="animated fadeIn text-uppercase text-center">Historial de plazas <small class="btn-block text-muted">El listado cuenta con {{plazas.length}} registro(s)</small></h2>
+
+<hr>
+
+
+<div class="row animated fadeIn">
+    <p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+ 
+
+  <div class="col-md-12">
+    <div class="table-responsive animated fadeIn">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table" id="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col">Convocatoria</th> -->
+            <th scope="col">Solicitante</th>
+            <th scope="col">Plaza</th>
+            <th scope="col">Cupos solicitados</th>
+            <th scope="col" >Cupos aprobados</th>
+            <th scope="col" style="width: 80px;">Fecha de solicitud</th>
+            <th scope="col">Estado</th>
+            <th scope="col" style="width: 120px;">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let solicitud of plazas">
+            <!-- <td>{{ solicitud.convocatoria }}</td> -->
+            <td>{{ solicitud.solicitanteNombre }} </td>
+            <td>
+              <a [routerLink]="[ '/plazas/verPlaza', solicitud.id]">{{ solicitud.tipoPlazaNombre }}</a> 
+              <small class="d-block text-muted font-italic">{{ solicitud.convocatoria }}</small>
+            </td>
+            <td class="text-center">{{ solicitud.cuposSolicitados }}</td>
+            <td class="text-center">{{ solicitud.cuposAprobados }}</td>
+            <td attr.data-order="{{solicitud.fechaSolicitud | date: 'yyyy-MM-dd'}}">{{solicitud.fechaSolicitud | date: 'dd/MM/yyyy'}}</td>
+            <td>{{solicitud.estadoNombre}}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Acciones">
+                <a title="Detalle de la plaza" [routerLink]="[ '/plazas/verPlaza', solicitud.id]"
+                  class="btn btn-sm btn-outline-dark border-secondary" role="button">
+                  <span class="fas fa-info-circle" aria-hidden="true"></span>
+                  <span class="sr-only">Detalle de la plaza</span> 
+                </a>
+
+                
+
+                <!-- <a *ngIf="(userService.roleMatch(['Unidad','UnidadMonitorias']) && solicitud.etapa_id <= 3 && solicitud.estadoId == 2 )" title="Asignar criterios de evaluación" [routerLink]="[ '/plazas','criteriosEvaluacion', solicitud.id]"
+                  class="btn btn-sm btn-outline-dark border-secondary" role="button">
+                  <span class="fas fa-clipboard-list" aria-hidden="true"></span>
+                  <span class="sr-only">Asignar criterios de evaluación</span>  
+              </a>
+                
+
+                <button title="Agregar estudiante" *ngIf="(userService.roleMatch(['Admin', 'AdminMonitorias']) && solicitud.etapa_id == 3 && solicitud.estadoId == 2 )" class="btn btn-sm btn-outline-dark border-secondary" type="button" (click)="openModal(solicitud.id)">
+                    <span class="fas fa-user-plus" aria-hidden="true"></span>
+                    <span class="sr-only">Agregar estudiante</span> 
+                </button> -->
+                <a *ngIf="userService.roleMatch(['Unidad','UnidadMonitorias', 'Admin', 'AdminMonitorias']) && solicitud.estadoId == 2"
+                  [routerLink]="[ '/plazas', solicitud.id, 'estudiantes']" 
+                  class="btn btn-sm btn-outline-dark border-secondary"
+                  title="Ver estudiantes postulados"
+                  role="button"
+                  >
+                  <span class="fas fa-user" aria-hidden="true" [ngClass]="{'text-muted': solicitud.cantidadPostulados == 0}"></span> <span class="badge badge-light" *ngIf="solicitud.cantidadPostulados > 0">{{solicitud.cantidadPostulados}}</span>
+                  <span class="sr-only">Ver estudiantes postulados</span>            
+              </a>
+              </div>
+            </td>
+         </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+

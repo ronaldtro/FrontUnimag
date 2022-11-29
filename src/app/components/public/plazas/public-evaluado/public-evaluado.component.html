@@ -1,0 +1,202 @@
+<div class="animated fadeIn mt-3 container">
+    <h2 class="text-uppercase text-center">Resultado del estudiante <small class="btn-block text-muted">Vista detallada del estudiante</small></h2>
+    <hr>
+    <div class="row summary">
+        <div class="col-sm-12 col-lg-3 p-3 bg-info text-white">
+            <h3 class="h4">
+                <small class="d-block text-white">Estudiante</small>
+                <b>{{estudiante.nombre | titlecase}}</b>
+                <small class="d-block text-white">Cód: {{estudiante.codigo}}</small>
+            </h3>
+            <p class="m-0 border-top pt-2 text-right">
+                <label class="text-white m-0">Puntaje total porcentual: </label>
+                <span class="font-weight-bold h5"> {{puntaje()}} %</span>
+            </p>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <div class="row p-1 pt-sm-3">
+                <div class="col-lg-5">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Plaza</label>
+                                <p class="form-control-plaintext p-0">{{plaza.plaza}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Tipo de ayudantía</label>
+                                <p class="form-control-plaintext p-0">{{plaza.tipoPlaza}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="m-0">Unidad solicitante</label>
+                                <p class="form-control-plaintext p-0">{{plaza.unidad}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="form-group mb-2 mr-3 d-inline-block">
+                    <label class="m-0">Cupos solicitados</label>
+                    <p class="form-control-plaintext p-0">{{plaza.cupos_solicitados}}</p>
+                </div> -->
+
+                </div>
+                <div class="col-lg-7">
+                    <div class="form-group mb-2">
+                        <label class="m-0">Perfil de la plaza</label>
+                        <p class="form-control-plaintext p-0">{{ plaza.perfil }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-3 pt-3 summary" *ngIf="plaza.competencias_requeridas">
+            <div class="form-group">
+                <label class="m-0">Competencias requeridas</label>
+                <p class="form-control-plaintext p-0">{{plaza.competencias_requeridas}}</p>
+
+            </div>
+        </div>
+        <div class="col-sm-12 pt-3" [ngClass]="{' col-lg-9': plaza.competencias_requeridas}">
+            <h4 class="text-center text-dark">Criterios de evaluación</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Criterio</th>
+                            <th scope="col" style="width: 80px;" class="text-center">Valor máx.</th>
+                            <th scope="col" style="width: 80px;" class="text-center">Porcentaje</th>
+                            <th scope="col" class="text-center" style="width: 100px;">Puntaje obtenido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of resultado; let i = index;">
+                            <td>{{ item.descripcion }} </td>
+                            <td class="text-center">{{ item.valor_maximo }} </td>
+                            <td class="text-center">{{ item.porcentaje }} % </td>
+                            <td class="text-center">
+                                <strong> {{item.puntaje|number:'.2-2'}} </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="alert alert-info text-center" role="alert">
+                El puntaje porcentual total del estudiante es <strong>{{puntaje()}} % </strong>.
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-light" (click)="backClicked()">Volver al listado</button>
+                <!-- <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/plazas',convocatoria,'estudiantes' ]">Volver atrás</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+
+<!-- <div class="row">
+  <div class="col-md-4">
+
+    <div class="card mb-3">
+      <div class="card-header "><strong>Datos del estudiante</strong> </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> <p><strong>Código estudiantil: </strong> <br>{{estudiante.codigo}}</p></li>
+          
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header"><strong>Datos de la plaza</strong></div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><p><strong>Plaza:</strong><br>{{plaza.plaza}}</p></li>
+            <li class="list-group-item"><p><strong>Tipo ayudantía:</strong> <br>{{plaza.tipoPlaza}}</p></li>
+            <li class="list-group-item"><p><strong>Unidad Solicitante: </strong><br>{{plaza.unidad}}</p></li>
+          </ul>
+        </div>
+        <div class="card-footer">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          <strong>Perfil de la plaza</strong>
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p> {{ plaza.perfil }} </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          <strong>Competencias requeridas</strong>
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p> {{ plaza.competencias_requeridas }} </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+
+
+
+  </div>
+  <div class="col-md-8">
+          
+          
+        <div class="row">
+            <h4 class="text-uppercase">Criterios de evaluación </h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Criterio</th>
+                <th scope="col">Valor máximo</th>
+                <th scope="col">Porcentaje</th>
+                <th scope="col" class="text-center w-25">Puntaje Obtenido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of resultado; let i = index;">
+                <td>{{ item.descripcion }} </td>
+                <td>{{ item.valor_maximo }} </td>
+                <td>{{ item.porcentaje }} % </td>      
+                <td class="text-center">
+                  <strong> {{item.puntaje}} </strong>
+                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-info" role="alert">
+          <p>El puntaje total del estudiante es <strong>{{puntaje()}}</strong> .</p>   
+          </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            
+            <button type="button" class="btn btn-light mr-1" [routerLink]="[ '/plaza','aprobados',convocatoria ]">Volver atrás</button>
+           
+          </div>
+        </div>
+  </div>
+</div> -->

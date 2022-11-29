@@ -1,0 +1,121 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<h2 class="text-uppercase animated fadeIn text-center">Registro administrativo de entregas a beneficios extemporáneas<small class="btn-block"></small></h2>
+<hr class="animated fadeIn">
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<p-messages [(value)]="errores"></p-messages>
+
+<div class="animated fadeIn" *ngIf="error != null">
+    <div class="alert alert-danger mb-3" role="alert">
+        <p class="m-0">{{error}}</p>
+    </div>
+</div>
+
+<div *ngIf="error == null">
+
+    <div class="animated fadeIn" *ngIf="codigosInvalidos.length > 0">
+       <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" (click)="codigoInvalidos = [];" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>  
+            <p class="m-0">{{codigosInvalidos.length}} códigos con errores<button class="btn btn-sm btn-link" (click)="modalCodigosErrores()">ver</button> </p>
+        </div>
+    </div>
+    <div class="row justify-content-center"> 
+        <button class="btn btn-success" [routerLink]="[ '/registroExtemporanea' ]"  type="button">Ver registro de entregas extemporáneas</button>
+    </div>
+    <form #entregaForm="ngForm" novalidate (ngSubmit)="save(entregaForm)" class="animated fadeIn">
+        <fieldset>
+            <div class="row justify-content-center">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="codigo">Códigos estudiantiles</label>
+                        <textarea class="form-control" type="text" placeholder="Ingrese los códigos de los estudiantes separados por coma ( , )" name="codigo" id="codigo" [(ngModel)]="codigos" #codigo="ngModel" rows=4 required [ngClass]="{'is-invalid': codigo.errors?.required && (codigo.touched || entregaForm.submitted)}"></textarea>
+                        <div class="invalid-feedback">Digite los códigos de los estudiantes</div>
+                    </div>
+                </div>
+
+                <div class="col-4 col-sm-12 col-md-4 col-xl-4">
+                    <div class="form-group">
+                        <label for="fecha">Fecha de entrega</label>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <p-calendar inputStyleClass="form-control " [locale]="es" name="fecha" [(ngModel)]="fecha_entrega" dateFormat="dd/mm/yy" [readonlyInput]="true" required  #fecha="ngModel"></p-calendar>
+
+                            </div>
+                        </div>
+                        <div class="invalid-feedback " [ngClass]="{'d-block': fecha.errors?.required && (fecha.touched || entregaForm.submitted)}">Seleccione una fecha</div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-xl-4">
+                    <div class="form-group">
+                        <label for="convoca">Convocatoria</label>
+                        <select [ngClass]="{'is-invalid': convoca.errors?.required && (convoca.touched || entregaForm.submitted)}" id="convoca" class="form-control" name="convoca" [(ngModel)]="convocatoria" #convoca="ngModel" required (change)="selectConvo()">
+                            <option [value]="null" disabled selected>Elegir convocatoria</option>
+                            <option *ngFor="let convo of convocatorias" [ngValue]="convo">{{convo.nombre}} </option>
+                        </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xl-4" *ngIf="convocatoria">
+                    <div class="form-group">
+                        <label for="benefi">Beneficio</label>
+                        <select [ngClass]="{'is-invalid': benefi.errors?.required && (benefi.touched || entregaForm.submitted)}" id="benefi" class="form-control" name="benefi" [(ngModel)]="beneficio" #benefi="ngModel" required>
+                            <option [value]="null" disabled selected>Elegir beneficio</option>
+                            <option *ngFor="let bene of convocatoria.beneficios" [ngValue]="bene">{{bene.nombre}} </option>                    
+                        </select>
+                        <div class="invalid-feedback">Seleccione una de las opciones</div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="observa">Observación</label>
+                        <textarea class="form-control" type="text" placeholder="Ingrese el motivo de la entrega extemporánea. Máx 455 caracteres" name="observa" id="observa" [(ngModel)]="observacion" #observa="ngModel" rows=4 required="validacion == true" [ngClass]="{'is-invalid': observa.errors?.required && (observa.touched || entregaForm.submitted)}"></textarea>
+                        <div class="invalid-feedback">Ingrese una observación</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="text-center">
+            <button type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver</button>
+            <button type="submit" class="btn btn-success mb-3">Guardar</button>
+        </div>
+    </form>
+</div>
+
+<div class="text-center" *ngIf="error != null">
+    <button type="button" class="btn btn-light mr-md-1 mb-3" (click)="goBack()">Volver</button>
+</div>
+
+<!-- Modal Errores-->
+<div class="modal fade" id="modalErrores" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Códigos con errores</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+
+                <ul *ngFor="let item of codigosInvalidos">
+                    <li>Código: {{item.codigo}}</li>
+                    <li>Observaciones:
+                        <p *ngFor="let item2 of item.observaciones">{{item2.observacion}}</p>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

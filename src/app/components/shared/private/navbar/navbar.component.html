@@ -1,0 +1,263 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-unimag">
+    <a class="navbar-brand" [routerLink]="[ '/']">
+        <img src="https://cdn.unimagdalena.edu.co/images/escudo/bg_dark/72.png" height="40" class="d-inline-block align-top mr-1" alt="Logo Unimagdalena">
+        <h1 class="h5 mb-0 d-inline-block text-uppercase">Bienestar <small class="d-block">Unimagdalena</small></h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="[ '/principal']" *ngIf="!userService.roleMatch(['Estudiante'])">Inicio</a>
+                <a class="nav-link" [routerLink]="[ '/estudiantes/dashboard']" *ngIf="userService.roleMatch(['Estudiante'])">Inicio</a>
+
+            </li>
+            <li *ngIf="userService.roleMatch(['Admin'])" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" id="menuPresupuesto" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Presupuesto
+                </a>
+                <div class="dropdown-menu" aria-labelledby="menuPresupuesto">
+                    <a class="dropdown-item" [routerLink]="[ '/periodos']">Periodos</a>
+                    <a class="dropdown-item" [routerLink]="[ '/bolsasPresupuestales','listar-bolsas']" *ngIf="userService.roleMatch(['Admin'])">Presupuestos
+                    registrados</a>
+                </div>
+            </li>
+            <li *ngIf="userService.roleMatch(['AdminRefrigerios'])" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="menuAlimento" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Beneficios alimentarios
+                </a>
+                <div class="dropdown-menu" aria-labelledby="menuAlimento">
+                    <a class="dropdown-item" [routerLink]="[ '/convocatoriasRefrigerio']">Convocatorias vigentes</a>
+                    <a class="dropdown-item" [routerLink]="[ '/convocatoriasRefrigerio/historial', 2]">Historial de convocatorias</a>
+                </div>
+            </li>
+            <li *ngIf="userService.roleMatch(['Admin','Unidad','Revisor'])" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="menuConvocatorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ayudantías
+                </a>
+                <div class="dropdown-menu" aria-labelledby="menuConvocatoriasAyudantias">
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias',1]">Convocatorias vigentes</a>
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias/historial',1]">Historial de convocatorias</a>
+                    <a class="dropdown-item" [routerLink]="[ '/plazas/listarPlazasSolicitadas', 'null', 1]">Plazas solicitadas</a>
+                    <a class="dropdown-item" [routerLink]="[ '/plazas/plazasRespondidas', 'null', 1]">Plazas revisadas por Bienestar</a>
+                    <!-- <div class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="menuTest1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plaza</a>
+                        <div class="dropdown-menu" aria-labelledby="menuTest1">
+                            <a class="dropdown-item" href="#">Submenu action</a>
+                            <a class="dropdown-item" href="#">Another submenu action</a>
+            
+                        </div>
+                    </div> -->
+                </div>
+            </li>
+            <li *ngIf="userService.roleMatch(['AdminMonitorias','ComiteMonitorias','UnidadMonitorias'])" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="menuMonitorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Monitorías
+                </a>
+                <div class="dropdown-menu" aria-labelledby="menuMonitorias">
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias', 3]">Convocatorias vigentes</a>
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias/historial', 3]">Historial de convocatorias</a>
+                    <a class="dropdown-item" [routerLink]="[ '/plazas/listarPlazasSolicitadas', 'null', 3]">Plazas {{ !userService.roleMatch(['AdminMonitorias']) ? 'solicitadas' : 'pre-aprobadas' }}</a>
+                    <a class="dropdown-item" [routerLink]="[ '/plazas/plazasRespondidas', 'null', 3]">Plazas revisadas por Comité</a>
+                    <a *ngIf="userService.roleMatch(['AdminMonitorias'])" class="dropdown-item" [routerLink]="[ '/comitesMonitorias/listar']">Comité de Monitorías</a>
+                </div>
+            </li>
+            <li *ngIf="userService.roleMatch(['Admin','Unidad'])" class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="menuPlazas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Plazas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="menuPlazas">
+                    <a class="dropdown-item" [routerLink]="[ '/plazas/tipoPlaza']">Nombres de plazas</a>
+                    <a class="dropdown-item" [routerLink]="[ '/plazas/historialPlazas']">Historial plazas</a>
+                </div>
+            </li>
+            <!-- <li class="nav-item" *ngIf="_userService.roleMatch(['Admin'])" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="[ '/unidades/listar-unidades']">Unidades</a>
+            </li>
+            <li class="nav-item" *ngIf="_userService.roleMatch(['Admin'])" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="[ '/usuarios/listar-usuarios']">Usuarios</a>
+            </li> -->
+            <li class="nav-item" *ngIf="userService.roleMatch(['SupervisorAyudante'])" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="[ '/supervisor/estudiantes']">Estudiantes a cargo</a>
+            </li>
+
+            <li *ngIf="userService.roleMatch(['AdminDeportistasArtistas'])" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="menuConvocatorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Convocatorias
+                </a>
+                <div class="dropdown-menu" aria-labelledby="menuConvocatorias" routerLinkActive="active">
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias-artistas-deportistas']">Convocatorias vigentes</a>
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias-artistas-deportistas/crear']">Crear convocatoria</a>
+                    <a class="dropdown-item" [routerLink]="[ '/convocatorias-artistas-deportistas/historial']">Historial de convocatorias</a>
+                </div>
+            </li>
+
+            <li *ngIf="userService.roleMatch(['AdminDeportistasArtistas'])" class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/modalidades']">
+                    Modalidades
+                </a>
+            </li>
+
+            <li *ngIf="userService.roleMatch(['AdminDeportistasArtistas'])" class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/disciplinas']" >
+                    Disciplinas
+                </a>
+            </li>
+            
+            <li *ngIf="userService.roleMatch(['AdminDeportistasArtistas'])" class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/listar-grupos']" >
+                    Grupos
+                </a>
+            </li>
+
+            <li *ngIf="userService.roleMatch(['SupervisorDeportistas'])" class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/crear-clase']" >
+                    Clases
+                </a>
+            </li>
+            
+        </ul>
+        <div class="navbar-text text-center text-md-left ml-auto">
+            <!-- <div class="btn-group" *ngIf="userService.roleMatch(['Admin'])">
+                <a class="btn btn-sm btn-outline-light mb-1 mb-md-0 mr-1 dropdown-toggle" href="#" id="menuConfiguracion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cog" aria-hidden="true"></i> Configuración
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menuConfiguracion">
+                    <a class="nav-link" [routerLink]="[ '/unidades/listar-unidades']">Unidades</a>
+                    <a class="nav-link" [routerLink]="[ '/usuarios/listar-usuarios']">Usuarios</a>
+                </div>
+            </div> -->
+            <a href="#modalAyuda" role="button" class="btn btn-sm btn-outline-light mb-1 mb-md-0 mr-1" title="Ayuda" data-toggle="modal">
+                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="sr-only">Ayuda</span>
+            </a>
+
+            <div class="btn-group" *ngIf="!userService.tipoMatch(['Estudiante'])">
+                <a class="btn btn-sm btn-outline-light mb-1 mb-md-0 mr-1 dropdown-toggle" href="#" id="menuConfiguracion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Configuración">
+                    <i class="fa fa-cog" aria-hidden="true"></i> <span class="sr-only">Configuración</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menuConfiguracion">
+                    <a class="nav-link" [routerLink]="[ '/unidades/listar-unidades']" *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">Unidades</a>
+                    <a class="nav-link" [routerLink]="[ '/usuarios/listar-usuarios']" *ngIf="userService.roleMatch(['Admin', 'AdminMonitorias'])">Usuarios</a>
+                    <a class="nav-link" [routerLink]="[ '/cafeterias']" *ngIf="userService.roleMatch(['AdminRefrigerios'])">Cafeterias</a>
+                    <a class="nav-link" [routerLink]="[ '/usuariosCafeteria']" *ngIf="userService.roleMatch(['AdminCafeteria','AdminRefrigerios'])">Usuarios de cafeteria</a>
+                    <a class="nav-link" [routerLink]="[ '/nivelesProfesionales']" *ngIf="userService.roleMatch(['AdminSalud'])">Niveles de profesión</a>
+                    <a class="nav-link" [routerLink]="[ '/tiposProfesionales']" *ngIf="userService.roleMatch(['AdminSalud'])">Tipos de profesión</a>
+                    <a class="nav-link" [routerLink]="[ '/changePassword']" *ngIf="userService.roleMatch(['AdminCafeteria','AdminRefrigerios'])">Cambiar contraseña</a>
+
+                </div>
+            </div>
+
+            <div class="btn-group" title="Opciones de usuario">
+                <a class="btn btn-sm btn-outline-light mb-1 mb-md-0 mr-1 text-truncate dropdown-toggle" style="max-width: 10rem;" href="#" id="menuUsuario" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="fas fa-user" aria-hidden="true"></span> {{usuarioLogueado}}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menuUsuario">
+                    <a class="nav-link" [routerLink]="[ '/changePassword']" *ngIf="userService.roleMatch(['AdminCafeteria','AdminRefrigerios'])">Cambiar contraseña</a>
+                    <button type="button" (click)="Logout()" class="dropdown-item" title="Cerrar sesión">
+                        Cerrar sesión <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<!-- Modal ayuda -->
+<div class="modal fade" id="modalAyuda" tabindex="-1" role="dialog" aria-labelledby="modalAyuda" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAyuda">Ayuda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center" *ngIf="!userService.tipoMatch(['Estudiante'])">
+                    <a [routerLink]="['/ayuda']" class="btn btn-md btn-success mb-3" (click)="closeModal()">Ir al manual de ayuda</a>
+                </div>
+                <h6 class="text-center">Uso de iconos en el sistema</h6>
+
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th style="width: 60px;">Icono</th>
+                                <th>Uso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fa fa-plus" aria-hidden="true"></span>
+                                </td>
+                                <td>Agregar registro</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fas fa-pen" aria-hidden="true"></span>
+                                </td>
+                                <td>Editar registro</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fas fa-times" aria-hidden="true"></span>
+                                </td>
+                                <td>Eliminar registro sin guardar</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                                </td>
+                                <td>Eliminar registro (permanente)</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="far fa-eye" aria-hidden="true"></span>
+                                </td>
+                                <td>Activar registro</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="far fa-eye-slash" aria-hidden="true"></span>
+                                </td>
+                                <td>Desactivar registro</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="far fa-file" aria-hidden="true"></span>
+                                </td>
+                                <td>Ver soporte</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fas fa-sign-in-alt" aria-hidden="true"></span>
+                                </td>
+                                <td>Inciar sesión</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fas fa-sign-out-alt" aria-hidden="true"></span>
+                                </td>
+                                <td>Cerrar sesión</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <span class="fas fa-info-circle" aria-hidden="true"></span>
+                                </td>
+                                <td>Ver detalles completos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

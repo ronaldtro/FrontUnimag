@@ -1,0 +1,252 @@
+<h2 class="text-uppercase animated fadeIn text-center">Convocatorias <small class="btn-block text-muted">Formulario de
+    edición de convocatoria</small></h2>
+<hr>
+
+<p-toast [style]="{marginTop: '80px'}" [baseZIndex]="5000"></p-toast>
+<p-messages [(value)]="errores"></p-messages>
+
+<form #convocatoriaForm="ngForm" novalidate (ngSubmit)="save(convocatoriaForm)" *ngIf="convocatoria" class="animated fadeIn">
+    <fieldset>
+        <legend>Información general</legend>
+        <div class="alert alert-info">
+            Todos los campos en este formulario son obligatorios
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-xl-5">
+                <div id="titulo" class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" id="titulo" placeholder="Título de la convocatoría. Máx. 255 caracteres." name="titulo" maxlength="255" [(ngModel)]="convocatoria.titulo" #titulo="ngModel" required [ngClass]="{'is-invalid': titulo.errors?.required && (titulo.touched || convocatoriaForm.submitted)}">
+
+                    <div class="invalid-feedback">Escriba el título de la convocatoria</div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-xl-4">
+                <div id="presupuesto" class="form-group">
+                    <label for="presupuesto">Presupuesto</label>
+                    <select [ngClass]="{'is-invalid': presupuesto.errors?.required && (presupuesto.touched || convocatoriaForm.submitted)}" id="presupuesto" class="form-control" name="presupuesto" [(ngModel)]="convocatoria.bolsa_presupuestal_id" #presupuesto="ngModel" required
+                        (change)="changeTitulo(convocatoria.bolsa_presupuestal_id)">
+            <option value="null" disabled selected>Elegir un presupuesto</option>
+            <option *ngFor="let bolsa of bolsas" [value]="bolsa.id">{{bolsa.denominacion}} {{bolsa.periodo}} ({{bolsa.valor | currency:'COP'
+              }})</option>
+
+          </select>
+                    <div class="invalid-feedback">Seleccione una de las opciones</div>
+                </div>
+
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-xl-3">
+                <div id="fecha_expedicion" class="form-group">
+                    <label>Fecha de expedición</label>
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12 p-0">
+                            <p-calendar inputStyleClass="form-control {{isValid}}" name="fecha_expedicion" [(ngModel)]="convocatoria.fecha_expedicion" dateFormat="dd/mm/yy" [readonlyInput]="true" required (onBlur)='validation(fecha_expedicion)' (onSelect)='validation(fecha_expedicion)'
+                                #fecha_expedicion="ngModel" [maxDate]="dateNow"></p-calendar>
+
+                        </div>
+                    </div>
+                    <div class="invalid-feedback " [ngClass]="{'d-block': fecha_expedicion.errors?.required && (fecha_expedicion.touched || convocatoriaForm.submitted)}">Seleccione una fecha</div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-9">
+                <div id="soporte" class="form-group">
+                    <label for="soporte">Soporte <button *ngIf="convocatoria.soporte" type="button" class="btn btn-link btn-sm"
+              (click)="viewDoc(0)">Ver documento cargado</button></label>
+                    <p-fileUpload id="soporte" name="soporte[]" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                        invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" #soporte>
+                    </p-fileUpload>
+                    <div class="invalid-feedback " [ngClass]="{'d-block': !convocatoria.soporte  && convocatoriaForm.submitted }">Debe cargar un archivo de soporte</div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-xl-3">
+                <div id="maximo_horas" class="form-group">
+                    <label for="maximo_horas">Máximo de horas a realizar por estudiante</label>
+                    <input type="number" class="form-control" id="maximo_horas" placeholder="Ingrese el máximo de horas de actividades de estudiante" name="maximo_horas" min="1" max="999" [(ngModel)]="convocatoria.maximo_horas" #maximo_horas="ngModel" required [ngClass]="{'is-invalid':(convocatoriaForm.submitted || maximo_horas.touched) && (maximo_horas.errors?.required || maximo_horas.errors?.min ||maximo_horas.errors?.max ) }">
+                    <div class="invalid-feedback" *ngIf="maximo_horas.errors?.required">Ingrese el porcentaje mínimo</div>
+                    <div class="invalid-feedback" *ngIf="maximo_horas.errors?.min"> Mínimo {{maximo_horas.errors?.requiredValue}}
+                    </div>
+                    <div class="invalid-feedback" *ngIf="maximo_horas.errors?.max"> Máximo {{maximo_horas.errors?.requiredValue}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-9">
+                <div id="resolucion" class="form-group">
+                    <label for="resolucion">Resolución<small class="text-muted"> (Opcional)</small> <button *ngIf="convocatoria.resolucion"
+              type="button" class="btn btn-link btn-sm" (click)="viewDoc(1)">Ver documento cargado</button>
+          </label>
+                    <p-fileUpload id="resolucion" name="resoolucion[]" (onSelect)="onUploadFileR($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}"
+                        invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido," invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento"
+                        (onRemove)="onClearFileR()" #soporte>
+                    </p-fileUpload>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-xl-3">
+                <div id="nota_min" class="form-group">
+                    <label for="nota_min">Porcentaje mínimo de evaluación para aprobar estudiante</label>
+                    <input type="number" class="form-control" id="nota_min" placeholder="Ingrese la nota mínima de aprobación de estudiante" name="nota_min" min="0" max="100" [(ngModel)]="convocatoria.nota_minima" #nota_min="ngModel" required [ngClass]="{'is-invalid':(convocatoriaForm.submitted || nota_min.touched) && (nota_min.errors?.required || nota_min.errors?.min ||nota_min.errors?.max ) }">
+
+                    <div class="invalid-feedback" *ngIf="nota_min.errors?.required">Ingrese el porcentaje mínimo</div>
+                    <div class="invalid-feedback" *ngIf="nota_min.errors?.min"> Mínimo {{nota_min.errors?.requiredValue}} </div>
+                    <div class="invalid-feedback" *ngIf="nota_min.errors?.max"> Máximo {{nota_min.errors?.requiredValue}} </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12">
+                <div id="descripcion" class="form-group">
+                    <label for="descripcion">Descripción <small class="text-muted">(Opcional)</small></label>
+                    <textarea type="text" class="form-control" id="descripcion" placeholder="Descripción de la convocatoría. Información opcional. Máx. 500 caracteres." name="descripcion" [(ngModel)]="convocatoria.descripcion" #descripcion="ngModel" rows="5" maxlength="500"></textarea>
+                </div>
+            </div>
+            <div  class="col-12 col-sm-12 col-md-12">
+                    <div id="formato" class="form-group">
+                        <label for="formato">Formato propuesta metodológica<small class="text-muted"> (Opcional)</small> <button *ngIf="convocatoria.propuesta"
+                            type="button" class="btn btn-link btn-sm" (click)="viewDoc(2)">Ver documento cargado</button>
+                        </label>
+                        <p-fileUpload id="formato" name="formato[]" (onSelect)="onUploadFileFormato($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                            invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileFormato()" #formato>
+                        </p-fileUpload>
+                        <div class="invalid-feedback " [ngClass]="{'d-block': !convocatoria.file_formato  && convocatoriaForm.submitted }">Debe cargar un archivo de soporte</div>
+                    </div>
+            </div>
+        </div>
+    </fieldset>
+    <hr>
+    <fieldset>
+        <legend>Etapas de la convocatoria <small><button id="anadirEtapas" type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
+          data-target="#exampleModal" (click)="mostrar=true; editar=false; guardar=true; editEtapa();">Añadir
+          etapas</button></small></legend>
+
+        <div class="table-responsive mt-3">
+            <table id="table_etapas" class="table">
+                <thead>
+                    <tr>
+                        <!-- <th>#</th> -->
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let etapa of convocatoria.etapas | orderBy:'peso_etapa' ; let i=index">
+                        <!-- <td >{{i+1}}</td> -->
+                        <td>{{etapa.nombre}}</td>
+                        <td>{{etapa.fecha_inicio | date: "medium"}} - {{etapa.fecha_fin | date: "medium"}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-dark btn-sm btn-editar" data-toggle="modal" data-target="#exampleModal" (click)="idx=i; editar=true; guardar=false; mostrar=true; editEtapa(etapa);" title="Editar registro">
+                                <span class="fas fa-pen"></span>
+                                <span class="sr-only">Editar registro</span>
+                            </button>
+                            <!-- <button type="button" class="btn btn-light btn-sm" (click)="deleteEtapas(i);" title="Eliminar registro">
+                                <span class="fas fa-times"></span>
+                                <span class="sr-only">Eliminar registro</span>
+                            </button> -->
+                        </td>
+                    </tr>
+                    <tr class="table-info" *ngIf="!convocatoriaForm.submitted && convocatoria.etapas.length==0">
+                        <td colspan="3">
+                            Presione el botón "Añadir etapas" para agregar una etapa a la convocatoria
+                        </td>
+                    </tr>
+                    <tr class="table-danger" *ngIf="convocatoriaForm.submitted && convocatoria.etapas.length==0">
+                        <td colspan="3">
+                            La convocatoria debe tener al menos una etapa
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button id="volver" type="button" class="btn btn-light mr-md-1 mb-3" [routerLink]="[ '/convocatorias', tipoConvocatoria ]">Volver al listado</button>
+        <button id="guardar" type="submit" class="btn btn-success mb-3">Guardar</button>
+
+    </div>
+
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar etapa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mostrar=false; clearModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-2 row" *ngIf="mostrar">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="estado">Etapa</label>
+                            <select [ngClass]="{'is-invalid': (send && (!estado.value || estado.value=='')) || (estado.touched && (!estado.value || estado.value=='')) }" id="estado" class="form-control" name="estado" [(ngModel)]="etapa.estado_id" #estado="ngModel" (change)="changePeso(etapa.estado_id)">
+
+                                <option value="null" selected disabled>Elegir un estado</option>
+                                <option *ngFor="let estado of estados" [value]="estado.id">{{estado.nombre}} </option>
+
+                            </select>
+                            <div class="invalid-feedback">Seleccione una de las opciones</div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 mt-3">
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <label>Fecha de inicio</label>
+                                <p-calendar inputStyleClass="form-control {{isFechaValid(etapa.fecha_inicio, fecha_inicio.touched)}}" showTime="true" hourFormat="12" name="fecha_inicio" [(ngModel)]="etapa.fecha_inicio" dateFormat="dd/mm/yy" [readonlyInput]="true" #fecha_inicio="ngModel"
+                                    [minDate]="dateNow"></p-calendar>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': !etapa.fecha_inicio && (send || fecha_inicio.touched)}">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 mt-3">
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <label>Fecha de fin</label>
+                                <p-calendar inputStyleClass="form-control {{isFechaValid(etapa.fecha_fin, fecha_fin.touched)}}" name="fecha_fin" showTime="true" hourFormat="12" [(ngModel)]="etapa.fecha_fin" dateFormat="dd/mm/yy" [readonlyInput]="true" #fecha_fin="ngModel" [minDate]="dateNow"></p-calendar>
+                                <div class="invalid-feedback" [ngClass]="{'d-block': !etapa.fecha_fin && (send || fecha_fin.touched)}">Seleccione una de las opciones</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)="mostrar=false; clearModal()">Cancelar</button>
+                <button type="button" class="btn btn-success" *ngIf="guardar==true" (click)="addEtapas()">Guardar</button>
+                <button type="button" class="btn btn-success" *ngIf="editar==true" (click)="saveEdit()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" *ngIf="convocatoria">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="convocatoria.soporte  | donseguro: api" width="100%" height="700px" frameborder="0" *ngIf="doc==0"></iframe>
+                <iframe [src]="convocatoria.resolucion  | donseguro: api" width="100%" height="700px" frameborder="0" *ngIf="doc==1"></iframe>
+                <iframe [src]="convocatoria.propuesta  | donseguro: api" width="100%" height="700px" frameborder="0" *ngIf="doc==2"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<button class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial()">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

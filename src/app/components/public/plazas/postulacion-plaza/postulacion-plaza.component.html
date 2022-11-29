@@ -1,0 +1,103 @@
+<form (ngSubmit)="postularse(postularForm)" #postularForm="ngForm" novalidate>
+  <div class="modal-body">
+    <div *ngIf="tipoConvocatoria == tiposConvocatorias.AYUDANTIA">
+        <p>
+            De conformidad con lo previsto en el <b>Articulo 8, Capítulo II (Título I - Disposiciones Generales) de la Resolución Rectoral N° 869 de 2018</b> <i>Por medio de la cual se establece el Reglamento General del Programa de Becas de la Universidad del Magdalena"</i>,
+            todo aspirante que tenga la intención de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas, deberán cumplir con la siguiente responsabilidad:
+        </p>
+        <ul>
+            <li>
+                <i>
+                    Verificar e informar a la Dirección de Bienestar Universitario antes de inscribirse a las convocatorias de becas que se gestiona por parte del Comité de Becas;
+                    sí se encuentra como beneficiario de alguna de estas u otros beneficios ofrecidos por parte de la Universidad, como también, sí es beneficiario de estímulos o cualquier apoyo económico otorgado por instituciones o entidades del orden nacional,
+                    toda vez que, al inscribirse siendo beneficiario según lo enunciado, quedará excluido del proceso.
+                </i>
+            </li>
+        </ul>
+        <p>
+            En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el aspirante deberá diligenciar en el presente formulario de inscripción lo siguiente:
+        </p>
+        <ul style="list-style: none;">
+            <li>
+                
+                <p>¿Es usted beneficiario de algún tipo de beca y otro beneficio ofrecido por parte de la Universidad mediante el Programa de Becas, o es beneficiario de estímulos y/o apoyos económicos otorgados por instituciones o entidades
+                    del orden nacional?</p>
+                <div class="form-group text-center">
+                    <label for="respuesta_si" class="sr-only">Respuesta</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="respuesta" id="respuesta_si" [(ngModel)]="formulario.respuesta" #respuestaBool="ngModel" [value]="true" required>
+                        <label class="form-check-label" for="respuesta_si">Sí</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="respuesta" id="respuesta_no" [(ngModel)]="formulario.respuesta" #respuestaBool="ngModel" [value]="false" required>
+                        <label class="form-check-label" for="respuesta_no">No</label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="formulario.respuesta">
+                    <div class="col-sm-12 col-lg-4">
+                        <div class="form-group">
+                            <label for="tiposBeneficios">Tipos de beneficios</label>
+                            <select class="form-control" [ngClass]="{'is-invalid': ((postularForm.submitted || tiposBeneficios_input?.touched) && tiposBeneficios_input.errors?.required) }" [(ngModel)]="formulario.tipo_beneficio_id" id="tiposBeneficios" name="tiposBeneficios" [required]="formulario.respuesta"
+                                #tiposBeneficios_input="ngModel">
+                            <option value="null" selected disabled>Seleccione el tipo de beneficio</option>
+                            <option *ngFor="let tipoBeneficio of tiposBeneficios" [value]="tipoBeneficio.id">{{tipoBeneficio.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-8">
+                        <div class="form-group">
+                            <label for="benefic">Nombre de beneficio</label>
+                            <input class="form-control" [ngClass]="{'is-invalid ': benefic.errors?.required && (benefic?.touched || postularForm.submitted) }" type="text" placeholder="Ingrese el nombre del beneficio. Máx. 255 caracteres." name="benefic" id="benefic" [(ngModel)]="formulario.beneficio"
+                                maxlength="255" [required]="formulario.respuesta" #benefic="ngModel">
+                        </div>
+                    </div>
+                    
+  
+                </div>
+  
+                <p>
+                    <strong>Nota: </strong>Para respaldo de lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Dirección de Bienestar Universitario el <strong>Formato de Declaración Juramentada</strong>                                formulado para el Programa de Becas.
+                </p>
+            </li>
+        </ul>
+        <div class="alert alert-secondary" role="alert">
+            <p class="text-center text-muted font-weight-bold font-italic mb-0">
+                Se informa que la inscripción es el primer paso del proceso de preselección, para continuar debe cumplir con todos los requisitos contemplados en la <a href="https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/Publicacion_25710/documento_1_20190131185324.686.pdf"
+                    target="_blank" download="resolución 056 del 31 de enero del 2019.pdf">resolución 056 del 31 de enero del 2019</a>.
+            </p>
+        </div>
+    </div>
+    <div *ngIf="tipoConvocatoria == tiposConvocatorias.MONITORIA">
+        <div>
+            <p>De conformidad con lo previsto en el la Resolución Rectoral N° 734 de 2019 “Por medio de la cual se reglamenta el Programa de Monitorias Académicas de la Universidad del Magdalena" todo aspirante que tenga la intención de inscribirse en el concurso que se administra por la Vicerrectoría Académicas y coordinadas en su desarrollo por los Comité coordinadores de las distintas facultades, deberán realizar y sustentar una propuesta metodológica que deberá contener: </p>
+            <ol type="a">
+              <li>Coherencia de las metodologías y/o técnicas con los objetivos de aprendizaje: <b>20 puntos</b>.</li>
+              <li>Redacción y ortografía: <b>10 puntos</b>.</li>
+              <li>Innovación de las metodologías y técnicas propuestas: <b>10 puntos</b>.</li>
+            </ol>
+                        
+            <p>En ese sentido, para el ejercicio y respaldo de lo establecido por la normatividad en cita, el concursante deberá confirmar en el presente formulario de inscripción lo siguiente: </p>
+            
+              <div class="custom-control custom-checkbox py-2 border-top border-bottom mb-3 font-italic">
+                <input type="checkbox" class="custom-control-input" id="customCheck1" [(ngModel)]="formulario.es_autoria" name="autoria" #es_autoria="ngModel" [required]="tipoConvocatoria == tiposConvocatorias.MONITORIA">
+                <label class="custom-control-label" for="customCheck1">Manifiesta que la propuesta metodológica con la que se presenta en este concurso es de su autoría total</label>
+              </div>
+        </div>
+        <div id="formato" class="form-group mb-3">
+            <label for="formato" class="font-weight-bold">Propuesta metodológica </label>
+            <p-fileUpload id="formato" name="formato[]" (onSelect)="onUploadFileFormato($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFileFormato()" #formato>
+            </p-fileUpload>
+            <div class="invalid-feedback " [ngClass]="{'d-block': !formulario.file_formato  && postularForm.submitted }">Debe cargar un archivo de soporte</div>
+            <a *ngIf="propuestaMetodologica != null" href="{{propuestaMetodologica}}" target="_blank" download>Descargue el formato de propuesta metodológica aquí</a>
+        </div>
+
+        <p><strong>Nota: En concordancia con lo anterior, el aspirante que una vez culminado el proceso, resulte como beneficiario del mismo, deberá firmar ante la Vicerrectoria Académica el Formato de Declaración Juramentada formulado para el Programa de Becas.</strong></p>
+      
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-light" data-dismiss="modal" (click)="postularForm.resetForm();cleanForm();">Cancelar</button>
+      <button type="submit" class="btn btn-success" [disabled]="(tipoConvocatoria == tiposConvocatorias.MONITORIA && !formulario.es_autoria)">Aceptar</button>
+  </div>
+</form>

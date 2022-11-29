@@ -1,0 +1,163 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn mb-3">
+  <h2 class="text-uppercase text-center">Atención no programada
+      <small class="d-block text-muted">Módulo de atención no programada.</small>
+  </h2>
+  <hr>
+
+  <div class= "text-center">
+      <legend>Búsqueda de paciente</legend>
+  </div>
+  
+  <hr>
+  <!-- " -->
+  <form  #citasForm="ngForm" (ngSubmit)="crearBusqueda(citasForm)" novalidate>
+      <fieldset>
+          <div class="row">
+              <div class="col-12">
+                <div class="alert alert-danger alert-dismissible fade show" *ngIf="error.length > 0">
+                        <label><b>Corrige los errores:</b></label>
+                        <ul>
+                            <div *ngFor="let error of error">
+                                <li *ngIf="error.errores.length>0">
+                                    <p>{{error.errores[0].ErrorMessage}}</p>
+                                </li>
+                            </div>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" (click)="error = []" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+              </div>
+          </div>
+          <div class="row justify-content-center">
+              
+              <div class="col-md-4">
+                  <div class="form-group m-sm-0">
+                        <label for="tipoPaciente"> Tipo paciente </label>
+                        <select [ngClass]="{'is-invalid': tipoPaciente.errors?.required && (tipoPaciente.touched || citasForm.submitted)}" id="tipoPaciente" class="form-control " name="tipoPaciente" [(ngModel)]="busqueda.tipo_paciente" #tipoPaciente="ngModel" required  >
+                            <option [value]="null" disabled selected>Elegir tipo de paciente</option>
+                            <option [value]="1"> Estudiante </option>
+                            <option [value]="2"> Funcionario / Docente / Contratista  </option>
+                            <option [value]="3"> Invitado </option>
+                        </select>
+                        <!-- <div class="invalid-feedback">Seleccione una de las opciones</div> -->
+                  </div>
+              </div>
+
+              <div class="col-md-4">
+                  <div  class="form-group m-sm-0">
+                        <label  for="paciente_id"> <span *ngIf="busqueda.tipo_paciente != 1" >Identificación</span> <span *ngIf="busqueda.tipo_paciente == 1" >Código estudiantil</span> </label>
+                            <input class="form-control" [ngClass]="{'is-invalid ': (citasForm.submitted || paciente_id.touched) && (paciente_id.errors?.required || paciente_id.errors?.min ||paciente_id.errors?.max ) }" type="number" placeholder="Ingrese el número" name="paciente_id" id="paciente_id" 
+                            [(ngModel)]="busqueda.paciente_id" required #paciente_id="ngModel">
+                            
+                   </div>
+              </div>
+              <div class="col-md-2 d-flex align-items-end ">
+                    <button id="guardar" type="submit" *ngIf="busqueda.tipo_paciente != 3 " class="btn btn-success">Buscar</button>
+                    <a id="volver" role="button"  *ngIf="busqueda.tipo_paciente == 3 " [routerLink]="[ '/actualizarDatos', busqueda.paciente_id]"  class="btn btn-success" [ngClass]="{'disabled ': busqueda.paciente_id == null }">Buscar</a>
+            </div>
+          </div>
+      </fieldset>
+  </form>
+  
+
+  <div class="card shadow mb-3" *ngIf="paciente != null">
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="alert alert-warning" *ngIf="!paciente.paciente" role="alert">
+                Para poder atender al paciente y registrar la atención, es necesario actualizar los datos.
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-3 col-xl-2 d-flex justify-content-center align-items-center">
+                    <div class="text-center img-profile  mt-2 mb-2">
+
+                        <span class="fas fa-user display-1" style="color: rgb(135, 139, 143)" aria-hidden="true"></span>
+                         <!-- <img src="http://beneficiosbienestar.unimagdalena.edu.co/CargarFoto/Foto.aspx?Codigo={{estudiante.codigo}}" alt="Perfil" class="rounded h-100"> 
+                         <img [src]="estudiante.foto" *ngIf="estudiante.foto" class="rounded h-100">  -->
+                        <!-- <img src="../../../../../assets/img/profile.png" class="rounded h-100"> -->
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-9 col-xl-10 d-flex align-items-center">
+                    <div class="row text-center text-md-left">
+                        <div class="col-12">
+                            <h3 class="h4 mb-3">
+                                <small class="d-block text-muted">Nombre</small>{{paciente.nombres}}
+                            </h3>
+                        </div>
+                        <div class="col-md-4 col-xl-3">
+                            <div class="form-group">
+                                <label class="m-0 text-muted">Identificación</label>
+                                <p class="form-control-plaintext p-0">{{paciente.tipo_identificacion}} - {{paciente.identificacion}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-xl-3">
+                            <div class="form-group">
+                                <label class="m-0 text-muted">Sexo</label>
+                                <p class="form-control-plaintext p-0">{{paciente.sexo}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-3" >
+                            <div class="form-group">
+                                    <label class="m-0 text-muted">Grupo sanguíneo</label>
+                                    <p class="form-control-plaintext p-0">{{paciente.grupo_sanguineo}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xl-3" >
+                            <div class="form-group">                               
+                                <p class="form-control-plaintext p-0" *ngIf="paciente.paciente">
+                                    <button class="btn btn-primary" 
+                                    *ngIf="paciente.id_servicio == 3" 
+                                    [routerLink]="[ '/atenciones/deportologia', 1 ,paciente.identificacion ]" 
+                                    type="button">Nueva atención</button>
+                                   
+                                   
+                                    <button class="btn btn-primary" *ngIf="paciente.id_servicio == 4" [routerLink]="[ '/atenciones/medicinageneral', 1 ,paciente.identificacion ]" type="button">Nueva atención</button>
+                                    <button class="btn btn-primary" *ngIf="paciente.id_servicio == 6" [routerLink]="[ '/atenciones/enfermeria', 1 ,paciente.identificacion ]" type="button">Nueva atención</button>
+                                    <button class="btn btn-primary" *ngIf="paciente.id_servicio == 2" [routerLink]="[ '/atenciones/psicologia', 1 ,paciente.identificacion ]" type="button">Nueva atención</button>
+                                    <button class="btn btn-success mt-2"  *ngIf="busqueda.tipo_paciente == 1" [routerLink]="[ '/atenciones/registroIncapacidad', paciente.identificacion]"  type="button">Registrar Incapacidad</button>
+                                </p>
+                                <p class="form-control-plaintext p-0" *ngIf="!paciente.paciente">
+                                    <button class="btn btn-success" [routerLink]="[ '/actualizarDatos', paciente.identificacion]"  type="button">Actualizar datos</button>
+                                 </p>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-xl-9">
+                            <div class="form-group">
+                                    <label class="m-0 text-muted">EPS</label>
+                                    <p class="form-control-plaintext p-0">
+                                        {{paciente.eps}}
+                                    </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xl-3" *ngIf="atencion_id != 0 && paciente.id_servicio == 4"  >
+                                <div class="form-group">                               
+                                    <p class="form-control-plaintext p-0">
+                                       <button class="btn btn-success"  [routerLink]="[ '/atenciones/detalle-cita', atencion_id]"  type="button" title="Registrar evoloción">Registrar evolución</button>                                       
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xl-3" *ngIf="atencion_id != 0 && paciente.id_servicio == 6"  >
+                                <div class="form-group">                               
+                                    <p class="form-control-plaintext p-0">                                      
+                                       <button class="btn btn-success"  [routerLink]="[ '/atenciones/detalle-cita-enfermeria', atencion_id]"  type="button" title="Detalle atención de enfermería">Ver detalle</button>
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="text-center">
+        <a id="volver" role="button" class="btn btn-light  mr-md-1 mb-3" (click)="goBack()" >Volver</a>
+ </div>
+
+
+
+
+
+
+</div>

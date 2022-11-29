@@ -1,0 +1,165 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.65)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="animated fadeIn">
+    <h2 class="text-uppercase text-center">Bolsa presupuestal</h2>
+    <hr>
+
+    <div *ngIf="errores">
+        <div class="alert alert-danger alert" *ngIf="errores.length > 0">
+            <label><b>Corrige los errores:</b></label>
+            <ul>
+                <div *ngFor="let error of errores">
+                    <li *ngIf="error.errores.length>0">
+                        <p>{{error.errores[0].ErrorMessage}}</p>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="alert alert-danger alert" *ngIf="mensajeError != null">
+        <label><b>Corrige los errores:</b></label>
+        <ul>
+            <div>
+                <li>
+                    <p>{{mensajeError}}</p>
+                </li>
+            </div>
+        </ul>
+    </div>
+
+
+    <form (ngSubmit)="guardar(forma)" #forma="ngForm">
+
+        <fieldset>
+            <legend *ngIf="bolsa.id == null">Formulario de creación de bolsa presupuestal</legend>
+            <legend *ngIf="bolsa.id != null">Formulario de edición de bolsa presupuestal</legend>
+            <div class="alert alert-info">
+                Todos los campos son obligatorios
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                      <label for="denominacion">Denominación o descripción</label>
+                      <input type="text" name="denominacion" id="denominacion" class="form-control" placeholder="Ingrese una denominación o descripción a la bolsa presupuestal a ingresar" [(ngModel)]="bolsa.denominacion"  [ngClass]="{'is-invalid': ((forma.submitted || denominacion.touched) && denominacion.errors?.required) }" #denominacion="ngModel" required>
+                      
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div id="valor" class="form-group">
+                        <label for="valor">Valor</label>
+                        <input type="hidden" [(ngModel)]="valorBolsaAux" name="valorAux" id="valorAux" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || valor.touched) && (valor.errors?.required || valorAux.errors?.min) )}" placeholder="Valor de la bolsa presupuestal"
+                            required #valorAux="ngModel" [min]="1" />
+                        <input type="text" (blur)="numberWithCommas(bolsa.valor)" [(ngModel)]="bolsa.valor" name="valor" id="valor" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || valor.touched) && (valor.errors?.required || valorAux.errors?.min) )}" placeholder="Valor de la bolsa presupuestal"
+                            [(ngModel)]="bolsa.valor" required #valor="ngModel" />
+                        <div class="invalid-feedback" *ngIf="( (forma.submitted || valor.touched) && valorAux.errors?.min )">
+                            Solo números mayores o iguales que 1.
+                        </div>
+                        <!--<app-control-value-accessor
+            [(value)]="bolsa.valor"
+              required 
+              >
+            </app-control-value-accessor>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-2">
+                    <div id="periodo" class="form-group">
+                        <label for="periodo">Periodo</label>
+                        <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || periodo.touched) && periodo.errors?.required) }" [(ngModel)]="bolsa.periodo_id" id="periodo" name="periodo" required #periodo="ngModel">
+              <option value="null" selected disabled>Seleccione el periodo</option>
+              <option *ngFor="let periodo of periodos" value="{{periodo.id}}">{{periodo.nombre}}</option>
+            </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xl-2">
+                    <div id="tipoFondo" class="form-group">
+                        <label for="tipoFondo">Tipo de fondo</label>
+                        <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || tipoFondo.touched) && tipoFondo.errors?.required) }" [(ngModel)]="bolsa.tipo_fondo_id" id="tipoFondo" name="tipoFondo" required #tipoFondo="ngModel">
+              <option value="null" selected disabled>Seleccione el tipo de fondo</option>
+              <option *ngFor="let fondo of fondos" value="{{fondo.id}}">{{fondo.nombre}}</option>
+            </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xl-3">
+                    <div id="fuente" class="form-group">
+                        <label for="fuente">Fuente</label>
+                        <select class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || fuente.touched) && fuente.errors?.required) }" [(ngModel)]="bolsa.tipo_fuente_id" id="fuente" name="fuente" required #fuente="ngModel">
+              <option value="null" selected disabled>Seleccione la fuente</option>
+              <option *ngFor="let fuente of fuentes" value="{{fuente.id}}">{{fuente.nombre}}</option>
+            </select>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xl-2">
+                    <div id="fecha_expedicion" class="form-group">
+                        <label for="fecha_expedicion">Fecha de expedición</label>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-12 p-0">
+                                <p-calendar [ngClass]="{'is-invalid': ((forma.submitted || fecha_expedicion.touched) && fecha_expedicion.errors?.required) }" inputStyleClass="form-control" id="fecha_expedicion" name="fecha_expedicion" [(ngModel)]="bolsa.fecha_expedicion" dateFormat="dd/mm/yy"
+                                    [disabledDays]="[0,6]" [readonlyInput]="true" required #fecha_expedicion="ngModel" (onBlur)='validation(fecha_expedicion)' (onSelect)='validation(fecha_expedicion)' [maxDate]="dateNow"></p-calendar>
+                                <span class="invalid-feedback" [ngClass]="{'d-block': (forma.submitted || fecha_expedicion.touched) && fecha_expedicion.errors?.required}">
+                    Este campo es requerido
+                  </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="responsable" class="form-group">
+                        <label for="responsable">Responsable</label>
+                        <input type="text" name="responsable" id="responsable" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || responsable.touched) && (responsable.errors?.required) )}" [(ngModel)]="bolsa.responsable" required #responsable="ngModel" placeholder="Ingrese el responsable. Max 455 caracteres"
+                            maxlength="455" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="ejecutor" class="form-group">
+                        <label for="ejecutor">Ejecutor</label>
+                        <input type="text" name="ejecutor" id="ejecutor" class="form-control" [ngClass]="{'is-invalid': ((forma.submitted || ejecutor.touched) && (ejecutor.errors?.required) )}" [(ngModel)]="bolsa.ejecutor" required #ejecutor="ngModel" placeholder="Ingrese el responsable. Max 455 caracteres"
+                            maxlength="455" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="soporte" class="form-group">
+                        <label for="soporte">Soporte 
+                  <button (click)="verSoporte(bolsa.soporte)" type="button" class="btn btn-sm btn-link" *ngIf="bolsa.id != null && bolsa.soporte != null" title="Ver soporte actual"><span>Ver soporte actual</span></button>
+            </label>
+                        <p-fileUpload id="soporte" name="soporte" (onSelect)="onUploadFile($event)" maxFileSize="2000000" [showUploadButton]="false" [showCancelButton]="false" accept="application/pdf" invalidFileSizeMessageDetail="El tamaño máximo del archivo es: {0}" invalidFileSizeMessageSummary="{0}: Tamaño del archivo excedido,"
+                            invalidFileTypeMessageSummary="{0}: Tipo de archivo inválido," invalidFileTypeMessageDetail="Solo puedes cargar archivos de tipo {0}" chooseLabel="Cargar documento" (onRemove)="onClearFile()" styleClass="is-invalid" #soporte>
+                        </p-fileUpload>
+                        <small class="form-text text-muted">En formato PDF con un peso menor o igual a 2MB</small>
+                        <div class="invalid-feedback" [ngClass]="{'d-block': !file_soporte  && forma.submitted && bolsa.id == null}">Debe cargar un archivo de soporte</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center">
+                <hr>
+
+                <button id="volver" type="button" class="btn btn-light mr-1 mb-3" [routerLink]="[ '/bolsasPresupuestales/listar-bolsas']">Volver al listado</button>
+                <button id="guardar" type="submit" class="btn btn-success mr-1 mb-3">
+            Guardar
+          </button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="pdfSoporte" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="modelTitleId">Documento de soporte</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="rutaPdf  | donseguro: api" width="100%" height="700px" frameborder="0"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+<button *ngIf="bolsa.id == null" class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial(0)">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>
+<button *ngIf="bolsa.id != null" class="btn btn-default shadow-sm" style="position:fixed; bottom: 1rem; right: 1rem;z-index: 10" (click)="initTutorial(1)">Ayuda <span aria-hidden="true" class="fa fa-question-circle"></span></button>

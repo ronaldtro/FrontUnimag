@@ -1,0 +1,24 @@
+<h2 class="text-uppercase animated fadeIn text-center mt-4">Lista de seleccionados<small class="btn-block"></small></h2>
+<hr class="animated fadeIn">
+<div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+            <table class="table" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Calificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudiante of listaSeleccionados; let i = index">
+                        <td>{{ estudiante.nombreEstudiante }}</td>
+                        <td attr.data-order="{{estudiante.puntajePorcentual}}">{{ estudiante.puntajePorcentual }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"></ngx-spinner>
