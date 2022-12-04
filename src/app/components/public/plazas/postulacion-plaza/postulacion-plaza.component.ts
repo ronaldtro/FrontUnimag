@@ -1,17 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import swal from 'sweetalert2';
 import { postulacion } from 'src/app/interfaces/plaza.interface';
 import { Plazas } from 'src/app/interfaces/Plazas.interface';
-import { ConvocatoriaPService } from 'src/app/services/convocatoria-p.service';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import { TiposConvocatorias } from 'src/app/class/api';
-
 declare var $:any;
+
+//Servicios
+import { UserService } from 'src/app/services/user.service';
+import { ConvocatoriaPService } from 'src/app/services/convocatoria-p.service';
+
 
 @Component({
   selector: 'app-postulacion-plaza',
@@ -72,6 +74,7 @@ export class PostulacionPlazaComponent implements OnInit {
   }
 
   postularse(formulario:NgForm){
+    
     if(!this._userService.isLogin()){
       let url=this.router.url;
         $('#exampleModal').modal('hide');

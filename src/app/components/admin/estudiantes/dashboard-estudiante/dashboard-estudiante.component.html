@@ -38,44 +38,16 @@
                         </div>
                     </div>
                 </div>
-                <!-- <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <h3 class="h4">
-                        <small class="d-block text-muted">Nombre</small>
-                        {{estudiante.nombre}}
-                    </h3></li>
-                <li class="list-group-item">Código: {{estudiante.codigo}}</li>
-                <li class="list-group-item">Email: {{estudiante.email}}</li>
-            </ul>
-            </div> -->
             </div>
         </div>
         <div class="text-center">
             <a href="#modalConvocatoriaRefrigerios" class="btn btn-lg btn-info shadow rounded-pill text-uppercase mb-3" data-toggle="modal" *ngIf="convocatoriasRefrigerio.length > 0">Inscribirme en Almuerzos y Refrigerios</a>
         </div>
-        <!-- <div id="rutaHumanitaria">
-            <div class="card border-success shadow mb-3">
-                <div class="card-body py-2">
-                    <div class="row align-items-center text-center text-md-left">
-                        <div class="col-12 col-md">
-                            <p class="font-weight-bold text-uppercase mb-2">Solicitud de ruta humanitaria</p>
-                            <p>Como medida de contingencia debido al COVID-19 se ha habilitado un formulario para solicitar el acceso a una ruta humanitaria que le permita regresar a su hogar.</p>
-                        </div>
-                        <div class="col-12 col-md-auto text-center">
-                            <span class="text-center small d-block mb-2" *ngIf="datosEmergencia.apoyo_id != null">Ya ha realizado una solicitud</span>
-                            <button type="button" class="btn rounded shadow text-uppercase" [ngClass]="{'btn-success': datosEmergencia.apoyo_id == null, 'btn-outline-success': datosEmergencia.apoyo_id != null}" data-toggle="modal" data-target="#rutaModal">
-                                <span *ngIf="datosEmergencia.apoyo_id == null">Realizar solicitud</span>
-                                <span *ngIf="datosEmergencia.apoyo_id != null">Ver solicitud</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div> -->
         
         <p class="text-muted text-center">Puedes acceder a los diferentes módulos ofrecidos a continuación.</p>
         <div class="row justify-content-center">
+
+            <!-- Seccion Ayudantia -->
             <div class="col-lg-4">
                 <div class="card shadow-sm mb-3">
                     <h5 class="card-header text-center bg-success text-white py-lg-3"><span class="fas fa-chalkboard-teacher" aria-hidden="true"></span> Ayudantías</h5>
@@ -92,6 +64,9 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- seccion monitoria -->
             <div class="col-lg-4">
                     <div class="card shadow-sm mb-3">
                         <h5 class="card-header text-center bg-info text-white py-lg-3"><span class="fas fa-chalkboard-teacher" aria-hidden="true"></span> Monitorías</h5>
@@ -107,7 +82,9 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+            </div>
+
+            <!-- Seccion almueroz y refrigerios -->
             <div class="col-lg-4">
                 <div class="card shadow-sm mb-3">
                     <h5 class="card-header text-center bg-primary text-white py-lg-3"><span class="fas fa-utensils" aria-hidden="true"></span> Almuerzos y refrigerios</h5>
@@ -130,25 +107,6 @@
                     </div>
                 </div>
             </div>
-          
-            <!-- <div class="col-lg-4">
-                <div class="card shadow-sm mb-3">
-                    <h5 class="card-header text-center bg-info text-white py-lg-3"><span class="fas fa-heart" aria-hidden="true"></span> Salud</h5>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a [routerLink]="['/citasAgenda']">Agendar cita</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a [routerLink]="['/miCitas']">Historial de citas</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a [routerLink]="['/actualizarDatos']">Actualizar datos personales</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
@@ -240,10 +198,6 @@
                                     </ng-template>
                                 </ng-select>
                                 <span class="small">Si no se encuentra su entidad de salud escribir o seleccionar la acción 'NO TIENE'</span>
-                                <!-- <select name="eps_id" id="ruta-eps" class="form-control" [(ngModel)]="datosEmergencia.eps_id">
-                                    <option value="">No posee EPS</option>
-                                    <option *ngFor="let entidad of eps" [value]="entidad.id">{{entidad.nombre}}</option>
-                                </select> -->
                                 
                             </div>
                             <div class="row mb-3">
@@ -315,7 +269,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Convocatoria monitorias -->
 <div class="modal fade" id="modalConvocatoriaMonitorias" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaMonitorias" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

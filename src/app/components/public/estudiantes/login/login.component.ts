@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import swal from 'sweetalert2';
+
+//Servicios
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +40,8 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if(params['redirect']){
         this.redirect=params['redirect'];
+        //Ronald
+        console.log('variable redirect: ',this.redirect);
       }
     });
   }

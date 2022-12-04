@@ -30,16 +30,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-              <h3 class="h4">
-                  <small class="d-block text-muted">Nombre</small>
-                  {{estudiante.nombre}}
-              </h3></li>
-          <li class="list-group-item">Código: {{estudiante.codigo}}</li>
-          <li class="list-group-item">Email: {{estudiante.email}}</li>
-        </ul>
-      </div> -->
         </div>
     </div>
     <br>
@@ -62,6 +52,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let plaza of plazas; let i=index">
+
                         <td>{{plaza.convocatoria}}</td>
                         <td>{{plaza.tipoAyudantia}}</td>
                         <td>{{plaza.tipoPlaza}}</td>
@@ -124,8 +115,10 @@
 </div>
 
 
+<!-- Ventanas modales -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">

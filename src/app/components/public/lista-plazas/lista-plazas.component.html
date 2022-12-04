@@ -99,6 +99,7 @@
     <div class="alert alert-info mb-3 text-center" role="alert" *ngIf="plazas.length == 0">
         <strong>No hay plazas publicadas en este momento.</strong>
     </div>
+
     <div class="row labels-sm border shadow-sm mb-3" *ngFor="let c of plazas | search:'tipoAyudantiaId': tipo_ayudantia | search:'tipoPlazaId': tipo_plaza_id | search:'unidadId': unidad_id | search: 'creditos':porcentaja_creditos:'<=' | search: 'promedio':promedio_minimo:'<=' | paginate: { itemsPerPage: 10, currentPage: p }">
         <div class="col-lg-3 p-3 bg-info text-white d-flex flex-wrap align-items-start flex-column justify-content-between">
             <h3 class="h4 border-bottom mb-3 pb-3 w-100">
@@ -160,17 +161,6 @@
     <div class="text-center">
         <pagination-controls (pageChange)="p = $event" autoHide="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
     </div>
-    <!-- <div class="card mb-2"  *ngFor="let c of plazas | search:'tipoAyudantiaId': tipo_ayudantia | search:'tipoPlazaId': tipo_plaza_id | search:'unidadId': unidad_id | search: 'creditos':porcentaja_creditos | search: 'promedio':promedio_minimo " >
-      <div class="card-header">
-        Ayudantía  {{c.nombreTipo}}
-      </div>
-      <div class="card-body">
-        <h5 class="card-title"> {{c.nombrePlaza}}</h5>
-        <p class="card-text">Cupos: {{c.cupos}} <br> Estado : {{c.estadoPlaza}} <br> Unidad Solicitante: {{c.unidad}} </p>
-        <button class="btn btn-primary float-right ml-1" [routerLink]="['/plaza/aprobados/',c.idPlaza]"  type="button">Ver resultados</button>
-        <button class="btn btn-primary float-right" [routerLink]="['/plaza/informacion/',c.idPlaza]" type="button">Mas información</button>
-      </div>
-    </div> -->
     <div class="text-center">
         <a *ngIf="tieneCodigo != null" class="btn btn-outline-primary" [routerLink]="[ '/plazasConvocatorias', convocatoriaId ]">Ver todas las plazas de esta convocatoria</a>
         <br *ngIf="tieneCodigo != null">
@@ -178,7 +168,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal al postularme monitoria -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

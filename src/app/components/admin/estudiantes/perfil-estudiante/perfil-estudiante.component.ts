@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EstudiantesService } from 'src/app/services/estudiantes.service';
 import { Estudiante } from 'src/app/interfaces/estudiantes.interface';
 import { EstudiantePlazas } from 'src/app/interfaces/convocatorias_estudiante.interface';
 import swal from 'sweetalert2';
@@ -11,6 +10,9 @@ import { TiposConvocatorias, TipoConvocatoria } from 'src/app/class/api';
 import { ActivatedRoute } from '@angular/router';
 import { Api } from '../../../../class/api';
 declare var $:any;
+
+//Servicios
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
 
 
 @Component({

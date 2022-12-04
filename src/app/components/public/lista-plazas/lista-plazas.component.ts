@@ -1,13 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PlazasPService } from 'src/app/services/plazas-p.service';
 import { Api, TiposConvocatorias as TipoConvocatoriaEnum, Convocatoria, TiposConvocatorias } from 'src/app/class/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import { MessageService } from 'primeng/api';
-import { UserService } from 'src/app/services/user.service';
 import swal from 'sweetalert2';
-import { ConvocatoriaPService } from 'src/app/services/convocatoria-p.service';
 import { NgForm } from '@angular/forms';
 import { HttpParams } from '@angular/common/http';
 import { plazas_routes } from '../../admin/ayudantias/plazas/plazas.routes';
@@ -15,6 +12,13 @@ import { postulacion } from 'src/app/interfaces/plaza.interface';
 import { Plazas } from 'src/app/interfaces/Plazas.interface';
 import { PostulacionPlazaComponent } from '../plazas/postulacion-plaza/postulacion-plaza.component';
 declare var $:any;
+
+//Servicios
+import { PlazasPService } from 'src/app/services/plazas-p.service';
+import { UserService } from 'src/app/services/user.service';
+import { ConvocatoriaPService } from 'src/app/services/convocatoria-p.service';
+
+
 @Component({
   selector: 'app-lista-plazas',
   templateUrl: './lista-plazas.component.html',
@@ -175,6 +179,7 @@ export class ListaPlazasComponent implements OnInit {
       this.postulacionPlazaReference.setPropuestaMetodologica(this.propuestaMetodologica);
 
       $('#exampleModal').modal('show');
+      
     }else{
       let url=this.router.url;
       this.router.navigate(['/estudiantes/login'], {queryParams: {redirect:url}});

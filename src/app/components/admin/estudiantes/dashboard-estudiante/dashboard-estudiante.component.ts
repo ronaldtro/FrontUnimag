@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { EstudiantesService } from 'src/app/services/estudiantes.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Estudiante } from 'src/app/interfaces/estudiantes.interface';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import swal from 'sweetalert2';
-import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
-import { ConvocatoriaRefrigerioService } from 'src/app/services/convocatoria-refrigerio.service';
 import {Router, ActivatedRoute} from "@angular/router";
 import { DatosEmergencia } from 'src/app/class/api';
-import { BeneficiosService } from 'src/app/services/beneficios.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+
+//Servicios
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
+import { BeneficiosService } from 'src/app/services/beneficios.service';
+import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
+import { ConvocatoriaRefrigerioService } from 'src/app/services/convocatoria-refrigerio.service';
 
 declare var $:any;
 
@@ -21,6 +23,7 @@ declare var $:any;
 })
 
 export class DashboardEstudianteComponent implements OnInit {
+  
   estudiante:Estudiante;
   convocatoriasAyudantia:any[] = [];
   convocatoriasMonitorias:any[] = [];
