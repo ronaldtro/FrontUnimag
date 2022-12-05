@@ -1,13 +1,15 @@
 import { Component, OnInit, AfterViewChecked, OnDestroy } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UsuarioCafeteriaService } from 'src/app/services/usuario-cafeteria.service';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import swal from 'sweetalert2';
-import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
 import {saveAs as importedSaveAs} from "file-saver";
-import { SupervisorService } from 'src/app/services/supervisor.service';
 import { TiposConvocatorias, EtapasAyudantias, EtapasMonitorias } from 'src/app/class/api';
+
+//Servicios
+import { UserService } from 'src/app/services/user.service';
+import { UsuarioCafeteriaService } from 'src/app/services/usuario-cafeteria.service';
+import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
+import { SupervisorService } from 'src/app/services/supervisor.service';
 import { ConvocatoriaRefrigerioService } from 'src/app/services/convocatoria-refrigerio.service';
 import { ReportesService } from 'src/app/services/reportes.service';
 

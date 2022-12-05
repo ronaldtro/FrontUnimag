@@ -149,8 +149,9 @@ export class DashboardEstudianteComponent implements OnInit {
   }
 
   enviarFormularioRefrigerio(){
+
     $('#modalConvocatoriaRefrigerios').modal('hide');
-    this.router.navigate(['/inscripcion',this.convocatoria.refrigerio.id]);
+    this.router.navigate(['/inscripcion', this.convocatoria.refrigerio.id]);
   }
 
   /**
@@ -158,6 +159,7 @@ export class DashboardEstudianteComponent implements OnInit {
    * @param form formulario de solicitud de ayuda humanitaria
    */
   guardarSolicitud(form:NgForm){
+
     console.log(form);
     if(!form.valid) return;
     console.log("valid");
@@ -171,6 +173,7 @@ export class DashboardEstudianteComponent implements OnInit {
     }
     
     this.beneficioService.guardarSolicitudRutaHumanitaria(this.datosEmergencia).subscribe((resp:any) => {
+
       if(resp.success){
         this.datosEmergencia.apoyo_id = resp.data.datos.apoyo_id;
         this.datosEmergencia.departamento = temp.departamento;
@@ -179,8 +182,10 @@ export class DashboardEstudianteComponent implements OnInit {
       }else{
         swal("Error", resp.message, "error");
       }
+
       $("#rutaModal").modal("hide");
       this.spinner.hide();
+      
     }, (err:HttpErrorResponse) => {
       swal("Error de servidor", err.error, "error");
       this.spinner.hide();

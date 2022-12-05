@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+
+//Servicios
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -57,13 +59,10 @@ export class LoginComponent implements OnInit {
      if(this.redirect){
         this.router.navigate([this.redirect]);
       }else{
-        this.router.navigate(['/principal']);
-        // if(this._userService.roleMatch(['AsistenteCafeteria'])){
-        //   this.router.navigate(['/recepcion']);
-        // }else{
-        //   this.router.navigate(['/principal']);
-        // }
         
+        //Si es exitoso el acceso
+        this.router.navigate(['/principal']);
+      
       }
       this.spinner.hide();
     },(err : HttpErrorResponse)=>{

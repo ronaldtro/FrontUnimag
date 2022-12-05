@@ -1,20 +1,25 @@
 import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
-import { SupervisorService } from 'src/app/services/supervisor.service';
 import { DTConfig } from 'src/app/class/dtconfig';
 import { Subject } from 'rxjs/Subject';
 import swal from 'sweetalert2';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 import { DataTableDirective } from 'angular-datatables';
 import { EtapaMonitoria } from '../../comites-monitorias/estudiantes-atendidos/estudiantes-atendidos.component';
 declare var $: any;
 declare var jQuery:any;
+
+//Servicios
+import { SupervisorService } from 'src/app/services/supervisor.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
+
 @Component({
   selector: 'app-estudiantes-supervisor',
   templateUrl: './estudiantes-supervisor.component.html',
   styleUrls: ['./estudiantes-supervisor.component.css']
 })
+
 export class EstudiantesSupervisorComponent implements OnInit, AfterViewChecked {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

@@ -10,25 +10,9 @@
         <span class="fas fa-user" aria-hidden="true"></span> {{usuarioLogueado}}
     </span>
 </div>
-<!-- <h3>Ayudantías administrativas</h3>
-<div id="access-buttons" class="d-flex flex-wrap justify-content-center">
-    <div class="card">
-        <span class="card-img-top fas fa-bullhorn display-4 d-block mx-auto text-white text-center py-3 bg-info" aria-hidden="true"></span>
-        <div class="card-body p-2">
-            <h4 class="card-title h5 m-0">Convocatorias de ayudantías</h4>
-            
-            
-            
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">0 en ejecución</li>
-            <li class="list-group-item">0 cerradas</li>
-        </ul>
-        <div class="card-footer bg-white">
-            <a href="#" class="btn btn-primary btn-block m-0 shadow-sm">Crear convocatoria</a>
-        </div>
-    </div>
-</div> -->
+
+
+<!-- AYUDAS: BONOS RAPIM, ETC.. - Si tiene el rol: AdminAyudas -->
 <div *ngIf="userService.roleMatch(['AdminAyudas','RegistroAyudas'])">
     <h3 class="text-center text-md-left mb-3">Registro de ayudas</h3>
     <div class="card mb-3">
@@ -42,7 +26,10 @@
     </div>
 </div>
 
+
+<!-- AYUDANTIA -  Si tiene el rol: Ayudantia -->
 <div *ngIf="userService.tipoMatch(['Ayudantía'])" class="mb-3 py-3">
+
     <div class="mb-4" *ngIf="userService.roleMatch(['Admin', 'Unidad', 'Revisor'])">
         <h3 class="text-center text-md-left mb-3">Administrador de ayudantías administrativas y de extensión</h3>
         <div class="text-center" *ngIf="!datosModuloAyudantia">
@@ -126,10 +113,10 @@
         </div>
         
     </div>
-    
-    <!--*ngIf="userService.roleMatch(['SupervisorAyudante'])"-->
-    
 </div>
+
+
+<!-- MONITORIAS - Si tiene el rol: SupervisorAyudante - supervisor de monitores -->
 <div *ngIf="userService.roleMatch(['SupervisorAyudante'])" class="mb-3 py-3">
     <h3 class="text-center text-md-left mb-3">Supervisor de ayudantías administrativas y de extensión y monitorías académicas</h3>
     <div *ngIf="!datosModuloSupervisor">
@@ -169,10 +156,10 @@
             </div>
         </div>
     </div>
-    
-    
 </div>
 
+
+<!-- ALMUERZOS Y REFRIGERIOS - Si tiene el rol: Almuerzos y refrigerios -->
 <div *ngIf="userService.tipoMatch(['Almuerzos y refrigerios'])" class="mb-3 py-3">
     
     <h3 class="text-center text-md-left mb-3">Administrador de programa de almuerzos y refrigerios</h3>
@@ -241,9 +228,7 @@
                 </button>
 
                 <div class="dropdown d-inline-block" *ngIf="userService.roleMatch(['AdminRefrigerios','ProyeccionSocial'])">
-                    <button class="btn btn-sm btn-link dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{datos.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
-                        <!-- <span class="fas fa-ellipsis-v"></span> --> Más acciones
-                    </button>
+                    <button class="btn btn-sm btn-link dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{datos.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">Más acciones</button>
                     <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{datos.id}}">
                         <button *ngIf="userService.roleMatch(['AdminRefrigerios'])" type="button" class="dropdown-item" [routerLink]="[ '/convocatoriasRefrigerio/asistente', datos.id ]" title="Asistente de la convocatoria">
                             Realizar proceso de selección
@@ -304,11 +289,12 @@
             <a [routerLink]="['/convocatoriasRefrigerio/crear']" class="btn btn-sm btn-success shadow d-block d-md-inline-block mb-2 mb-md-0" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><span class="fas fa-plus" aria-hidden="true"></span> Crear nueva convocatoria</a>
         </div>
     </div>
-
 </div>
 
-<!-- Monitorias -->
+
+<!-- MONITORIAS - Si tiene el rol: AdminMonitorias, UnidadMonitorias, ComiteMonitorias  -->
 <div *ngIf="userService.tipoMatch(['Monitoría'])" class="mb-3">
+
     <div class="mb-4 py-3" *ngIf="userService.roleMatch(['AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias'])">
         <h3 class="text-center text-md-left mb-3">Administrador de monitorías académicas</h3>
         <div class="text-center" *ngIf="!datosModuloMonitoria">
@@ -388,9 +374,7 @@
                         <span class="fa fa-plus" aria-hidden="true"></span> Solicitar plaza
                     </a>
                     <div class="dropdown d-inline-block" *ngIf="userService.roleMatch(['AdminMonitorias','UnidadMonitorias', 'ComiteMonitorias'])">
-                        <button class="btn btn-sm btn-link dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{datos.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
-                            <!-- <span class="fas fa-ellipsis-v"></span> --> Más acciones
-                        </button>
+                        <button class="btn btn-sm btn-link dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{datos.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones"> Más acciones </button>
                         <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{datos.id}}">
                             
                             <button *ngIf="userService.roleMatch(['AdminMonitorias','UnidadMonitorias'])" class="dropdown-item" type="button" (click)="getlista(datos)">
@@ -424,6 +408,8 @@
     </div>
 </div>
 
+
+<!-- MONITORIAS - Si tiene el rol: UnidadMonitorias, Unidad -->
 <div  *ngIf="userService.roleMatch(['UnidadMonitorias', 'Unidad'])" class="mb-5">
     <h3 class="text-center text-md-left mb-3">Otras tareas de unidades académicas y administrativas</h3>
     <div class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-md-start">
@@ -438,88 +424,9 @@
     </div>
 </div>
 
+
+<!-- SALUD - Si tiene el rol: Salud -->
 <div class="d-flex flex-wrap justify-content-center no-gutters">
-
-    <!-- <a [routerLink]="[ '/dashboard']" class="col-md-3 btn btn-success mb-3 p-2 shadow  w-100" *ngIf="userService.tipoMatch(['Ayudantía'])">
-    <span class="fas fa-chalkboard-teacher d-block mx-auto icon-lg" aria-hidden="true"></span>
-    Módulo de becas de ayudantías
-  </a> -->
-    <!-- <div class="card p-0 mb-3 w-100 shadow-sm" *ngIf="userService.tipoMatch(['Ayudantía'])">
-        <div class="row m-0">
-            <div class="col-md-4 col-xl-3 p-3 bg-success text-uppercase text-white font-weight-bold text-center d-flex flex-wrap justify-content-center flex-column h3 m-0">
-                <span class="fas fa-chalkboard-teacher d-block mx-auto icon-lg mb-1 w-100 h1" aria-hidden="true"></span> Módulo de ayudantías
-            </div>
-            <div class="col-md-8 col-xl-9 p-3">
-                <p>En este módulo usted puede:</p>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['Admin', 'Unidad', 'Revisor'])"><a [routerLink]="[ '/convocatorias', 1 ]">Ver las convocatorias vigentes.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['Admin'])"><a [routerLink]="[ '/bolsasPresupuestales/listar-bolsas']">Gestionar las bolsas presupuestales.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['Admin'])"><a [routerLink]="[ '/plazas/listarPlazasSolicitadas', 1]">Ver las plazas solicitadas.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['Admin'])"><a [routerLink]="[ '/usuarios/listar-usuarios']">Gestionar los usuarios que harán uso del módulo de ayudantías.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['SupervisorAyudante', 'Revisor'])"><a [routerLink]="[ '/supervisor/estudiantes']">Supervisar las actividades que registran los estudiantes a su cargo.</a></li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- <div class="card p-0 mb-3 w-100 shadow-sm" *ngIf="userService.tipoMatch(['Monitoría'])">
-            <div class="row m-0">
-                <div class="col-md-4 col-xl-3 p-3 bg-info text-uppercase text-white font-weight-bold text-center d-flex flex-wrap justify-content-center flex-column h3 m-0">
-                    <span class="fas fa-chalkboard-teacher d-block mx-auto icon-lg mb-1 w-100 h1" aria-hidden="true"></span> Módulo de monitorías académicas
-                </div>
-                <div class="col-md-8 col-xl-9 p-3">
-                    <p>En este módulo usted puede:</p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias', 'ComiteMonitorias', 'UnidadMonitorias'])"><a [routerLink]="[ '/convocatorias', 3]">Ver las convocatorias vigentes.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['UnidadMonitorias'])"><a [routerLink]="[ '/configuracionAsignaturas']">Configurar las asignaturas.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias'])"><a [routerLink]="[ '/bolsasPresupuestales/listar-bolsas']">Gestionar las bolsas presupuestales.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias', 'ComiteMonitorias', 'UnidadMonitorias'])"><a [routerLink]="[ '/plazas/listarPlazasSolicitadas', 3]">Ver las plazas {{ !userService.roleMatch(['AdminMonitorias']) ? 'solicitadas' : 'pre-aprobadas'}}.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias'])"><a [routerLink]="[ '/usuarios/listar-usuarios']">Gestionar los usuarios que harán uso del módulo de monitoría.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['SupervisorAyudante'])"><a [routerLink]="[ '/supervisor/estudiantes']">Supervisar las actividades que registran los estudiantes a su cargo.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['EvaluadorMonitoria'])"><a [routerLink]="[ '/estudiantesEvaluador']">Ver el listado de estudiantes postulados a evaluar.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias'])"><a [routerLink]="[ '/comitesMonitorias/listar']">Gestionar los comités de monitorías académicas.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias'])"><a [routerLink]="[ '/comitesMonitorias/historial']">Ver el historial completo de comités de monitorías académicas.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias'])"><a [routerLink]="[ '/comitesMonitorias/roles']">Gestionar los roles para los miembros de un comité de monitorías académicas.</a></li>
-                        <li class="list-group-item" *ngIf="userService.roleMatch(['AdminMonitorias'])"><a [routerLink]="[ '/comitesMonitorias/verResultadosEncuestas', 3]">Ver el resultado de las encuestas de evaluación de monitorías académicas.</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
-
-
-
-    <!-- <div class="card p-0 mb-3 w-100 shadow-sm" *ngIf="userService.tipoMatch(['Almuerzos y refrigerios'])">
-        <div class="row m-0">
-            <div class="col-md-4 col-xl-3 p-3 bg-warning text-uppercase font-weight-bold text-center d-flex flex-wrap justify-content-center flex-column h3 m-0">
-                <span class="fas fa-utensils d-block mx-auto icon-lg mb-1 w-100 h1" aria-hidden="true"></span> Módulo de almuerzos y refrigerios
-            </div>
-            <div class="col-md-8 col-xl-9 p-3">
-                <p>En este módulo usted puede:</p>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><a [routerLink]="[ '/periodosRefrigerios']">Ver los periodos de almuerzos y refrigerios almacenados en el sistema.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><a [routerLink]="[ '/beneficios']">Gestionar los beneficios registrados.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><a [routerLink]="[ '/cafeterias']">Gestionar las cafeterias que repartirán los almuerzos y refrigerios.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><a [routerLink]="[ '/usuariosCafeteria']">Gestionar los usuarios que harán uso del módulo de almuerzos y refrigerios.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><a [routerLink]="[ '/inscripcionAdministrativa']">Inscribir estudiantes a beneficios alimenticios.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','EntregasExtemporaneas'])"><a [routerLink]="[ '/entregaExtemporanea']">Registrar entregas extemporáneas de beneficios alimenticios.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios'])"><a [routerLink]="[ '/diasNoHabilitados']">Configurar días no habilitados.</a></li>
-                    <li class="list-group-item"><a [routerLink]="[ '/convocatoriasRefrigerio']">Ver las convocatorias vigentes.</a></li>
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminRefrigerios','ContaduriaBeneficios'])"><a [routerLink]="[ '/reporte/entregasConvocatorias']">Reporte de entregas de beneficios.</a></li>
-                    
-                    <li class="list-group-item" *ngIf="userService.roleMatch(['AdminCafeteria','AsistenteCafeteria']) && beneficios.length > 0">
-                        <p>Beneficios a entregar:</p>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" *ngFor="let item of beneficios"><a [routerLink]="[ '/recepcion', item.id]">Entrega de {{item.beneficio | lowercase}}.</a></li>
-                        </ul>
-                        
-                    </li>
-                    
-                    <li class="list-group-item"><a [routerLink]="[ '/estudiantes/condicionesEstudiantes']" *ngIf="userService.roleMatch(['AdminRefrigerios'])">Asignar condiciones especiales.</a></li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
     <div class="card p-0 mb-3 w-100 shadow-sm" *ngIf="userService.tipoMatch(['Salud'])">
         <div class="row m-0">
             <div class="col-md-4 col-xl-3 p-3 bg-info text-white text-uppercase font-weight-bold text-center d-flex flex-wrap justify-content-center flex-column h3 m-0">
@@ -558,5 +465,4 @@
             </div>
         </div>
     </div>
-
 </div>

@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  //Si entramos como estudiantes entramos por aca
   enviar(forma:NgForm){
     if(!forma.valid){
       return;

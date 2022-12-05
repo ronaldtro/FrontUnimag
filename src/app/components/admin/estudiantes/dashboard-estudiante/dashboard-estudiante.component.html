@@ -99,8 +99,8 @@
                             <li class="list-group-item">
                                 <a [routerLink]="['/excusas']">Excusas</a>
                             </li>
+                            <!-- Si hay convocatorias disponibles -->
                             <li class="list-group-item" *ngIf="convocatoriasRefrigerio.length > 0">
-                                <!-- <a [routerLink]="['/inscripcion',1003]"><strong>Inscribirme</strong></a> -->
                                 <a href="#modalConvocatoriaRefrigerios" data-toggle="modal"><strong>Inscribirme</strong></a>
                             </li>
                         </ul>
@@ -112,7 +112,7 @@
 
 </div>
 
-<!-- Modal ruta humanitaria-->
+<!-- Modal ruta humanitaria -->
 <div class="modal fade" id="rutaModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -295,7 +295,7 @@
     </div>
 </div>
 
-<!-- Modal refrigerios-->
+<!-- Modal convocatoria refrigerios -->
 <div class="modal fade" id="modalConvocatoriaRefrigerios" tabindex="-1" role="dialog" aria-labelledby="modalLabelConvocatoriaRefrigerios" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
