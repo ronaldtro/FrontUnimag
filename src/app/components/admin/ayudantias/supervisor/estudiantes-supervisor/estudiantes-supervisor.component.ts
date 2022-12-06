@@ -15,12 +15,15 @@ import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 
 
 @Component({
+
   selector: 'app-estudiantes-supervisor',
   templateUrl: './estudiantes-supervisor.component.html',
   styleUrls: ['./estudiantes-supervisor.component.css']
+
 })
 
 export class EstudiantesSupervisorComponent implements OnInit, AfterViewChecked {
+  
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
   

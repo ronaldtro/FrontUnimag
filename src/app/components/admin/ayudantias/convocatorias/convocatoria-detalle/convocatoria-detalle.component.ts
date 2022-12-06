@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Convocatoria } from 'src/app/interfaces/convocatorias.interface';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
@@ -9,6 +8,9 @@ import { Objeto } from 'src/app/interfaces/objeto.interfaces';
 import { Api } from 'src/app/class/api';
 import {Location} from '@angular/common';
 declare var $:any;
+
+//Servicios
+import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
 
 
 @Component({

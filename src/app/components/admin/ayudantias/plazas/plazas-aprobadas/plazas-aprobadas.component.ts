@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, OnDestroy, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { PlazaService } from 'src/app/services/plaza.service';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 import { Subject } from 'rxjs';
@@ -7,16 +6,18 @@ import { DTConfig } from 'src/app/class/dtconfig';
 import { MessageService } from 'primeng/api';
 import { Message } from 'primeng/components/common/api';
 import { DataTableDirective } from 'angular-datatables';
-import { UserService } from 'src/app/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 import { ActivatedRoute } from '@angular/router';
 import {saveAs as importedSaveAs} from "file-saver";
 import { Convocatoria } from 'src/app/class/api';
-
 declare var $:any;
 declare var Tutorial:any;
+
+//Servicios
+import { PlazaService } from 'src/app/services/plaza.service';
+import { UserService } from 'src/app/services/user.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 
 @Component({
   selector: 'app-plazas-aprobadas',

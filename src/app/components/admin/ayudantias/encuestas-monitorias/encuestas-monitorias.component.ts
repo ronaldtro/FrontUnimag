@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ComiteMonitoriasService } from 'src/app/services/comite-monitorias.service';
-import { EstudiantesService } from 'src/app/services/estudiantes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import swal from 'sweetalert2';
+
+//Servicios
+import { ComiteMonitoriasService } from 'src/app/services/comite-monitorias.service';
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-encuestas-monitorias',
