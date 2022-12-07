@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { PlazaService } from 'src/app/services/plaza.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Plazas } from 'src/app/interfaces/Plazas.interface';
 import { Objeto } from 'src/app/interfaces/objeto.interfaces';
@@ -10,8 +9,11 @@ import swal from 'sweetalert2';
 import { Message } from 'primeng/components/common/api';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { UserService } from 'src/app/services/user.service';
 import {FileUpload } from 'primeng/primeng';
+
+//Servicios
+import { PlazaService } from 'src/app/services/plaza.service';
+import { UserService } from 'src/app/services/user.service';
 
 declare var $:any;
 declare var Tutorial:any;
