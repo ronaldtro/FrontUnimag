@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { PlazaService } from 'src/app/services/plaza.service';
+
 import { NgForm } from '@angular/forms';
 import { PlazaCrear, requisitoInscripcion, Asignaturas, Actividad, tipoAyudantia } from 'src/app/interfaces/plaza.interface';
 import swal from 'sweetalert2';
@@ -7,16 +7,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/Rx';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { TipoPlazaService } from 'src/app/services/tipo-plaza.service';
+
 import {Location} from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MonitorARatificar } from '../../estudiantesRatificados/ratificar/ratificar.component';
 import { TipoConvocatoria, TiposConvocatorias } from 'src/app/class/api';
-import { SupervisorService } from 'src/app/services/supervisor.service';
+
 
 declare var jquery: any;
 declare var $: any;
 declare var Tutorial:any;
+
+//servicios
+import { PlazaService } from 'src/app/services/plaza.service';
+import { TipoPlazaService } from 'src/app/services/tipo-plaza.service';
+import { SupervisorService } from 'src/app/services/supervisor.service';
+
 
 @Component({
   selector: 'app-crear-plaza',

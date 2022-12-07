@@ -4,12 +4,17 @@ import { MessageService } from 'primeng/api';
 import swal from 'sweetalert2';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { EstudiantesService } from 'src/app/services/estudiantes.service';
+
 import { Estudiante } from 'src/app/interfaces/estudiantes.interface';
 import { Observacion } from 'src/app/interfaces/observacion.interface';
 import { Location } from '@angular/common';
-import { UserService } from 'src/app/services/user.service';
+
 declare var $: any;
+
+//Servicios
+import { UserService } from 'src/app/services/user.service';
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
+
 
 
 @Component({

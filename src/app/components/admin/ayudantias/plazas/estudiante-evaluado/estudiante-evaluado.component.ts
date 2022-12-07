@@ -2,18 +2,24 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Message } from 'primeng/components/common/api';
 import { Evaluacion } from 'src/app/interfaces/evaluacion';
-import { EvaluarEstudianteService } from 'src/app/services/evaluar-estudiante.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
-import { UserService } from 'src/app/services/user.service';
+
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
 
 declare var $: any;
 declare var Tutorial:any;
+
+//servicios
+import { EvaluarEstudianteService } from 'src/app/services/evaluar-estudiante.service';
+import { UserService } from 'src/app/services/user.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
 
 @Component({
   selector: 'app-estudiante-evaluado',

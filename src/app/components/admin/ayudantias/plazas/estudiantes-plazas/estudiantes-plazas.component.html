@@ -110,40 +110,52 @@
                                 <button *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  postulado.estadoId == 2)" class="btn btn-light btn-sm btn-cancelo" type="button" title="El estudiante canceló su postulación" disabled>
                                     <span class="fas fa-info-circle"></span>
                                 </button>
+
                                 <a *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  (postulado.estadoId == 3 || postulado.estadoId == 4 || postulado.estadoId == 6))" [routerLink]="[ '/plazas','estudianteEvaluado',postulado.id]" class="btn btn-light btn-sm btn-verEvaluacion" role="button" title="Ver evaluación">
                                     <span class="fas fa-eye"></span>
                                     <span class="sr-only">Ver evaluación</span>
                                 </a>
+
                                 <a *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias']) &&  postulado.estadoId == 1 && plazaEstudiantes.convocatoria_estado_control_id != 3)" [routerLink]="[ '/plazas','evaluarEstudiante', postulado.id]" class="btn btn-light btn-sm btn-evaluar" role="button" title="Evaluar">
                                     <i class="fas fa-clipboard-list"></i>
                                     <span class="sr-only">Evaluar</span>
                                 </a>
+
                                 <a *ngIf="(userService.roleMatch(['AdminMonitorias', 'ComiteMonitorias']) &&  (postulado.estadoId == 4 || postulado.estadoId == 6))" [routerLink]="[ '/comitesMonitorias/estudiantesAtendidos', postulado.id]" class="btn btn-light btn-sm btn-verListadoAtendidos" role="button" title="Ver listado de estudiantes atendidos">
                                     <i class="fas fa-address-book"></i>
                                     <span class="sr-only">Ver lista de estudiantes atendidos</span>
                                 </a>
+
                                 <div *ngIf="postulado.estadoId != 2" class="dropdown d-inline-block">
                                     <button class="btn btn-light btn-sm dropdown-toggle btn-masAcciones" type="button" id="dropdownMenuButton{{postulado.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Más acciones">
                                         <span class="fas fa-ellipsis-v"></span><span class="sr-only">Más acciones</span>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" attr.aria-labelledby="dropdownMenuButton{{postulado.id}}">
+                                        
+                                        
                                         <button *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && (postulado.estadoId == 4 || postulado.estado_plaza == 6) && plazaEstudiantes.convocatoria_estado_control_id != 3)" (click)="supervisorModal(postulado)" class="dropdown-item" type="button" title="Agregar / editar {{ tipoConvocatoria == 1 ? 'supervisor' : 'docente tutor'}}">Agregar / editar {{ tipoConvocatoria == 1 ? 'supervisor' : 'tutor'}}</button>
                                         <button *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante','Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && (postulado.estado_plaza == 4 || postulado.estado_plaza == 6) && plazaEstudiantes.convocatoria_estado_control_id != 3)" class="dropdown-item" type="button" title="Nueva observación" (click)="openModalObservacion(i)">Nueva observación</button>
+                                        
                                         <a *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante','Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  postulado.estado_plaza == 4 || postulado.estado_plaza == 6)" class="dropdown-item" role="button" title="Libreta de observaciones" [routerLink]="['/plazas', postulado.id, 'observaciones' ]">
                                             Libreta de observaciones
                                         </a>
+
                                         <a *ngIf="(userService.roleMatch(['Unidad', 'SupervisorAyudante','Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) && postulado.estado_plaza == 4 || postulado.estado_plaza == 6)" class="dropdown-item" role="button" title="Ver listado de actvidades" [routerLink]="[ '/supervisor/estudiante', postulado.id, 'actividades' ]">
                                             Ver listado de actividades
                                         </a>
+
                                         <button *ngIf="(userService.roleMatch(['Unidad', 'Admin', 'AdminMonitorias', 'UnidadMonitorias', 'ComiteMonitorias']) &&  postulado.entrevista != null)" class="dropdown-item" type="button" title="Ver información de entrevista" (click)="openEntrevistaInformacion(postulado.entrevista)">
                                             Ver información de entrevista
                                         </button>
+
                                         <button *ngIf="(userService.roleMatch(['Admin', 'AdminMonitorias'])) && plazaEstudiantes.convocatoria_estado_control_id != 3" (click)="cambiarEstadoModal(postulado)" class="dropdown-item" type="button" title="Cambiar estado">
                                             Cambiar estado
                                         </button>
+
                                         <button *ngIf="(userService.roleMatch(['Admin', 'AdminMonitorias']))" (click)="verHistorialEstado(postulado)" class="dropdown-item" type="button" title="Historial estado">
                                             Historial estados
                                         </button>
+
                                         <button *ngIf="(userService.roleMatch(['AdminMonitorias','UnidadMonitorias', 'ComiteMonitorias'])) && postulado.propuesta_metodologica != null" (click)="verPropuesta(postulado.propuesta_metodologica)" class="dropdown-item" type="button" title="Historial estado">
                                             Ver propuesta metodológica
                                         </button>

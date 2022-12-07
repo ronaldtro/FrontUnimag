@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked, ElementRef, OnDestroy, DoCheck, AfterContentInit } from '@angular/core';
-import { ComiteMonitoriasService } from 'src/app/services/comite-monitorias.service';
+
 import { Api, EnviarCorreoEncuestas } from '../../../../../class/api';
 import { Subject } from 'rxjs/Subject';
 import { DTConfig } from '../../../../../class/dtconfig';
@@ -7,14 +7,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DataTableDirective } from 'angular-datatables';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { UserService } from 'src/app/services/user.service';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
+
 import { Actividades } from 'src/app/interfaces/actividades.interface';
 import swal from 'sweetalert2';
 
 declare var $:any;
 declare var jQuery:any;
 // declare var Tutorial:any;
+
+//Servicios
+import { ComiteMonitoriasService } from 'src/app/services/comite-monitorias.service';
+import { UserService } from 'src/app/services/user.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
 
 @Component({
   selector: 'app-estudiantes-atendidos',

@@ -1,21 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { PlazaService } from 'src/app/services/plaza.service';
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Plazas } from 'src/app/interfaces/Plazas.interface';
 import swal from 'sweetalert2';
 import {Location} from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserService } from 'src/app/services/user.service';
+
 import { NgForm } from '@angular/forms';
-import { EstudiantesService } from 'src/app/services/estudiantes.service';
+
 import { Estudiante } from 'src/app/class/api';
+
+//servicios
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
+import { UserService } from 'src/app/services/user.service';
+import { PlazaService } from 'src/app/services/plaza.service';
+
 
 @Component({
   selector: 'app-ratificar',
   templateUrl: './ratificar.component.html',
   styleUrls: ['./ratificar.component.css']
 })
+
+
+
+
 export class RatificarComponent implements OnInit {
 
   plaza_id:number;
