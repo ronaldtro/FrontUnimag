@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked, ElementRef, OnDestroy, DoCheck, AfterContentInit } from '@angular/core';
-import { ComiteMonitoriasService } from 'src/app/services/comite-monitorias.service';
+
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Api } from '../../../../../class/api';
 import { Subject } from 'rxjs/Subject';
@@ -19,6 +19,10 @@ import swal from 'sweetalert2';
 declare var $:any;
 declare var jQuery:any;
 // declare var Tutorial:any;
+
+//SERVICIOS
+import { ComiteMonitoriasService } from 'src/app/services/comite-monitorias.service';
+
 
 @Component({
   selector: 'app-listar-comites',

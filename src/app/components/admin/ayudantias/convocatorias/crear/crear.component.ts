@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Location} from '@angular/common';
-import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
+
 import { Convocatoria } from '../../../../../interfaces/convocatorias.interface';
 import { NgForm, FormControl } from '@angular/forms';
 import { Etapas } from '../../../../../interfaces/etapas.interfaces';
@@ -15,6 +15,10 @@ import { EtapasMonitorias } from 'src/app/class/api';
 
 declare var $:any;
 declare var Tutorial:any;
+
+//SERVICIOS
+import { ConvocatoriaService } from 'src/app/services/convocatoria.service';
+
 
 @Component({
   selector: 'app-crear',
