@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import swal from 'sweetalert2';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { ConfiguracionAsignaturasService } from 'src/app/services/configuracion-asignaturas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 declare var $:any; 
 declare var jQuery:any;
+
+//Servicios
+import { ConfiguracionAsignaturasService } from 'src/app/services/configuracion-asignaturas.service';
+
+
 @Component({
   selector: 'app-configuracionasignaturas',
   templateUrl: './configuracionasignaturas.component.html',

@@ -1,13 +1,16 @@
 import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { PlazaService } from 'src/app/services/plaza.service';
 import { MessageService, Message } from 'primeng/api';
-import { UserService } from 'src/app/services/user.service';
 import { Subject } from 'rxjs';
 import { DTConfig } from 'src/app/class/dtconfig';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import swal from 'sweetalert2';
+
+
+//Servicios
+import { PlazaService } from 'src/app/services/plaza.service';
+import { UserService } from 'src/app/services/user.service';
 import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 
 @Component({

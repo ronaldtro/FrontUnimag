@@ -103,7 +103,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Solicitud de plaza</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" (click)="forma.resetForm();">
-          <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
         </button>
                 </div>
                 <form (ngSubmit)="responderSolicitud(forma)" #forma="ngForm" novalidate>
@@ -144,9 +144,8 @@
                                         El número de cupos aprobados es mayor a los solicitados que son {{solicitudPlaza.cupos_solicitados}}
                                     </div>
                                     <small id="ayudaInput" class="form-text text-muted">
-                  Ingrese "0" para rechazar la solicitud, o ingrese el número de cupos aprobados.
-                </small>
-
+                                    Ingrese "0" para rechazar la solicitud, o ingrese el número de cupos aprobados.
+                                    </small>
                                 </div>
                             </div>
                         </div>
