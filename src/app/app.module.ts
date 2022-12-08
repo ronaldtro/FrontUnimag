@@ -449,6 +449,7 @@ registerLocaleData(localeEs);
     ListaEstudiantesAtendidosComponent,
     IndicadoresComponent,
     InformacionComplementariaEstudianteComponent,
+    HomeMonitoriasComponent,
   ],
   imports: [
     BrowserModule,

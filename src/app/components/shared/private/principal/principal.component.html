@@ -249,6 +249,8 @@
         <div class="alert alert-info" *ngIf="!datosModuloRefrigerios.length">
             No hay convocatorias del programa de almuerzos y refrigerios vigentes en ejecución actualmente.
         </div>
+
+        <!-- REFRIGERIOS Rol AdminRefrigerios -->
         <div *ngIf="userService.roleMatch(['AdminRefrigerios','EntregasExtemporaneas'])">
             <p class="h5 text-secondary font-weight-normal text-center text-md-left mb-3" *ngIf="datosModuloRefrigerios.length">Tareas disponibles</p>
             <div class="card shadow-sm mb-3">
