@@ -1,25 +1,33 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, OnDestroy } from '@angular/core';
-import { PlazaService } from 'src/app/services/plaza.service';
+
 import { ActivatedRoute } from '@angular/router';
 import { EstudiantePlaza } from 'src/app/interfaces/estudiantesPlazas.Interfaces';
 import { DTConfig } from 'src/app/class/dtconfig';
 import { Subject } from 'rxjs';
-import { UserService } from 'src/app/services/user.service';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import swal from 'sweetalert2';
 import { DataTableDirective } from 'angular-datatables';
-import { EstudiantesService } from 'src/app/services/estudiantes.service';
+
 import { MessageService } from 'primeng/api';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
 import { Entrevista } from 'src/app/interfaces/entrevista';
 import { Usuarios } from 'src/app/interfaces/usuarios.interface';
 import { Api } from 'src/app/class/api';
 
 declare var $: any;
 declare var Tutorial:any;
+
+//servicios
+import { EstudiantesService } from 'src/app/services/estudiantes.service';
+import { PlazaService } from 'src/app/services/plaza.service';
+import { UserService } from 'src/app/services/user.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
+
 
 @Component({
   selector: 'app-estudiantes-plazas',

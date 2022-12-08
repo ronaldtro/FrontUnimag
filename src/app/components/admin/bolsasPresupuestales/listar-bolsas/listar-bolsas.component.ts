@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy, AfterViewChecked, ViewEncapsulation } from '@angular/core';
-import { BolsaPresupuestalService } from 'src/app/services/bolsa-presupuestal.service';
+
 import swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BolsaPresupuestal } from 'src/app/interfaces/bolsaPresupuestal.interface';
@@ -13,6 +13,10 @@ import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 declare var $:any;
 declare var jQuery:any;
 declare var Tutorial:any;
+
+//SERVICIOS
+import { BolsaPresupuestalService } from 'src/app/services/bolsa-presupuestal.service';
+
 
 @Component({
   selector: 'app-listar-bolsas',

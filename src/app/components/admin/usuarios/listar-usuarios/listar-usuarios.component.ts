@@ -3,13 +3,17 @@ import { Subject } from 'rxjs';
 import { DTConfig } from 'src/app/class/dtconfig';
 import { Api } from 'src/app/class/api';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
+
 import { Usuarios } from 'src/app/interfaces/usuarios.interface';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 declare var $:any; 
 declare var jQuery:any;
+
+//SERVICIOS
+import { UsuarioService } from 'src/app/services/usuario.service';
+
 
 @Component({
   selector: 'app-listar-usuarios',

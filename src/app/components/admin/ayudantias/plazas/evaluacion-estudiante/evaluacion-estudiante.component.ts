@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EvaluarEstudianteService } from 'src/app/services/evaluar-estudiante.service';
+
 import { NgForm } from '@angular/forms';
 import { Evaluacion } from 'src/app/interfaces/evaluacion';
 import { MessageService } from 'primeng/api';
@@ -10,6 +10,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import {Location} from '@angular/common';
 
 declare var $:any;
+
+//SERVICIOS
+import { EvaluarEstudianteService } from 'src/app/services/evaluar-estudiante.service';
+
 
 @Component({
   selector: 'app-evaluacion-estudiante',

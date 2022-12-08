@@ -1,7 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { PlazaService } from 'src/app/services/plaza.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
@@ -9,6 +7,10 @@ import swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 declare var $: any;
 declare var jQuery:any;
+
+//Servicios
+import { PlazaService } from 'src/app/services/plaza.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-ver-plaza',

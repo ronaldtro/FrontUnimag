@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DTConfig } from 'src/app/class/dtconfig';
-import { PlazaService } from 'src/app/services/plaza.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+
 import { EstudiantePlaza, EstudianteEval } from 'src/app/interfaces/estudiantesPlazas.Interfaces';
 import { NgForm } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TiposConvocatorias } from 'src/app/class/api';
+
+//SERVICIOS
+import { UserService } from 'src/app/services/user.service';
+import { PlazaService } from 'src/app/services/plaza.service';
+
 
 @Component({
   selector: 'app-estudiantes-evaluados',

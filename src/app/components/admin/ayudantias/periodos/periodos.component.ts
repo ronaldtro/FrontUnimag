@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ElementRef, AfterViewChecked } from '@angular/core';
-import { PeriodoService } from 'src/app/services/periodo.service';
+
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 import { Periodo } from 'src/app/interfaces/periodo.interface';
@@ -11,10 +11,16 @@ declare var $: any;
 import { DataTableDirective } from 'angular-datatables';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
 
 declare var jQuery:any;
 declare var Tutorial:any;
+
+//SERVICIOS
+import { PeriodoService } from 'src/app/services/periodo.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
+
 
 @Component({
   selector: 'app-periodos',

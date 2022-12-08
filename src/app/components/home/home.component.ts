@@ -1,19 +1,21 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ConvocatoriaPService } from 'src/app/services/convocatoria-p.service';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import swal from 'sweetalert2';
-import { PlazasPService } from 'src/app/services/plazas-p.service';
 import { Router } from '@angular/router';
 import { Api, Convocatoria, EtapasAyudantias, EtapasMonitorias, EtapasRefrigerios } from 'src/app/class/api';
-import { ConvocatoriaRefrigerioService } from 'src/app/services/convocatoria-refrigerio.service';
 import { TiposConvocatorias } from "src/app/class/api";
-import { UserService } from 'src/app/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-
 declare var jQuery: any;
 declare var $: any;
+
+//Servicios
+import { ConvocatoriaPService } from 'src/app/services/convocatoria-p.service';
+import { PlazasPService } from 'src/app/services/plazas-p.service';
+import { ConvocatoriaRefrigerioService } from 'src/app/services/convocatoria-refrigerio.service';
+import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-home',

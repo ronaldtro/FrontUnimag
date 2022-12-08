@@ -116,7 +116,7 @@
 </div>
 
 
-<!-- MONITORIAS - Si tiene el rol: SupervisorAyudante - supervisor de monitores -->
+<!-- MONITORIAS / AYUDANTIAS - Si tiene el rol: SupervisorAyudante - supervisor de monitores -->
 <div *ngIf="userService.roleMatch(['SupervisorAyudante'])" class="mb-3 py-3">
     <h3 class="text-center text-md-left mb-3">Supervisor de ayudantías administrativas y de extensión y monitorías académicas</h3>
     <div *ngIf="!datosModuloSupervisor">
@@ -333,7 +333,9 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-12 col-md mb-3 mb-md-0 text-center text-md-left">
+
                             <p class="h5"><a class="text-dark" [routerLink]="[ '/convocatorias/detalle', datos.id ]">{{datos.titulo}}</a></p>
+
                             <div *ngIf="datos.etapa_actual">
                                 <span class="d-block rounded-pill small py-1 px-2" *ngFor="let etapa_actual of datos.etapa_actual">Etapa actual: {{etapa_actual.nombre}} (del {{etapa_actual.fecha_inicio | date: 'dd/MM/yyyy hh:mm a'}} al {{etapa_actual.fecha_fin | date: 'dd/MM/yyyy hh:mm a'}})</span>
                                 
@@ -364,9 +366,11 @@
                                 </div>
                             </div>
                         </div>
-            
                     </div>
                 </div>
+
+                <!-- OJOOO! - Por aqui voy con los servicios - Ronald  -->
+
                 <div class="card-footer text-center text-md-right bg-white p-2">
                     <a *ngIf="userService.roleMatch(['AdminMonitorias'])" role="button" class="btn btn-sm btn-outline-secondary btn-editar" [routerLink]="[ '/convocatorias/editar', datos.id ]" title="Editar registro">
                         <span class="fas fa-pen" aria-hidden="true"></span>

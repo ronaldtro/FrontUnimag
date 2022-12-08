@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SupervisorService } from 'src/app/services/supervisor.service';
 import swal from 'sweetalert2';
 import { RespuestaServidor } from 'src/app/class/respuesta-servidor';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { UserService } from 'src/app/services/user.service';
 import { Subject } from 'rxjs';
 import { DTConfig } from 'src/app/class/dtconfig';
 import {Actividades} from 'src/app/interfaces/actividades.interface' 
@@ -12,11 +10,15 @@ import { DataTableDirective } from 'angular-datatables';
 import { NgForm } from '@angular/forms';
 import { Api } from 'src/app/class/api';
 import { MessageService } from 'primeng/api';
-import { FuncionesJSService } from 'src/app/services/funciones-js.service';
 import { EtapaMonitoria } from '../../comites-monitorias/estudiantes-atendidos/estudiantes-atendidos.component';
-
 declare var $: any;
 declare var Tutorial:any;
+
+//Servicios
+import { SupervisorService } from 'src/app/services/supervisor.service';
+import { UserService } from 'src/app/services/user.service';
+import { FuncionesJSService } from 'src/app/services/funciones-js.service';
+
 
 @Component({
   selector: 'app-actividades-supervisor',

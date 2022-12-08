@@ -20,7 +20,7 @@ export class ConvocatoriaComponent implements OnInit {
   etapaActual:any = {};
   api=Api.dev;
   urlDoc: string;
-  tipoConvocatoria:TipoConvocatoria;
+  tipoConvocatoria:TipoConvocatoria | undefined;
   tiposConvocatoria = TipoConvocatoria;
 
   constructor( private _convocatoriaP :ConvocatoriaPService, private spinner: NgxSpinnerService, private activatedRoute:ActivatedRoute) { 
@@ -34,7 +34,12 @@ export class ConvocatoriaComponent implements OnInit {
       }else if(params['tipo_convocatoria'] == 3 || params['tipo_convocatoria'] == 'monitorias'){
         this.tipoConvocatoria = TipoConvocatoria.MONITORIA;
       }
-      this.spinner.show();
+
+      // if(params['tipo_convocatoria'] == 3 || params['tipo_convocatoria'] == 'monitorias' ){
+      //   this.tipoConvocatoria = TipoConvocatoria.MONITORIA;
+      // }
+
+        this.spinner.show();
       
         this._convocatoriaP.getDatos(this.tipoConvocatoria).subscribe(data => {
           this.convocatorias = data['datosConvocatoria'];
@@ -47,7 +52,8 @@ export class ConvocatoriaComponent implements OnInit {
             let etapaConvocatoria:any = {};
   
               if(convocatoria.estadoActual == null || convocatoria.estadoActual == ""){
-                let peso_etapa_inscripcion = (this.tipoConvocatoria == TipoConvocatoria.AYUDANTIA) ? 3 : 4;
+               let peso_etapa_inscripcion = (this.tipoConvocatoria == TipoConvocatoria.AYUDANTIA) ? 3 : 4;
+              // let peso_etapa_inscripcion = 4;
                 convocatoria.etapas = convocatoria.etapas.filter(function(a) {
                   return a.peso > peso_etapa_inscripcion;
                 });
@@ -61,7 +67,8 @@ export class ConvocatoriaComponent implements OnInit {
                   return (today - new Date(a.fechaFin + "T00:00:00Z").getTime()) > 0;
                 })[0];
                 if(etapaConvocatoria == undefined){
-                  let peso_etapa_entrevista = (this.tipoConvocatoria == TipoConvocatoria.AYUDANTIA) ? 4 : 6;
+                 let peso_etapa_entrevista = (this.tipoConvocatoria == TipoConvocatoria.AYUDANTIA) ? 4 : 6;
+                // let peso_etapa_entrevista = 6;
                   etapaConvocatoria = convocatoria.etapas.filter(function(a) {
                     return a.peso == peso_etapa_entrevista;
                   })[0];
@@ -83,6 +90,9 @@ export class ConvocatoriaComponent implements OnInit {
             text: respuesta.msg,
           });
         });
+
+      
+    
     });
     
   }
