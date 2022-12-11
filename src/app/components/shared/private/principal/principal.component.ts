@@ -92,13 +92,13 @@ export class PrincipalComponent implements OnInit{
       });
     }
 
-    if(this.userService.tipoMatch(['Almuerzos y refrigerios'])){
-      this._convocatoriaService.getDatosModuloRefrigerios().subscribe((data:any) => {
-        this.datosModuloRefrigerios = data;
-      }, (err:any) => {
-        console.error(err);
-      });
-    }
+    // if(this.userService.tipoMatch(['Almuerzos y refrigerios'])){
+    //   this._convocatoriaService.getDatosModuloRefrigerios().subscribe((data:any) => {
+    //     this.datosModuloRefrigerios = data;
+    //   }, (err:any) => {
+    //     console.error(err);
+    //   });
+    // }
   }
 
   /**

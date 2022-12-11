@@ -2,9 +2,9 @@
 export class Api {
 
   public static prod: string = '';
-  public static dev:string='http://localhost:60041'; //Conexion local
+  // public static dev:string='http://localhost:60041'; //Conexion local
   // public static dev:string='http://testcids.unimagdalena.edu.co:8000';
-  //public static dev: string = 'http://ayudantias.unimagdalena.edu.co:8000'; //Conexion produccion
+  public static dev: string = 'http://ayudantias.unimagdalena.edu.co:8000'; //Conexion produccion
   //public static dev:string='http://hablemosdepaz.unimagdalena.edu.co';
   public static external: string = '';
 

@@ -448,8 +448,7 @@ registerLocaleData(localeEs);
     EnviosSinEntregaPipe,
     ListaEstudiantesAtendidosComponent,
     IndicadoresComponent,
-    InformacionComplementariaEstudianteComponent,
-    HomeMonitoriasComponent,
+    InformacionComplementariaEstudianteComponent
   ],
   imports: [
     BrowserModule,
